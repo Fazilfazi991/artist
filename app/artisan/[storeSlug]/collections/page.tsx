@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { SectionHeading } from '@/components/ui';
+import { getStorefrontContext } from '@/lib/storefront/get-storefront-context';
+export const dynamic = 'force-dynamic';
+export default async function ArtisanCollectionsPage({ params }: { params: Promise<{ storeSlug: string }> }) { const { storeSlug } = await params; const context = await getStorefrontContext(storeSlug); if (!context) notFound(); return <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><SectionHeading eyebrow={context.seller.store_name} title="Collections" copy="Explore storefront collections curated by the artisan." /><div className="grid gap-4 md:grid-cols-3">{context.collections.map((collection:any)=><Link key={collection.id} href={`/artisan/${storeSlug}/collections/${collection.slug}`} className="rounded-xl border border-line bg-white p-6"><h2 className="font-black">{collection.name}</h2><p className="mt-2 text-sm text-muted">{collection.description}</p></Link>)}</div></main> }

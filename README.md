@@ -103,3 +103,80 @@ Implemented backend pieces:
 - Add admin review screens.
 - Add product media upload actions.
 - Add checkout/order creation once payment design is finalized.
+
+## Sprint 4 Storefront Mini-Sites
+
+Approved artisans have a multi-tenant storefront powered by one shared renderer. The reliable development and staging route is:
+
+```txt
+/artisan/[storeSlug]
+```
+
+Future custom-domain storefronts are prepared through hostname parsing and middleware rewriting. Set:
+
+```env
+NEXT_PUBLIC_ROOT_DOMAIN=yourmarketplace.com
+```
+
+Production wildcard setup later:
+
+```txt
+Main domain: yourmarketplace.com
+Wildcard DNS: *.yourmarketplace.com
+Vercel domains: yourmarketplace.com and *.yourmarketplace.com
+```
+
+Do not rely on wildcard subdomains on the current `artist-five-bice.vercel.app` preview-style domain. Use the internal `/artisan/[storeSlug]` fallback until a root domain is connected.
+
+Storefront routes:
+
+```txt
+/seller/storefront
+/seller/storefront/template
+/seller/storefront/branding
+/seller/storefront/content
+/seller/storefront/policies
+/seller/storefront/preview
+/seller/collections
+/seller/collections/new
+/seller/collections/[id]/edit
+/artisan/[storeSlug]
+/artisan/[storeSlug]/products
+/artisan/[storeSlug]/collections
+/artisan/[storeSlug]/collections/[collectionSlug]
+/artisan/[storeSlug]/product/[productSlug]
+/artisan/[storeSlug]/about
+/artisan/[storeSlug]/custom-order
+```
+
+Template keys:
+
+```txt
+warm-editorial
+clean-grid
+personalized-gifts
+visual-portfolio
+boutique-brand
+```
+
+Template switching preserves products, product images, collections, content, branding, social links, policies, and publication state.
+
+Marketplace categories remain admin-controlled. Seller collections are seller-controlled storefront groupings such as Featured, New Arrivals, Wedding Gifts, and Best Sellers.
+
+Storage buckets used by storefront assets:
+
+```txt
+storefront-logos/{sellerId}/...
+storefront-heroes/{sellerId}/...
+storefront-gallery/{sellerId}/...
+collection-images/{sellerId}/{collectionId}/...
+```
+
+RLS intent:
+
+- Public reads only published storefront settings for approved sellers.
+- Sellers manage only their own storefront settings, social links, sections, and collections.
+- Public storefront routes expose only active products and active collections.
+- Admin can manage all storefront records.
+
+Remaining placeholders: live upload progress UI, advanced collection image editing, and real custom-order submission are deferred to later sprints.

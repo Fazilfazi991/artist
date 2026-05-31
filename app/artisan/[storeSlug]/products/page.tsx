@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { SectionHeading } from '@/components/ui';
+import { getStorefrontContext } from '@/lib/storefront/get-storefront-context';
+export const dynamic = 'force-dynamic';
+export default async function ArtisanProductsPage({ params }: { params: Promise<{ storeSlug: string }> }) { const { storeSlug } = await params; const context = await getStorefrontContext(storeSlug); if (!context) notFound(); return <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><SectionHeading eyebrow={context.seller.store_name} title="Products" copy="Browse live products from this artisan storefront." /><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{context.products.map((product:any)=><Link key={product.id} href={`/artisan/${storeSlug}/product/${product.slug}`} className="rounded-lg border border-line bg-white"><img src={product.product_images?.[0]?.image_url || '/artisan-hero.png'} alt={product.name} className="aspect-square w-full rounded-t-lg object-cover"/><div className="p-4"><h2 className="font-black">{product.name}</h2><p className="mt-2 text-sm text-muted">{product.base_price == null ? 'Quote required' : `Rs. ${Number(product.base_price).toLocaleString('en-IN')}`}</p></div></Link>)}</div></main> }

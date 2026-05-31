@@ -1,0 +1,5 @@
+import { notFound } from 'next/navigation';
+import { SectionHeading } from '@/components/ui';
+import { getStorefrontContext } from '@/lib/storefront/get-storefront-context';
+export const dynamic = 'force-dynamic';
+export default async function ArtisanAboutPage({ params }: { params: Promise<{ storeSlug: string }> }) { const { storeSlug } = await params; const context = await getStorefrontContext(storeSlug); if (!context) notFound(); return <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6"><SectionHeading eyebrow={context.seller.store_name} title={context.settings.about_title || 'About the artisan'} copy={context.settings.about_content || context.seller.full_story || context.seller.short_bio} /><section className="rounded-xl border border-line bg-white p-6"><h2 className="font-black">Craft process</h2><p className="mt-3 leading-8 text-muted">{context.settings.craft_process_content}</p></section></main> }

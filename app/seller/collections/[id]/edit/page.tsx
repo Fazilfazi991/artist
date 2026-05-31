@@ -1,0 +1,7 @@
+import { notFound } from 'next/navigation';
+import { SectionHeading } from '@/components/ui';
+import { createClient } from '@/lib/supabase/server';
+import { requireApprovedSeller } from '@/lib/services/auth';
+import { CollectionForm } from '../../collection-form';
+export const dynamic = 'force-dynamic';
+export default async function EditCollectionPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<Record<string,string|undefined>> }) { const seller = await requireApprovedSeller(); const { id } = await params; const query = await searchParams; const supabase = await createClient(); const [{ data: collection }, { data: products }] = await Promise.all([supabase.from('seller_collections').select('*, seller_collection_products(product_id)').eq('seller_id', seller.id).eq('id', id).single(), supabase.from('products').select('id,name').eq('seller_id', seller.id).eq('status', 'active').order('name')]); if (!collection) notFound(); return <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6"><SectionHeading eyebrow="Storefront" title={`Edit ${collection.name}`} copy="Manage collection content and visibility." />{query.error ? <p className="mb-4 rounded-lg border border-rust/30 bg-rust/10 p-3 text-rust">{query.error}</p> : null}<CollectionForm collection={collection} products={products || []}/></main>; }

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
+import { getStoreSlugFromHostname } from '@/lib/storefront/get-store-slug';
 
 const roleRoutes = [
   { prefix: '/admin', role: 'admin' },

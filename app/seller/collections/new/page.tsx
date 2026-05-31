@@ -1,0 +1,6 @@
+import { SectionHeading } from '@/components/ui';
+import { createClient } from '@/lib/supabase/server';
+import { requireApprovedSeller } from '@/lib/services/auth';
+import { CollectionForm } from '../collection-form';
+export const dynamic = 'force-dynamic';
+export default async function NewCollectionPage({ searchParams }: { searchParams: Promise<Record<string,string|undefined>> }) { const params = await searchParams; const seller = await requireApprovedSeller(); const supabase = await createClient(); const { data: products } = await supabase.from('products').select('id,name').eq('seller_id', seller.id).eq('status', 'active').order('name'); return <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6"><SectionHeading eyebrow="Storefront" title="New collection" copy="Group your approved products for storefront discovery." />{params.error ? <p className="mb-4 rounded-lg border border-rust/30 bg-rust/10 p-3 text-rust">{params.error}</p> : null}<CollectionForm products={products || []}/></main>; }

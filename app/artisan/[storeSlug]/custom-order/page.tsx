@@ -1,0 +1,5 @@
+import { notFound } from 'next/navigation';
+import { SectionHeading } from '@/components/ui';
+import { getStorefrontContext } from '@/lib/storefront/get-storefront-context';
+export const dynamic = 'force-dynamic';
+export default async function ArtisanCustomOrderPage({ params }: { params: Promise<{ storeSlug: string }> }) { const { storeSlug } = await params; const context = await getStorefrontContext(storeSlug); if (!context) notFound(); return <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6"><SectionHeading eyebrow={context.seller.store_name} title="Custom order request" copy={context.settings.custom_order_policy_note || 'Share your idea with the artisan. Full quote workflow arrives in a later sprint.'} /><div className="rounded-xl border border-line bg-white p-6"><h2 className="font-black">Contact options</h2><p className="mt-3 text-muted">Email: {context.settings.contact_email || 'Not provided yet'}</p><p className="text-muted">WhatsApp: {context.settings.whatsapp_number || 'Not provided yet'}</p></div></main> }
