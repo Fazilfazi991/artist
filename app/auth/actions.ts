@@ -1,10 +1,21 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 
 function requireString(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function fail(path: string, message: string) { redirect(`${path}?error=${encodeURIComponent(message)}`); }
+
+async function getRequestOrigin() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
+  const headerStore = await headers();
+  const host = headerStore.get('x-forwarded-host') || headerStore.get('host');
+  if (!host) return 'http://127.0.0.1:3001';
+  const forwardedProto = headerStore.get('x-forwarded-proto');
+  const protocol = forwardedProto || (host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https');
+  return `${protocol}://${host}`;
+}
 
 export async function registerAction(formData: FormData) {
   const fullName = requireString(formData, 'fullName');
@@ -17,7 +28,15 @@ export async function registerAction(formData: FormData) {
   if (password.length < 8) fail('/register', 'Password must be at least 8 characters.');
   if (password !== confirm) fail('/register', 'Passwords do not match.');
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: fullName, phone }, emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://127.0.0.1:3001'}/auth/callback` } });
+  const siteOrigin = await getRequestOrigin();
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { full_name: fullName, phone },
+      emailRedirectTo: `${siteOrigin}/auth/callback`
+    }
+  });
   if (error) fail('/register', error.message);
   if (data.user) await supabase.from('profiles').update({ phone, full_name: fullName }).eq('id', data.user.id);
   redirect('/account');

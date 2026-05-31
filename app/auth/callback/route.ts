@@ -1,5 +1,9 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+
+function getRedirectOrigin(requestUrl: URL) {
+  return (process.env.NEXT_PUBLIC_SITE_URL || requestUrl.origin).replace(/\/$/, '');
+}
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
@@ -8,8 +12,9 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = await createClient();
-    await supabase.auth.exchangeCodeForSession(code);
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (error) return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(error.message)}`, getRedirectOrigin(requestUrl)));
   }
 
-  return NextResponse.redirect(new URL(next, process.env.NEXT_PUBLIC_SITE_URL ?? requestUrl.origin));
+  return NextResponse.redirect(new URL(next.startsWith('/') ? next : '/account', getRedirectOrigin(requestUrl)));
 }
