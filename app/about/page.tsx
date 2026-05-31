@@ -1,0 +1,2 @@
+import { SectionHeading } from "@/components/ui";
+export default function AboutPage() { return <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8"><SectionHeading eyebrow="About" title="A practical marketplace for Indian home-based artisans" copy="This MVP focuses on the first 50-100 curated sellers, structured product management, buyer trust, and operational clarity before advanced modules are added." /></main>; }

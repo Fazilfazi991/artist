@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --paper-texture: radial-gradient(circle at 10% 20%, rgba(184, 92, 67, .05), transparent 26%), radial-gradient(circle at 90% 0%, rgba(126, 148, 120, .06), transparent 24%);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { margin: 0; overflow-x: hidden; background: #FBF8F3; background-image: var(--paper-texture); color: #2A2724; }
+a { text-decoration: none; }
+input, select, textarea, button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #EEE4D5; color: #2A2724; }

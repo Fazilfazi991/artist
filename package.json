@@ -1,0 +1,32 @@
+{
+    "name":  "artisan-marketplace-app",
+    "version":  "0.1.0",
+    "private":  true,
+    "scripts":  {
+                    "dev":  "next dev --hostname 127.0.0.1 --port 3001",
+                    "build":  "next build",
+                    "start":  "next start --hostname 127.0.0.1 --port 3001",
+                    "typecheck":  "tsc --noEmit",
+                    "verify:backend":  "node scripts/verify-backend.ts"
+                },
+    "dependencies":  {
+                         "@supabase/ssr":  "latest",
+                         "@supabase/supabase-js":  "latest",
+                         "lucide-react":  "latest",
+                         "next":  "^15.5.18",
+                         "react":  "latest",
+                         "react-dom":  "latest",
+                         "zod":  "latest"
+                     },
+    "devDependencies":  {
+                            "@types/node":  "latest",
+                            "@types/react":  "latest",
+                            "@types/react-dom":  "latest",
+                            "autoprefixer":  "latest",
+                            "eslint":  "latest",
+                            "eslint-config-next":  "^15.5.18",
+                            "postcss":  "latest",
+                            "tailwindcss":  "3.4.17",
+                            "typescript":  "latest"
+                        }
+}

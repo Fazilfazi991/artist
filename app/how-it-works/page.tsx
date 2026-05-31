@@ -1,0 +1,3 @@
+import { SectionHeading } from "@/components/ui";
+const steps = ["Buyer browses a curated product or storefront", "Product type determines checkout, customization, or quote flow", "Seller confirms production and updates progress", "Admin tracks moderation, commission, support, and payouts"];
+export default function HowItWorksPage() { return <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8"><SectionHeading eyebrow="How it works" title="A marketplace workflow for handmade products" /> <div className="grid gap-3">{steps.map((step, index) => <div key={step} className="rounded-lg border border-line bg-white p-5"><span className="text-sm font-black text-rust">Step {index + 1}</span><h2 className="mt-2 text-xl font-black">{step}</h2></div>)}</div></main>; }
