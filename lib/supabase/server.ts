@@ -4,7 +4,15 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/types/database.types';
 
 export function hasSupabaseServerEnv() {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return false;
+  try {
+    new URL(url);
+    return key.length > 20;
+  } catch {
+    return false;
+  }
 }
 
 export async function createClient(): Promise<any> {
