@@ -1,4 +1,4 @@
-﻿create table public.categories (
+create table public.categories (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   slug text not null unique,

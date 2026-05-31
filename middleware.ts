@@ -1,4 +1,4 @@
-﻿import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
 const roleRoutes = [
@@ -30,6 +30,8 @@ export async function middleware(request: NextRequest) {
     loginUrl.searchParams.set('next', request.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
+
+  if (request.nextUrl.pathname.startsWith('/seller/onboarding') || request.nextUrl.pathname.startsWith('/seller/dashboard')) return response;
 
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
   const role = profile?.role;

@@ -1,4 +1,4 @@
-﻿create or replace function public.generate_custom_request_number()
+create or replace function public.generate_custom_request_number()
 returns text
 language plpgsql
 as $$

@@ -1,4 +1,4 @@
-﻿insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values
   ('avatars', 'avatars', true, 5242880, array['image/png','image/jpeg','image/webp']),
   ('seller-covers', 'seller-covers', true, 10485760, array['image/png','image/jpeg','image/webp']),

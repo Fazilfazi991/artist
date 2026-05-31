@@ -1,4 +1,4 @@
-﻿create or replace function public.generate_ticket_number()
+create or replace function public.generate_ticket_number()
 returns text
 language plpgsql
 as $$

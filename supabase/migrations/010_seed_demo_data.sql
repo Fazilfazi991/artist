@@ -1,4 +1,4 @@
-﻿insert into auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, raw_app_meta_data, raw_user_meta_data, created_at, updated_at)
+insert into auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, raw_app_meta_data, raw_user_meta_data, created_at, updated_at)
 values
   ('20000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-000000000000','authenticated','authenticated','demo.mira@example.com','',now(),'{"provider":"email","providers":["email"]}'::jsonb,'{"full_name":"Mira Kapoor"}'::jsonb,now(),now()),
   ('20000000-0000-0000-0000-000000000002','00000000-0000-0000-0000-000000000000','authenticated','authenticated','demo.arjun@example.com','',now(),'{"provider":"email","providers":["email"]}'::jsonb,'{"full_name":"Arjun Mehta"}'::jsonb,now(),now()),

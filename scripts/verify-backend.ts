@@ -1,4 +1,22 @@
-﻿// @ts-nocheck
+// @ts-nocheck
+function loadLocalEnv() {
+  const fs = require('fs');
+  const path = require('path');
+  const envPath = path.join(process.cwd(), '.env.local');
+  if (!fs.existsSync(envPath)) return;
+  const lines = fs.readFileSync(envPath, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const index = trimmed.indexOf('=');
+    if (index === -1) continue;
+    const key = trimmed.slice(0, index).trim();
+    const value = trimmed.slice(index + 1).trim().replace(/^['"]|['"]$/g, '');
+    if (!process.env[key]) process.env[key] = value;
+  }
+}
+
+loadLocalEnv();
 const requiredEnv = ['NEXT_PUBLIC_SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_ANON_KEY'];
 const serviceEnv = 'SUPABASE_SERVICE_ROLE_KEY';
 const coreTables = ['profiles','seller_profiles','seller_documents','categories','products','product_images','product_variants','product_customization_fields','wishlists','wishlist_items','carts','cart_items','addresses','orders','order_items','order_status_history','commission_records','seller_payouts','custom_order_requests','custom_order_quotes','custom_order_milestones','reviews','support_tickets','notifications','platform_settings','homepage_sections'];
