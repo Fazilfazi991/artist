@@ -1,0 +1,21 @@
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { EmptyState, SectionHeading } from '@/components/ui';
+import { getCheckoutState, requireBuyer } from '@/lib/services/checkout';
+import { placeOrderAction } from '../actions';
+
+export const dynamic = 'force-dynamic';
+
+function money(value: number) { return `Rs. ${Number(value || 0).toLocaleString('en-IN')}`; }
+
+export default async function CheckoutReviewPage({ searchParams }: { searchParams: Promise<Record<string,string|undefined>> }) {
+  const params = await searchParams;
+  const user = await requireBuyer();
+  if (!user) redirect('/login?next=/checkout/review');
+  const { cart, addresses, session } = await getCheckoutState(user.id);
+  if (!cart.items.length) return <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6"><EmptyState title="Your cart is waiting for something special." copy="Add an item before checkout." /></main>;
+  if (cart.errors.length) redirect(`/cart?error=${encodeURIComponent(cart.errors[0])}`);
+  const address = addresses.find((item: any) => item.id === params.address) || addresses.find((item: any) => item.is_default) || addresses[0];
+  if (!address) redirect('/checkout/address');
+  return <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8"><SectionHeading eyebrow="Checkout" title="Review order" copy="Each artisan will receive a separate pending-payment order." />{params.error ? <p className="mb-4 rounded-lg border border-rust/30 bg-rust/10 p-3 font-bold text-rust">{params.error}</p> : null}<div className="grid gap-6 lg:grid-cols-[1fr_340px]"><section className="grid gap-5"><article className="rounded-xl border border-line bg-white p-5"><div className="flex items-start justify-between gap-3"><div><h2 className="font-black">Delivery address</h2><p className="mt-2 text-sm leading-6 text-muted">{address.full_name}<br/>{address.address_line_1}{address.address_line_2 ? `, ${address.address_line_2}` : ''}<br/>{address.city}, {address.state} {address.postal_code}<br/>{address.phone}</p></div><Link href="/checkout/address" className="text-sm font-black text-rust">Edit</Link></div></article>{cart.groups.map((group) => <article key={group.seller.id} className="rounded-xl border border-line bg-white p-5"><h2 className="font-serif text-2xl">{group.seller.store_name}</h2><div className="mt-4 grid gap-3">{group.items.map((item: any) => <div key={item.id} className="flex items-start justify-between gap-3 rounded-lg bg-paper p-3"><div><p className="font-black">{item.products?.name}</p><p className="text-sm text-muted">Qty {item.quantity} · {money(item.unit_price)}</p></div><strong>{money(Number(item.quantity) * Number(item.unit_price))}</strong></div>)}</div><div className="mt-4 grid gap-2 text-sm text-muted"><span className="flex justify-between"><span>Seller subtotal</span><strong>{money(group.subtotal)}</strong></span><span className="flex justify-between"><span>Shipping</span><strong>{money(group.shippingFee)}</strong></span></div></article>)}</section><aside className="h-fit rounded-xl border border-line bg-white p-5"><h2 className="font-black">Payment placeholder</h2><p className="mt-2 text-sm leading-6 text-muted">Online payment will be enabled in the next phase. Your order will be created in pending-payment status for testing.</p><div className="mt-5 border-t border-line pt-4"><div className="flex justify-between text-sm text-muted"><span>Subtotal</span><span>{money(cart.subtotal)}</span></div><div className="mt-3 flex justify-between text-sm text-muted"><span>Shipping</span><span>{money(cart.shippingFee)}</span></div><div className="mt-4 flex justify-between border-t border-line pt-4 text-lg font-black"><span>Total</span><span>{money(cart.total)}</span></div></div><form action={placeOrderAction} className="mt-5 grid gap-3"><input type="hidden" name="address_id" value={address.id}/><input type="hidden" name="checkout_token" value={session?.token || ''}/><textarea name="buyer_notes" className="min-h-24 rounded-lg border border-line bg-paper px-4 py-3 outline-none" placeholder="Notes for artisans (optional)" /><button className="rounded-lg bg-rust px-5 py-3 font-black text-white">Place Order</button></form></aside></div></main>;
+}

@@ -30,7 +30,7 @@ export async function createClient(): Promise<any> {
   });
 }
 
-export function createServiceRoleClient() {
+export function createServiceRoleClient(): any {
   if (!hasSupabaseServerEnv()) throw new Error('Supabase URL and anon key are required for admin server operations.');
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!serviceRoleKey) throw new Error('SUPABASE_SERVICE_ROLE_KEY is required for admin server operations.');

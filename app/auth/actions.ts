@@ -3,6 +3,7 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { mergeGuestCartIntoUserCart } from '@/lib/services/cart';
 
 function requireString(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function fail(path: string, message: string) { redirect(`${path}?error=${encodeURIComponent(message)}`); }
@@ -48,8 +49,9 @@ export async function loginAction(formData: FormData) {
   const next = requireString(formData, 'next') || '/account';
   if (!email || !password) fail('/login', 'Enter email and password.');
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) fail('/login', error.message);
+  if (data.user) await mergeGuestCartIntoUserCart(data.user.id);
   redirect(next.startsWith('/') ? next : '/account');
 }
 
