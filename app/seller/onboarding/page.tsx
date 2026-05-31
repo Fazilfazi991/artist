@@ -1,10 +1,11 @@
 import { redirect } from 'next/navigation';
 import { SectionHeading } from '@/components/ui';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, hasSupabaseServerEnv } from '@/lib/supabase/server';
 import { saveSellerApplication } from './actions';
 
 export default async function SellerOnboardingPage({ searchParams }: { searchParams: Promise<Record<string,string|undefined>> }) {
   const params = await searchParams;
+  if (!hasSupabaseServerEnv()) return <SellerSetupMissing />;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login?next=/seller/onboarding');
@@ -20,3 +21,7 @@ function Step({ title, children }: { title: string; children: React.ReactNode })
 function Input({ label, ...props }: any) { return <label className="grid gap-2 text-sm font-black">{label}<input {...props} className="rounded-lg border border-line px-4 py-3" /></label>; }
 function Textarea({ label, ...props }: any) { return <label className="grid gap-2 text-sm font-black">{label}<textarea {...props} className="min-h-28 rounded-lg border border-line px-4 py-3" /></label>; }
 function File({ label, name }: { label: string; name: string }) { return <label className="grid gap-2 text-sm font-black">{label}<input name={name} type="file" accept=".pdf,image/png,image/jpeg" className="rounded-lg border border-line px-4 py-3" /></label>; }
+
+function SellerSetupMissing() {
+  return <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6"><SectionHeading eyebrow="Seller onboarding" title="Seller tools need setup" copy="Supabase environment variables are missing on this deployment. Add the project URL and anon key in Vercel, then redeploy." /></main>;
+}
