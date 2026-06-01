@@ -1,9 +1,9 @@
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createServiceRoleClient } from '@/lib/supabase/server';
 import type { StorefrontContext } from './storefront-types';
 
 export async function getStorefrontContext(storeSlug: string, options: { preview?: boolean } = {}): Promise<StorefrontContext | null> {
-  const supabase = await createClient();
-  const sellerQuery = supabase.from('seller_profiles').select('*, profiles(*), categories(*)').eq('store_slug', storeSlug).eq('status', 'approved').single();
+  const supabase = options.preview ? await createClient() : createServiceRoleClient();
+  const sellerQuery = supabase.from('seller_profiles').select('*, categories(*)').eq('store_slug', storeSlug).eq('status', 'approved').single();
   const { data: seller, error } = await sellerQuery;
   if (error || !seller) return null;
   const [{ data: settings }, { data: products }, { data: collections }, { data: socialLinks }, { data: sections }] = await Promise.all([
