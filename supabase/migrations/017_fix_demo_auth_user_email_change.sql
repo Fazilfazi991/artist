@@ -6,5 +6,6 @@ where email_change is null
     'demo.arjun@example.com',
     'demo.naina@example.com',
     'demo.kabir@example.com',
+    'demo.neha@example.com',
     'neha.demo@artisanmarketplace.in'
   );
