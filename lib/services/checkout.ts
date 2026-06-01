@@ -114,7 +114,7 @@ export async function getBuyerOrders(userId: string) {
 
 export async function getBuyerOrder(orderId: string, userId: string) {
   const service = createServiceRoleClient();
-  const { data, error } = await service.from('orders').select('*, seller_profiles(store_name, store_slug), order_items(*), order_status_history(*)').eq('id', orderId).eq('buyer_id', userId).single();
+  const { data, error } = await service.from('orders').select('*, seller_profiles(store_name, store_slug), order_items(*), order_status_history(*), order_progress_updates(*), order_issues(*)').eq('id', orderId).eq('buyer_id', userId).single();
   if (error) return null;
   return data;
 }
@@ -132,7 +132,21 @@ export async function getSellerOrder(orderId: string, userId: string) {
   const service = createServiceRoleClient();
   const { data: seller } = await service.from('seller_profiles').select('*').eq('user_id', userId).eq('status', 'approved').maybeSingle();
   if (!seller) return null;
-  const { data, error } = await service.from('orders').select('*, profiles!orders_buyer_id_fkey(email, full_name), order_items(*), order_status_history(*)').eq('id', orderId).eq('seller_id', seller.id).single();
+  const { data, error } = await service.from('orders').select('*, profiles!orders_buyer_id_fkey(email, full_name, phone), order_items(*), order_status_history(*), order_progress_updates(*), order_issues(*)').eq('id', orderId).eq('seller_id', seller.id).single();
+  if (error) return null;
+  return data;
+}
+
+export async function getAdminOrders() {
+  const service = createServiceRoleClient();
+  const { data, error } = await service.from('orders').select('*, seller_profiles(store_name, store_slug), profiles!orders_buyer_id_fkey(email, full_name), order_items(*), order_issues(*)').order('created_at', { ascending: false });
+  if (error) throw new Error(error.message);
+  return data || [];
+}
+
+export async function getAdminOrder(orderId: string) {
+  const service = createServiceRoleClient();
+  const { data, error } = await service.from('orders').select('*, seller_profiles(store_name, store_slug, user_id), profiles!orders_buyer_id_fkey(email, full_name, phone), order_items(*), order_status_history(*), order_progress_updates(*), order_issues(*)').eq('id', orderId).single();
   if (error) return null;
   return data;
 }

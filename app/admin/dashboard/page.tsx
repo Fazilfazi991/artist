@@ -15,11 +15,11 @@ export default function AdminDashboardPage() {
           <h2 className="mt-2 font-serif text-2xl">Product queue</h2>
           <p className="mt-2 text-sm text-muted">Approve, reject, hide, or archive seller product submissions.</p>
         </Link>
-        <div className="rounded-lg border border-line bg-white p-6 opacity-70">
+        <Link href="/admin/orders" className="rounded-lg border border-line bg-white p-6 transition hover:border-rust">
           <p className="text-sm font-bold text-muted">Operations</p>
-          <h2 className="mt-2 font-serif text-2xl">Marketplace controls</h2>
-          <p className="mt-2 text-sm text-muted">Orders, disputes, and commissions arrive in later sprints.</p>
-        </div>
+          <h2 className="mt-2 font-serif text-2xl">Order management</h2>
+          <p className="mt-2 text-sm text-muted">Inspect order timelines, simulate payment, and review buyer issues.</p>
+        </Link>
       </div>
     </ProtectedShell>
   );
