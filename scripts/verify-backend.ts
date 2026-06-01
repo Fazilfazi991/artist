@@ -19,8 +19,8 @@ function loadLocalEnv() {
 loadLocalEnv();
 const requiredEnv = ['NEXT_PUBLIC_SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_ANON_KEY'];
 const serviceEnv = 'SUPABASE_SERVICE_ROLE_KEY';
-const coreTables = ['profiles','seller_profiles','seller_documents','categories','products','product_images','product_variants','product_customization_fields','wishlists','wishlist_items','carts','cart_items','addresses','orders','order_items','order_status_history','order_progress_updates','order_issues','commission_records','seller_payouts','custom_order_requests','custom_order_quotes','custom_order_milestones','reviews','support_tickets','notifications','platform_settings','homepage_sections'];
-const buckets = ['avatars','seller-covers','product-images','custom-order-files','seller-documents','review-images','order-progress-files','order-issue-files'];
+const coreTables = ['profiles','seller_profiles','seller_documents','categories','products','product_images','product_variants','product_customization_fields','wishlists','wishlist_items','carts','cart_items','addresses','orders','order_items','order_status_history','order_progress_updates','order_issues','commission_records','seller_payouts','custom_order_requests','custom_order_quotes','custom_order_milestones','custom_order_payment_records','custom_order_status_history','reviews','support_tickets','notifications','platform_settings','homepage_sections'];
+const buckets = ['avatars','seller-covers','product-images','custom-order-files','custom-order-milestone-files','seller-documents','review-images','order-progress-files','order-issue-files'];
 
 async function main() {
   const missing = requiredEnv.filter((key) => !process.env[key]);

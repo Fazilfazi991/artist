@@ -4,6 +4,7 @@ import { logoutAction } from '@/app/auth/actions';
 const accountLinks = [
   ['Overview', '/account'],
   ['Orders', '/account/orders'],
+  ['Custom Orders', '/account/custom-orders'],
   ['Addresses', '/account/addresses'],
   ['Wishlist', '/account/wishlist'],
   ['Notifications', '/account/notifications'],

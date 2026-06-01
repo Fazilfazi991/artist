@@ -20,6 +20,11 @@ export default function AdminDashboardPage() {
           <h2 className="mt-2 font-serif text-2xl">Order management</h2>
           <p className="mt-2 text-sm text-muted">Inspect order timelines, simulate payment, and review buyer issues.</p>
         </Link>
+        <Link href="/admin/custom-orders" className="rounded-lg border border-line bg-white p-6 transition hover:border-rust">
+          <p className="text-sm font-bold text-muted">Bespoke workflow</p>
+          <h2 className="mt-2 font-serif text-2xl">Custom orders</h2>
+          <p className="mt-2 text-sm text-muted">Review bespoke requests, quote history, milestones, and manual payment markers.</p>
+        </Link>
       </div>
     </ProtectedShell>
   );

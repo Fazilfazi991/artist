@@ -10,7 +10,7 @@ export function AddToCartForm({ product, next }: { product: any; next: string })
   const fields = product.product_customization_fields || [];
   const variants = product.product_variants || [];
   const isBespoke = product.product_type === 'bespoke' || product.type === 'bespoke';
-  const quoteHref = product.seller_profiles?.store_slug ? `/artisan/${product.seller_profiles.store_slug}/custom-order` : `/custom-orders`;
+  const quoteHref = product.seller_profiles?.store_slug ? `/artisan/${product.seller_profiles.store_slug}/custom-order${product.slug ? `?product=${product.slug}` : ''}` : `/custom-orders`;
   const maxStock = product.stock_quantity == null ? 99 : Number(product.stock_quantity);
   const timeline = product.product_type === 'ready_to_ship' ? `Dispatches in ${product.dispatch_days || 3} days` : `Production in ${product.production_days || 7} days`;
   const price = product.base_price == null ? 'Quote required' : `Rs. ${Number(product.base_price).toLocaleString('en-IN')}`;
