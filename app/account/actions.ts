@@ -29,10 +29,22 @@ export async function saveAccountAddressAction(formData: FormData) {
   } catch (error: any) { fail(path, error.errors?.[0]?.message || 'Check address details.'); }
   const supabase = createServiceRoleClient();
   const id = text(formData, 'id');
+  if (parsed.is_default) await supabase.from('addresses').update({ is_default: false }).eq('user_id', user.id);
   const result = id ? await supabase.from('addresses').update(parsed).eq('id', id).eq('user_id', user.id) : await supabase.from('addresses').insert({ ...parsed, user_id: user.id });
   if (result.error) fail(path, result.error.message);
   revalidatePath(path);
   redirect(`${path}?saved=1`);
+}
+
+export async function setDefaultAccountAddressAction(formData: FormData) {
+  const user = await requireAuth();
+  const supabase = createServiceRoleClient();
+  const id = text(formData, 'id');
+  await supabase.from('addresses').update({ is_default: false }).eq('user_id', user.id);
+  const { error } = await supabase.from('addresses').update({ is_default: true }).eq('id', id).eq('user_id', user.id);
+  if (error) fail('/account/addresses', error.message);
+  revalidatePath('/account/addresses');
+  redirect('/account/addresses?saved=1');
 }
 
 export async function deleteAccountAddressAction(formData: FormData) {
