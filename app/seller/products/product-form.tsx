@@ -11,7 +11,7 @@ export function ProductForm({ product, categories }: { product?: any; categories
   const variantRows = (product?.product_variants || []).map((variant: any) => `${variant.name} | ${variant.value} | ${variant.price_adjustment || 0} | ${variant.stock_quantity ?? ''}`).join('\n');
   const fieldRows = (product?.product_customization_fields || []).map((field: any) => `${field.label} | ${field.field_type} | ${field.is_required ? 'required' : 'optional'} | ${(field.options || []).join(', ')} | ${field.placeholder || ''}`).join('\n');
   const locked = product && product.status === 'pending_review';
-  return <form action={saveProductAction} className="grid gap-6 rounded-xl border border-line bg-white p-6" encType="multipart/form-data">
+  return <form action={saveProductAction} className="grid gap-6 rounded-xl border border-line bg-white p-6">
     {product ? <input type="hidden" name="product_id" value={product.id}/> : null}
     {locked ? <div className="rounded-lg border border-gold/30 bg-gold/10 p-4 text-sm font-bold text-ink">This product is pending review and is read-only until admin review.</div> : null}
     <fieldset disabled={locked} className="grid gap-6 disabled:opacity-70">

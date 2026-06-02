@@ -65,12 +65,12 @@ export function mapProduct(row: any): Product {
   };
 }
 
-const productSelect = '*, categories!inner(*), seller_profiles!inner(*, profiles(*)), product_images(*), product_variants(*), product_customization_fields(*)';
-const sellerSelect = '*, profiles(*), categories(*)';
+const productSelect = '*, categories!products_category_id_fkey!inner(*), seller_profiles!inner(*, profiles!seller_profiles_user_id_fkey(*)), product_images(*), product_variants(*), product_customization_fields(*)';
+const sellerSelect = '*, profiles!seller_profiles_user_id_fkey(*), categories!seller_primary_category_fk(*)';
 
 export async function getFeaturedCategories(): Promise<Category[]> {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('categories').select('*').eq('is_active', true).order('sort_order', { ascending: true }).order('name', { ascending: true }).limit(6);
+  const { data, error } = await supabase.from('categories').select('*').eq('is_active', true).order('display_order', { ascending: true }).order('name', { ascending: true }).limit(6);
   if (error) { console.error('getFeaturedCategories', error.message); return fallback(fallbackCategories); }
   return (data || []).map(mapCategory);
 }

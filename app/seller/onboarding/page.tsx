@@ -23,7 +23,7 @@ export default async function SellerOnboardingPage({ searchParams }: { searchPar
     const results = await Promise.all([
       supabase.from('profiles').select('*').eq('id', user.id).maybeSingle(),
       supabase.from('seller_profiles').select('*, seller_documents(*)').eq('user_id', user.id).maybeSingle(),
-      supabase.from('categories').select('id,name,slug').eq('is_active', true).order('sort_order', { ascending: true }).order('name', { ascending: true })
+      supabase.from('categories').select('id,name,slug').eq('is_active', true).order('display_order', { ascending: true }).order('name', { ascending: true })
     ]);
     if (results.some((result) => result.error)) return <SellerAuthUnavailable />;
     profile = results[0].data;

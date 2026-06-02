@@ -5,6 +5,7 @@ const accountLinks = [
   ['Overview', '/account'],
   ['Orders', '/account/orders'],
   ['Custom Orders', '/account/custom-orders'],
+  ['Storefronts', '/account/storefronts'],
   ['Addresses', '/account/addresses'],
   ['Wishlist', '/account/wishlist'],
   ['Notifications', '/account/notifications'],

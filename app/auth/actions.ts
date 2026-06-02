@@ -52,6 +52,15 @@ export async function loginAction(formData: FormData) {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) fail('/login', error.message);
   if (data.user) await mergeGuestCartIntoUserCart(data.user.id);
+  if (!formData.get('next')) {
+    const [{ data: profile }, { data: seller }] = await Promise.all([
+      supabase.from('profiles').select('role').eq('id', data.user.id).maybeSingle(),
+      supabase.from('seller_profiles').select('id,status').eq('user_id', data.user.id).maybeSingle()
+    ]);
+    if (profile?.role === 'admin') redirect('/admin/dashboard');
+    if (seller?.status === 'approved') redirect('/seller/dashboard');
+    if (seller && seller.status !== 'approved') redirect('/seller/onboarding');
+  }
   redirect(next.startsWith('/') ? next : '/account');
 }
 

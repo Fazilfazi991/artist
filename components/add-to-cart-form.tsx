@@ -21,7 +21,7 @@ export function AddToCartForm({ product, next }: { product: any; next: string })
   }
 
   return (
-    <form action={addToCartAction} encType="multipart/form-data" className="mt-6 grid gap-4 rounded-xl border border-line bg-white p-5">
+    <form action={addToCartAction} className="mt-6 grid gap-4 rounded-xl border border-line bg-white p-5">
       <input type="hidden" name="product_id" value={product.id} />
       <input type="hidden" name="next" value={next} />
       <div className="flex flex-wrap items-center justify-between gap-3">

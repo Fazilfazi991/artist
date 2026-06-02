@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer, Header } from "@/components/ui";
+import { AppChrome } from "@/components/app-chrome";
 import { createClient, hasSupabaseServerEnv } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -26,9 +26,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en">
       <body className="font-sans">
-        <Header isSeller={isSeller} />
-        {children}
-        <Footer isSeller={isSeller} />
+        <AppChrome isSeller={isSeller}>{children}</AppChrome>
       </body>
     </html>
   );

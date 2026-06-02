@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
 
-export default function ArtisansPage() {
+export default function AccountStorefrontsPage() {
   redirect('/storefronts');
 }

@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, CircleEllipsis, CreditCard, Globe2, Heart, PackageCheck, ShieldCheck, Star, Truck, UsersRound } from 'lucide-react';
-import { getFeaturedArtisans, getFeaturedCategories, getFeaturedProducts } from '@/lib/services/public-marketplace';
-import type { Artisan, Category, Product } from '@/lib/types';
+import { StorefrontCardView } from '@/components/storefront-directory';
+import { getFeaturedCategories, getFeaturedProducts } from '@/lib/services/public-marketplace';
+import { getFeaturedStorefronts } from '@/lib/services/storefront-directory';
+import type { Category, Product } from '@/lib/types';
 
 const fallbackCategories = [
   ['home-decor', 'Home Decor'],
@@ -15,15 +17,15 @@ const fallbackCategories = [
 ] as const;
 
 export default async function HomePage() {
-  const [categories, products, artisans] = await Promise.all([
+  const [categories, products, storefronts] = await Promise.all([
     getFeaturedCategories(),
     getFeaturedProducts(5),
-    getFeaturedArtisans(5)
+    getFeaturedStorefronts(4)
   ]);
 
   const categoryItems = buildCategories(categories);
   const productItems = products.length ? products : [];
-  const artisanItems = artisans.length ? artisans : [];
+  const storefrontItems = storefronts.length ? storefronts : [];
 
   return <main className="bg-[#fffaf3] px-3 pb-8 pt-4 sm:px-5 lg:px-8">
     <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-line bg-white shadow-[0_18px_55px_rgba(42,39,36,.08)]">
@@ -35,7 +37,7 @@ export default async function HomePage() {
           <p className="mt-5 max-w-sm text-base leading-7 text-ink/80">Discover unique handmade products crafted by independent Indian artisans.</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link href="/shop" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-rust px-6 text-sm font-black text-white transition hover:bg-rust-hover">Shop Now</Link>
-            <Link href="/artisans" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-rust/50 bg-white/75 px-6 text-sm font-black text-rust transition hover:bg-rust/10">Explore Artisans</Link>
+            <Link href="/storefronts" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-rust/50 bg-white/75 px-6 text-sm font-black text-rust transition hover:bg-rust/10">Explore Storefronts</Link>
           </div>
         </div>
         <div className="relative z-10 grid gap-3 border-t border-line bg-white/82 px-6 py-5 text-xs font-bold text-muted backdrop-blur sm:grid-cols-2 sm:px-12 lg:grid-cols-4 lg:px-16">
@@ -82,9 +84,10 @@ export default async function HomePage() {
       </section>
 
       <section className="border-b border-line px-5 py-8 sm:px-10">
-        <SectionTitle title="From Our Artisans" href="/artisans" label="View all artisans" />
-        <div className="mt-7 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {artisanItems.map((artisan) => <ArtisanFace key={artisan.storeSlug} artisan={artisan} />)}
+        <SectionTitle title="Meet the makers behind the craft" href="/storefronts" label="View All Storefronts" />
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Explore independent artisan storefronts, discover their stories, and shop products made with care.</p>
+        <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {storefrontItems.map((storefront) => <StorefrontCardView key={storefront.sellerId} storefront={storefront} compact />)}
         </div>
         <div className="mt-8 grid gap-3 rounded-lg border border-line bg-[#fff7ec] px-4 py-4 text-sm font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">
           <TrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
@@ -137,14 +140,4 @@ function HomeProductCard({ product, index }: { product: Product; index: number }
 
 function Stat({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
   return <div className="flex items-center justify-center gap-4 border-white/25 px-5 py-6 lg:border-r lg:last:border-r-0"><span className="text-white/90">{icon}</span><span><strong className="block text-2xl">{value}</strong><span className="text-xs font-semibold text-white/85">{label}</span></span></div>;
-}
-
-function ArtisanFace({ artisan }: { artisan: Artisan }) {
-  return <Link href={`/artisan/${artisan.storeSlug}`} className="grid justify-items-center text-center">
-    <span className="relative h-20 w-20 overflow-hidden rounded-full bg-sand shadow-[0_8px_20px_rgba(42,39,36,.08)]">
-      <Image src={artisan.avatar.src} alt={artisan.avatar.alt} fill sizes="80px" className="object-cover" style={{ objectPosition: artisan.avatar.position }} />
-    </span>
-    <strong className="mt-3 text-sm">{artisan.ownerName}</strong>
-    <span className="text-xs text-muted">{artisan.state || artisan.category}</span>
-  </Link>;
 }
