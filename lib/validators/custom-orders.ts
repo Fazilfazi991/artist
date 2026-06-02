@@ -11,7 +11,8 @@ export const customOrderRequestSchema = z.object({
   quantity: z.coerce.number().int().positive().optional(),
   deadline: z.string().date().optional(),
   delivery_location: z.string().max(240).optional(),
-  buyer_notes: z.string().max(1000).optional()
+  buyer_notes: z.string().max(1000).optional(),
+  reference_links: z.array(z.string().url()).max(10).default([])
 }).superRefine((value, ctx) => {
   if (value.budget_min != null && value.budget_max != null && value.budget_min > value.budget_max) {
     ctx.addIssue({ code: 'custom', path: ['budget_max'], message: 'Maximum budget must be greater than minimum budget.' });

@@ -33,7 +33,11 @@ async function main() {
     quantity: 3,
     delivery_location: 'Dubai test address',
     buyer_notes: 'Created by demo custom-order acceptance script.',
-    reference_files: []
+    reference_files: [],
+    reference_links: [
+      'https://example.com/inspiration/custom-gift-set',
+      'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    ]
   }).select('*').single();
   if (error) throw error;
 

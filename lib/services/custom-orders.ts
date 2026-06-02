@@ -6,8 +6,8 @@ import { customOrderMilestoneSchema, customOrderQuoteSchema, customOrderRequestS
 import type { BespokeOrderStatus } from '@/lib/types/custom-orders';
 
 const requestSelect = '*, seller_profiles(store_name, store_slug, user_id), profiles!custom_order_requests_buyer_id_fkey(email, full_name, phone), products(name, slug, product_type, base_price, product_images(*)), custom_order_quotes(*), custom_order_milestones(*), custom_order_payment_records(*), custom_order_status_history(*)';
-const allowedFileTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'application/pdf']);
-const maxFileSize = 5 * 1024 * 1024;
+const allowedFileTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'application/pdf', 'video/mp4', 'video/webm', 'video/quicktime']);
+const maxFileSize = 50 * 1024 * 1024;
 
 export async function getCustomOrderEntryContext(storeSlug: string, productSlug?: string) {
   const service = createServiceRoleClient();
@@ -33,7 +33,8 @@ export async function createCustomOrderRequest(formData: FormData) {
     quantity: optionalNumber(formData, 'quantity'),
     deadline: text(formData, 'deadline') || undefined,
     delivery_location: text(formData, 'delivery_location') || undefined,
-    buyer_notes: text(formData, 'buyer_notes') || undefined
+    buyer_notes: text(formData, 'buyer_notes') || undefined,
+    reference_links: linksFromText(text(formData, 'reference_links'))
   });
   const service = createServiceRoleClient();
   const { data: seller } = await service.from('seller_profiles').select('id, store_name, user_id, status').eq('id', parsed.seller_id).eq('status', 'approved').single();
@@ -41,7 +42,8 @@ export async function createCustomOrderRequest(formData: FormData) {
   const { data: request, error } = await service.from('custom_order_requests').insert({
     ...parsed,
     buyer_id: user.id,
-    reference_files: []
+    reference_files: [],
+    reference_links: parsed.reference_links
   }).select('*').single();
   if (error) throw new Error(error.message);
   const referenceFiles = await uploadFiles(service, formData, 'reference_files', 'custom-order-files', `${user.id}/${request.id}`);
@@ -322,8 +324,8 @@ async function uploadFiles(service: any, formData: FormData, fieldName: string, 
   const files = formData.getAll(fieldName).filter((item): item is File => typeof item === 'object' && item instanceof File && item.size > 0);
   const uploaded: any[] = [];
   for (const file of files) {
-    if (!allowedFileTypes.has(file.type)) throw new Error('Only JPG, PNG, WEBP, and PDF files are supported.');
-    if (file.size > maxFileSize) throw new Error('Each file must be 5 MB or smaller.');
+    if (!allowedFileTypes.has(file.type)) throw new Error('Only JPG, PNG, WEBP, PDF, MP4, WEBM, and MOV files are supported.');
+    if (file.size > maxFileSize) throw new Error('Each file must be 50 MB or smaller.');
     const ext = file.name.includes('.') ? file.name.split('.').pop() : 'file';
     const path = `${folder}/${randomUUID()}.${ext}`;
     const bytes = Buffer.from(await file.arrayBuffer());
@@ -370,6 +372,10 @@ function optionalNumber(formData: FormData, key: string) {
 
 function listFromText(value: string) {
   return value.split(/\r?\n|,/).map((item) => item.trim()).filter(Boolean);
+}
+
+function linksFromText(value: string) {
+  return listFromText(value).slice(0, 10);
 }
 
 export async function createCustomOrderQuote(values: Record<string, unknown>) {
