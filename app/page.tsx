@@ -27,20 +27,21 @@ export default async function HomePage() {
   const productItems = products.length ? products : [];
   const storefrontItems = storefronts.length ? storefronts : [];
 
-  return <main className="bg-[#fffaf3] px-3 pb-8 pt-4 sm:px-5 lg:px-8">
-    <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-line bg-white shadow-[0_18px_55px_rgba(42,39,36,.08)]">
-      <section className="relative min-h-[430px] overflow-hidden border-b border-line lg:min-h-[500px]">
+  return <main className="bg-paper">
+    <div className="overflow-hidden">
+      <section className="relative min-h-[680px] overflow-hidden border-b border-line">
         <Image src="/artisan-hero.png" alt="Indian artisan arranging handmade products in a warm studio" fill priority sizes="(min-width:1024px) 1200px, 100vw" className="object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/86 to-transparent" />
-        <div className="relative z-10 flex min-h-[430px] max-w-xl flex-col justify-center px-6 py-12 sm:px-12 lg:min-h-[500px] lg:px-16">
-          <h1 className="font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-6xl lg:text-7xl">Handmade.<br />Heartfelt.<br />Made in India.</h1>
-          <p className="mt-5 max-w-sm text-base leading-7 text-ink/80">Discover unique handmade products crafted by independent Indian artisans.</p>
+        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/80 to-paper/10" />
+        <div className="heritage-container relative z-10 flex min-h-[680px] flex-col justify-center py-20">
+          <p className="heritage-label text-rust">Modern Heritage</p>
+          <h1 className="mt-5 max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-7xl">Heritage crafted for modern living.</h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Discover unique, customizable pieces directly from India's independent makers. Elevate your home with objects that carry soul and story.</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="/shop" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-rust px-6 text-sm font-black text-white transition hover:bg-rust-hover">Shop Now</Link>
-            <Link href="/storefronts" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-rust/50 bg-white/75 px-6 text-sm font-black text-rust transition hover:bg-rust/10">Explore Storefronts</Link>
+            <Link href="/shop" className="heritage-button border border-rust bg-rust text-white hover:bg-rust-hover">Shop Collection</Link>
+            <Link href="/storefronts" className="heritage-button border border-ink/80 bg-transparent text-ink hover:border-rust hover:text-rust">Meet the Makers</Link>
           </div>
         </div>
-        <div className="relative z-10 grid gap-3 border-t border-line bg-white/82 px-6 py-5 text-xs font-bold text-muted backdrop-blur sm:grid-cols-2 sm:px-12 lg:grid-cols-4 lg:px-16">
+        <div className="relative z-10 grid gap-3 border-t border-line bg-surface/88 px-6 py-6 text-xs font-extrabold uppercase tracking-[.12em] text-muted backdrop-blur sm:grid-cols-2 sm:px-12 lg:grid-cols-4 lg:px-16">
           <TrustItem icon={<Heart size={18} />} label="Handmade with love" />
           <TrustItem icon={<BadgeCheck size={18} />} label="Authentic & Original" />
           <TrustItem icon={<UsersRound size={18} />} label="Supporting Artisans" />
@@ -48,18 +49,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-line px-5 py-7 sm:px-10">
+      <section className="heritage-container border-b border-line py-16">
         <SectionTitle title="Shop by Category" href="/shop" label="View all categories" />
         <div className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-8">
           {categoryItems.map((category) => <CategoryBubble key={category.slug} category={category} />)}
-          <Link href="/shop" className="group grid justify-items-center gap-3 text-center text-sm font-black">
-            <span className="grid h-20 w-20 place-items-center rounded-full bg-[#f6eadc] text-rust transition group-hover:bg-rust group-hover:text-white sm:h-24 sm:w-24"><CircleEllipsis size={30} /></span>
+          <Link href="/shop" className="group grid justify-items-center gap-3 text-center text-sm font-extrabold">
+            <span className="grid h-20 w-20 place-items-center rounded-full bg-surface-high text-rust transition group-hover:bg-rust group-hover:text-white sm:h-24 sm:w-24"><CircleEllipsis size={30} /></span>
             <span>All Categories</span>
           </Link>
         </div>
       </section>
 
-      <section className="border-b border-line px-5 py-7 sm:px-10">
+      <section className="heritage-container border-b border-line py-16">
         <SectionTitle title="Handpicked Just for You" href="/shop" label="View all products" />
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {productItems.map((product, index) => <HomeProductCard key={product.slug} product={product} index={index} />)}
@@ -68,11 +69,12 @@ export default async function HomePage() {
 
       <section className="relative overflow-hidden border-b border-line">
         <Image src="/artisan-hero.png" alt="Artisan preparing a handmade order" fill sizes="1200px" className="object-cover object-[70%_45%]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fff7ec] via-[#fff7ec]/92 to-[#fff7ec]/22" />
-        <div className="relative z-10 px-6 py-12 sm:px-12">
-          <h2 className="font-serif text-3xl font-bold">Empowering artisans. Preserving traditions.</h2>
-          <p className="mt-4 max-w-xl leading-7 text-muted">Every purchase helps independent artisans grow their craft and support their families.</p>
-          <Link href="/about" className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-rust px-5 text-sm font-black text-white">Our Story</Link>
+        <div className="absolute inset-0 bg-gradient-to-r from-sage via-sage/92 to-sage/20" />
+        <div className="heritage-container relative z-10 py-24 text-white">
+          <p className="text-xs font-extrabold uppercase tracking-[.16em] text-sage-soft">Our Mission</p>
+          <h2 className="mt-4 max-w-2xl font-serif text-5xl font-semibold leading-tight">Preserving traditions, empowering hands.</h2>
+          <p className="mt-5 max-w-xl leading-8 text-white/82">Every purchase helps independent artisans grow their craft, support their families, and keep heritage techniques alive.</p>
+          <Link href="/about" className="mt-7 inline-flex min-h-11 items-center justify-center rounded border border-white bg-transparent px-5 text-sm font-extrabold text-white hover:bg-white hover:text-sage">Our Story</Link>
         </div>
       </section>
 
@@ -83,13 +85,13 @@ export default async function HomePage() {
         <Stat icon={<Globe2 size={24} />} value="28+" label="States Covered" />
       </section>
 
-      <section className="border-b border-line px-5 py-8 sm:px-10">
+      <section className="heritage-container border-b border-line py-16">
         <SectionTitle title="Meet the makers behind the craft" href="/storefronts" label="View All Storefronts" />
         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Explore independent artisan storefronts, discover their stories, and shop products made with care.</p>
         <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {storefrontItems.map((storefront) => <StorefrontCardView key={storefront.sellerId} storefront={storefront} compact />)}
         </div>
-        <div className="mt-8 grid gap-3 rounded-lg border border-line bg-[#fff7ec] px-4 py-4 text-sm font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-3 rounded-lg border border-line bg-surface-low px-4 py-4 text-sm font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">
           <TrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
           <TrustItem icon={<CreditCard size={18} />} label="Cash on Delivery" />
           <TrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
@@ -107,7 +109,7 @@ function buildCategories(categories: Category[]) {
 }
 
 function SectionTitle({ title, href, label }: { title: string; href: string; label: string }) {
-  return <div className="flex items-center justify-between gap-4"><h2 className="font-serif text-2xl font-bold">{title}</h2><Link href={href} className="hidden items-center gap-1 text-sm font-black text-rust sm:inline-flex">{label} <ArrowRight size={14} /></Link></div>;
+  return <div className="flex items-center justify-between gap-4"><h2 className="font-serif text-4xl font-semibold">{title}</h2><Link href={href} className="hidden items-center gap-1 text-sm font-extrabold text-rust sm:inline-flex">{label} <ArrowRight size={14} /></Link></div>;
 }
 
 function TrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
@@ -115,8 +117,8 @@ function TrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
 }
 
 function CategoryBubble({ category }: { category: Category }) {
-  return <Link href={`/category/${category.slug}`} className="group grid justify-items-center gap-3 text-center text-sm font-black">
-    <span className="relative h-20 w-20 overflow-hidden rounded-full bg-[#f6eadc] shadow-[0_8px_20px_rgba(42,39,36,.08)] sm:h-24 sm:w-24">
+  return <Link href={`/category/${category.slug}`} className="group grid justify-items-center gap-3 text-center text-sm font-extrabold">
+    <span className="relative h-20 w-20 overflow-hidden rounded-full bg-surface-high shadow-soft sm:h-24 sm:w-24">
       <Image src={category.image.src} alt={category.image.alt} fill sizes="96px" className="object-cover transition duration-500 group-hover:scale-110" style={{ objectPosition: category.image.position }} />
       <span className="absolute inset-0 bg-white/28" />
     </span>
@@ -132,8 +134,8 @@ function HomeProductCard({ product, index }: { product: Product; index: number }
       {index === 3 ? <span className="absolute left-3 top-3 z-20 rounded bg-success px-2 py-1 text-[11px] font-black text-white">Bestseller</span> : null}
       <button className="absolute bottom-3 right-3 z-20 grid h-9 w-9 place-items-center rounded-full bg-white text-rust shadow-soft" aria-label="Save product"><Heart size={16} /></button>
     </div>
-    <Link href={`/product/${product.slug}`} className="mt-3 block truncate text-sm font-black hover:text-rust">{product.title}</Link>
-    <p className="mt-1 text-sm font-black">{product.priceLabel}</p>
+    <Link href={`/product/${product.slug}`} className="mt-3 block truncate font-serif text-lg font-semibold hover:text-rust">{product.title}</Link>
+    <p className="mt-1 text-sm font-extrabold">{product.priceLabel}</p>
     <p className="mt-2 flex items-center gap-1 text-xs font-bold text-muted"><Star size={13} className="fill-marigold text-marigold" /> {product.rating.toFixed(1)} ({product.reviewCount || 58})</p>
   </article>;
 }

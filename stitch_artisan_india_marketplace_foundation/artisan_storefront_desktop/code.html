@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maya Studio - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#fffbfa",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "tertiary-fixed": "#ffddbb",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-primary-fixed-variant": "#81290c",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-fixed": "#3a0a00",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#f0eded",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-surface-variant": "#56423c",
+                      "primary-container": "#bc5434",
+                      "surface-container-low": "#f6f3f2",
+                      "surface": "#fcf9f8",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#e5e2e1",
+                      "primary": "#9c3c1e",
+                      "secondary": "#50644b",
+                      "tertiary-container": "#a4660d",
+                      "background": "#fcf9f8",
+                      "surface-container-high": "#eae7e7",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#ddc0b8",
+                      "inverse-surface": "#313030",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#e5e2e1",
+                      "secondary-container": "#d3e9ca",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-container": "#566a51",
+                      "tertiary": "#844f00",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "on-primary-container": "#fffaf9",
+                      "surface-bright": "#fcf9f8",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "secondary-fixed": "#d3e9ca",
+                      "on-surface": "#1c1b1b",
+                      "surface-tint": "#a04021",
+                      "outline": "#8a726b",
+                      "primary-fixed": "#ffdbd1",
+                      "inverse-primary": "#ffb59f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "container-max": "1280px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "headline-xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a class="text-headline-lg font-headline-lg text-primary dark:text-primary-fixed-dim shrink-0" href="#">
+                Heritage Guild
+            </a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Shop</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Categories</a>
+<a class="text-label-lg font-label-lg text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 opacity-80 transition-all duration-200" href="#">Storefronts</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Custom Orders</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Our Story</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">favorite</span></button>
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">shopping_bag</span></button>
+<button class="hover:opacity-80 transition-opacity hidden md:block"><span class="material-symbols-outlined">person</span></button>
+<button class="md:hidden hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Store Header (Maya Studio specific) -->
+<div class="w-full bg-surface-container-low py-6 border-b border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center gap-4">
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-background text-center">
+                    Maya Studio
+                </h1>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-label-md font-label-md text-on-surface hover:text-primary transition-colors border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Products</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Custom Order</a>
+</nav>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative w-full h-[614px] min-h-[500px] flex items-center justify-center bg-surface-container overflow-hidden">
+<img alt="Beautiful ceramics" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-multiply" data-alt="A beautifully styled lifestyle photograph of artisan ceramics arranged on a rustic wooden table in a sunlit home setting. The scene features minimalist, contemporary pottery with organic textures in neutral earthy tones like terracotta and cream. Soft, natural light streams from a nearby window, creating deep, elegant shadows. The mood is serene, premium, and artisanal, evoking a modern editorial style that perfectly matches a high-end heritage brand website." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn6IMCSk8VtpInJaJe7-OEeqyoQRsBBFGFP0b-UaD_Oc_bXIobrzowRUkJwFiGJxq4cq-Oi76cSl4xhtex0G5ZtHN3Lklu0cC27haBRmXZYTkOMv2HyQ2cV0riAZdcEHLhzWDOQd-kmdOnpgJoEh7Ek8p-o5rRlIHU1OX-AsXg2F6GlJxUfbzeVvcCtasqFUZIi8n8y6pnHw8BqcICPTMWgnR2KEd1NP6VNDi07WA_Nt3i300vzUiOIZEEQJMQ9lMTkP_6ROyVFlo"/>
+<div class="relative z-10 text-center px-4 max-w-3xl">
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-tertiary-container mb-6 drop-shadow-md">
+                    Contemporary Ceramics, Ancient Roots
+                </h2>
+<button class="bg-primary text-on-primary px-8 py-4 text-label-lg font-label-lg rounded-DEFAULT hover:bg-surface-tint transition-colors border border-on-primary/10">
+                    Explore Collection
+                </button>
+</div>
+</section>
+<!-- Story Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">format_quote</span>
+<p class="text-headline-sm font-headline-sm text-on-surface-variant mb-8 leading-relaxed">
+                "Every piece created in our Jaipur studio is a dialogue between the earth and the hands that shape it. We honor the timeless traditions of Indian pottery while embracing a minimalist, modern aesthetic for today's home."
+            </p>
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-widest">— Maya</p>
+</section>
+<!-- Featured Collection (Grid) -->
+<section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-low">
+<div class="flex justify-between items-end mb-12">
+<h3 class="text-headline-md font-headline-md text-on-background">Featured Works</h3>
+<a class="text-label-lg font-label-lg text-primary hover:underline flex items-center gap-2" href="#">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Product 1 -->
+<a class="group block bg-surface border border-outline-variant/50 hover:shadow-sm transition-shadow" href="#">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container p-6">
+<img alt="Ceramic Vase" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="A single, perfectly lit contemporary ceramic vase sitting on a neutral textured surface. The vase features a matte, earthy terracotta finish with subtle handcrafted imperfections. The lighting is soft and directional, creating a gentle highlight on the curve of the vessel. The background is a clean, creamy white, emphasizing a premium, gallery-like product presentation suitable for an independent artisan brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwNGL17OGuDy_pdB_EW2V32PkidPwxbxkhhmGlb1rQhFjtQEbZRB0o_7xgi2Z9DuRbe6j3F9_B_Kr5M4TJQFB-E5pgDK-qQ4EVTv3hpESF59YGUi7WlC_NgSliR14O2prLAyXM86M3kxg_AMBKUJY00NZDb2mG4bwLCOCXoqarleAVpkOji0OKyoSP6EzmiQaxQRhOw0Ril11PaK_QbZnWvdkEyeFlCmO44UzV3rxA-CFJ7svFphB7uKBnBkM0ZAaPsigAizVHxHg"/>
+</div>
+<div class="p-6">
+<h4 class="text-headline-sm font-headline-sm text-on-surface mb-2">Ochre Solstice Vase</h4>
+<div class="flex justify-between items-center text-body-sm font-body-sm text-on-surface-variant">
+<span>Jaipur Studio</span>
+<span class="text-primary font-medium">$120</span>
+</div>
+</div>
+</a>
+<!-- Product 2 -->
+<a class="group block bg-surface border border-outline-variant/50 hover:shadow-sm transition-shadow" href="#">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container p-6">
+<img alt="Ceramic Bowls" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="A stack of three shallow, modern ceramic bowls nested together. They feature a minimalist, matte cream glaze over a slightly speckled clay body. The lighting is even and soft, highlighting the subtle textures of the handmade pieces against a minimalist, warm off-white background. The composition is clean and elegant, fitting a modern heritage aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmw7wzgxh9j1-fVMwjiTVxGPf95V9JmOwimSRGYse1NEgRwiR5OkDUjTG0fyDZp52A6G76SfQnl_hU6ngBNLINmaTaEvXL7bLHnw5oyK6Tb83y4Y0-YXeEqPv47OQ_8GJeDmeQybCxBcshHu8TjTWevtFiLD-lZXOED6vAuQR_pD3aJpLATBptsBykS9x0XOq6zdUzQfbmaM-AxYTnAsp0NGqWTCjLxAUOiBCX51v0U7ekbUKlLXYjpe0jpp9kXqlLbVl1xwX24s8"/>
+</div>
+<div class="p-6">
+<h4 class="text-headline-sm font-headline-sm text-on-surface mb-2">Nesting Serving Bowls</h4>
+<div class="flex justify-between items-center text-body-sm font-body-sm text-on-surface-variant">
+<span>Jaipur Studio</span>
+<span class="text-primary font-medium">$185</span>
+</div>
+</div>
+</a>
+<!-- Product 3 -->
+<a class="group block bg-surface border border-outline-variant/50 hover:shadow-sm transition-shadow" href="#">
+<div class="aspect-[4/5] relative overflow-hidden bg-surface-container p-6">
+<img alt="Ceramic Mug" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a beautifully crafted artisanal ceramic mug with an earthy, muted olive green glaze. The mug rests on a raw wooden table, accompanied by soft, diffused morning light that casts gentle shadows. The texture of the clay is visible, emphasizing its handmade nature. The scene is styling to look cozy yet highly sophisticated, perfect for a modern editorial storefront." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuCUmCt8jQtOAe-6rSwjB0z-DxcclI4H64bCLcDqowSPUveP3EUK5U7jUZ8hFBi6V5eka6ty2ZWjnOobWCe4HaXzO0mXyhldsqMbD5fkUAvKCxRMF1Tyawgo5jKUQbrN2S1QqSmmnnbZ5tnns5A1xCuFyjbuVox5a3yY9bQbNhn8tzJmk-LkYz5IWLruluAE6AdWdM33RsqKjRlT88KI1pL0hIcRKpCxN8PHPzgsQHeusQ-7uI33OfXMTz4Is2Zi4DVpysHI8XVWI"/>
+</div>
+<div class="p-6">
+<h4 class="text-headline-sm font-headline-sm text-on-surface mb-2">Moss Glaze Morning Mug</h4>
+<div class="flex justify-between items-center text-body-sm font-body-sm text-on-surface-variant">
+<span>Jaipur Studio</span>
+<span class="text-primary font-medium">$45</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 relative aspect-square bg-surface-container">
+<img alt="Maya working" class="w-full h-full object-cover grayscale-[20%]" data-alt="A candid, high-quality photograph of an artisan woman working intently at a pottery wheel in a sunlit studio. Her hands are covered in wet clay as she shapes a vessel. The studio is filled with natural light, raw materials, and finished ceramics on wooden shelves in the background. The mood is authentic, focused, and inspiring, capturing the essence of modern heritage craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsbUkNBuhsTHVMe1s7n4peSca6T2d9KSb54t3PTPFquhXYo8Hg27TCn7nuxhb6FyQkYsmD4Xuf7mVWjjWbxPKanSQUB6Ps-hklm35sp_cleW27r4bV7K9fKCsTCpjJfAAHMYH-qdxR-D-Ls4eHk88bzB0FbkFZzFlekCqnh1FO22fztS2ZGo7ZgoYHk-p4HJZkprcPHor_ByQoOexPUsat6z_zDa0KWFnwq-3rYAxN3a1jk-e0owS33Zi2FyEQm_cMe9ccYmkIYDU"/>
+</div>
+<div class="order-1 md:order-2">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-background mb-6">The Artisan Behind the Wheel</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-6">
+                        Maya Studio was born from a desire to bridge the gap between ancient Indian pottery techniques and contemporary design. Trained by master artisans in Rajasthan and refined by modern design sensibilities, Maya creates pieces that are both functional objects and sculptural art.
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant mb-8">
+                        Every piece is hand-thrown, glazed, and fired in our small Jaipur workshop, ensuring no two items are exactly alike. We believe in the beauty of imperfection and the slow rhythm of handmade goods.
+                    </p>
+<a class="inline-flex items-center gap-2 text-label-lg font-label-lg text-primary border-b border-primary pb-1 hover:opacity-80 transition-opacity" href="#">
+                        Read Full Story <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Custom Order CTA -->
+<section class="py-24 bg-secondary text-on-secondary text-center px-margin-mobile md:px-margin-desktop">
+<div class="max-w-2xl mx-auto">
+<span class="material-symbols-outlined text-4xl mb-4 text-tertiary-fixed">draw</span>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg mb-6">Have a specific vision?</h2>
+<p class="text-body-lg font-body-lg text-secondary-fixed-dim mb-10">
+                    Whether it's a complete dinnerware set for a restaurant or a unique sculptural piece for your home, we welcome bespoke commissions.
+                </p>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 text-label-lg font-label-lg rounded-DEFAULT hover:bg-tertiary-fixed-dim transition-colors">
+                    Inquire Now
+                </button>
+</div>
+</section>
+</main>
+<!-- Store Footer -->
+<footer class="bg-surface-container-highest text-on-surface border-t border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+<!-- Branding -->
+<div class="flex flex-col items-center md:items-start">
+<h3 class="text-headline-md font-headline-md text-primary mb-4">Maya Studio</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs">
+                    Contemporary ceramics honoring ancient roots. Handcrafted with intention in Jaipur, India.
+                </p>
+</div>
+<!-- Links -->
+<div class="flex flex-col items-center md:items-start gap-4">
+<h4 class="text-label-lg font-label-lg text-on-surface mb-2">Connect</h4>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+                    Instagram <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Studio</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Studio Policies</a>
+</div>
+<!-- Newsletter -->
+<div class="flex flex-col items-center md:items-start">
+<h4 class="text-label-lg font-label-lg text-on-surface mb-4">Studio Notes</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Subscribe for updates on new collection drops and studio musings.</p>
+<form class="w-full max-w-sm flex border-b border-outline-variant focus-within:border-primary transition-colors">
+<input class="w-full bg-transparent border-none text-body-md font-body-md py-2 px-0 focus:ring-0 placeholder:text-on-surface-variant/50" placeholder="Your email address" type="email"/>
+<button class="text-primary p-2 hover:opacity-80" type="submit">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<!-- Heritage Guild Global Footer -->
+<div class="w-full bg-surface-container-low py-8 border-t border-outline-variant">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-body-sm font-body-sm text-on-surface-variant">© 2024 Heritage Guild. Honoring Indian Craftsmanship.</p>
+<div class="flex flex-wrap gap-6 text-label-md font-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

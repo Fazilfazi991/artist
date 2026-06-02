@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Storefront Studio | Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-tint": "#a04021",
+                        "on-error-container": "#93000a",
+                        "outline": "#8a726b",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#ddc0b8",
+                        "secondary-container": "#d3e9ca",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary": "#50644b",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary-container": "#fffaf9",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-container": "#566a51",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#bc5434",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#56423c",
+                        "primary": "#9c3c1e",
+                        "inverse-surface": "#313030",
+                        "tertiary": "#844f00",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-background": "#1c1b1b",
+                        "tertiary-container": "#a4660d",
+                        "surface-container-low": "#f6f3f2",
+                        "background": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#81290c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass {
+                @apply bg-surface/80 backdrop-blur-md border border-surface-container-highest;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-[0_4px_20px_rgba(156,60,30,0.05)] hover:-translate-y-1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface border-r border-outline-variant shadow-sm fixed inset-y-0 left-0 w-80 z-50 flex-col p-6 rounded-r-xl">
+<div class="mb-10">
+<h1 class="text-headline-md font-headline-md text-primary">Heritage Guild</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">Modern Indian Craftsmanship</p>
+</div>
+<ul class="space-y-2 flex-grow">
+<li><a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined" data-icon="storefront">storefront</span><span class="text-label-md font-label-md">Shop</span></a></li>
+<li><a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined" data-icon="category">category</span><span class="text-label-md font-label-md">Categories</span></a></li>
+<li><a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 scale-95 transition-transform duration-150" href="#"><span class="material-symbols-outlined" data-icon="person_pin_circle">person_pin_circle</span><span class="text-label-md font-label-md">Storefronts</span></a></li>
+<li><a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined" data-icon="edit_note">edit_note</span><span class="text-label-md font-label-md">Custom Orders</span></a></li>
+<li><a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span><span class="text-label-md font-label-md">Our Story</span></a></li>
+<li><a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined" data-icon="campaign">campaign</span><span class="text-label-md font-label-md">Become a Seller</span></a></li>
+</ul>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-3 rounded text-label-md font-label-md hover:opacity-90 transition-opacity">Become a Seller</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-80 min-h-screen flex flex-col">
+<!-- Mobile Top Nav Placeholder (suppressed logic, keeping basic header for structural integrity on mobile if viewed) -->
+<header class="md:hidden flex justify-between items-center p-4 border-b border-outline-variant bg-surface">
+<h1 class="text-headline-md-mobile font-headline-lg-mobile text-primary">Heritage Guild</h1>
+<span class="material-symbols-outlined text-primary">menu</span>
+</header>
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-12">
+<h2 class="text-headline-xl font-headline-xl text-on-surface mb-4">Storefront Studio</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">Shape the digital home for your craft. Select a template that reflects the unique heritage and aesthetic of your artisanal creations.</p>
+</div>
+<!-- Templates Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Template 1: Warm Editorial (Current) -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden card-hover flex flex-col relative group">
+<div class="absolute top-4 left-4 z-10 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md font-label-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Current Template
+                    </div>
+<div class="aspect-[4/3] bg-surface-container relative overflow-hidden">
+<img alt="Template preview for Warm Editorial" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated editorial e-commerce template preview showcasing handcrafted terracotta pottery. The design features large typography, generous whitespace, and a warm sand-toned color palette with subtle shadows. The layout emphasizes high-quality imagery of rustic ceramics against muted, earthy backgrounds, embodying a premium 'Modern Heritage' aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfdOjbS3HZ540E9PVAR0mzoo_IbIWZ_DF1tSczhF3Hs8euhCWnapC9hx5sitIJrFlyE4HRGtEef6yQ85dY-Tm1vsvz7w2cro7-d7LxbQxJ4H2I4SZzhYsscguTjCnDTMcBOMzFIGce4YhPfhaN3v-U00DAd2eNofH6Ga2Rx1qH0XkIhh8tajGAKvE7TB7mCqJypTPmKgNENbc84p2r4xYBHU-o0PzNM5xVnMtjG-VRbYCdHfTbnY1GeSG1vlFzR2eICiRHzgybZiQ"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-headline-md font-headline-md mb-2">Warm Editorial</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 flex-1">A narrative-driven layout emphasizing large, rich imagery and sophisticated typography. Perfect for storytelling and high-end ceramics.</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded text-label-lg font-label-lg hover:bg-surface-container-highest transition-colors">Preview</button>
+<button class="flex-1 border border-primary text-primary py-2 rounded text-label-lg font-label-lg opacity-50 cursor-not-allowed">Selected</button>
+</div>
+</div>
+</article>
+<!-- Template 2: Clean Product Grid -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden card-hover flex flex-col group">
+<div class="aspect-[4/3] bg-surface-container relative overflow-hidden">
+<img alt="Template preview for Clean Product Grid" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist e-commerce template layout focusing on a clean, structured product grid. The design uses a crisp white background with very subtle sage green accents. It showcases woven textiles and simple wooden crafts in perfectly aligned, uniformly sized cards with thin 1px borders, highlighting a clinical yet artisanal modern design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgeBJpjJ5qEfmr2hL65tDDLRq7xXAm2n-LDo1ej5pWUknm1YdH8LFT_CYiT3D4m3YizD3-Rtb5VqBIWhqYTcOj_GP6AUUwiv06pBuhEtCzmjdwtlf3z2ynVsVAFees0xuqwaHhNtOTxkvJYM7igT4DzAPu8E_RETjokVvbMRJClSancmvNyYnyEO2PTW79S-gBeOwMxwJ4f4Pn8B6kTUlWKISk1GWKdX6701gpBVJTg7E8PEixHkhL2S1rXtl9Bp6bSCs9fk6uU-E"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-headline-md font-headline-md mb-2">Clean Product Grid</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 flex-1">A highly organized, minimalist approach that puts your products front and center. Ideal for expansive catalogs and varied collections.</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded text-label-lg font-label-lg hover:bg-surface-container-highest transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded text-label-lg font-label-lg hover:opacity-90 transition-opacity">Select</button>
+</div>
+</div>
+</article>
+<!-- Template 3: Personalized Gifts -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden card-hover flex flex-col group">
+<div class="aspect-[4/3] bg-surface-container relative overflow-hidden">
+<img alt="Template preview for Personalized Gifts" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" data-alt="A soft, inviting e-commerce template designed for personalized gifting. The preview shows delicate packaging, floral motifs, and gentle blush pink and soft lavender tones. The UI elements include rounded corners, soft ambient glows instead of hard shadows, and elegant cursive typography accents alongside clean sans-serif text, creating a warm, approachable feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3cZVDba8ABj2BkII_4uFkBwxMYNDhFdxtOmBgB6LdrAWTbnBC7XphGALXeEmNtzyJ0k5XQRQSza_fRaAsmEytCXeIL56FZ8ObTBb82zi6KK3PtoQbgzZCN2u1BDnEQTTq5nxL9FPgDhQSu-cnZXLI4mRqIL-Q76ZsMpAF2dia_pLVwciFsSIa2I8KFOj9h-ULRzywZBIhnbK42e6yYCMM9kJqjjZO8_XQKGRcC_41fSqKyaLPvWvqwEUUuzHJIXVK-9sxpjAWRIc"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-headline-md font-headline-md mb-2">Personalized Gifts</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 flex-1">Soft tones and gentle curves create an inviting atmosphere. Features prominent customization options and delicate detailing.</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded text-label-lg font-label-lg hover:bg-surface-container-highest transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded text-label-lg font-label-lg hover:opacity-90 transition-opacity">Select</button>
+</div>
+</div>
+</article>
+<!-- Template 4: Visual Portfolio -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden card-hover flex flex-col group lg:col-span-2">
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 aspect-[4/3] md:aspect-auto bg-surface-container relative overflow-hidden">
+<img alt="Template preview for Visual Portfolio" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" data-alt="An expansive, highly visual e-commerce portfolio template preview. The design features a large, asymmetrical gallery layout with overlapping images of intricate metalwork and jewelry. The color palette is deep and sophisticated, utilizing rich olive greens and warm beige tones. The typography is grand and editorial, suggesting a luxury gallery experience rather than a standard shop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCivEzioRTjd1WlCRIkCOaXQUK7uBnC9Y_l9yy7GvyODirm9ZTqFVOGBg7lo6KGd_F3e0-XK07B_yzQLMSz6emw4TG_8pLtHWT-LnG6aMyNAPQS0nBugpfnmJxGSptRzUf20pdp7PxF6uU0arkIb85Vrxu2Lc1h3kthq5a2lXQ4YMVnTLzUCYz_vREPw1A_B7Y_L17WxuicfggZTHL9y8Etc9WGCEfXUDRcxKvTYs8zHLVA2m7AG4je76m6KLF51K0Mv1nYvKL8UPQ"/>
+</div>
+<div class="p-6 md:w-1/2 flex flex-col justify-center border-l border-outline-variant">
+<h3 class="text-headline-md font-headline-md mb-2">Visual Portfolio</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6">An immersive, asymmetrical layout designed for singular masterpieces. Treats your products as fine art gallery exhibits.</p>
+<div class="flex gap-4 mt-auto">
+<button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded text-label-lg font-label-lg hover:bg-surface-container-highest transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded text-label-lg font-label-lg hover:opacity-90 transition-opacity">Select</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Template 5: Boutique Brand -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden card-hover flex flex-col group">
+<div class="aspect-[4/3] bg-surface-container relative overflow-hidden">
+<img alt="Template preview for Boutique Brand" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" data-alt="A refined, elegant e-commerce template preview for a boutique brand. The layout is structured and classic, utilizing an ivory and cocoa brown color scheme. It shows carefully curated lifestyle images of fine leather goods. The design uses thin serif typography for headings, plenty of negative space, and a highly structured, symmetrical grid to convey established luxury and timeless quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgxp8--7C6IAIR-stsyBA9FT4b2EvLxn-s5KBiR8Z4cUPMLiK5F5Rk-xK_jlTLlibQwufl8W0UGVl2ISWkwxk8jRRYHIPVQr98WP2Se49TyHjzWxRYxvmdQ32G8RYDcOBV_AnNox9KsDGhG3KKpBisiLvX9eRkzzkxmraKLH7flwoohRJYJ8aJP_EpmMZlx6OCTohIRW1L0c7kIoFCqrFgf5yAtWI2Q996XEt7zbNLTGKyDUg1l54KV-xOYg5m6oA_TdgGUpDq-Bw"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-headline-md font-headline-md mb-2">Boutique Brand</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 flex-1">Classic, structured, and profoundly elegant. Utilizes a timeless Ivory and Cocoa palette to convey established luxury.</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded text-label-lg font-label-lg hover:bg-surface-container-highest transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded text-label-lg font-label-lg hover:opacity-90 transition-opacity">Select</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Footer (Suppressed for Storefront Studio focused task flow, adhering to shell visibility rules) -->
+</main>
+</body></html>

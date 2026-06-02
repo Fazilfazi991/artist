@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heritage Guild - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffbfa",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "tertiary-fixed": "#ffddbb",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-primary-fixed-variant": "#81290c",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0eded",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-surface-variant": "#56423c",
+                        "primary-container": "#bc5434",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary": "#9c3c1e",
+                        "secondary": "#50644b",
+                        "tertiary-container": "#a4660d",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#ddc0b8",
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#d3e9ca",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-container": "#566a51",
+                        "tertiary": "#844f00",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-primary-container": "#fffaf9",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "secondary-fixed": "#d3e9ca",
+                        "on-surface": "#1c1b1b",
+                        "surface-tint": "#a04021",
+                        "outline": "#8a726b",
+                        "primary-fixed": "#ffdbd1",
+                        "inverse-primary": "#ffb59f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex antialiased">
+<!-- Left Panel: Brand Imagery -->
+<div class="hidden lg:flex w-1/2 relative flex-col justify-between p-12 overflow-hidden">
+<img alt="Hand-loomed textile" class="absolute inset-0 w-full h-full object-cover" data-alt="A close-up view of a beautifully hand-loomed Indian textile featuring intricate terracotta and deep olive patterns woven into a natural cream fabric. The lighting is soft, warm, and highly directional, highlighting the rich, tactile texture of the threads and the craftsmanship involved. The mood is sophisticated and heritage-focused, reflecting a premium editorial aesthetic. The colors are muted earthy tones, emphasizing authenticity and artisanal quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkVNMuIBdrd4sX9lJQyHRWjXO71llxCuLt45xUD5bKIiFvByXHthfM8p08kNE8h1CrUK23G9OUxvuUsgs-K0gBcFeHcmXscAse6ryaIUV34awADrasyBZtTd_QyRyr8FibdSh6oqEBpbDbgnpYoOlkqLdCUhN15jgawPkEI7brw2d6Hnp3m3c1jBFsiBwDnVLIIGN7hXHehqy3Eg0njCDM3nVObZjoUk5L7ghoPRF9n5ZZHRzSt6ErHbP3Orr3e9jlD4uMxToKHJU"/>
+<div class="absolute inset-0 bg-on-background/30 mix-blend-multiply"></div>
+<div class="relative z-10">
+<h1 class="font-headline-md text-headline-md text-surface mb-2">Heritage Guild</h1>
+</div>
+<div class="relative z-10 max-w-md">
+<p class="font-headline-lg text-headline-lg text-surface mb-6">Connecting Craft to Life.</p>
+<p class="font-body-lg text-body-lg text-surface-container-low opacity-90">Discover the timeless beauty of artisanal Indian craftsmanship, curated for the modern conscious collector.</p>
+</div>
+</div>
+<!-- Right Panel: Form Area -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 md:p-24 bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Brand Header (Hidden on Desktop) -->
+<div class="lg:hidden mb-12 text-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Heritage Guild</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connecting Craft to Life</p>
+</div>
+<!-- Form Header -->
+<div class="mb-10 text-center lg:text-left">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-3" id="form-title">Sign In</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" id="form-subtitle">Welcome back to the marketplace.</p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-6" method="POST">
+<!-- Registration Fields (Initially Hidden) -->
+<div class="hidden space-y-6" id="register-fields">
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2" for="name">Full Name</label>
+<input autocomplete="name" class="w-full bg-transparent border-b border-outline-variant py-2 focus:border-primary focus:ring-0 font-body-md text-body-md text-on-background placeholder-outline transition-colors duration-300" id="name" name="name" placeholder="Jane Doe" type="text"/>
+</div>
+</div>
+<!-- Common Fields -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2" for="email">Email Address</label>
+<input autocomplete="email" class="w-full bg-transparent border-b border-outline-variant py-2 focus:border-primary focus:ring-0 font-body-md text-body-md text-on-background placeholder-outline transition-colors duration-300" id="email" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block font-label-lg text-label-lg text-on-surface" for="password">Password</label>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#" id="forgot-password">Forgot password?</a>
+</div>
+<div class="relative">
+<input autocomplete="current-password" class="w-full bg-transparent border-b border-outline-variant py-2 pr-10 focus:border-primary focus:ring-0 font-body-md text-body-md text-on-background placeholder-outline transition-colors duration-300" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center pr-2 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full bg-primary text-on-primary py-4 px-6 rounded-none border border-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-surface-tint hover:shadow-[0_4px_14px_rgba(156,60,30,0.1)] transition-all duration-300 font-label-lg text-label-lg tracking-wider flex justify-center items-center gap-2 mt-8" id="submit-btn" type="submit">
+                    Sign In
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Divider -->
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-surface px-4 font-body-sm text-body-sm text-on-surface-variant">Or continue with</span>
+</div>
+</div>
+<!-- Social Login -->
+<button class="w-full bg-transparent border border-[#1A1A1A] text-on-background py-4 px-6 hover:bg-surface-container-low transition-colors duration-300 font-label-lg text-label-lg flex justify-center items-center gap-3" type="button">
+<svg class="w-5 h-5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                    Google
+                </button>
+</form>
+<!-- Toggle Links -->
+<div class="mt-10 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<span id="toggle-text">New here?</span>
+<button class="ml-1 text-primary hover:text-surface-tint font-label-lg text-label-lg underline underline-offset-4 decoration-2 transition-colors" id="toggle-btn" type="button">Create an account</button>
+</p>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggle-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const formTitle = document.getElementById('form-title');
+            const formSubtitle = document.getElementById('form-subtitle');
+            const submitBtn = document.getElementById('submit-btn');
+            const registerFields = document.getElementById('register-fields');
+            const forgotPassword = document.getElementById('forgot-password');
+            let isLogin = true;
+
+            toggleBtn.addEventListener('click', () => {
+                isLogin = !isLogin;
+                
+                if (isLogin) {
+                    formTitle.textContent = 'Sign In';
+                    formSubtitle.textContent = 'Welcome back to the marketplace.';
+                    submitBtn.innerHTML = 'Sign In <span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
+                    toggleText.textContent = 'New here?';
+                    toggleBtn.textContent = 'Create an account';
+                    registerFields.classList.add('hidden');
+                    forgotPassword.classList.remove('hidden');
+                } else {
+                    formTitle.textContent = 'Join the Guild';
+                    formSubtitle.textContent = 'Begin your journey with authentic Indian craftsmanship.';
+                    submitBtn.innerHTML = 'Join the Guild <span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
+                    toggleText.textContent = 'Already have an account?';
+                    toggleBtn.textContent = 'Sign in';
+                    registerFields.classList.remove('hidden');
+                    forgotPassword.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body></html>

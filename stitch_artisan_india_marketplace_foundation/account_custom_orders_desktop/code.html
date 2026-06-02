@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Orders | Heritage Guild</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1c1b1b",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary": "#844f00",
+                        "surface-tint": "#a04021",
+                        "surface-bright": "#fcf9f8",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#ddc0b8",
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#bc5434",
+                        "tertiary-fixed": "#ffddbb",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-tertiary-container": "#fffbfa",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "secondary-container": "#d3e9ca",
+                        "on-surface-variant": "#56423c",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "secondary-fixed": "#d3e9ca",
+                        "on-secondary-container": "#566a51",
+                        "surface-container-high": "#eae7e7",
+                        "surface-container": "#f0eded",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "on-primary-fixed-variant": "#81290c",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary": "#50644b",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#ffdbd1",
+                        "background": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-container": "#fffaf9",
+                        "outline": "#8a726b",
+                        "primary": "#9c3c1e",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#a4660d",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "on-primary-fixed": "#3a0a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-xl": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for clean horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim" href="#">
+                Heritage Guild
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex gap-8">
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Shop</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Categories</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Storefronts</a>
+<a class="text-label-lg font-label-lg text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 opacity-80 transition-all duration-200" href="#">Custom Orders</a>
+<a class="text-label-lg font-label-lg text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Our Story</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex gap-4 items-center text-primary dark:text-primary-fixed-dim">
+<button class="p-2 hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="p-2 hover:opacity-70 transition-opacity hidden md:block">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="p-2 hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-2 hover:opacity-70 transition-opacity hidden md:block">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-12 md:py-24">
+<!-- Page Header -->
+<div class="mb-16 md:mb-24 text-center md:text-left">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-background mb-4">Bespoke Requests</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Track the journey of your commissioned pieces, from initial artisan sketches to final delivery.</p>
+</div>
+<!-- Bento Grid Layout for Orders -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Priority/Action Required Card (Spans full width on desktop) -->
+<article class="col-span-1 lg:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group">
+<!-- Image Area -->
+<div class="md:w-2/5 lg:w-1/3 relative h-64 md:h-auto border-b md:border-b-0 md:border-r border-outline-variant bg-surface-container overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Detailed close up of an artisan's workbench featuring swatches of hand-dyed indigo silk. A wooden block print stamp rests on the fabric. Soft, diffused natural light illuminates the rich textures and deep blues, embodying a tactile, modern editorial style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlXR0truVnvJin4gyygMpBBiLGPmyDg7ZYWcVaD99ah9AaJhWmW0xKavrXJHnNmj6TUyLHFSXefGVjEZ8J1P-eg26cU-XXZLBsWdkpQ4GlfTsjytQ1FgKPI3hrUa_bYr3tAQSraIjwUOMUxChLHwpNfRLBXvF5T-Pe3qvhLSp_-5-B2MLOrPdLmkwX4_CKnayek7pczZsfGMKWuclCeEy_5TFPQrrnzQ8m73U3sVqhUg5rdakWdsWH5qYkZeu-vg1J1ypgyw1T8Vc');">
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-6 md:p-10 flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-2">Request #0934</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">Indigo Block Print Silk Saree</h2>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1.5 rounded-full font-label-md text-label-md flex items-center gap-1.5 border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                Quote Sent
+                            </div>
+</div>
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">person</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-background">Maya Devi</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Jaipur, Rajasthan
+                                </p>
+</div>
+</div>
+</div>
+<!-- Action Box -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div>
+<p class="font-label-lg text-label-lg text-on-background mb-1">Action Required</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review the artisan's material quote and timeline to proceed to production.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-lg text-label-lg px-6 py-3 rounded-lg hover:bg-surface-tint transition-colors flex-shrink-0 w-full sm:w-auto text-center border border-transparent shadow-sm">
+                            Review &amp; Approve Quote
+                        </button>
+</div>
+</div>
+</article>
+<!-- Standard Grid Card 1 -->
+<article class="col-span-1 lg:col-span-6 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col group">
+<div class="relative h-56 border-b border-outline-variant bg-surface-container overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A macro shot of intricate floral wood carving on dark teak wood. Wood shavings lie scattered around a sharp steel chisel. The lighting is warm and directional, emphasizing the depth of the carving and the rich, natural tones of the wood in a premium artisanal setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTEuqiJDzYA0WR40XOLtCZaNMcPohaY5xAmcjW-Y12wYK13xFmoyw8seTZloVk2w9sKQKp9YPVBdbQcPx6Ejau7BeFQrq69GhclX2BZ-4orLMGH4YvCF1710ZBa8XLQutbQyE8M6TTmyPFBnZvtXdwSyajTTtwncS_YCZtMxToAxcBJXAyoPNyfQxaK2IlqP9I5d3F24Mu6feQX6r4ckkHH8wbi02PDPGa0KtsmCljj53Oix2hhsuxOmUmljPMf3zGUU3B2YdS1zc');">
+</div>
+<div class="absolute top-4 left-4 bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant px-3 py-1.5 rounded-full font-label-md text-label-md text-on-surface">
+                        In Production
+                    </div>
+</div>
+<div class="p-6 md:p-8 flex-grow flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-2">Request #0921</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4 line-clamp-1">Hand-Carved Teak Archway</h3>
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+</div>
+<p class="font-label-lg text-label-lg text-on-background">Arjun Das</p>
+</div>
+<div class="mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Next Step</p>
+<div class="flex items-center justify-between">
+<p class="font-body-md text-body-md text-on-background">Awaiting Progress Photos</p>
+<span class="font-label-md text-label-md text-secondary">Expected Oct 12</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Grid Card 2 -->
+<article class="col-span-1 lg:col-span-6 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col group">
+<div class="relative h-56 border-b border-outline-variant bg-surface-container overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Rough pencil sketches of a wide, shallow bowl alongside a piece of raw polished brass, laid out on a dark slate surface. The aesthetic is high-contrast, moody, and premium, capturing the initial design phase in a metalworker's studio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCEMrxK0WVsc5FKRZCDxMTgSkS8L2PWP8vQD0hxMH6JVSxHqrwKAxxNftFvkpVwq8fiDfBSjWSWrKPI_30uoFej4feJTIL_K9m8Vo1nN1ANZ9ijHoPDpR9y8wbX7yIbxbenvB7daUlhJkgKWpgIpjhruwd72nRLgTbPmsry9o87ZAW3ggifmD_G42VsfeF9yZ_gR8zhPMfx_K0H2tALMKC7E02E6prOkHQLS-5bm2nKxRZVXz3esJETB4jmw6fIXMnx82J1kLGqCM');">
+</div>
+<div class="absolute top-4 left-4 bg-surface-container-highest/90 backdrop-blur-sm border border-outline-variant px-3 py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant">
+                        Design Phase
+                    </div>
+</div>
+<div class="p-6 md:p-8 flex-grow flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-2">Request #0945</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4 line-clamp-1">Custom Brass Uruli</h3>
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+</div>
+<p class="font-label-lg text-label-lg text-on-background">Venkat Metalworks</p>
+</div>
+<div class="mt-auto">
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Next Step</p>
+<div class="flex items-center justify-between">
+<p class="font-body-md text-body-md text-on-background">Artisan Drafting Sketches</p>
+<span class="font-label-md text-label-md text-tertiary">Review by Oct 15</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline full-width bottom mt-auto">
+<div class="w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-2">
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim block mb-6" href="#">
+                    Heritage Guild
+                </a>
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant mb-6 max-w-sm">
+                    © 2024 Heritage Guild. Honoring Indian Craftsmanship.
+                </p>
+</div>
+<div class="col-span-1">
+<h4 class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim mb-6">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Artisan Resources</a></li>
+<li><a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

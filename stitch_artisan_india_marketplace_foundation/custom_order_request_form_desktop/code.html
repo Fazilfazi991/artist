@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Order Request - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#1c1b1b",
+                "inverse-primary": "#ffb59f",
+                "tertiary": "#844f00",
+                "surface-tint": "#a04021",
+                "surface-bright": "#fcf9f8",
+                "error": "#ba1a1a",
+                "inverse-on-surface": "#f3f0ef",
+                "outline-variant": "#ddc0b8",
+                "inverse-surface": "#313030",
+                "on-tertiary-fixed-variant": "#673d00",
+                "error-container": "#ffdad6",
+                "primary-container": "#bc5434",
+                "tertiary-fixed": "#ffddbb",
+                "tertiary-fixed-dim": "#ffb868",
+                "on-tertiary-fixed": "#2b1700",
+                "on-tertiary-container": "#fffbfa",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#fcf9f8",
+                "secondary-container": "#d3e9ca",
+                "on-surface-variant": "#56423c",
+                "on-secondary-fixed-variant": "#394c35",
+                "secondary-fixed": "#d3e9ca",
+                "on-secondary-container": "#566a51",
+                "surface-container-high": "#eae7e7",
+                "surface-container": "#f0eded",
+                "surface-variant": "#e5e2e1",
+                "surface-container-low": "#f6f3f2",
+                "on-primary-fixed-variant": "#81290c",
+                "on-primary": "#ffffff",
+                "on-surface": "#1c1b1b",
+                "on-error": "#ffffff",
+                "secondary-fixed-dim": "#b7cdaf",
+                "surface-container-highest": "#e5e2e1",
+                "secondary": "#50644b",
+                "on-tertiary": "#ffffff",
+                "primary-fixed": "#ffdbd1",
+                "background": "#fcf9f8",
+                "surface-dim": "#dcd9d9",
+                "on-primary-container": "#fffaf9",
+                "outline": "#8a726b",
+                "primary": "#9c3c1e",
+                "primary-fixed-dim": "#ffb59f",
+                "on-secondary": "#ffffff",
+                "on-error-container": "#93000a",
+                "tertiary-container": "#a4660d",
+                "on-secondary-fixed": "#0f1f0c",
+                "on-primary-fixed": "#3a0a00"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-desktop": "64px",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "unit": "8px",
+                "container-max": "1280px"
+        },
+        "fontFamily": {
+                "label-md": ["Plus Jakarta Sans"],
+                "label-lg": ["Plus Jakarta Sans"],
+                "body-sm": ["Plus Jakarta Sans"],
+                "headline-xl-mobile": ["Playfair Display"],
+                "headline-lg-mobile": ["Playfair Display"],
+                "body-md": ["Plus Jakarta Sans"],
+                "headline-sm": ["Playfair Display"],
+                "headline-md": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "headline-xl": ["Playfair Display"],
+                "body-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+                "label-md": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                "label-lg": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-xl-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-sm": ["22px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-lg": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #fcf9f8; /* bg-background */
+    color: #1c1b1b; /* text-on-background */
+  }
+  .form-input {
+    border: 1px solid #ddc0b8; /* border-outline-variant */
+    background-color: transparent;
+    transition: border-color 0.3s ease;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #9c3c1e; /* border-primary */
+  }
+  /* Minimal scrollbar for textareas */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e5e2e1;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ddc0b8;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md antialiased">
+<!-- Minimal Transactional Header -->
+<header class="w-full border-b border-outline-variant bg-surface px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center z-10 sticky top-0">
+<button aria-label="Go back" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="font-label-lg text-label-lg hidden sm:inline">Back to Artisan</span>
+</button>
+<div class="text-center absolute left-1/2 transform -translate-x-1/2">
+<h1 class="font-headline-md text-headline-md text-primary">Heritage Guild</h1>
+</div>
+<div class="w-[88px]"></div> <!-- Spacer for balance -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 flex flex-col lg:flex-row gap-12 lg:gap-24">
+<!-- Left Column: Form -->
+<div class="flex-grow max-w-3xl">
+<div class="mb-10">
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background mb-4">Request Custom Work</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Detail your vision for a bespoke piece. The artisan will review your request and follow up to finalize design and pricing.</p>
+</div>
+<form class="space-y-8">
+<!-- Project Title -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="project-title">Project Title</label>
+<input class="form-input w-full p-4 font-body-md text-body-md rounded-none bg-surface-container-lowest" id="project-title" name="project-title" placeholder="e.g., Hand-carved Teak Dining Table" required="" type="text"/>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="description">Project Description &amp; Vision</label>
+<textarea class="form-input w-full p-4 font-body-md text-body-md rounded-none bg-surface-container-lowest resize-y" id="description" name="description" placeholder="Describe the materials, dimensions, purpose, and inspiration behind your desired piece..." required="" rows="5"></textarea>
+</div>
+<!-- Budget & Deadline Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Budget -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Estimated Budget (USD)</label>
+<div class="flex items-center gap-4">
+<div class="relative flex-1">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">$</span>
+<input class="form-input w-full p-4 pl-8 font-body-md text-body-md rounded-none bg-surface-container-lowest" id="budget-min" name="budget-min" placeholder="Min" type="number"/>
+</div>
+<span class="text-on-surface-variant font-label-lg">—</span>
+<div class="relative flex-1">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">$</span>
+<input class="form-input w-full p-4 pl-8 font-body-md text-body-md rounded-none bg-surface-container-lowest" id="budget-max" name="budget-max" placeholder="Max" type="number"/>
+</div>
+</div>
+</div>
+<!-- Deadline -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="deadline">Target Completion Date</label>
+<input class="form-input w-full p-4 font-body-md text-body-md rounded-none bg-surface-container-lowest text-on-surface" id="deadline" name="deadline" type="date"/>
+</div>
+</div>
+<!-- File Upload Area -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Reference Images &amp; Sketches</label>
+<div class="border border-dashed border-outline-variant bg-surface-container-low hover:bg-surface-container transition-colors duration-300 p-8 flex flex-col items-center justify-center text-center cursor-pointer group">
+<span class="material-symbols-outlined text-[32px] text-outline mb-4 group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">cloud_upload</span>
+<p class="font-body-md text-body-md text-on-surface mb-1">Drag and drop files here, or <span class="text-primary underline font-medium">browse</span></p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Supports JPG, PNG, PDF up to 10MB</p>
+<input accept=".jpg,.jpeg,.png,.pdf" class="hidden" multiple="" type="file"/>
+</div>
+</div>
+<!-- Submit Actions -->
+<div class="pt-6 border-t border-outline-variant flex justify-end gap-4">
+<button class="px-8 py-4 font-label-lg text-label-lg border border-on-background text-on-background hover:bg-surface-container-high transition-colors" type="button">
+            Cancel
+          </button>
+<button class="px-8 py-4 font-label-lg text-label-lg bg-primary text-on-primary hover:bg-on-primary-fixed-variant transition-colors shadow-sm" type="submit">
+            Submit Request
+          </button>
+</div>
+</form>
+</div>
+<!-- Right Column: Artisan Summary Sidebar -->
+<aside class="w-full lg:w-[400px] flex-shrink-0">
+<div class="sticky top-24 bg-surface-container-lowest border border-outline-variant p-8 md:p-10 shadow-[0_4px_24px_rgba(156,60,30,0.03)] flex flex-col">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-6">Selected Artisan</h3>
+<div class="mb-6 aspect-square w-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="Artisan Portrait" class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" data-alt="A cinematic, beautifully lit portrait of a skilled Indian artisan in a dusty, sunlit workshop. The artisan, an older man with weathered hands, is carefully carving an intricate pattern into a block of rich, dark teak wood. Soft, warm natural light pours through a large workshop window, highlighting the flying wood shavings and the deep textures of the raw materials. The overall aesthetic is earthy, grounded, and premium, utilizing a palette of deep browns, warm terracottas, and soft cream lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxeW6D2KsWnnkQuinJLRXlj8KjfUbUggGunsv9x_cBo3mTJoZLhfDMZUuzGFIFryxQY9K7GITxKxwCL2G8TwxVfYKC5qh90j6DCdO0D9S6i5Mt6_uEaOqWbZSOLD-JUM3puXwz8t9F2ZsCAA1WiIWwvRGakC1diIOCkX55UPdAq2x4nq4OasfN2UXIbJLaGYQqTJbXQslPLsYrU7ibBgQRXjod2Z9QPVKQQiyqHRuWnp5FR3jDrP0wi8Q48LMO0G0sT8CfInCTX8A"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-1">Ravi Sharma</h4>
+<div class="flex items-center gap-2 text-on-surface-variant mb-6">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-sm text-body-sm">Jaipur, Rajasthan</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 line-clamp-4">
+          Master woodworker specializing in heritage Rajasthani joinery and relief carving. With over 30 years of experience, Ravi bridges traditional temple architecture motifs with modern minimalist forms.
+        </p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary font-label-md text-label-md rounded-full">Woodworking</span>
+<span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary font-label-md text-label-md rounded-full">Relief Carving</span>
+<span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary font-label-md text-label-md rounded-full">Teak &amp; Rosewood</span>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-6">
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Response Time</span>
+<span class="font-label-lg text-label-lg text-on-surface">2-3 Days</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Availability</span>
+<span class="font-label-lg text-label-lg text-secondary flex items-center gap-1">
+<span class="block w-2 h-2 rounded-full bg-secondary"></span>
+              Accepting Commissions
+            </span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

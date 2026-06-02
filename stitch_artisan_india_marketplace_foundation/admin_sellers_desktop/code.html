@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin - Seller Management | Heritage Guild</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#0f1f0c",
+                    "tertiary-container": "#a4660d",
+                    "outline-variant": "#ddc0b8",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#844f00",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#a04021",
+                    "primary-fixed-dim": "#ffb59f",
+                    "on-primary-fixed": "#3a0a00",
+                    "surface-container-high": "#eae7e7",
+                    "on-surface-variant": "#56423c",
+                    "secondary-container": "#d3e9ca",
+                    "on-secondary-fixed-variant": "#394c35",
+                    "on-primary-container": "#fffaf9",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#fffbfa",
+                    "on-background": "#1c1b1b",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddbb",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-primary-fixed-variant": "#81290c",
+                    "surface-variant": "#e5e2e1",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d3e9ca",
+                    "on-surface": "#1c1b1b",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#ffb59f",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#ffdbd1",
+                    "outline": "#8a726b",
+                    "on-secondary-container": "#566a51",
+                    "surface-bright": "#fcf9f8",
+                    "secondary": "#50644b",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "inverse-surface": "#313030",
+                    "surface-container": "#f0eded",
+                    "primary-container": "#bc5434",
+                    "tertiary-fixed-dim": "#ffb868",
+                    "on-tertiary-fixed": "#2b1700",
+                    "primary": "#9c3c1e",
+                    "background": "#fcf9f8",
+                    "secondary-fixed-dim": "#b7cdaf"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Playfair Display"],
+                    "headline-xl-mobile": ["Playfair Display"],
+                    "headline-xl": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-lg": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["22px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner editorial look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.surface'); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.outline-variant'); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline'); 
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Slide-in panel animation */
+        .slide-panel {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .slide-panel.open {
+            transform: translateX(0);
+        }
+        
+        /* Overlay fade */
+        .panel-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .panel-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md overflow-hidden antialiased selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen w-full">
+<!-- JSON Shared Component: SideNavBar (Admin interpretation, highlighting Storefronts) -->
+<aside class="fixed inset-y-0 left-0 w-80 z-50 flex flex-col p-6 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-r border-outline-variant hidden lg:flex">
+<!-- Header -->
+<div class="mb-12 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant flex-shrink-0 bg-surface-container">
+<!-- Avatar/Logo Placeholder -->
+<div class="w-full h-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md text-headline-md">H</div>
+</div>
+<div>
+<h1 class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim m-0">Heritage Guild</h1>
+<p class="text-label-md font-label-md text-on-surface-variant m-0 mt-1">Modern Indian Craftsmanship</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 space-y-2">
+<!-- Shop (Inactive) -->
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-300" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-label-lg font-label-lg">Shop</span>
+</a>
+<!-- Categories (Inactive) -->
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-300" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="text-label-lg font-label-lg">Categories</span>
+</a>
+<!-- Storefronts (ACTIVE - Semantic match for Artisan Management) -->
+<a class="flex items-center gap-4 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg p-3 scale-95 transition-transform duration-150 shadow-[0_2px_8px_rgba(156,60,30,0.08)]" href="#">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">person_pin_circle</span>
+<span class="text-label-lg font-label-lg">Storefronts</span>
+</a>
+<!-- Custom Orders (Inactive) -->
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-300" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-label-lg font-label-lg">Custom Orders</span>
+</a>
+<!-- Our Story (Inactive) -->
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-300" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-label-lg font-label-lg">Our Story</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full bg-surface-container-low text-on-surface py-3 px-4 border border-outline-variant rounded-lg text-label-lg font-label-lg hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">campaign</span>
+                    Become a Seller
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-80 h-full flex flex-col relative overflow-hidden bg-surface">
+<!-- Top App Bar (Mobile only, simplified to complement missing SideNav on mobile) -->
+<header class="lg:hidden flex items-center justify-between p-4 border-b border-outline-variant bg-surface sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant"><span class="material-symbols-outlined">menu</span></button>
+<h1 class="text-headline-sm font-headline-sm text-primary">Heritage Guild</h1>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto w-full px-margin-mobile md:px-margin-desktop py-8 md:py-12 relative">
+<div class="max-w-container-max mx-auto h-full flex flex-col">
+<!-- Page Header & Toolbar -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-2">Artisan Directory</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Manage and review seller storefronts, performance, and verification status.</p>
+</div>
+<!-- Actions & View Toggle (For demonstration purposes) -->
+<div class="flex items-center gap-4">
+<button class="text-label-md font-label-md text-on-surface-variant underline hover:text-primary transition-colors" id="toggleEmptyState">
+                                Toggle Empty State
+                            </button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded text-label-lg font-label-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] hover:bg-surface-tint transition-colors">
+                                Invite Artisan
+                            </button>
+</div>
+</div>
+<!-- Filters & Search Toolbar -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-2 mb-6 flex flex-col lg:flex-row gap-2 items-center justify-between shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+<!-- Search -->
+<div class="relative w-full lg:w-96 flex-shrink-0">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md font-body-md py-3 pl-12 pr-4 text-on-surface placeholder-outline-variant h-full rounded-lg hover:bg-surface-container-low transition-colors" placeholder="Search artisans or store names..." type="text"/>
+</div>
+<!-- Divider (Desktop) -->
+<div class="hidden lg:block w-px h-8 bg-outline-variant mx-2"></div>
+<!-- Filters & Bulk Actions -->
+<div class="flex items-center w-full lg:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 pb-2 lg:pb-0">
+<!-- Select: Status -->
+<div class="relative min-w-[140px]">
+<select class="appearance-none w-full bg-surface-container border-none text-on-surface text-label-lg font-label-lg py-2.5 pl-4 pr-10 rounded-lg focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-high transition-colors">
+<option value="">All Statuses</option>
+<option value="verified">Verified</option>
+<option value="pending">Pending</option>
+<option value="suspended">Suspended</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[20px]">expand_more</span>
+</div>
+<!-- Select: Category -->
+<div class="relative min-w-[140px]">
+<select class="appearance-none w-full bg-surface-container border-none text-on-surface text-label-lg font-label-lg py-2.5 pl-4 pr-10 rounded-lg focus:ring-1 focus:ring-primary cursor-pointer hover:bg-surface-container-high transition-colors">
+<option value="">All Categories</option>
+<option value="textiles">Textiles</option>
+<option value="ceramics">Ceramics</option>
+<option value="woodwork">Woodwork</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[20px]">expand_more</span>
+</div>
+<div class="w-px h-6 bg-outline-variant mx-2 hidden sm:block"></div>
+<!-- Bulk Actions (Muted state) -->
+<button class="whitespace-nowrap px-4 py-2 border border-outline-variant text-on-surface-variant text-label-lg font-label-lg rounded-lg flex items-center gap-2 hover:bg-surface-container hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+                                Verify Selected
+                            </button>
+<button class="p-2 border border-outline-variant text-on-surface-variant rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors" title="More Actions">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Data View Container -->
+<div class="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(28,27,27,0.03)] flex flex-col">
+<!-- MAIN TABLE VIEW -->
+<div class="overflow-x-auto w-full flex-1" id="tableView">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant sticky top-0 z-10">
+<tr>
+<th class="py-4 pl-6 pr-3 w-12">
+<input class="rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface bg-transparent w-4 h-4 cursor-pointer" type="checkbox"/>
+</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Artisan</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Storefront</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Location</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Sales</th>
+<th class="py-4 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Joined</th>
+<th class="py-4 pr-6 pl-3 w-16"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: Verified -->
+<tr class="group hover:bg-surface-container-low transition-colors duration-200 cursor-pointer" onclick="openDetailPanel('Ananya Rao')">
+<td class="py-5 pl-6 pr-3" onclick="event.stopPropagation()">
+<input class="rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface bg-transparent w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface flex-shrink-0">
+<img alt="Portrait of Ananya Rao" class="w-full h-full object-cover" data-alt="A closely cropped, softly lit portrait of a female artisan in her studio, wearing earth-toned natural fabrics. The lighting is warm and natural, emphasizing the texture of her clothing and creating a calm, focused mood typical of a modern editorial lifestyle aesthetic. Shot in a bright, light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rgoZBcisN_QXmP6iLIZaCpuapmSlzzDVb-lw0JPbVONnqbskpCqnOZ8JJQwLwZfW9uUZOZlmD--eOQ_30kLx7322rrb2MB0HpkD5XxOIXlAjFgC40Gx7R-p2k9qsipen0GCfDcYDs3iV6TsTnFeR1jOHmmBMZuaGy5cV_ESEUUnc0VOSL7oarwqTtsMyss6fzXRdfE9C7rNKR0PXXKHwMLniAbsJXPTvUH_KR9Y6pyqW8nGHgYtayKO_xinvAEacuHR_rfeYJsQ"/>
+</div>
+<div>
+<div class="text-body-md font-headline-sm font-medium text-on-surface group-hover:text-primary transition-colors">Ananya Rao</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-0.5">ananya.rao@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface">Varanasi Weaves</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span data-location="Varanasi">Varanasi, UP</span>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-md font-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                                                Verified
+                                            </span>
+</td>
+<td class="py-5 px-4 text-body-md font-body-md text-on-surface text-right">₹ 2.4L</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-5 pr-6 pl-3 text-right" onclick="event.stopPropagation()">
+<button class="p-2 text-on-surface-variant hover:bg-surface hover:text-on-surface rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Pending -->
+<tr class="group hover:bg-surface-container-low transition-colors duration-200 cursor-pointer" onclick="openDetailPanel('Karan Singh')">
+<td class="py-5 pl-6 pr-3" onclick="event.stopPropagation()">
+<input class="rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface bg-transparent w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface flex-shrink-0">
+<div class="w-full h-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-headline-sm text-body-md">KS</div>
+</div>
+<div>
+<div class="text-body-md font-headline-sm font-medium text-on-surface group-hover:text-primary transition-colors">Karan Singh</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-0.5">karan.crafts@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface">Jaipur Blue Pottery</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span data-location="Jaipur">Jaipur, RJ</span>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-md font-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span>
+                                                Pending
+                                            </span>
+</td>
+<td class="py-5 px-4 text-body-md font-body-md text-on-surface text-right">—</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface-variant">Just now</td>
+<td class="py-5 pr-6 pl-3 text-right" onclick="event.stopPropagation()">
+<button class="p-2 text-on-surface-variant hover:bg-surface hover:text-on-surface rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Suspended -->
+<tr class="group hover:bg-surface-container-low transition-colors duration-200 cursor-pointer opacity-75" onclick="openDetailPanel('Meera Patel')">
+<td class="py-5 pl-6 pr-3" onclick="event.stopPropagation()">
+<input class="rounded border-outline text-primary focus:ring-primary focus:ring-offset-surface bg-transparent w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface flex-shrink-0 grayscale">
+<img alt="Portrait of Meera Patel" class="w-full h-full object-cover" data-alt="A professional portrait of an older woman with a calm expression, softly lit against a neutral background. She is wearing subtle traditional jewelry. The image has a slightly desaturated, modern editorial tone, fitting for a light-mode administrative interface indicating a dormant or suspended profile status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3FmcRrA5sMq__bdw1YQO_cRxghVqTi_U4oentMPBfUyvtdU2IQuow8lGUJETg7PobKtskNB9es9_onCPQyTgqhl2SjR_J87sMhMXcnn96nTBqJSOo08BtigEBPL2-IIydKV_gzCNQCA3w8cHSlkfU0qz6tjzhTdJKnvcHdso30Fqvrm7rZmOXD6uom_F9ZfXLpY-GsDGHUUBCsgE5P_hQaaXXlV31Xyx9M6WxwoXl2EDVd3QzjiAfZELArUE0KSuDfW38ekiVo7c"/>
+</div>
+<div>
+<div class="text-body-md font-headline-sm font-medium text-on-surface group-hover:text-primary transition-colors">Meera Patel</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-0.5">m.patel@kutchwork.in</div>
+</div>
+</div>
+</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface">Kutch Embroideries</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span data-location="Bhuj">Bhuj, GJ</span>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-label-md font-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5"></span>
+                                                Suspended
+                                            </span>
+</td>
+<td class="py-5 px-4 text-body-md font-body-md text-on-surface text-right">₹ 45K</td>
+<td class="py-5 px-4 text-body-sm font-body-sm text-on-surface-variant">Jan 05, 2022</td>
+<td class="py-5 pr-6 pl-3 text-right" onclick="event.stopPropagation()">
+<button class="p-2 text-on-surface-variant hover:bg-surface hover:text-on-surface rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest sticky bottom-0">
+<p class="text-body-sm font-body-sm text-on-surface-variant">Showing 1 to 3 of 124 artisans</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant disabled:opacity-50 hover:bg-surface-container transition-colors" disabled="">Prev</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-container transition-colors">Next</button>
+</div>
+</div>
+</div>
+<!-- EMPTY STATE (Hidden by default) -->
+<div class="hidden flex-1 flex flex-col items-center justify-center p-12 text-center h-full min-h-[400px]" id="emptyState">
+<div class="w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[48px] text-outline">shopping_cart_off</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-2">No artisans found</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto mb-8">We couldn't find any sellers matching your current filters. Try adjusting your search criteria or clear filters to see the full directory.</p>
+<button class="border border-outline text-on-surface px-6 py-2.5 rounded-lg text-label-lg font-label-lg hover:bg-surface-container transition-colors">
+                                Clear Filters
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Detail Panel Overlay -->
+<div class="panel-overlay fixed inset-0 bg-on-background/20 z-[60] backdrop-blur-[2px]" id="panelOverlay" onclick="closeDetailPanel()"></div>
+<!-- Detail Slide-out Panel -->
+<aside class="slide-panel fixed top-0 right-0 h-full w-full max-w-[480px] bg-surface-container-lowest border-l border-outline-variant z-[70] shadow-[-12px_0_40px_rgba(0,0,0,0.05)] flex flex-col" id="detailPanel">
+<!-- Panel Header -->
+<div class="px-8 py-6 border-b border-outline-variant flex items-center justify-between sticky top-0 bg-surface-container-lowest z-10">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Artisan Profile</h3>
+<button class="p-2 rounded-full hover:bg-surface-container text-on-surface-variant transition-colors" onclick="closeDetailPanel()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Panel Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<!-- Header Info -->
+<div class="flex items-start gap-6 mb-10">
+<div class="w-20 h-20 rounded-full overflow-hidden border border-outline-variant bg-surface flex-shrink-0 shadow-sm">
+<img alt="Portrait" class="w-full h-full object-cover" data-alt="A detailed, high-resolution portrait of an Indian female artisan, looking directly at the camera with a gentle expression. The background is a soft, out-of-focus studio setting. The lighting is bright and warm, emphasizing the natural textures of her clothing and skin, adhering to a premium, modern editorial light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIdnuysaJM8OkcCc9zsifSgOUMRGDdxLwefWw1TGnKFW5OpPXSnBVwaEk0WRk7pRJdf0Mym_gnSE0TqpXA0bXzzy0eIl7FjalrllSC1WQKJ2Kuy_c6Rf1a-h3dKCffB5ZDGYyT1wS736BGLx1dBxbqhVmLrHVZV_OcjjEQt36EtvHVh2h8bgLIvVxvG9oZZW3dujfFSS_Nm8K9zgY77rNN_tFpjSEZnSQCyC1gfuI6fJwDzrtki1KACSTg4K8bzX6Uk_Awen2T98c"/>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-1" id="panelName">Ananya Rao</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-3">Varanasi Weaves</p>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-md font-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5"></span>
+                        Verified Seller
+                    </span>
+</div>
+</div>
+<!-- Quick Stats Grid -->
+<div class="grid grid-cols-2 gap-4 mb-10">
+<div class="bg-surface p-4 rounded-xl border border-outline-variant">
+<div class="text-label-md font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Total Sales</div>
+<div class="text-headline-sm font-headline-sm text-on-surface">₹ 2,45,000</div>
+<div class="text-body-sm font-body-sm text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12% this month
+                    </div>
+</div>
+<div class="bg-surface p-4 rounded-xl border border-outline-variant">
+<div class="text-label-md font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Active Listings</div>
+<div class="text-headline-sm font-headline-sm text-on-surface">42</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mt-1">In 3 categories</div>
+</div>
+</div>
+<!-- Details List -->
+<div class="space-y-6 mb-10">
+<h4 class="text-label-lg font-label-lg text-on-surface border-b border-outline-variant pb-2">Contact &amp; Location</h4>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">mail</span>
+<div>
+<div class="text-body-md font-body-md text-on-surface">ananya.rao@example.com</div>
+<div class="text-label-md font-label-md text-on-surface-variant">Primary Email</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">call</span>
+<div>
+<div class="text-body-md font-body-md text-on-surface">+91 98765 43210</div>
+<div class="text-label-md font-label-md text-on-surface-variant">Mobile Number</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<div>
+<div class="text-body-md font-body-md text-on-surface">12 Weavers Lane, Godaulia</div>
+<div class="text-body-md font-body-md text-on-surface">Varanasi, Uttar Pradesh 221001</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-1">Workshop Address</div>
+</div>
+</div>
+</div>
+<!-- Administrative Actions -->
+<div class="space-y-4">
+<h4 class="text-label-lg font-label-lg text-on-surface border-b border-outline-variant pb-2">Administrative Actions</h4>
+<div class="flex flex-col gap-3 pt-2">
+<button class="w-full flex items-center justify-center gap-2 bg-surface text-on-surface border border-outline-variant py-3 rounded-lg text-label-lg font-label-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+                        Send Message
+                    </button>
+<button class="w-full flex items-center justify-center gap-2 bg-surface text-error border border-error/30 py-3 rounded-lg text-label-lg font-label-lg hover:bg-error-container hover:border-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">block</span>
+                        Suspend Account
+                    </button>
+</div>
+</div>
+</div>
+</aside>
+<script>
+        // Toggle Logic for Empty State Demonstration
+        const toggleBtn = document.getElementById('toggleEmptyState');
+        const tableView = document.getElementById('tableView');
+        const emptyState = document.getElementById('emptyState');
+        let showingEmpty = false;
+
+        toggleBtn.addEventListener('click', () => {
+            showingEmpty = !showingEmpty;
+            if (showingEmpty) {
+                tableView.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                toggleBtn.textContent = "Show Data View";
+            } else {
+                tableView.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                toggleBtn.textContent = "Toggle Empty State";
+            }
+        });
+
+        // Detail Panel Slide Logic
+        const detailPanel = document.getElementById('detailPanel');
+        const panelOverlay = document.getElementById('panelOverlay');
+        const panelName = document.getElementById('panelName');
+
+        function openDetailPanel(name) {
+            panelName.textContent = name; // Basic dynamic update for demo
+            detailPanel.classList.add('open');
+            panelOverlay.classList.add('open');
+        }
+
+        function closeDetailPanel() {
+            detailPanel.classList.remove('open');
+            panelOverlay.classList.remove('open');
+        }
+
+        // Prevent body scroll when panel is open
+        panelOverlay.addEventListener('transitionend', (e) => {
+            if(e.propertyName === 'opacity' && panelOverlay.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else if (e.propertyName === 'opacity' && !panelOverlay.classList.contains('open')) {
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body></html>

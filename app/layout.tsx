@@ -4,8 +4,8 @@ import { AppChrome } from "@/components/app-chrome";
 import { createClient, hasSupabaseServerEnv } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Artisan Marketplace",
-  description: "Curated Indian handmade marketplace MVP"
+  title: "Heritage Guild",
+  description: "Modern Indian craftsmanship marketplace"
 };
 
 async function getIsSellerSession() {

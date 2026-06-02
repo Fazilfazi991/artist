@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Buyer Orders List - Heritage Guild</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1c1b1b",
+                      "inverse-primary": "#ffb59f",
+                      "tertiary": "#844f00",
+                      "surface-tint": "#a04021",
+                      "surface-bright": "#fcf9f8",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline-variant": "#ddc0b8",
+                      "inverse-surface": "#313030",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#bc5434",
+                      "tertiary-fixed": "#ffddbb",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-tertiary-container": "#fffbfa",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "secondary-container": "#d3e9ca",
+                      "on-surface-variant": "#56423c",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "secondary-fixed": "#d3e9ca",
+                      "on-secondary-container": "#566a51",
+                      "surface-container-high": "#eae7e7",
+                      "surface-container": "#f0eded",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-low": "#f6f3f2",
+                      "on-primary-fixed-variant": "#81290c",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1c1b1b",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "surface-container-highest": "#e5e2e1",
+                      "secondary": "#50644b",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#ffdbd1",
+                      "background": "#fcf9f8",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-container": "#fffaf9",
+                      "outline": "#8a726b",
+                      "primary": "#9c3c1e",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#a4660d",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "on-primary-fixed": "#3a0a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopAppBar from Shared Components -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flat no shadows sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Logo -->
+<div class="flex items-center">
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim" href="#">
+                    Heritage Guild
+                </a>
+</div>
+<!-- Navigation Links (Hidden on Mobile) -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-on-surface dark:text-on-surface-variant text-label-lg font-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Shop</a>
+<a class="text-on-surface dark:text-on-surface-variant text-label-lg font-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Categories</a>
+<a class="text-on-surface dark:text-on-surface-variant text-label-lg font-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Storefronts</a>
+<a class="text-on-surface dark:text-on-surface-variant text-label-lg font-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Custom Orders</a>
+<a class="text-on-surface dark:text-on-surface-variant text-label-lg font-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Our Story</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-4 text-primary dark:text-primary-fixed-dim">
+<button class="hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100 p-2">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100 p-2">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 opacity-80 hover:opacity-100 p-2">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="text-primary dark:text-primary-fixed-dim opacity-100 p-2 border-b-2 border-primary dark:border-primary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Layout: Account Shell -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Account Sidebar Nav -->
+<aside class="md:col-span-3 hidden md:block border-r border-outline-variant pr-8">
+<h1 class="text-headline-sm font-headline-sm text-on-surface mb-8">My Account</h1>
+<nav class="flex flex-col space-y-2">
+<a class="px-4 py-3 text-label-lg font-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" href="#">Profile</a>
+<a class="px-4 py-3 text-label-lg font-label-lg bg-surface-container-high text-on-surface rounded-lg flex items-center justify-between group cursor-default" href="#">
+<span>Order History</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+<a class="px-4 py-3 text-label-lg font-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" href="#">Payment Methods</a>
+<a class="px-4 py-3 text-label-lg font-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" href="#">Saved Addresses</a>
+<a class="px-4 py-3 text-label-lg font-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors mt-8 border-t border-outline-variant pt-4" href="#">Sign Out</a>
+</nav>
+</aside>
+<!-- Orders List Canvas -->
+<section class="md:col-span-9">
+<div class="mb-8 md:mb-12">
+<h2 class="text-headline-md md:text-headline-lg font-headline-md md:font-headline-lg text-on-surface mb-2">Order History</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">View and track your recent artisan purchases.</p>
+</div>
+<!-- Editorial List Container -->
+<div class="border-t border-outline-variant">
+<!-- Order Item: Shipped (Active Tracking) -->
+<div class="py-8 border-b border-outline-variant flex flex-col md:flex-row gap-6 md:items-center justify-between">
+<!-- Order Meta & Product Info -->
+<div class="flex items-start gap-6 flex-1">
+<div class="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-container border border-outline-variant rounded-md overflow-hidden bg-cover bg-center" data-alt="A close-up shot of a hand-thrown ceramic bowl with a rich, dark terracotta glaze. The bowl rests on a raw, textured wooden table in a well-lit artisan studio. The lighting is soft and natural, casting subtle shadows that highlight the artisanal texture of the pottery. The overall mood is earthy, warm, and distinctly handcrafted, aligning perfectly with a premium editorial aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCys0pxAV0RxeRvxl_TSeAxV4vdwt9y1ruyRuIMMzTHStpxl446rdI3KNhIsi30jNFM4XsKvi8CzTSdBy4uosL7UqSK18eJ5qLAgzArV7byxw05lHBTHP5D5k8eEftCf_lZ0N0ChdYbiOmNPWCh-xDeRFMOzstu0A_zZQ7sjf_UmXqbCHi2KBsw73oVdvcWn8s_E2jB9KYdTF2bsqHS2GO7LEHMtlmRP5HMNQ2CICA_k8ZzNPmd2wA6U-CRP12bDODLBaG1Txwi9os');">
+</div>
+<div class="flex flex-col justify-center h-full">
+<div class="flex items-center gap-3 mb-1">
+<span class="text-label-lg font-label-lg text-on-surface">Order #HG-9842</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">• Oct 12, 2024</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Hand-Thrown Terracotta Serving Bowl</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Varanasi Clayworks</span>
+</div>
+</div>
+</div>
+<!-- Status, Total & Actions -->
+<div class="flex flex-col md:items-end gap-4 md:w-48 shrink-0">
+<!-- Status Badge: Secondary (Olive) for Shipped -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span class="text-label-md font-label-md">Shipped</span>
+</div>
+<div class="text-body-lg font-body-lg text-on-surface mt-1">
+                                $145.00
+                            </div>
+<button class="mt-2 w-full md:w-auto px-6 py-2.5 border border-outline text-on-surface text-label-lg font-label-lg rounded-md hover:border-primary hover:text-primary transition-all duration-300">
+                                Track Order
+                            </button>
+</div>
+</div>
+<!-- Order Item: Processing -->
+<div class="py-8 border-b border-outline-variant flex flex-col md:flex-row gap-6 md:items-center justify-between">
+<div class="flex items-start gap-6 flex-1">
+<div class="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-container border border-outline-variant rounded-md overflow-hidden bg-cover bg-center" data-alt="A tightly woven, intricately patterned natural fiber textile in muted olive and cream tones. The fabric is draped elegantly over a chair back, catching the natural daylight from a nearby window. The depth of field is shallow, blurring the background to keep focus on the textile's weave. The atmosphere is serene and elegant, emphasizing traditional weaving techniques in a modern context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDP06umBWw2C3aPHF4v7YDJDiwP3ja93Ui52Y5nEpmeEW8AmLJF8qBH6SHu093_7VcTo8UUHwiniL9b038x3qqQuopEO4eom15uQX0OLsimONoDu2vbTmmxhJmUdRWbZK8z4KF_YdTDnhxFqwiP7oexkzmaxqILbPQMWKRnAPi1e6h41EGMg85W6NfvVfA8wEMJlCIu2ZXatv6zQWCBJNpaq9CEePZy8DbjUCyZ23ApCqMsC6p-e0CN-6CDWIZN48YRWlRz8WGi_qY');">
+</div>
+<div class="flex flex-col justify-center h-full">
+<div class="flex items-center gap-3 mb-1">
+<span class="text-label-lg font-label-lg text-on-surface">Order #HG-9910</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">• Oct 18, 2024</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Organic Cotton Loomed Throw</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">The Weaver's Guild</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-4 md:w-48 shrink-0">
+<!-- Status Badge: Tertiary (Saffron) for Processing -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary-container">
+<span class="material-symbols-outlined text-[14px]">hourglass_empty</span>
+<span class="text-label-md font-label-md">Processing</span>
+</div>
+<div class="text-body-lg font-body-lg text-on-surface mt-1">
+                                $210.00
+                            </div>
+<button class="mt-2 w-full md:w-auto px-6 py-2.5 border border-transparent text-on-surface-variant text-label-lg font-label-lg rounded-md hover:underline hover:text-on-surface transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Order Item: Delivered -->
+<div class="py-8 border-b border-outline-variant flex flex-col md:flex-row gap-6 md:items-center justify-between opacity-75 hover:opacity-100 transition-opacity">
+<div class="flex items-start gap-6 flex-1">
+<div class="w-20 h-20 md:w-24 md:h-24 shrink-0 bg-surface-container border border-outline-variant rounded-md overflow-hidden bg-cover bg-center" data-alt="A minimalist, hand-carved wooden incense holder sitting on a polished stone surface. A thin stream of smoke rises gently from the incense stick. The scene is lit with cool, diffused light, highlighting the smooth grain of the dark wood against the light stone base. The visual aesthetic is calm, meditative, and sophisticated, reflecting a modern minimalist heritage design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBt5cJi5aTZ_D7i4Ls3NaoAsaIn8YgxpxtjwEFz3HFuj6BePBoBbYiUcnLWFaufKWqd6Ha2N4VqCP0rPkDpe6yTW3rJ3XVvU3lYX-LdLBb1j6WqmMyaBefOUVQgJ7I1um_AHmq_IrKZo7UQloP2XBlGAaAPFwiMUKNyHiThj3oA1BvT9xrPwdspbDEbOV2R3x4hs0nyxeb_iFHDQFwkyPmDY7GiEz1J8FlU-CXJXv2bY8NYroHw_T85DwvGJ6hQImevd9fpiUDOsk');">
+</div>
+<div class="flex flex-col justify-center h-full">
+<div class="flex items-center gap-3 mb-1">
+<span class="text-label-lg font-label-lg text-on-surface">Order #HG-8204</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">• Sep 02, 2024</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Carved Teak Incense Holder</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Sandalwood Studio</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-4 md:w-48 shrink-0">
+<!-- Status Badge: Neutral for Delivered -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span class="text-label-md font-label-md">Delivered</span>
+</div>
+<div class="text-body-lg font-body-lg text-on-surface mt-1">
+                                $45.00
+                            </div>
+<button class="mt-2 w-full md:w-auto px-6 py-2.5 border border-transparent text-on-surface-variant text-label-lg font-label-lg rounded-md hover:underline hover:text-on-surface transition-all duration-300">
+                                Buy Again
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline flat no shadows mt-auto">
+<div class="w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-2 flex flex-col gap-4">
+<span class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim">Heritage Guild</span>
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant max-w-sm">
+                    © 2024 Heritage Guild. Honoring Indian Craftsmanship.
+                </p>
+</div>
+<div class="col-span-1 flex flex-col gap-3">
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Privacy Policy</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Terms of Service</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="col-span-1 flex flex-col gap-3">
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Artisan Resources</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

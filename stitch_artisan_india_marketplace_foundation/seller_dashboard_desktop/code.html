@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seller Dashboard - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-tint": "#a04021",
+                        "on-error-container": "#93000a",
+                        "outline": "#8a726b",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#ddc0b8",
+                        "secondary-container": "#d3e9ca",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary": "#50644b",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary-container": "#fffaf9",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-container": "#566a51",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#bc5434",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#56423c",
+                        "primary": "#9c3c1e",
+                        "inverse-surface": "#313030",
+                        "tertiary": "#844f00",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-background": "#1c1b1b",
+                        "tertiary-container": "#a4660d",
+                        "surface-container-low": "#f6f3f2",
+                        "background": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#81290c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background-color: theme('colors.outline-variant');
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Adapted from Shared Components) -->
+<nav class="fixed inset-y-0 left-0 w-80 z-50 flex flex-col p-6 bg-surface border-r border-outline-variant shadow-sm sidebar-scroll overflow-y-auto">
+<!-- Header -->
+<div class="mb-8 px-2">
+<h1 class="text-headline-md font-headline-md text-primary">Heritage Guild</h1>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Artisan Dashboard</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Active State -->
+<a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-lg font-label-lg">Overview</span>
+</a>
+<!-- Inactive States -->
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-label-lg font-label-lg">Orders</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-label-lg font-label-lg">Products</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="text-label-lg font-label-lg">Collections</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-label-lg font-label-lg">Storefront</span>
+</a>
+<div class="my-4 border-t border-outline-variant w-full"></div>
+<a class="flex items-center justify-between text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-label-lg font-label-lg">Custom Orders</span>
+</div>
+<span class="bg-tertiary-container text-on-tertiary text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-label-lg font-label-lg">Analytics</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="text-label-lg font-label-lg">Reviews</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-label-lg font-label-lg">Messages</span>
+</a>
+<div class="my-4 border-t border-outline-variant w-full"></div>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-label-lg font-label-lg">Payouts</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-lg font-label-lg">Settings</span>
+</a>
+</div>
+<!-- Bottom User Info -->
+<div class="mt-8 pt-6 border-t border-outline-variant flex items-center gap-4 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="Artisan Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of an Indian artisan in a warm, naturally lit workshop. The lighting is soft and golden, illuminating their focused expression. The background is slightly blurred, showing hints of terracotta pots and wooden tools. The style is modern editorial, earthy, and premium, avoiding deep shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD1MLvam9LhstKJMdAXqBoPYzYZtQELwtUVR2uGB-izQSq1YwocL0nYMyvfmalJLCkvvbHrFvgy_JkhgDUaVfeVtHLL2bosdA5CbnzX_0CU7B07yUsyAmZdGJDdSsU5r41V3vnQt0O01WPWeo20KiHCwI7p8NXs75pHlsli05gQQegCqjT6spJDSlxp-g7gZA8yKYSRlUtXh3N4pbQsn2MnZ-OaprK9sDe-18Iu8dEeo_YJdsBBKBcMnu8vYlh6yGd85tPgQnTgU0"/>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Aanya Sharma</p>
+<p class="text-label-md font-label-md text-on-surface-variant mt-0.5">Jaipur Ceramics</p>
+</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="ml-80 min-h-screen bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-desktop py-12 flex flex-col gap-12">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<p class="text-label-lg font-label-lg text-secondary mb-2 tracking-widest uppercase">Dashboard</p>
+<h2 class="text-headline-xl font-headline-xl text-on-surface">Welcome back, Artisan</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 border border-outline-variant rounded-DEFAULT text-label-lg font-label-lg text-on-surface hover:bg-surface transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+                        Manage Storefront
+                    </button>
+<button class="px-6 py-3 bg-primary text-on-primary rounded-DEFAULT text-label-lg font-label-lg hover:bg-surface-tint transition-colors shadow-[0_2px_10px_rgba(156,60,30,0.1)] border border-transparent flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Add Product
+                    </button>
+</div>
+</header>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<p class="text-label-lg font-label-lg text-on-surface-variant">Total Sales</p>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+</div>
+<div>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">₹4,25,000</h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                            +12.5% from last month
+                        </p>
+</div>
+<!-- Decorative subtle background -->
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-surface-container-high rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<p class="text-label-lg font-label-lg text-on-surface-variant">Total Orders</p>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">local_mall</span>
+</div>
+</div>
+<div>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">142</h3>
+<p class="text-body-sm font-body-sm text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                            +8% from last month
+                        </p>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<p class="text-label-lg font-label-lg text-on-surface-variant">Store Visits</p>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</div>
+</div>
+<div>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">8,902</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_flat</span>
+                            Steady growth
+                        </p>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group border-b-4 border-b-primary">
+<div class="flex justify-between items-start">
+<p class="text-label-lg font-label-lg text-on-surface-variant">Custom Requests</p>
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</div>
+</div>
+<div>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">3</h3>
+<p class="text-body-sm font-body-sm text-primary mt-1 flex items-center gap-1 font-medium">
+                            Requires attention
+                        </p>
+</div>
+</div>
+</section>
+<!-- Chart & Panels Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Order Overview Chart (Spans 2 cols) -->
+<section class="lg:col-span-2 bg-surface border border-outline-variant rounded-xl p-8 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Order Overview</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-label-md font-label-md bg-surface-container-high rounded text-on-surface">Weekly</button>
+<button class="px-3 py-1.5 text-label-md font-label-md bg-transparent text-on-surface-variant hover:bg-surface-container-low rounded">Monthly</button>
+</div>
+</div>
+<!-- Abstract Chart Representation -->
+<div class="flex-grow flex items-end justify-between gap-2 mt-4 h-48 border-b border-outline-variant pb-2 relative">
+<!-- Y-axis labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-label-md font-label-md text-outline py-2 -ml-6">
+<span>4k</span>
+<span>2k</span>
+<span>0</span>
+</div>
+<!-- Bars -->
+<div class="w-full flex justify-between items-end h-full pl-6">
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[30%] hover:bg-outline-variant transition-colors group relative cursor-pointer">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-label-md font-label-md px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Mon: ₹1.2k</div>
+</div>
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[45%] hover:bg-outline-variant transition-colors group relative cursor-pointer"></div>
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[25%] hover:bg-outline-variant transition-colors group relative cursor-pointer"></div>
+<div class="w-8 bg-primary rounded-t-sm h-[85%] hover:bg-primary-container transition-colors group relative cursor-pointer shadow-[0_0_15px_rgba(156,60,30,0.15)]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-label-md font-label-md px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Thu: ₹3.4k</div>
+</div>
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[60%] hover:bg-outline-variant transition-colors group relative cursor-pointer"></div>
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[40%] hover:bg-outline-variant transition-colors group relative cursor-pointer"></div>
+<div class="w-8 bg-surface-container-highest rounded-t-sm h-[55%] hover:bg-outline-variant transition-colors group relative cursor-pointer"></div>
+</div>
+</div>
+<!-- X-axis labels -->
+<div class="flex justify-between pl-6 text-label-md font-label-md text-on-surface-variant pt-2">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</section>
+<!-- New Custom Requests Panel -->
+<section class="bg-surface border border-outline-variant rounded-xl p-8 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Custom Requests</h3>
+<a class="text-label-md font-label-md text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4 flex-grow overflow-y-auto pr-2 sidebar-scroll">
+<!-- Request Item 1 -->
+<div class="group flex flex-col gap-3 p-4 rounded-lg border border-transparent hover:border-outline-variant hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest overflow-hidden">
+<img alt="Vase Reference" class="w-full h-full object-cover" data-alt="A small thumbnail showing a roughly sketched ceramic vase design on textured paper. The paper rests on a wooden table next to a sprig of dried lavender. The aesthetic is clean, well-lit, and natural, evoking a handmade, bespoke process." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5bXwwX61GtGA8P3_f6j7YB893zyvM6bjMyJaG8hR1PWm5nRC54_Lfyc-hjnZYjI85wSfWn6_km9sUE2lifkaIYtUUjg6ogZbuc4hLmWcEoevnJeNM6UQgwEjvjpiHyHTjBAu3sFMg1g1HchtM2SuSkXdMEEF6sZFZFtMWTFti6f7-hpSBd0rBKOb40ThT6WWEXKZC3gQZX7ftPy2e0MNYMnpmnZFlrKwf-vz5d3L1Eem7sJ5km1klZPRuYg2uAZbupCoM74gJt2s"/>
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Large Floor Vase</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">from Priya M.</p>
+</div>
+</div>
+<span class="text-label-md font-label-md text-secondary bg-secondary-container px-2 py-0.5 rounded-full">New</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">"Looking for a 3ft tall terracotta vase with intricate tribal carvings for my living room corner..."</p>
+</div>
+<!-- Request Item 2 -->
+<div class="group flex flex-col gap-3 p-4 rounded-lg border border-transparent hover:border-outline-variant hover:bg-surface-container-low transition-all cursor-pointer border-t border-outline-variant rounded-none hover:rounded-lg">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-highest overflow-hidden flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">image_not_supported</span>
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Set of 6 Chai Cups</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">from Rahul K.</p>
+</div>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">Reviewed</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">"Can you create a matching set with a slightly darker blue glaze than your standard collection?"</p>
+</div>
+</div>
+<button class="w-full py-3 border border-outline-variant rounded text-label-lg font-label-lg text-on-surface hover:bg-surface-container-low transition-colors mt-auto">
+                        Review Pending (3)
+                    </button>
+</section>
+</div>
+<!-- Recent Orders Table -->
+<section class="bg-surface border border-outline-variant rounded-xl p-8 overflow-x-auto">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Recent Orders</h3>
+<div class="flex gap-4">
+<button class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter
+                        </button>
+<a class="text-label-md font-label-md text-primary hover:underline" href="#">View Full Ledger</a>
+</div>
+</div>
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="pb-4 text-label-md font-label-md text-on-surface-variant font-medium">Order ID</th>
+<th class="pb-4 text-label-md font-label-md text-on-surface-variant font-medium">Product</th>
+<th class="pb-4 text-label-md font-label-md text-on-surface-variant font-medium">Date</th>
+<th class="pb-4 text-label-md font-label-md text-on-surface-variant font-medium">Status</th>
+<th class="pb-4 text-label-md font-label-md text-on-surface-variant font-medium text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="py-4 text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">#HG-2948</td>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="Ceramic Bowl" class="w-full h-full object-cover" data-alt="A beautifully crafted, hand-thrown ceramic bowl with a subtle, earthy glaze resting on a light linen cloth. The lighting is soft and diffused, highlighting the tactile texture of the clay. The scene feels premium, artisanal, and warmly lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuioTl0_mD8A_kR_SxD1Ux1XRBCrrzyW0rd30oTJDS_etNyvKvB-2JczUi5cl_5zpmrLYRWoY6vJw_neE3Hv2YWvgIGik91g_n_d0WDW3oy3REqkptp4Og8rjoZLdGxBOL5kHmZ9-yg4BMW8FdYvI6HpSOZMNs66EboHD8hvzKZOe-mMEpkhBDJIFGZ2skQ7Mjdd9sSdF0SVnuzmexsPtVThGhmFMbm5rUXpo_Eo_LiXNheRNmaPjs2Ek-Tn080AYiw3SpLGgRZKg"/>
+</div>
+<span class="text-on-surface">Indigo Glazed Serving Bowl</span>
+</div>
+</td>
+<td class="py-4 text-on-surface-variant">Oct 24, 2023</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-md font-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Processing
+                                </span>
+</td>
+<td class="py-4 text-right text-label-lg font-label-lg text-on-surface">₹2,450</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="py-4 text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">#HG-2947</td>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="Terracotta Planter" class="w-full h-full object-cover" data-alt="A rustic yet elegant terracotta planter with delicate, hand-carved geometric patterns. It sits on a clean, light surface, catching gentle daylight from an adjacent window. The aesthetic is clean, editorial, and focused on natural materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOmEXdLe1hkUFH9stcAV0B-19WK6mrx7QnlHQxIERbM7d6rhngeGwQDRxbN7L0QipAFYCiUq6cwcfoWsnpPJ7xdJwB5Sw-_V1xUrH1_l1hV9rLc0nJwWyjWdks8Fk5q8iJIHC8tA0MzYrkZTE0c6c2a_e3DcdfYXBI-XOl1QDRgUJuP6y1oVOSIbWXGc3Jav79n-CZG5RUF-djpgTkBOcwGTPAd7Txsd0t7aGasvD0L-ubiQf0cE41zygXNE-NtRPXFWc1BVdsv1w"/>
+</div>
+<span class="text-on-surface">Carved Terracotta Planter</span>
+</div>
+</td>
+<td class="py-4 text-on-surface-variant">Oct 23, 2023</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Shipped
+                                </span>
+</td>
+<td class="py-4 text-right text-label-lg font-label-lg text-on-surface">₹1,800</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="py-4 text-label-lg font-label-lg text-on-surface group-hover:text-primary transition-colors">#HG-2946</td>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-highest overflow-hidden border border-outline-variant flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<span class="text-on-surface">Set of 4 Kulhad Mugs</span>
+</div>
+</td>
+<td class="py-4 text-on-surface-variant">Oct 22, 2023</td>
+<td class="py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Delivered
+                                </span>
+</td>
+<td class="py-4 text-right text-label-lg font-label-lg text-on-surface">₹1,200</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Seller Detail - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom Scrollbar for inner components */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dcd9d9;
+            border-radius: 4px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#0f1f0c",
+                        "tertiary-container": "#a4660d",
+                        "outline-variant": "#ddc0b8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#844f00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#a04021",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-primary-fixed": "#3a0a00",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface-variant": "#56423c",
+                        "secondary-container": "#d3e9ca",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-primary-container": "#fffaf9",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-background": "#1c1b1b",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#81290c",
+                        "surface-variant": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "on-surface": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb59f",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffdbd1",
+                        "outline": "#8a726b",
+                        "on-secondary-container": "#566a51",
+                        "surface-bright": "#fcf9f8",
+                        "secondary": "#50644b",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "inverse-surface": "#313030",
+                        "surface-container": "#f0eded",
+                        "primary-container": "#bc5434",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "on-tertiary-fixed": "#2b1700",
+                        "primary": "#9c3c1e",
+                        "background": "#fcf9f8",
+                        "secondary-fixed-dim": "#b7cdaf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "headline-xl": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col">
+<!-- Task-Focused Header (Navigation Shell Suppressed) -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+<a class="group flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span class="font-label-lg text-label-lg">Back to Sellers</span>
+</a>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2.5 rounded-full border border-error/50 text-error hover:bg-error-container transition-colors duration-300 font-label-lg text-label-lg">
+                    Suspend Store
+                </button>
+<button class="px-6 py-2.5 rounded-full border border-outline text-on-surface hover:bg-surface-container transition-colors duration-300 font-label-lg text-label-lg">
+                    Request More Info
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-primary text-on-primary hover:bg-primary/90 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] transition-all duration-300 font-label-lg text-label-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                    Approve Verification
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 flex flex-col gap-gutter">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Store Identity (Span 12) -->
+<section class="col-span-1 md:col-span-12 rounded-xl bg-surface-container-lowest border border-outline-variant overflow-hidden flex flex-col relative group">
+<!-- Banner -->
+<div class="h-48 md:h-64 w-full bg-surface-container relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A wide, cinematic shot of a traditional Indian pottery workshop flooded with natural morning light. The scene is slightly blurred to serve as a background banner. Terracotta pots of various sizes line wooden shelves in the background. The lighting is soft and warm, emphasizing the earthy tones and dust motes in the air, creating a premium, artisanal mood consistent with a modern heritage aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMVxbCydDpwuR_FkEn6mZyvLiX4xXjdm-eRtQXgwMY78XjcSwk-VMd1WO7mYI0OnCVKA8N9VzHTkuYuyZX647DJva86eu78nx9HolE0Jme5PBN6rsMe6UrMb0Zn-bnVyFUPSBn40sBT1xyIksReZ-C_chqhxan0lgfyHjKK_U9ylgkNy8t_y_bAprtYuCe08FyENAK1LyaZMqGE5x1ckqLctmazpPiavZwEww1VD-ShTk_qUr_FOatdbowG6t75dOz6sdqSFnMvBw');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<!-- Status Badge -->
+<div class="absolute top-6 right-6 bg-surface-container-lowest/90 backdrop-blur-sm px-4 py-1.5 rounded-full border border-outline-variant flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary-container"></div>
+<span class="font-label-md text-label-md text-on-surface">Pending Approval</span>
+</div>
+</div>
+<!-- Profile Info -->
+<div class="px-8 pb-8 pt-0 relative flex flex-col md:flex-row gap-8 items-start md:items-end -mt-16 md:-mt-20">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface-container-lowest bg-surface-container-low overflow-hidden flex-shrink-0 relative z-10 shadow-sm">
+<img alt="Artisan Profile Picture" class="w-full h-full object-cover" data-alt="A close-up portrait of an older Indian artisan with weathered features and a gentle smile, looking directly at the camera. He is wearing simple, traditional cotton clothing in muted natural tones. The background is softly out of focus, highlighting his expressive face. The lighting is natural and flattering, emphasizing a sense of authenticity, wisdom, and heritage in line with a premium editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBm9q6Bp_SI-vT885Ra0mTmrEeea9ti8j7Xq0k5uIFBp7Kwo0EdcnCHUPpINFONUctLb5L6gx4kE17uIRk2myjEeqtt6VE40wL9vAGNcZPexdSeRByw4RxWs9lmwsfFm1OE6pAOChiesqMphuDgtAmLshNexy4ZQ40glqFon-dmwXf2zI1UqvY1uweXsFZFxvPQAyxysjJLzZCLJiEKO40R9FDTrqrMXEZZ-tbOC2Cw62dUC6kT2VgGsOy4xQ_gIbu_jLtuF20Y8w"/>
+</div>
+<div class="flex-grow flex flex-col gap-2 relative z-10 md:pb-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Varanasi Looms &amp; Weaves</h1>
+<div class="flex flex-wrap items-center gap-4 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Varanasi, Uttar Pradesh</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> Joined Oct 2023</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">category</span> Textiles &amp; Silk</span>
+</div>
+</div>
+</div>
+<!-- Bio -->
+<div class="px-8 pb-8 md:pl-[224px]"> <!-- Offset by avatar width + gap -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl leading-relaxed">
+                        A third-generation weaving collective dedicated to preserving the Banarasi brocade tradition. Specializing in pure silk saris and stoles, utilizing hand-drawn jacquard punch cards and natural dyes sourced from local flora. Seeking platform verification to reach international collectors.
+                    </p>
+</div>
+</section>
+<!-- Performance Metrics (Span 12) -->
+<section class="col-span-1 md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Sales (YTD)</span>
+<span class="font-headline-md text-headline-md text-on-surface">₹ 4.2L</span>
+<span class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12% from last year
+                    </span>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Listings</span>
+<span class="font-headline-md text-headline-md text-on-surface">42</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        Across 3 categories
+                    </span>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg. Rating</span>
+<span class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+                        4.9 <span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        Based on 128 reviews
+                    </span>
+</div>
+<!-- Metric Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Return Rate</span>
+<span class="font-headline-md text-headline-md text-on-surface">1.2%</span>
+<span class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Below platform avg
+                    </span>
+</div>
+</section>
+<!-- Main Content Area: Left Column (Span 8) -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-gutter">
+<!-- Product Catalog Snapshot -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Catalog Snapshot</h2>
+<a class="font-label-lg text-label-lg text-primary hover:underline" href="#">View All 42 Items</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Product Item -->
+<div class="group relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container cursor-pointer">
+<img alt="Product Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A meticulously folded Banarasi silk sari in a rich, vibrant saffron color with intricate gold brocade work along the borders. The fabric rests on a plain, slightly textured off-white surface, lit by soft, directional light that highlights the sheen of the silk and the metallic threads. The composition is clean and minimalist, reflecting a high-end editorial product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRPHdY0Bk9NZ38wLyni1HBqNJPj5P8fpHgUo4Zt58doGawNGnmsSSefdDhOjLyk4HidvFuxsRtVk1HfPeqM6aCRKPXSvgwzjjTKigLAhF1kjX5mHRFyWpog6EX-P_nLzYv6wSyIx3WJjz9ua258l3f07_cOkPxmbfvkjEPwG59LibeT0CeItX0IBAIy9djvArfTkmtlTc1U7Q1UP8D9h1l67uedwkLbh56BGACpE_je7B1bYnrQG5V9tbJFpQIz3-5WlpSFMHRMxI"/>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+<h3 class="font-label-lg text-label-lg text-white truncate">Zari Woven Katan Silk Sari</h3>
+<p class="font-body-sm text-body-sm text-white/80">₹ 24,500</p>
+</div>
+</div>
+<!-- Product Item -->
+<div class="group relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container cursor-pointer hidden sm:block">
+<img alt="Product Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A close-up macro shot of woven fabric, revealing intersecting threads of deep indigo blue and unbleached cotton. The texture is rough and tactile, emphasizing the handmade nature of the textile. The lighting is crisp, casting micro-shadows that give depth to the weave pattern, set against a completely neutral, distraction-free background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChR-awr-vRSgeJZYrWtFIinkLMA0gElld4QfJAnVDyP2kOQmyuEYF1sAJ0C0eNxQ4FtP8J_nHfGlkD0KMy0g3DnnBo7j53Hnsr1NPZzWnFHJNfLMk2C78PN1LrLoYptoWLKyiOKtiKUBjZm5QvW0thMmT9dmTCzxTp5cazS7esAWVPS3sw_651V4Y9SKykEw1BI6kUeGGcWkdGXk9nxg1NbTv_Oi6wIl_Zbd7BSQP4hwHt-o6q8A2-49rFh98QkYR-ZAzSkHmKvmc"/>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+<h3 class="font-label-lg text-label-lg text-white truncate">Indigo Handspun Stole</h3>
+<p class="font-body-sm text-body-sm text-white/80">₹ 3,200</p>
+</div>
+</div>
+<!-- Product Item -->
+<div class="group relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container cursor-pointer hidden lg:block">
+<img alt="Product Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A stack of intricately patterned textile blocks used for hand-block printing, carved from dark wood. They sit on a clean, light cream workspace. The focus is sharp on the geometric patterns of the top block, while the background gently falls out of focus. The overall aesthetic is warm, celebrating the tools of the artisan craft in a modern, uncluttered setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLG4MbLksAYgx7zqUos5IQXm8dDo7njD8ysNCj8OUCcVzynw9DitytnD7UuzUsprukn15Fb-hCSKuIkVXcbm1w8hyiWalHj6oG_fvWauA5MJrz58zfufCmlRU_FTJXzs35TcV1cLIULBehin3c7FTJOBRfcyEy7OGwpMZPx5mkXMLCJwjPKj1vmjVFD5UBJVTDmghiZNq3O9Orw-fYgYmNOwy3JgijHKidTJtApGSZVhMHhs7XK6J8BL2AWNv-HGH4wSVVcrkKw8k"/>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+<h3 class="font-label-lg text-label-lg text-white truncate">Block Print Table Runner</h3>
+<p class="font-body-sm text-body-sm text-white/80">₹ 4,800</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Order History -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-6">
+<div class="flex justify-between items-center border-b border-outline-variant pb-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Orders</h2>
+<button class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1 hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                        </button>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="text-on-surface-variant font-label-md text-label-md border-b border-outline-variant/50">
+<th class="pb-3 font-medium uppercase tracking-wider">Order ID</th>
+<th class="pb-3 font-medium uppercase tracking-wider">Date</th>
+<th class="pb-3 font-medium uppercase tracking-wider">Item(s)</th>
+<th class="pb-3 font-medium uppercase tracking-wider">Amount</th>
+<th class="pb-3 font-medium uppercase tracking-wider text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<tr class="border-b border-outline-variant/30 hover:bg-surface transition-colors cursor-pointer group">
+<td class="py-4 font-label-lg text-on-surface group-hover:text-primary">#ORD-9823</td>
+<td class="py-4 text-on-surface-variant">Oct 24, 2024</td>
+<td class="py-4 text-on-surface truncate max-w-[200px]">Zari Woven Katan Silk Sari...</td>
+<td class="py-4 text-on-surface">₹ 24,500</td>
+<td class="py-4 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-secondary-container/30 text-on-secondary-fixed-variant text-[11px] font-bold uppercase tracking-wider">Shipped</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface transition-colors cursor-pointer group">
+<td class="py-4 font-label-lg text-on-surface group-hover:text-primary">#ORD-9810</td>
+<td class="py-4 text-on-surface-variant">Oct 21, 2024</td>
+<td class="py-4 text-on-surface truncate max-w-[200px]">Indigo Handspun Stole (x2)</td>
+<td class="py-4 text-on-surface">₹ 6,400</td>
+<td class="py-4 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-secondary-container/30 text-on-secondary-fixed-variant text-[11px] font-bold uppercase tracking-wider">Delivered</span>
+</td>
+</tr>
+<tr class="hover:bg-surface transition-colors cursor-pointer group">
+<td class="py-4 font-label-lg text-on-surface group-hover:text-primary">#ORD-9788</td>
+<td class="py-4 text-on-surface-variant">Oct 18, 2024</td>
+<td class="py-4 text-on-surface truncate max-w-[200px]">Block Print Table Runner</td>
+<td class="py-4 text-on-surface">₹ 4,800</td>
+<td class="py-4 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-tertiary-container/10 text-on-tertiary-fixed-variant text-[11px] font-bold uppercase tracking-wider">Processing</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Sidebar Content: Right Column (Span 4) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<!-- Verification Documents -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2">Verification Documents</h2>
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/50 hover:bg-surface transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Govt ID Proof.pdf</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Uploaded Oct 26, 2024</span>
+</div>
+</div>
+<button class="text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/50 hover:bg-surface transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">GST_Registration.pdf</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Uploaded Oct 26, 2024</span>
+</div>
+</div>
+<button class="text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/50 hover:bg-surface transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">verified</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Crafts Council Cert.pdf</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Uploaded Oct 27, 2024</span>
+</div>
+</div>
+<button class="text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</section>
+<!-- Internal Admin Notes -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Internal Notes</h2>
+<!-- Add Note Input -->
+<div class="flex flex-col gap-2">
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-sm text-body-sm text-on-surface placeholder-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Add a private note regarding this seller..." rows="3"></textarea>
+<div class="flex justify-end">
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md hover:bg-surface-dim transition-colors">Post Note</button>
+</div>
+</div>
+<div class="w-full h-[1px] bg-outline-variant/50 my-2"></div>
+<!-- Note List -->
+<div class="flex flex-col gap-4 max-h-[300px] overflow-y-auto custom-scrollbar pr-2">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-md text-label-md flex-shrink-0">JS</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Jane Smith (Reviewer)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Yesterday</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                                    Documents look authentic. Contacted Crafts Council to verify certificate ID #4928, awaiting response before final approval.
+                                </p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-label-md text-label-md flex-shrink-0">AK</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Amit Kumar</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Oct 26</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                                    Initial review completed. Requested clearer scan of the GST registration as the first one was blurry.
+                                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Audit Timeline -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Audit Timeline</h2>
+<div class="relative pl-4 border-l-2 border-outline-variant/30 space-y-6">
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] w-3 h-3 rounded-full bg-tertiary-container border-[3px] border-surface-container-lowest"></div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Verification Pending</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Current Status</span>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] w-3 h-3 rounded-full bg-outline border-[3px] border-surface-container-lowest"></div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Additional Docs Submitted</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Oct 27, 2024 - 14:30 IST</span>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] w-3 h-3 rounded-full bg-outline border-[3px] border-surface-container-lowest"></div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Info Requested (GST Scan)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Oct 26, 2024 - 09:15 IST</span>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-[21px] w-3 h-3 rounded-full bg-outline border-[3px] border-surface-container-lowest"></div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Account Registered</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Oct 24, 2024 - 11:00 IST</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

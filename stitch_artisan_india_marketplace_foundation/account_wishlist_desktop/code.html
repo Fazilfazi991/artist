@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wishlist - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1c1b1b",
+                      "inverse-primary": "#ffb59f",
+                      "tertiary": "#844f00",
+                      "surface-tint": "#a04021",
+                      "surface-bright": "#fcf9f8",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline-variant": "#ddc0b8",
+                      "inverse-surface": "#313030",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#bc5434",
+                      "tertiary-fixed": "#ffddbb",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-tertiary-container": "#fffbfa",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "secondary-container": "#d3e9ca",
+                      "on-surface-variant": "#56423c",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "secondary-fixed": "#d3e9ca",
+                      "on-secondary-container": "#566a51",
+                      "surface-container-high": "#eae7e7",
+                      "surface-container": "#f0eded",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-low": "#f6f3f2",
+                      "on-primary-fixed-variant": "#81290c",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1c1b1b",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "surface-container-highest": "#e5e2e1",
+                      "secondary": "#50644b",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#ffdbd1",
+                      "background": "#fcf9f8",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-container": "#fffaf9",
+                      "outline": "#8a726b",
+                      "primary": "#9c3c1e",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#a4660d",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "on-primary-fixed": "#3a0a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        [data-weight="fill"] {
+          font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #fcf9f8;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20 sticky top-0 z-50">
+<div class="flex items-center">
+<a class="text-headline-lg font-headline-lg text-primary dark:text-primary-fixed-dim" href="#">Heritage Guild</a>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Shop</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Categories</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Storefronts</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Custom Orders</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300" href="#">Our Story</a>
+</nav>
+<div class="flex items-center gap-4">
+<button aria-label="favorite" class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 opacity-80 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="favorite" data-weight="fill">favorite</span>
+</button>
+<button aria-label="shopping_bag" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button aria-label="person" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-12">
+<h1 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background">Your Wishlist</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 md:mt-0">4 items saved</p>
+</div>
+<!-- Populated State Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-24">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col relative group">
+<button aria-label="remove" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-error transition-colors p-2 bg-surface/80 rounded-full">
+<span class="material-symbols-outlined text-label-lg" data-icon="close">close</span>
+</button>
+<div class="aspect-[4/5] bg-surface-container w-full rounded mb-6 overflow-hidden relative">
+<img alt="Handwoven Terracotta Vase" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully crafted handwoven terracotta vase displayed on a minimalist wooden pedestal. The lighting is soft and natural, casting gentle shadows that highlight the intricate texture of the clay. The setting is a bright, earthy studio space, perfectly aligning with a modern heritage aesthetic. Warm tones of rust, cream, and olive dominate the scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzOmN2OCZJygTnuJf4UQ8B936omfkd-LF3Rg-q_RwjftWhG4qoh8FmjzTmF_87vAYibIhCgKzlIeBM6v3Cg0Ye3md3a57xVeSMV6vKIhM-XMQwImhcMJnCN8fKo5WQzaI-cgD91VOez_FswxvUWy6fG16M2KG87g9j1EvpuEIc2FJrD6aUQycm4phi8PT1KHhhA1aOBqTHEgpyOs4A_iUk-XdQApnc4IXN4ZbBnN1tNLYxP9gYqG0ctff9NJhkd1mFekOKYd71ldI"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-secondary/10 text-on-background px-3 py-1 rounded font-label-md text-label-md backdrop-blur-sm border border-outline-variant">Hand-thrown</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-background pr-4">Terracotta Amphora Vase</h2>
+<span class="font-body-lg text-body-lg text-on-background">$145</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Artisan: Maya Sharma • Jaipur, India</p>
+<button class="mt-auto w-full bg-primary text-on-primary font-label-lg text-label-lg py-3 px-6 border border-primary/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-surface-tint transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+                        Add to Cart
+                    </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col relative group">
+<button aria-label="remove" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-error transition-colors p-2 bg-surface/80 rounded-full">
+<span class="material-symbols-outlined text-label-lg" data-icon="close">close</span>
+</button>
+<div class="aspect-[4/5] bg-surface-container w-full rounded mb-6 overflow-hidden relative">
+<img alt="Indigo Block Print Throw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A folded indigo block print throw blanket resting on a woven rattan chair. The deep blue dye contrasts elegantly with the light neutral background. Sunlight filters through a nearby window, illuminating the handcrafted patterns on the fabric. The overall mood is serene, emphasizing tactile quality and traditional Indian textile artistry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYfHfotb2kySYQyduOZqAFlc5_zSwGVq5zLFO5EOyJy_x5dO8cXvDA3rybwz4EGX-VfYl6Am81M05twTYESI5prlOdv_OOf6NX5z-Wv1Ib7JWuoNHNe1icPCEG1PdftxPoUt2lGb2Pg29Ru31Mpw1Dx2KXyJzV3CcMPFup0ZcXEfEyS5mzWli259mfWcHqvre-hkG6gU_xz4DS_geYYU-pC3_4y2KD6a-lPTojyATfSv8TD_iomx1kh58NmrkSXhRDv0ip5zp0OYw"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-secondary/10 text-on-background px-3 py-1 rounded font-label-md text-label-md backdrop-blur-sm border border-outline-variant">Organic Dye</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-background pr-4">Indigo Block Print Throw</h2>
+<span class="font-body-lg text-body-lg text-on-background">$85</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Artisan: Weaver's Guild • Bagru, India</p>
+<button class="mt-auto w-full bg-primary text-on-primary font-label-lg text-label-lg py-3 px-6 border border-primary/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-surface-tint transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+                        Add to Cart
+                    </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col relative group">
+<button aria-label="remove" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-error transition-colors p-2 bg-surface/80 rounded-full">
+<span class="material-symbols-outlined text-label-lg" data-icon="close">close</span>
+</button>
+<div class="aspect-[4/5] bg-surface-container w-full rounded mb-6 overflow-hidden relative">
+<img alt="Carved Teak Wood Tray" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A meticulously carved teak wood tray sitting on a stark white table. The wood grain is rich and dark, showcasing intricate floral motifs. The lighting is crisp and directional, casting distinct but soft shadows that emphasize depth. The composition is minimal and editorial, focusing entirely on the craftsmanship of the wooden object." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB45LEV98T_sRUfLQwYtnURCSc7mQrDU6KQKrd19QsTAs35VuzTy-JXrIXIAEr-FuK-6yAA4P4IGuYavT8rYRikzm7UWuIIVXwZ30xFldkstw7eSGSaxJIEM0x98IdXTEl7sfqoRIFEXY93Gm-MPPOiXN5sOjuMK4JrnMlLgeg5jCZPsxUqfkuRCHo7SpQlib0VhSjXzv0Hc0Otrv2DNfhlQPUeYwTxP7MF3dgH7sUBmUKWlHhtXwGMevr-bNZluFbGwvyoyLvNPbw"/>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-background pr-4">Carved Teak Wood Tray</h2>
+<span class="font-body-lg text-body-lg text-on-background">$120</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Artisan: Rahul Verma • Saharanpur, India</p>
+<button class="mt-auto w-full border border-on-background text-on-background font-label-lg text-label-lg py-3 px-6 hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+                        Out of Stock
+                    </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col relative group">
+<button aria-label="remove" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-error transition-colors p-2 bg-surface/80 rounded-full">
+<span class="material-symbols-outlined text-label-lg" data-icon="close">close</span>
+</button>
+<div class="aspect-[4/5] bg-surface-container w-full rounded mb-6 overflow-hidden relative">
+<img alt="Brass Spice Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A polished brass spice box (masala dabba) resting on a textured linen cloth. The metallic surface gleams softly under warm, diffused light, reflecting earthy tones from the surroundings. The setting implies a rustic yet sophisticated kitchen environment. The overall feel is premium, grounded, and deeply connected to culinary heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmWglfARbYXH56WsF8UEK23cSuc7eofjx3uqa-ZvfYhE3WLWq7hQqwPtjcjFxR_WsIYUTB0DG-X-HOfdh3JXUbBrQvfuDX0SJVazYi4TBX39lBrzPrFPDIpHmhMmnxHm523pimyXIlvg8UIpuRQd0wkOehH3sS54AtK579bkXGm03TJgaVPIMwz_yhMUMNwlWD5F3MJ1KB-xAmNjl1UoqTsFNvEz13Mlml6SvzhmFEkPD8vXeAKj5wPYi7eTuXJbqV6aj7gTyIqLw"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-tertiary-container/10 text-on-background px-3 py-1 rounded font-label-md text-label-md backdrop-blur-sm border border-outline-variant">Handcrafted</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-background pr-4">Traditional Brass Spice Box</h2>
+<span class="font-body-lg text-body-lg text-on-background">$95</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Artisan: Gupta Metalworks • Moradabad, India</p>
+<button class="mt-auto w-full bg-primary text-on-primary font-label-lg text-label-lg py-3 px-6 border border-primary/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-surface-tint transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+                        Add to Cart
+                    </button>
+</div>
+</div>
+</div>
+<!-- Divider to show empty state example -->
+<div class="w-full border-t border-outline-variant my-24"></div>
+<!-- Empty State Example -->
+<div class="flex flex-col items-center justify-center text-center py-24 max-w-lg mx-auto">
+<div class="w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-[48px] text-on-surface-variant" data-icon="favorite_border">favorite_border</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background mb-4">Your wishlist is empty</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">Discover unique handcrafted pieces from artisans across India and save them here for later.</p>
+<a class="bg-secondary text-on-secondary font-label-lg text-label-lg py-4 px-8 border border-secondary/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-on-secondary-fixed-variant transition-colors flex items-center justify-center gap-2" href="#">
+                Start Shopping
+                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline w-full py-16 px-margin-mobile md:px-margin-desktop mt-auto">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1 mb-8 md:mb-0">
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim block mb-4" href="#">Heritage Guild</a>
+<p class="text-body-md font-body-md text-on-surface-variant">© 2024 Heritage Guild. Honoring Indian Craftsmanship.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Shipping &amp; Returns</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Artisan Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

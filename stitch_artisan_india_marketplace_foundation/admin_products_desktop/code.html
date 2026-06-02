@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Moderation | Heritage Guild</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#0f1f0c", "tertiary-container": "#a4660d", "outline-variant": "#ddc0b8", "on-tertiary-fixed-variant": "#673d00", "on-tertiary": "#ffffff", "tertiary": "#844f00", "surface-container-lowest": "#ffffff", "surface-tint": "#a04021", "primary-fixed-dim": "#ffb59f", "on-primary-fixed": "#3a0a00", "surface-container-high": "#eae7e7", "on-surface-variant": "#56423c", "secondary-container": "#d3e9ca", "on-secondary-fixed-variant": "#394c35", "on-primary-container": "#fffaf9", "on-error": "#ffffff", "surface": "#fcf9f8", "surface-container-low": "#f6f3f2", "surface-dim": "#dcd9d9", "on-tertiary-container": "#fffbfa", "on-background": "#1c1b1b", "error": "#ba1a1a", "tertiary-fixed": "#ffddbb", "surface-container-highest": "#e5e2e1", "on-primary-fixed-variant": "#81290c", "surface-variant": "#e5e2e1", "on-primary": "#ffffff", "secondary-fixed": "#d3e9ca", "on-surface": "#1c1b1b", "error-container": "#ffdad6", "inverse-primary": "#ffb59f", "on-error-container": "#93000a", "primary-fixed": "#ffdbd1", "outline": "#8a726b", "on-secondary-container": "#566a51", "surface-bright": "#fcf9f8", "secondary": "#50644b", "on-secondary": "#ffffff", "inverse-on-surface": "#f3f0ef", "inverse-surface": "#313030", "surface-container": "#f0eded", "primary-container": "#bc5434", "tertiary-fixed-dim": "#ffb868", "on-tertiary-fixed": "#2b1700", "primary": "#9c3c1e", "background": "#fcf9f8", "secondary-fixed-dim": "#b7cdaf"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1280px", "gutter": "24px", "margin-desktop": "64px", "unit": "8px", "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Playfair Display"], "body-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Playfair Display"], "label-md": ["Plus Jakarta Sans"], "headline-md": ["Playfair Display"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-sm": ["Playfair Display"], "headline-xl-mobile": ["Playfair Display"], "headline-xl": ["Playfair Display"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["36px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "label-md": ["12px", { lineHeight: "1", fontWeight: "500" }],
+                        "headline-md": ["28px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "label-lg": ["14px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "headline-sm": ["22px", { lineHeight: "1.4", fontWeight: "500" }],
+                        "headline-xl-mobile": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                        "headline-xl": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slide-over-enter { transform: translateX(100%); }
+        .slide-over-enter-active { transform: translateX(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .slide-over-exit { transform: translateX(0); }
+        .slide-over-exit-active { transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .backdrop-enter { opacity: 0; }
+        .backdrop-enter-active { opacity: 1; transition: opacity 0.3s ease; }
+        .backdrop-exit { opacity: 1; }
+        .backdrop-exit-active { opacity: 0; transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-40">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary tracking-tight">Heritage Guild</span>
+<span class="text-outline mx-2 text-xl font-light">|</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">Moderation</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional individual with a calm demeanor, lit by soft, natural light against a neutral background, suitable for a refined editorial interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo-bD-sw9DqT11OONkaWlL5gOULYasOf7GaoD-Er6E3bLbYpGh4QzErm7wN1uG8PSvnRclrUNMFb04pmAVVk15-14A58pEqNOkSIsG0enP1Ci66mdKoU2lOm86Ft05opsj7RL6St0HtdRA6nB4i2k6ScUtLqqgbZ5IHbj7yL_8j8QHL64oYgwzsbYD3nv4kPvdKK2CfB0dp4VI3tzJX8nVqwCyRwAxiWClMDWjVws24h_3KO5k-Rpdg_A64L3To2hOpMf8VUs0zxE"/>
+</div>
+<div class="hidden md:block">
+<p class="font-label-lg text-label-lg text-on-surface">Admin User</p>
+<p class="font-body-sm text-label-md text-on-surface-variant">Global Access</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 flex flex-col gap-12">
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Queue</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Review newly submitted artifacts and manage the global catalog. Ensure all items meet the modern heritage standard.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary">24</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Pending Review</p>
+</div>
+<div class="w-px h-12 bg-outline-variant mx-2"></div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-on-surface">1,402</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Active</p>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest border border-outline-variant rounded-sm p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-gutter shadow-sm shadow-primary/5">
+<div class="relative w-full md:w-96 flex-shrink-0">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface pl-12 pr-4 py-3 border-b border-outline-variant focus:border-primary focus:ring-0 focus:outline-none transition-colors font-body-md text-on-surface placeholder:text-outline bg-transparent border-t-0 border-l-0 border-r-0 rounded-none" placeholder="Search product name or SKU..." type="text"/>
+</div>
+<div class="w-full flex flex-wrap items-center gap-4">
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface font-label-lg text-label-lg rounded hover:bg-surface-container transition-colors">
+                        Status: <span class="text-primary">Under Review</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface font-label-lg text-label-lg rounded hover:bg-surface-container transition-colors">
+                        Seller: <span class="font-normal text-on-surface-variant">All</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface font-label-lg text-label-lg rounded hover:bg-surface-container transition-colors">
+                        Price Range: <span class="font-normal text-on-surface-variant">Any</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<button class="ml-auto flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                    More Filters
+                </button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<article class="group bg-surface-container-lowest border border-outline-variant p-6 flex flex-col gap-6 hover:border-outline transition-colors duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-fixed/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110 duration-500"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full border border-tertiary text-on-tertiary-fixed-variant font-label-md text-[10px] uppercase tracking-widest bg-tertiary-fixed/30">
+                            Under Review
+                        </span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="relative aspect-[4/3] w-full overflow-hidden border border-outline-variant/50 bg-surface">
+<img alt="Hand-thrown ceramic vase" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer" data-alt="A highly detailed close-up of a rustic, hand-thrown ceramic vase with a textured, earthy terracotta glaze, sitting on a clean, light-colored surface under soft, diffused studio lighting, embodying a modern editorial still-life aesthetic." onclick="openDetailPanel()" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXyHD2884l_vAMnBAVaNSl6nte0TvfwoxwRKr3_skKzvLsRePRc6C3YmafnZS4ra6yZ57UNIbjh5k9Js52vnfPuRjjCQdhxsNUlWj_1MqxstXJ3bmq8vmqZW1AEN2StIa5S-9xrBd0vUBG28UKC_pRLo2OvQXNI87-N5Tbn6FI6HKmBQa1D5InkJLXKZjtofmZh0DcC7CpzYk4S7vyVml6GsTE5j6wxa-ww28L8afWyA1tvx7jMW0mV4xptwBOwj4FjEKE5f88ahc"/>
+<button class="absolute bottom-4 right-4 w-10 h-10 bg-surface-container-lowest/90 backdrop-blur border border-outline-variant text-on-surface flex items-center justify-center rounded hover:bg-primary hover:text-on-primary hover:border-primary transition-all duration-300 shadow-sm" onclick="openDetailPanel()">
+<span class="material-symbols-outlined text-xl">zoom_in</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-md text-label-md text-outline tracking-wider uppercase">SKU: HG-CER-092</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-1">Terracotta Amphora Vase</h3>
+<div class="flex justify-between items-end mt-2">
+<div class="flex flex-col">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Studio Anaya</p>
+<p class="font-label-lg text-label-lg text-on-surface mt-1">$185.00</p>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="font-label-md text-label-md">0</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-outline-variant/50">
+<button class="w-full py-2.5 border border-error text-error font-label-lg text-label-lg rounded hover:bg-error hover:text-on-error transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-sm">flag</span> Flag
+                    </button>
+<button class="w-full py-2.5 bg-primary text-on-primary font-label-lg text-label-lg rounded hover:bg-primary/90 transition-colors shadow-sm shadow-primary/20 flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-sm">check</span> Approve
+                    </button>
+</div>
+</article>
+<article class="group bg-surface-container-lowest border border-outline-variant p-6 flex flex-col gap-6 hover:border-outline transition-colors duration-300 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full border border-secondary text-secondary font-label-md text-[10px] uppercase tracking-widest bg-secondary-fixed/20">
+                            Active
+                        </span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="relative aspect-[4/3] w-full overflow-hidden border border-outline-variant/50 bg-surface">
+<img alt="Handwoven textile" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer" data-alt="A meticulously lit overhead shot of a folded, handwoven textile featuring intricate geometric patterns in muted earthy tones like terracotta and sage green, placed on a crisp white surface to evoke a premium, tactile editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJjTHCrmxoi2R5NTo3hLlpUqJtUSbi8ZuBRBFhRzfEYD_YvwW94gnF5BknSF4H4xZzQzTFXDZZDphmxlZBTcVq9I5yqIuOKzEuMgSU501vPlf6qLhlV2CaXBizckhUSHF40mytdlwb0Xx1K99VNz1NIJHWOH1awszT8HcKUWo-YQT_Z7vAJx3olTLPqXGHh2Si1XdG0GR8_b2GtCZiYKZWDnoCPMw_KhcNti77GVonnaaqRiCJ6mKoZSPim5AgP2NLHtac7fdHds4"/>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-md text-label-md text-outline tracking-wider uppercase">SKU: HG-TEX-441</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-1">Indigo Heritage Throw</h3>
+<div class="flex justify-between items-end mt-2">
+<div class="flex flex-col">
+<p class="font-body-sm text-body-sm text-on-surface-variant">The Loom Collective</p>
+<p class="font-label-lg text-label-lg text-on-surface mt-1">$320.00</p>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="font-label-md text-label-md">1,204</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 mt-auto pt-4 border-t border-outline-variant/50">
+<button class="w-full py-2.5 border border-outline-variant text-on-surface font-label-lg text-label-lg rounded hover:bg-surface-container transition-colors flex justify-center items-center gap-2">
+                        Manage Listing
+                    </button>
+</div>
+</article>
+<article class="group bg-surface-container-lowest border border-outline-variant p-6 flex flex-col gap-6 hover:border-outline transition-colors duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-error-container/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110 duration-500"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full border border-error text-error font-label-md text-[10px] uppercase tracking-widest bg-error-container/30">
+                            Flagged
+                        </span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="relative aspect-[4/3] w-full overflow-hidden border border-outline-variant/50 bg-surface">
+<img alt="Brass incense holder" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer" data-alt="A minimalist composition featuring a polished brass incense holder on a dark textured background, illuminated by a single directional light source that highlights the metallic sheen and creates deep, dramatic shadows for a sophisticated look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj3Dw1wPRT3XJlejSAhPAOJuQIwjFhj5csHzbhCncNpZW1MQgX8JjSsdkPbDuXQN70OZTwkwZIZstaKvFx4fXoD3ZSANWUnq2jgTkNIA79iFw4-J21zL1gnHbkSKMh3DWp5r4cjT8cra0Zh7yye04b8d-tw0htPVHIBKXHebKB04A0ICJITGfyRRlSxOcx_Lw20gq41JhbMnAAkEt8u3ji9K3ic47Wg4pBI-F8qI24Gpdk8K5jW-VtmHxe4i78OAo450WrVYfBJfs"/>
+<div class="absolute inset-0 bg-error/5 group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-md text-label-md text-outline tracking-wider uppercase">SKU: HG-MTL-112</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-1">Lotus Brass Burner</h3>
+<div class="flex justify-between items-end mt-2">
+<div class="flex flex-col">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Metalworks Guild</p>
+<p class="font-label-lg text-label-lg text-on-surface mt-1">$85.00</p>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="font-label-md text-label-md">42</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-outline-variant/50">
+<button class="w-full py-2.5 bg-error text-on-error font-label-lg text-label-lg rounded hover:bg-error/90 transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-sm">delete</span> Remove
+                    </button>
+<button class="w-full py-2.5 border border-outline text-on-surface font-label-lg text-label-lg rounded hover:bg-surface-container transition-colors flex justify-center items-center gap-2">
+                        Review
+                    </button>
+</div>
+</article>
+</section>
+<div class="flex justify-center mt-8">
+<button class="px-8 py-3 border border-outline-variant text-on-surface font-label-lg text-label-lg rounded hover:border-primary hover:text-primary transition-all duration-300">
+                Load More Artifacts
+            </button>
+</div>
+</main>
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-sm z-50 hidden backdrop-exit" id="backdrop" onclick="closeDetailPanel()"></div>
+<aside class="fixed top-0 right-0 h-full w-full md:w-[600px] bg-surface-container-lowest border-l border-outline-variant z-50 flex flex-col shadow-2xl overflow-hidden hidden slide-over-exit" id="detailPanel">
+<header class="flex items-center justify-between px-6 py-5 border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface">Moderation Dossier</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant" onclick="closeDetailPanel()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-8 pb-32">
+<div class="relative aspect-square w-full bg-surface border border-outline-variant">
+<img alt="Hand-thrown ceramic vase" class="w-full h-full object-cover" data-alt="A highly detailed close-up of a rustic, hand-thrown ceramic vase with a textured, earthy terracotta glaze, sitting on a clean, light-colored surface under soft, diffused studio lighting, embodying a modern editorial still-life aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG1ZVikLGU7dR5HU7Ry3cKLOopJJ6hj4SchcBFbhz2i5L9K6xnrKmhUuJNc4mWfkxPijIiA2gtpK43Ypdbm1sBMddD2XgkEvbH7QCt_GfMYeKj-3wyhqOgfphbbm1F4zvBYDyiI6xnR5o4VSeec40bGvDiTHCZn31F-O7FZOIHrbAnVSXI7quz44KzD5h7HN6MXgBloOYmM5UQor65zRgXT0u7E8KPu3P-KOjzTW9fwLNcT5zZEzeSIj-ZN0d6T9iX-QDEK6nUGSw"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="inline-flex items-center justify-center px-3 py-1.5 rounded-full border border-tertiary text-on-tertiary-fixed-variant font-label-md text-xs uppercase tracking-widest bg-surface-container-lowest/90 backdrop-blur">
+                        Under Review
+                    </span>
+</div>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="w-10 h-10 bg-surface-container-lowest/90 backdrop-blur border border-outline-variant text-on-surface flex items-center justify-center rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-surface-container-lowest/90 backdrop-blur border border-outline-variant text-on-surface flex items-center justify-center rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<p class="font-label-md text-label-md text-outline tracking-wider uppercase flex items-center gap-2">
+                    SKU: HG-CER-092 <span class="material-symbols-outlined text-sm cursor-pointer hover:text-primary">content_copy</span>
+</p>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Terracotta Amphora Vase</h1>
+<div class="flex justify-between items-end border-b border-outline-variant pb-6 mt-2">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">storefront</span> Studio Anaya
+                        </p>
+<p class="font-body-sm text-body-sm text-outline mt-1">Jaipur, Rajasthan, India</p>
+</div>
+<p class="font-headline-sm text-headline-sm text-primary">$185.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2">Description</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Hand-thrown on a traditional kick-wheel, this terracotta amphora vase embodies the raw, earthy textures of Rajasthan. The piece is fired in a wood kiln, giving it unique, unpredictable scorch marks that celebrate the wabi-sabi aesthetic. No two pieces are exactly alike. Intended for dry botanicals or simply as a sculptural object.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2">Compliance Checklist</h3>
+<ul class="flex flex-col gap-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_box</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Image Quality Standard</p>
+<p class="font-body-sm text-body-sm text-outline">Resolution &gt; 2000px, neutral background, no heavy filters.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_box</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Origin Transparency</p>
+<p class="font-body-sm text-body-sm text-outline">Artisan location and technique clearly stated.</p>
+</div>
+</li>
+<li class="flex items-start gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-outline-variant text-xl mt-0.5">check_box_outline_blank</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Prohibited Materials Check</p>
+<p class="font-body-sm text-body-sm text-outline">Verify no restricted dyes, woods, or animal products are used.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant p-6 grid grid-cols-2 gap-4 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.05)]">
+<button class="w-full py-3.5 border border-error text-error font-label-lg text-label-lg rounded hover:bg-error hover:text-on-error transition-all flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">flag</span> Flag for Review
+            </button>
+<button class="w-full py-3.5 bg-primary text-on-primary font-label-lg text-label-lg rounded hover:bg-primary/90 transition-all shadow-sm shadow-primary/20 flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">check_circle</span> Approve Item
+            </button>
+</div>
+</aside>
+<script>
+        const panel = document.getElementById('detailPanel');
+        const backdrop = document.getElementById('backdrop');
+
+        function openDetailPanel() {
+            backdrop.classList.remove('hidden', 'backdrop-exit', 'backdrop-exit-active');
+            backdrop.classList.add('backdrop-enter');
+            
+            panel.classList.remove('hidden', 'slide-over-exit', 'slide-over-exit-active');
+            panel.classList.add('slide-over-enter');
+
+            requestAnimationFrame(() => {
+                backdrop.classList.add('backdrop-enter-active');
+                backdrop.classList.remove('backdrop-enter');
+                
+                panel.classList.add('slide-over-enter-active');
+                panel.classList.remove('slide-over-enter');
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetailPanel() {
+            backdrop.classList.remove('backdrop-enter-active');
+            backdrop.classList.add('backdrop-exit');
+            
+            panel.classList.remove('slide-over-enter-active');
+            panel.classList.add('slide-over-exit');
+
+            requestAnimationFrame(() => {
+                backdrop.classList.add('backdrop-exit-active');
+                panel.classList.add('slide-over-exit-active');
+            });
+
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+                backdrop.classList.remove('backdrop-exit', 'backdrop-exit-active');
+                
+                panel.classList.add('hidden');
+                panel.classList.remove('slide-over-exit', 'slide-over-exit-active');
+                document.body.style.overflow = '';
+            }, 300); 
+        }
+    </script>
+</body></html>

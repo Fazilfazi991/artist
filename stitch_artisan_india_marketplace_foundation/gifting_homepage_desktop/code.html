@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heritage Guild - Artisanal Gifting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#1c1b1b",
+                      "surface-container": "#f0eded",
+                      "on-surface-variant": "#56423c",
+                      "on-secondary": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "surface-variant": "#e5e2e1",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "surface-tint": "#a04021",
+                      "outline-variant": "#ddc0b8",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#bc5434",
+                      "surface-dim": "#dcd9d9",
+                      "surface-bright": "#fcf9f8",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#d3e9ca",
+                      "secondary-container": "#d3e9ca",
+                      "primary-fixed": "#ffdbd1",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "on-background": "#1c1b1b",
+                      "error-container": "#ffdad6",
+                      "outline": "#8a726b",
+                      "background": "#fcf9f8",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "secondary": "#50644b",
+                      "on-primary-fixed-variant": "#81290c",
+                      "on-primary-fixed": "#3a0a00",
+                      "surface-container-high": "#eae7e7",
+                      "tertiary-fixed": "#ffddbb",
+                      "tertiary-container": "#a4660d",
+                      "inverse-surface": "#313030",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#9c3c1e",
+                      "on-tertiary-container": "#fffbfa",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-primary-container": "#fffaf9",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-container": "#566a51",
+                      "tertiary": "#844f00",
+                      "primary-fixed-dim": "#ffb59f",
+                      "inverse-primary": "#ffb59f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- Announcement Bar -->
+<div class="bg-secondary text-on-secondary py-2 px-4 text-center font-label-md text-label-md tracking-wider uppercase flex items-center justify-center gap-4">
+<span>Curated Gifts Delivered Across India</span>
+<span class="hidden md:inline">|</span>
+<span class="hidden md:inline">Free Shipping on Hampers</span>
+</div>
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background docked full-width top-0 sticky z-40 transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<!-- Brand Logo -->
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim whitespace-nowrap" href="#">
+                Heritage Guild
+            </a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 relative group h-full flex items-center" href="#">
+                    Shop Gifts
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 relative group h-full flex items-center" href="#">
+                    Occasions
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 relative group h-full flex items-center" href="#">
+                    Corporate Gifting
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 relative group h-full flex items-center" href="#">
+                    Personalized
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+</a>
+<a class="text-on-surface dark:text-on-surface-variant font-label-lg text-label-lg hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 relative group h-full flex items-center" href="#">
+                    Our Story
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4 md:gap-6">
+<button aria-label="Search" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button aria-label="Favorites" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 hidden md:block">
+<span class="material-symbols-outlined text-[24px]" data-icon="favorite">favorite</span>
+</button>
+<button aria-label="Shopping Bag" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button aria-label="Profile" class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 hidden sm:block">
+<span class="material-symbols-outlined text-[24px]" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Mobile / Tablet Hidden by default) -->
+<nav class="md:hidden fixed inset-y-0 left-0 w-80 z-50 flex flex-col p-6 bg-surface dark:bg-surface-dim shadow-lg transform -translate-x-full transition-transform duration-300" id="mobile-nav">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim">Heritage Guild</h2>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Thoughtful Gifting</p>
+</div>
+<button class="text-on-surface hover:text-primary" id="close-nav">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+                Shop Gifts
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="category">category</span>
+                Occasions
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_pin_circle">business_center</span>
+                Corporate Gifting
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+                Personalized
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant p-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_stories">auto_stories</span>
+                Our Story
+            </a>
+</div>
+</nav>
+<div class="md:hidden fixed inset-0 bg-on-background/50 z-40 hidden" id="nav-overlay"></div>
+<!-- Main Content Canvas -->
+<main>
+<!-- Hero Section -->
+<section class="relative w-full min-h-[819px] flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="Artisan gifting" class="w-full h-full object-cover" data-alt="A beautifully styled composition of elegant gift boxes, hand-bound albums, and delicate wrapping paper in warm earthy tones, softly lit to highlight the artisanal details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzuOjEMAsB1DHk4G57ReFowTzKKw3F0XQmO0CSbTbwMDU4Hu6gbREWIOI0JIVX3VrESCL6Np0LzlHAtesX83jf-w8m6254jY4DQMcfkZOVVgjoNBNwzI2J9M4mFW-c7kY8I2OiXlENy2bSZF3c2srFO5pSZKYKiCAZyN6V3t08Gf3xNSUvkWyX0NoMxCgDnn0V1C20MRwtGuq6G_-RFPf0Rx-uQM-tPiblf2pKG8KQ59hxnoVhgSM74Ou2k93ezkGG1gTQZUgdq_c"/>
+<!-- Subtle overlay for text readability -->
+<div class="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/70 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-20">
+<div class="max-w-2xl">
+<span class="block text-primary font-label-lg text-label-lg mb-4 uppercase tracking-widest">The Art of Giving</span>
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-surface mb-6 leading-tight">
+                        Handcrafted Gifts for<br/>Every Occasion
+                    </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-10 max-w-xl">
+                        Discover beautifully hand-bound scrapbooks, luxury chocolate boxes, and thoughtfully curated hampers. Elevate your gifting with pieces that carry a soul and a story.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary font-label-lg text-label-lg rounded-sm hover:bg-surface-tint transition-colors border border-primary" href="#">
+                            Shop Gifts
+                        </a>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-on-surface text-on-surface font-label-lg text-label-lg rounded-sm hover:bg-surface-container-low transition-colors" href="#">
+                            Corporate Catalog
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Strip -->
+<section class="bg-surface-container-low border-y border-outline-variant py-8">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-[32px] text-secondary">verified</span>
+<span class="text-label-md font-label-md text-on-surface uppercase tracking-wider">Authentic Craft</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-[32px] text-secondary">handshake</span>
+<span class="text-label-md font-label-md text-on-surface uppercase tracking-wider">Thoughtful Curation</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-[32px] text-secondary">lock</span>
+<span class="text-label-md font-label-md text-on-surface uppercase tracking-wider">Secure Payments</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-[32px] text-secondary">local_shipping</span>
+<span class="text-label-md font-label-md text-on-surface uppercase tracking-wider">Careful Delivery</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Shop by Category (Bento Grid) -->
+<section class="py-24 bg-surface">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Curated Categories</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-2">Explore by medium and tradition.</p>
+</div>
+<a class="hidden md:inline-flex items-center gap-2 text-primary font-label-lg text-label-lg hover:underline underline-offset-4" href="#">
+                        View All <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 md:h-[600px]">
+<!-- Large Feature (Scrapbooks) -->
+<a class="group relative md:col-span-2 md:row-span-2 rounded-lg overflow-hidden border border-outline-variant" href="#">
+<img alt="Hand-bound Scrapbooks" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A stack of beautifully crafted, hand-bound leather and paper scrapbooks resting on a wooden desk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfIJGXcksxOIhPIrcjbkdYasZEKPd5lNkKFuvo6u1xcWcmjPMrlxQmz_B6_WFe5CHAQTXb2oZqGd_rSRUHJj9LktQU_GYG6vZn9VaZi-V8ndzxX1tTjCjxN3MppUZfUf3tED49F933rAyOsuy6qqpmJ3dFH0RjYuxcw-GUhF_GtZ_ZugWa1PHQjuDPUJtJxdzL4xGvUEkIGFVkwpwrtPts8jy6VIbKEOQfkna-3i9ZKkbSjQsp0bDSKAOXZpKTvj1BIYhsypfk78"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h3 class="text-headline-md font-headline-md text-on-primary mb-2">Scrapbooks &amp; Albums</h3>
+<p class="text-body-sm font-body-sm text-surface-container-low opacity-90">Preserve memories beautifully.</p>
+</div>
+</a>
+<!-- Gourmet -->
+<a class="group relative rounded-lg overflow-hidden border border-outline-variant md:h-auto h-64" href="#">
+<img alt="Gourmet Chocolates" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An elegant box of assorted artisan chocolates on a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB72HF1Zf50bkc7EjQbF-BTj6BectzHKXH6N68r5KEm8BCqLAXuHMic103opEMlVLzjbm8ILsUQo2NxsDsHyqlqcmAC9SqOlLq5a7HyfSGfoPKXNKZwDu1F686sdsSFIzz8HoESSyqmN1t8qL4tjD7h4S3c3y8cYqhiwCFXoqdVumMtKpJm2vuwt9RPKqvF-9OZ-EYL3qkYeboUo_ny2raP8--jtPIox4ipVt6gYKD73PZ4PiWwdSA4i6-jsSuRORgQ-Wu7lrGaOlM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-headline-sm font-headline-sm text-on-primary">Gourmet Gift Boxes</h3>
+</div>
+</a>
+<!-- Hampers -->
+<a class="group relative rounded-lg overflow-hidden border border-outline-variant md:h-auto h-64" href="#">
+<img alt="Curated Hampers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxurious woven hamper basket filled with fine foods and artisanal goods." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVqu5My-D367DylPFYK7Lgz6yPcejPzL6rosnXO1Nh7u-K-CciZL2h4uOCoKxl3nTaTkS19Gxp40VKq1jcYkHrTRyFwnloC-ffgA_9p4Jxs857rhYgaDXEfdoXG2EMUluLXVLeHbuMWd8nsXoaO4Jtkw9fM21xOmNZEP64Y3oO78ol0VvUxRjvAwix4N2kMYW4ISJYfOWwNvQ7lMnKdlM3bs9I7Wj4raholhjdtZxFA0WZH_VpD38MT7j1ZVjDT6sIo5aVCRVQuFo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-headline-sm font-headline-sm text-on-primary">Curated Hampers</h3>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Handpicked Selection (Horizontal Scroll Cards) -->
+<section class="py-24 bg-surface-container-low border-t border-outline-variant">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Handpicked for You</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-2">Exceptional pieces from our latest arrivals.</p>
+</div>
+</div>
+<!-- Horizontal scroll container -->
+<div class="flex overflow-x-auto gap-6 pb-8 no-scrollbar snap-x">
+<!-- Product Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface rounded-sm border border-outline-variant p-4 flex flex-col snap-start group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-4 overflow-hidden rounded-sm">
+<img alt="Hand-bound Memory Scrapbook" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up of a luxurious, hand-bound memory scrapbook with a textured linen cover." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuxjQK58sMiliTqrWx9w37x-pnHBDJ7SghmCceUdicQDUEGXDIbDj8PZy6c0Xz0eRHi-bBvrpm2S-RFM-srvZyjAM4rnLOr7WdYxUQvFksK0CM_aQhC9p28zFkq3A3qFFsBx3NeDCrvLN5F4jMmmoyAx7xxT0M7aVPiRqbXbqukbbe7a9QBt794615KdNP62eWV3evZKpbmZif1sP6dj2pBHDxpJH0MLvrBgdP9qy6dLp657QOx3lsu6ke764ZzSMmyhg3hmDwJq0"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 flex gap-2">
+<span class="bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] uppercase font-bold px-2 py-1 tracking-wider border border-outline-variant">Handcrafted</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Hand-bound Memory Scrapbook</h3>
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">Linen Cover • 50 Pages</p>
+<div class="flex justify-between items-center mt-auto pt-4 border-t border-surface-container-high">
+<span class="text-body-lg font-body-lg text-on-surface">₹2,400</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shopping_bag</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface rounded-sm border border-outline-variant p-4 flex flex-col snap-start group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-4 overflow-hidden rounded-sm">
+<img alt="Assorted Truffle Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully presented box of artisan chocolate truffles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbtbqa9neNLI-rhO1puNYZa3OLii8wtsWhQkrXQCzwmcZ_HNvGozf7W7FgHzour0UqxMFiEpuCTBYkht4GMc6nNGo6PSJW8XzQtnsWLe9mB7U0E7eFQwt5AhJTBsOrL_FEnNHM-n1y1i6NgQnCzo38ulWmu3uGk9wzBIqAldhtjjg1gONmawI_Fw028YHT8yrYfP2WGhLweqlhJCwt1lIPrZTFtnctrjFY5dvK-u_nrS1oU8swX9cImQac1zVs-s5ouppU55MPWsk"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 flex gap-2">
+<span class="bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] uppercase font-bold px-2 py-1 tracking-wider border border-outline-variant">Gourmet</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Assorted Truffle Box</h3>
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">Handcrafted • 16 Pieces</p>
+<div class="flex justify-between items-center mt-auto pt-4 border-t border-surface-container-high">
+<span class="text-body-lg font-body-lg text-on-surface">₹1,800</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shopping_bag</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface rounded-sm border border-outline-variant p-4 flex flex-col snap-start group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-4 overflow-hidden rounded-sm">
+<img alt="Grand Celebration Hamper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A large, beautifully arranged gift hamper filled with festive goods." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf80VWrQPhwDE8J9pD7VKBA62HPmAUOky6ygkzYhf9CE5bnALO34MTFCAJz_Dabw4sBsx4VwdYbBeQxiqHCqroTgnG4bBseSlA1kgTRclcjvV5W3h31Q5mBHg3DqV7U6NuMN1C54WHR7qrjtz7htKmisAUeN4CrC-OisSRrkNCMUZJmYWTsjXka0B97y9TSeZZeyZX6wV-EbrPf9t7xZO-ZByQNio2uyv08bLJdOJKwMcgKXUJmyPfYF27wquzinlwQOJbYie7n7k"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="flex-grow">
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Grand Celebration Hamper</h3>
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">Curated Selection</p>
+<div class="flex justify-between items-center mt-auto pt-4 border-t border-surface-container-high">
+<span class="text-body-lg font-body-lg text-on-surface">₹7,200</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shopping_bag</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface rounded-sm border border-outline-variant p-4 flex flex-col snap-start group cursor-pointer hover:shadow-sm transition-shadow">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-4 overflow-hidden rounded-sm">
+<img alt="Ornate Brass Photo Frame" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An ornate, handcrafted brass photo frame holding a sepia-toned picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSks1AeozvpfU-gTmYdInJ0zSQV_IL59aIGYaBcJLD5KjY7lO5Ggv2r0_u-UCblt60Kv5lmjfGJy6V3o4Kq1laX_OxFH2essRl068utMNyhIUIvd00DR8qa-U-vrW_3NOaBV43aO3C-FVeM5HXMsBaUCXnn9iM8aEOKV48OBs5DQFjOEUiydJ_4_ZgO55x3_E1zMHB6cFRYGWfd7oeELOhwREQOcZHFW0O-0iYE1eamawY2jWnbtN5s6IiwIMaioGGrQkU1kHcS-g"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 flex gap-2">
+<span class="bg-surface/90 backdrop-blur-sm text-on-surface text-[10px] uppercase font-bold px-2 py-1 tracking-wider border border-outline-variant">Personalized</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Ornate Brass Photo Frame</h3>
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">Handcrafted • 5x7</p>
+<div class="flex justify-between items-center mt-auto pt-4 border-t border-surface-container-high">
+<span class="text-body-lg font-body-lg text-on-surface">₹3,500</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shopping_bag</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission Section (Editorial Layout) -->
+<section class="py-32 bg-secondary text-on-secondary relative overflow-hidden">
+<!-- Decorative subtle pattern overlay could go here -->
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div>
+<span class="block text-secondary-container font-label-lg text-label-lg mb-6 uppercase tracking-widest">Our Mission</span>
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl mb-8 leading-tight">
+                            The Art of<br/>Thoughtful Giving.
+                        </h2>
+<p class="text-body-lg font-body-lg text-surface-container-low/90 mb-10 max-w-md">
+                            We believe a gift should be as unique as the recipient. By curating exceptional handcrafted pieces and gourmet delights, we help you express your sentiments with authenticity, elegance, and soulful design.
+                        </p>
+<a class="inline-flex items-center gap-2 text-on-secondary font-label-lg text-label-lg hover:text-tertiary-fixed transition-colors border-b border-on-secondary pb-1" href="#">
+                            Read Our Story <span class="material-symbols-outlined text-[20px]">east</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="border-t border-on-secondary/30 pt-6">
+<span class="block text-headline-xl font-headline-xl mb-2 text-tertiary-fixed">15k+</span>
+<span class="text-label-lg font-label-lg uppercase tracking-wider text-surface-container-low/80">Artisans<br/>Supported</span>
+</div>
+<div class="border-t border-on-secondary/30 pt-6">
+<span class="block text-headline-xl font-headline-xl mb-2 text-tertiary-fixed">50k+</span>
+<span class="text-label-lg font-label-lg uppercase tracking-wider text-surface-container-low/80">Happy<br/>Customers</span>
+</div>
+<div class="border-t border-on-secondary/30 pt-6">
+<span class="block text-headline-xl font-headline-xl mb-2 text-tertiary-fixed">28</span>
+<span class="text-label-lg font-label-lg uppercase tracking-wider text-surface-container-low/80">States<br/>Represented</span>
+</div>
+<div class="border-t border-on-secondary/30 pt-6">
+<span class="block text-headline-xl font-headline-xl mb-2 text-tertiary-fixed">100%</span>
+<span class="text-label-lg font-label-lg uppercase tracking-wider text-surface-container-low/80">Authenticity<br/>Guaranteed</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline flat no shadows full-width bottom mt-auto">
+<div class="w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Newsletter & Top Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16 pb-16 border-b border-outline-variant">
+<div>
+<h3 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim mb-4">Join the Guild</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 max-w-md">Subscribe to discover new gifting collections, exclusive hampers, and insights into the world of thoughtful giving.</p>
+<form class="flex gap-4">
+<input class="flex-grow bg-transparent border-b border-outline text-on-surface focus:outline-none focus:border-primary py-2 font-body-md" placeholder="Email Address" required="" type="email"/>
+<button class="text-label-lg font-label-lg text-primary hover:text-surface-tint uppercase tracking-wider transition-colors" type="submit">Subscribe</button>
+</form>
+</div>
+<div class="flex flex-col md:items-end justify-center">
+<span class="text-headline-lg font-headline-lg text-primary dark:text-primary-fixed-dim mb-4">Heritage Guild</span>
+<p class="text-body-md font-body-md text-on-surface-variant md:text-right max-w-xs">Elevating traditional craft for thoughtful gifting.</p>
+</div>
+</div>
+<!-- Links Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-16">
+<div class="flex flex-col gap-4">
+<h4 class="text-label-lg font-label-lg text-on-surface uppercase tracking-wider mb-2">Shop</h4>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">New Arrivals</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Scrapbooks &amp; Albums</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Gourmet Boxes</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Personalized</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-label-lg font-label-lg text-on-surface uppercase tracking-wider mb-2">Discover</h4>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Our Story</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Gifting Guide</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Corporate Gifting</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Custom Hampers</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-label-lg font-label-lg text-on-surface uppercase tracking-wider mb-2">Support</h4>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Contact Us</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Shipping &amp; Returns</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">FAQ</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Bulk Orders</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-label-lg font-label-lg text-on-surface uppercase tracking-wider mb-2">Legal</h4>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Terms of Service</a>
+</div>
+</div>
+<!-- Copyright -->
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-outline-variant text-body-sm font-body-sm text-on-surface-variant">
+<p>© 2024 Heritage Guild. Honoring Indian Craftsmanship.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="hover:text-primary transition-colors" href="#">Pinterest</a>
+<a class="hover:text-primary transition-colors" href="#">Facebook</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script for mobile nav toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('header button'); // First button is menu
+            const mobileNav = document.getElementById('mobile-nav');
+            const closeBtn = document.getElementById('close-nav');
+            const overlay = document.getElementById('nav-overlay');
+            const header = document.getElementById('main-header');
+
+            function openNav() {
+                mobileNav.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+
+            function closeNav() {
+                mobileNav.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            menuBtn.addEventListener('click', openNav);
+            closeBtn.addEventListener('click', closeNav);
+            overlay.addEventListener('click', closeNav);
+
+            // Subtle header shadow on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-sm');
+                } else {
+                    header.classList.remove('shadow-sm');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seller Workspace - Custom Orders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-tint": "#a04021",
+                        "on-error-container": "#93000a",
+                        "outline": "#8a726b",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#ddc0b8",
+                        "secondary-container": "#d3e9ca",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary": "#50644b",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary-container": "#fffaf9",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-container": "#566a51",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#bc5434",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#56423c",
+                        "primary": "#9c3c1e",
+                        "inverse-surface": "#313030",
+                        "tertiary": "#844f00",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-background": "#1c1b1b",
+                        "tertiary-container": "#a4660d",
+                        "surface-container-low": "#f6f3f2",
+                        "background": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#81290c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 bg-surface border-b border-outline-variant fixed top-0 left-0 right-0 z-40 h-16">
+<button aria-label="Menu" class="text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Heritage Guild</div>
+<div class="w-6"></div> <!-- Spacer -->
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex fixed inset-y-0 left-0 w-80 z-50 flex-col p-6 bg-surface border-r border-outline-variant shadow-sm">
+<div class="mb-10">
+<div class="font-headline-md text-headline-md text-primary mb-2">Heritage Guild</div>
+<div class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<img alt="Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, circular avatar portrait of an Indian artisan in a well-lit workshop, exuding warmth and craftsmanship. The image style should match the earthy, premium modern heritage aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd-fVBCXQMAauL87yUhGgexhAIIaDfsctWM7iWJH9GT27WTc7jbvBwRhMRcfcXOtPyJ6Dkr0jJRXP8NemaloVS4afFf5BLO25shw7e6cuDX9xlUbovVhtfsr0C8_0lV3I8ZLPIjP-ePZEW8DuKePUzwywkPQpNZXvH4ekHBcgkSWQJQ0j2pN2TAEpPPcLsHKLfoYtfgn0USGFOZJY-LkJJ9W0YrJfRBPaxCqF9wYgZ_IwZf7xVTycAJJboouY97NM28aqCee_Lb1c"/>
+<span>Modern Indian Craftsmanship</span>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="storefront">storefront</span>
+<span class="font-label-md text-label-md">Shop</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="category">category</span>
+<span class="font-label-md text-label-md">Categories</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="person_pin_circle">person_pin_circle</span>
+<span class="font-label-md text-label-md">Storefronts</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+<span class="font-label-md text-label-md">Custom Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-md text-label-md">Our Story</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="campaign">campaign</span>
+<span class="font-label-md text-label-md">Become a Seller</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded font-label-lg text-label-lg border border-primary hover:bg-surface-tint transition-colors">
+                Become a Seller
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-80 pt-16 md:pt-0 p-4 md:p-10 min-h-screen">
+<div class="max-w-[1280px] mx-auto">
+<!-- Page Header -->
+<div class="mb-10 pt-4 md:pt-0">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2 hidden md:block">Custom Orders</h1>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary mb-2 md:hidden">Custom Orders</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Manage and track bespoke requests from collectors. Deliver unique, modern heritage pieces.</p>
+</div>
+<!-- Controls (Search & Filters) -->
+<div class="flex flex-col md:flex-row gap-4 mb-8">
+<!-- Search -->
+<div class="relative flex-grow max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input aria-label="Search orders" class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-b border-outline focus:border-primary focus:ring-0 font-body-sm text-body-sm text-on-surface transition-colors placeholder:text-outline" placeholder="Search orders, buyers..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+<button class="whitespace-nowrap px-4 py-2 bg-secondary/10 text-on-surface font-label-md text-label-md rounded-full border border-transparent hover:border-secondary transition-colors flex items-center gap-2">
+                        All Requests
+                        <span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px]">12</span>
+</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant hover:border-outline transition-colors">
+                        New Requests
+                    </button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant hover:border-outline transition-colors">
+                        Quotes Sent
+                    </button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant hover:border-outline transition-colors">
+                        In Production
+                    </button>
+</div>
+</div>
+<!-- Data Table Container (Glassmorphism inspired, highly refined) -->
+<div class="bg-surface-container-lowest border border-[#E5E2DA] rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(156,60,30,0.04)] relative">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant whitespace-nowrap">Request #</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant whitespace-nowrap">Buyer</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant">Project Title</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant text-right whitespace-nowrap">Budget (₹)</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant whitespace-nowrap">Deadline</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant">Status</th>
+<th class="p-6 font-label-lg text-label-lg text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-6 font-mono text-outline">#CR-8402</td>
+<td class="p-6">
+<div class="flex items-center gap-3">
+<img alt="Eleanor Vance" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A close up portrait of a sophisticated woman with a warm smile, wearing minimalist contemporary clothing. Soft, natural lighting. Neutral background to emphasize premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhq-hxkC1vsE3DWyrAR6_yB7DURRw2GIq1kkmVhtrLLRVyPv-4IdrpZT8tnb6L4cgUeihZbm9rGsOZJarfJPjvWEKwQxPYv2cOqNIa30NPkw4kfWVmVZ_8CKb7iiNJdKFQ95Y3OTjb5DH4NbJ69anLz0QIqAxqpvWnlF5jrO5DNehTzqg8KEL2MI5VcPrNW1cjbGHcQE1t4NmMnRGlxpKlmooyZG1UIzUUF_Ox344hxl0A_ChDpwEi10UGDUnlKRNDJyaFMqBMUW0"/>
+<span class="font-medium">Eleanor Vance</span>
+</div>
+</td>
+<td class="p-6 font-headline-sm text-[18px] text-primary">Custom Teak Dining Table</td>
+<td class="p-6 text-right font-medium">85,000</td>
+<td class="p-6 text-on-surface-variant">Oct 15, 2024</td>
+<td class="p-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-secondary/10 text-on-secondary-container border border-secondary/20">
+                                        Quote Sent
+                                    </span>
+</td>
+<td class="p-6 text-right">
+<button aria-label="View Details" class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-outline-variant hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-6 font-mono text-outline">#CR-8399</td>
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-lg border border-outline-variant">A</div>
+<span class="font-medium">Aarav Patel</span>
+</div>
+</td>
+<td class="p-6 font-headline-sm text-[18px] text-primary">Hand-carved Rosewood Panels</td>
+<td class="p-6 text-right font-medium">1,20,000</td>
+<td class="p-6 text-on-surface-variant">Nov 02, 2024</td>
+<td class="p-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-tertiary/10 text-on-tertiary-fixed-variant border border-tertiary/20">
+                                        In Production
+                                    </span>
+</td>
+<td class="p-6 text-right">
+<button aria-label="View Details" class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-outline-variant hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-6 font-mono text-outline">#CR-8385</td>
+<td class="p-6">
+<div class="flex items-center gap-3">
+<img alt="Maya Sharma" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A stylish portrait of an elegant Indian woman in an art gallery setting. Soft depth of field, warm inviting lighting, high-end editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwwgSUuDO3KFOm1V1kiYIUJETl7Jzz4KgNP4naUayhjUOTL6RHT33MryeKYzzmoLRU5x_hrY9iPp3XKWCg5Uf_i3qJRKByaI-57Iid4QV98BBy8UxuaeEqzSkNgi945PvPxinVnrs65nrskP7-KSb0yLeDaqPoKhSI61Asb0QUfgfdjsB-V0zHyi0w3wYxztO3fq15uSofzlnjQ0eUCI3iahMcEvR3SWekmichHumJvkOwcnRRaIR2uLg90zdPng6ansA7mJwewQc"/>
+<span class="font-medium">Maya Sharma</span>
+</div>
+</td>
+<td class="p-6 font-headline-sm text-[18px] text-primary">Bespoke Brass Urli</td>
+<td class="p-6 text-right font-medium">32,500</td>
+<td class="p-6 text-on-surface-variant">Sep 28, 2024</td>
+<td class="p-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">
+                                        New Request
+                                    </span>
+</td>
+<td class="p-6 text-right">
+<button aria-label="View Details" class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-outline-variant hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer of Table -->
+<div class="p-4 border-t border-outline-variant bg-surface flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Showing 1 to 3 of 12 requests</span>
+<div class="flex gap-2">
+<button class="p-2 text-outline hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Hint -->
+<div class="mt-8 flex items-start gap-3 p-4 bg-surface-container-low border border-outline-variant rounded-lg max-w-3xl">
+<span class="material-symbols-outlined text-tertiary" data-icon="lightbulb">lightbulb</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface mb-1">Pro Tip for Custom Orders</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Ensure your quotes include estimated shipping times for bulky items like furniture. Clear communication upfront reduces revisions later.</p>
+</div>
+</div>
+</div>
+</main>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

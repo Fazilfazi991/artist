@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Storefront Design Studio - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-fixed": "#3a0a00",
+                      "tertiary-fixed": "#ffddbb",
+                      "surface-tint": "#a04021",
+                      "on-error-container": "#93000a",
+                      "outline": "#8a726b",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#fffbfa",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#d3e9ca",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline-variant": "#ddc0b8",
+                      "secondary-container": "#d3e9ca",
+                      "on-tertiary-fixed": "#2b1700",
+                      "secondary": "#50644b",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface": "#fcf9f8",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-primary-container": "#fffaf9",
+                      "primary-fixed": "#ffdbd1",
+                      "surface-container-high": "#eae7e7",
+                      "on-secondary-container": "#566a51",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "primary-container": "#bc5434",
+                      "on-surface": "#1c1b1b",
+                      "on-surface-variant": "#56423c",
+                      "primary": "#9c3c1e",
+                      "inverse-surface": "#313030",
+                      "tertiary": "#844f00",
+                      "surface-variant": "#e5e2e1",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-background": "#1c1b1b",
+                      "tertiary-container": "#a4660d",
+                      "surface-container-low": "#f6f3f2",
+                      "background": "#fcf9f8",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "inverse-primary": "#ffb59f",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "surface-container": "#f0eded",
+                      "surface-bright": "#fcf9f8",
+                      "on-primary-fixed-variant": "#81290c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Playfair Display"],
+                      "label-lg": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "headline-lg-mobile": ["Playfair Display"],
+                      "headline-sm": ["Playfair Display"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "headline-xl-mobile": ["Playfair Display"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "label-md": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                      "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                      "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                      "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                      "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for clean editorial look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ddc0b8; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden antialiased selection:bg-primary selection:text-on-primary">
+<!-- Mobile Top Bar (Visible only on mobile) -->
+<div class="md:hidden flex items-center justify-between w-full h-16 px-margin-mobile border-b border-outline-variant bg-surface z-50 fixed top-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px]">menu</span>
+<span class="text-headline-sm font-headline-sm text-primary">Heritage Guild</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<!-- Placeholder for mobile avatar -->
+</div>
+</div>
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col fixed inset-y-0 left-0 w-80 z-50 p-6 bg-surface border-r border-outline-variant shadow-sm transition-all duration-300">
+<div class="flex flex-col mb-12">
+<h1 class="text-headline-md font-headline-md text-primary">Heritage Guild</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 tracking-wide uppercase">Modern Indian Craftsmanship</p>
+</div>
+<ul class="flex flex-col gap-2 flex-1">
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="text-label-md font-label-md uppercase tracking-wider">Shop</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">category</span>
+<span class="text-label-md font-label-md uppercase tracking-wider">Categories</span>
+</a>
+</li>
+<li>
+<!-- Active State -->
+<a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined icon-fill text-[20px]">person_pin_circle</span>
+<span class="text-label-md font-label-md uppercase tracking-wider">Storefronts</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+<span class="text-label-md font-label-md uppercase tracking-wider">Custom Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+<span class="text-label-md font-label-md uppercase tracking-wider">Our Story</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 border border-outline-variant text-on-surface py-3 px-4 rounded-lg hover:border-primary transition-colors text-label-md font-label-md uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+                Become a Seller
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-80 mt-16 md:mt-0 h-full overflow-y-auto bg-background px-margin-mobile md:px-12 py-8 md:py-16">
+<div class="max-w-[1000px] mx-auto">
+<!-- Header -->
+<header class="mb-12">
+<div class="flex items-center gap-2 text-primary mb-3">
+<span class="text-label-md font-label-md uppercase tracking-widest">Artisan Workspace</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-background leading-tight">Design Studio</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-3 max-w-xl">Curate your digital gallery. Manage your brand narrative, visual aesthetic, and public storefront details to connect deeply with conscious collectors.</p>
+</div>
+</div>
+</header>
+<!-- Top Dashboard Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+<!-- Left Column: Status & Link (Spans 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Storefront Status Card -->
+<div class="bg-surface border border-outline-variant p-8 md:p-10 rounded-xl flex flex-col justify-between relative overflow-hidden group">
+<!-- Decorative subtle gradient -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed opacity-20 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none transition-opacity group-hover:opacity-30"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+<div class="flex items-start gap-6">
+<!-- Circular Progress visual (CSS based) -->
+<div class="relative w-24 h-24 flex items-center justify-center shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<circle class="stroke-surface-container-high" cx="18" cy="18" fill="none" r="16" stroke-width="2"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-headline-md font-headline-md text-primary leading-none">85<span class="text-body-sm">%</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-2">Storefront Status</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Your visual identity is taking shape. Complete the remaining operational details to welcome visitors.</p>
+</div>
+</div>
+<button class="shrink-0 bg-primary text-on-primary py-4 px-8 rounded-full text-label-lg font-label-lg uppercase tracking-widest hover:bg-surface-tint transition-all duration-300 shadow-[0_4px_14px_rgba(156,60,30,0.2)] hover:shadow-[0_6px_20px_rgba(156,60,30,0.3)] flex items-center gap-3">
+                                Publish Store
+                                <span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+</button>
+</div>
+</div>
+<!-- Public Link Section -->
+<div class="bg-surface-container-low border border-outline-variant p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest mb-1">Public URL Preview</p>
+<p class="text-body-md font-body-md text-on-background font-medium">heritageguild.com/artisan/weave-and-weft</p>
+</div>
+<button class="flex items-center justify-center gap-2 border border-outline border-b-2 py-2 px-6 rounded text-label-md font-label-md uppercase tracking-wider hover:bg-surface-container-highest transition-colors text-on-surface">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                            Copy Link
+                        </button>
+</div>
+</div>
+<!-- Right Column: Template Preview (Spans 4 cols) -->
+<div class="lg:col-span-4 bg-surface border border-outline-variant p-6 rounded-xl flex flex-col h-full">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Active Template</h3>
+<button class="text-primary hover:underline text-label-md font-label-md">Change</button>
+</div>
+<!-- Preview Image Area -->
+<div class="flex-1 bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant relative group min-h-[240px]">
+<img alt="Template preview" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500" data-alt="A clean, minimalist e-commerce storefront template design featuring elegant typography and earthy tones. The mockup displays a beautifully lit ceramic vase against a muted linen background. The layout uses ample whitespace, a cream and terracotta color palette, and a sophisticated editorial aesthetic suitable for high-end artisanal products. The overall mood is calm, premium, and tactile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_hBGML6pBJYs6z-8TWpV3SDAHxzk9tstJdjREGUIVYCbMkDMyaVGgCCtKQjMjsc0INdrwc1zy55umodCgWZ8NeY51DYtASQaO4kXET2932kkFrrlOOPQ4TT-SjmYMBjLY2Q3LoIpgBBOhjn0q4hNaA-NmDcpvgF_JSH-a5m6mlfMtsbT9-rrHDQFkrt00dDAn9iU_5Dl1m8N1ttnUUZeQsbOeLyqdlreBqzftlkeQ1s2zIwBRCDtS7S0whi6VtfTaZdaQaV_l1Bg"/>
+<!-- Overlay gradient for text readability if needed -->
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/40 to-transparent flex items-end">
+<span class="text-on-primary bg-surface/20 backdrop-blur-md px-3 py-1 rounded text-label-md font-label-md uppercase tracking-widest border border-white/20">The Terracotta Edition</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pre-Launch Checklist (Actionable Grid) -->
+<div class="mb-16">
+<div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-4">
+<h3 class="text-headline-md font-headline-md text-on-background">Pre-Launch Checklist</h3>
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">4 of 5 Tasks Completed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+<!-- Task 1: Completed -->
+<div class="group bg-surface-container-low border border-outline-variant p-6 rounded-xl flex items-start gap-5 cursor-pointer hover:border-primary transition-colors opacity-70">
+<div class="shrink-0 w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mt-1">
+<span class="material-symbols-outlined icon-fill text-[18px]">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-background mb-1">Select Base Template</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Applied 'The Terracotta Edition' framework to your public pages.</p>
+</div>
+</div>
+<!-- Task 2: Completed -->
+<div class="group bg-surface-container-low border border-outline-variant p-6 rounded-xl flex items-start gap-5 cursor-pointer hover:border-primary transition-colors opacity-70">
+<div class="shrink-0 w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mt-1">
+<span class="material-symbols-outlined icon-fill text-[18px]">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-background mb-1">Upload Brand Identity</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">High-resolution artisan mark and studio cover imagery uploaded.</p>
+</div>
+</div>
+<!-- Task 3: Completed -->
+<div class="group bg-surface-container-low border border-outline-variant p-6 rounded-xl flex items-start gap-5 cursor-pointer hover:border-primary transition-colors opacity-70">
+<div class="shrink-0 w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mt-1">
+<span class="material-symbols-outlined icon-fill text-[18px]">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-background mb-1">Craft Founder's Story</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Editorial narrative detailing your heritage and craftsmanship technique added.</p>
+</div>
+</div>
+<!-- Task 4: Completed -->
+<div class="group bg-surface-container-low border border-outline-variant p-6 rounded-xl flex items-start gap-5 cursor-pointer hover:border-primary transition-colors opacity-70">
+<div class="shrink-0 w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mt-1">
+<span class="material-symbols-outlined icon-fill text-[18px]">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-background mb-1">List Initial Inventory</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Minimum of 3 products with rich descriptions and pricing added.</p>
+</div>
+</div>
+<!-- Task 5: Pending (Needs Action) -->
+<div class="group bg-surface border border-primary p-6 rounded-xl flex items-start gap-5 cursor-pointer hover:bg-surface-container-low transition-colors shadow-[0_0_15px_rgba(156,60,30,0.05)] relative overflow-hidden">
+<!-- subtle indicator line -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="shrink-0 w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center mt-1 bg-surface">
+<span class="material-symbols-outlined text-[18px]">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h4 class="text-body-lg font-body-lg font-medium text-primary">Define Studio Policies</h4>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Required</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Establish shipping timelines, return conditions, and custom order terms to build trust with collectors.</p>
+<button class="text-label-md font-label-md uppercase tracking-widest text-primary border-b border-primary pb-0.5 hover:text-surface-tint hover:border-surface-tint transition-colors inline-flex items-center gap-1">
+                                Complete Task <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer minimal inside dashboard -->
+<footer class="pt-8 border-t border-outline-variant text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-body-sm font-body-sm text-on-surface-variant">© 2024 Heritage Guild Artisan Portal</p>
+<div class="flex gap-6">
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Seller Guidelines</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support Desk</a>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

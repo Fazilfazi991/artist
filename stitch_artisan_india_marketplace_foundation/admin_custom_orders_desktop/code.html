@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin - Custom Orders Overview | Heritage Guild</title>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#0f1f0c",
+                        "tertiary-container": "#a4660d",
+                        "outline-variant": "#ddc0b8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#844f00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#a04021",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-primary-fixed": "#3a0a00",
+                        "surface-container-high": "#eae7e7",
+                        "on-surface-variant": "#56423c",
+                        "secondary-container": "#d3e9ca",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-primary-container": "#fffaf9",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-background": "#1c1b1b",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#81290c",
+                        "surface-variant": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "on-surface": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#ffb59f",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffdbd1",
+                        "outline": "#8a726b",
+                        "on-secondary-container": "#566a51",
+                        "surface-bright": "#fcf9f8",
+                        "secondary": "#50644b",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "inverse-surface": "#313030",
+                        "surface-container": "#f0eded",
+                        "primary-container": "#bc5434",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "on-tertiary-fixed": "#2b1700",
+                        "primary": "#9c3c1e",
+                        "background": "#fcf9f8",
+                        "secondary-fixed-dim": "#b7cdaf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "headline-xl": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for clean internal scrolling panels */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SHARED COMPONENT: SideNavBar -->
+<nav class="fixed inset-y-0 left-0 w-80 z-50 flex flex-col p-6 bg-surface border-r border-outline-variant shadow-sm rounded-r-xl hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-12">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="storefront">storefront</span>
+</div>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Heritage Guild</h2>
+<p class="text-label-md font-label-md text-on-surface-variant">Modern Indian Craftsmanship</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Inactive -->
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="storefront">storefront</span>
+<span class="text-label-md font-label-md text-body-md">Shop</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="category">category</span>
+<span class="text-label-md font-label-md text-body-md">Categories</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="person_pin_circle">person_pin_circle</span>
+<span class="text-label-md font-label-md text-body-md">Storefronts</span>
+</a>
+<!-- ACTIVE: Custom Orders -->
+<a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+<span class="text-label-md font-label-md text-body-md font-semibold">Custom Orders</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="auto_stories">auto_stories</span>
+<span class="text-label-md font-label-md text-body-md">Our Story</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<a class="flex items-center gap-4 text-on-surface-variant p-3 hover:bg-surface-container-high transition-colors duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="campaign">campaign</span>
+<span class="text-label-md font-label-md text-body-md">Become a Seller</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-80 h-screen flex flex-col bg-background">
+<!-- Header Row -->
+<header class="px-8 py-6 flex justify-between items-center border-b border-outline-variant/30 bg-surface/50 backdrop-blur-sm z-10 sticky top-0">
+<div>
+<h1 class="text-headline-md font-headline-md text-on-surface">Custom Orders Workspace</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Manage bespoke requests, disputes, and marketplace integrity.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-headline-sm">
+                    A
+                </div>
+</div>
+</header>
+<!-- Bento Grid Stats -->
+<div class="px-8 pt-8 pb-4 grid grid-cols-1 md:grid-cols-4 gap-6 shrink-0">
+<div class="bg-surface rounded-xl p-5 border border-outline-variant shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Active Requests</span>
+<span class="material-symbols-outlined text-primary" data-icon="pending_actions">pending_actions</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface">142</div>
+<div class="text-label-md font-label-md text-secondary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> 12% vs last week
+                </div>
+</div>
+<div class="bg-surface rounded-xl p-5 border border-outline-variant shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-tertiary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-lg font-label-lg text-on-surface-variant">High-Value Pending</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="diamond">diamond</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface">28</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-2">
+                    Orders over $1,500
+                </div>
+</div>
+<div class="bg-surface rounded-xl p-5 border border-outline-variant shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-error/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Flagged Disputes</span>
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface">5</div>
+<div class="text-label-md font-label-md text-error mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="priority_high">priority_high</span> Action Required
+                </div>
+</div>
+<div class="bg-surface rounded-xl p-5 border border-outline-variant shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-secondary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Completed (30d)</span>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface">89</div>
+<div class="text-label-md font-label-md text-secondary mt-2 flex items-center gap-1">
+                    $124,500 Total Volume
+                </div>
+</div>
+</div>
+<!-- Split View Data Area -->
+<div class="flex-1 px-8 pb-8 flex gap-6 overflow-hidden min-h-[500px]">
+<!-- Left Panel: Filter & Table (Flex Grow) -->
+<div class="flex-1 flex flex-col bg-surface rounded-xl border border-outline-variant shadow-[0_4px_12px_rgba(0,0,0,0.03)] overflow-hidden">
+<!-- Toolbar -->
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest shrink-0">
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-full border border-outline-variant text-label-md font-label-md flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span> Filter
+                        </button>
+<button class="px-4 py-2 rounded-full bg-error-container text-on-error-container text-label-md font-label-md border border-error/20 flex items-center gap-2">
+                            Flagged Disputes (5)
+                        </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-label-md font-label-md flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+                            High-Value
+                        </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-label-md font-label-md flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+                            Overdue
+                        </button>
+</div>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search orders..." type="text"/>
+</div>
+</div>
+<!-- Table Area (Scrollable) -->
+<div class="flex-1 overflow-auto no-scrollbar bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-lowest z-10 border-b border-outline-variant">
+<tr>
+<th class="py-4 px-6 text-label-lg font-label-lg text-on-surface-variant font-medium">Order ID</th>
+<th class="py-4 px-6 text-label-lg font-label-lg text-on-surface-variant font-medium">Buyer &amp; Artisan</th>
+<th class="py-4 px-6 text-label-lg font-label-lg text-on-surface-variant font-medium">Budget</th>
+<th class="py-4 px-6 text-label-lg font-label-lg text-on-surface-variant font-medium">Status</th>
+<th class="py-4 px-6 text-label-lg font-label-lg text-on-surface-variant font-medium">Last Update</th>
+<th class="py-4 px-6 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50 text-body-md font-body-md">
+<!-- Row 1: Active Focus -->
+<tr class="hover:bg-primary-container/10 transition-colors cursor-pointer bg-primary-container/5">
+<td class="py-4 px-6 font-medium text-primary">#ORD-9021</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="Buyer" class="w-full h-full object-cover" data-alt="A close up portrait of a young woman with natural makeup and subtle lighting, used as a user avatar placeholder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2exNZVPmxOm5a0TzoU6b5jln5orkf4NgS7H6lKx5dm8vDu3GuG3h2yvdqfRYr9-YKKHVcWXXzA1P5yvCZn0-D1ZHdd-kam_eyNmeGgMvbW2vCAGv1vXl0yxb6pUixYP6KEZ_HaPgN4n0Ci38xLO0KHCXtx5y1ffEUBE29Y71C6JVmxC8BFFx3m34hfGCURFdDRA8ZbzgN1NWKaNZ9w7aNaM1mdHuCUtIppLk7hz6sf8hnBsMytqlwnFm1rbIYxq6OQ8F5QTJ5u6k"/>
+</div>
+<div>
+<div class="text-on-surface font-medium">Elena R.</div>
+<div class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_right_alt">arrow_right_alt</span>
+                                                Studio Kashi
+                                            </div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface">$2,400.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md font-label-md bg-error-container text-on-error-container border border-error/20">
+                                        Dispute Flagged
+                                    </span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-body-sm">2 hours ago</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-4 px-6 font-medium text-on-surface-variant">#ORD-9018</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-label-md text-on-surface-variant border border-outline-variant">
+                                            JM
+                                        </div>
+<div>
+<div class="text-on-surface font-medium">James M.</div>
+<div class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_right_alt">arrow_right_alt</span>
+                                                Weavers Guild
+                                            </div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface">$850.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md font-label-md bg-tertiary-container/20 text-tertiary border border-tertiary/20">
+                                        In Production
+                                    </span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-body-sm">Yesterday</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-4 px-6 font-medium text-on-surface-variant">#ORD-8992</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-label-md text-on-surface-variant border border-outline-variant">
+                                            SL
+                                        </div>
+<div>
+<div class="text-on-surface font-medium">Sarah L.</div>
+<div class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_right_alt">arrow_right_alt</span>
+                                                Clay &amp; Fire
+                                            </div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface">TBD</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md font-label-md bg-secondary-container/30 text-on-secondary-container border border-secondary-container">
+                                        Quote Sent
+                                    </span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-body-sm">Oct 24, 2023</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Panel: Detail View (Fixed Width) -->
+<div class="w-[480px] flex flex-col bg-surface rounded-xl border border-outline-variant shadow-[0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden shrink-0">
+<!-- Detail Header -->
+<div class="p-6 border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Order #ORD-9021</h3>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md font-label-md bg-error-container text-on-error-container border border-error/20">
+                            Dispute Flagged
+                        </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">Bespoke Hand-knotted Rug (8x10)</p>
+<div class="flex gap-4 border-b border-outline-variant pb-px">
+<button class="pb-2 text-label-lg font-label-lg text-primary border-b-2 border-primary">History</button>
+<button class="pb-2 text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Milestones</button>
+<button class="pb-2 text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Admin Tools</button>
+</div>
+</div>
+<!-- Detail Content (Scrollable) -->
+<div class="flex-1 overflow-auto no-scrollbar p-6 bg-surface flex flex-col gap-8">
+<!-- Admin Alert Banner -->
+<div class="bg-error-container/30 border border-error/20 rounded-lg p-4 flex gap-3">
+<span class="material-symbols-outlined text-error mt-0.5" data-icon="report">report</span>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-error-container">Buyer flagged for delay</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Artisan missed the milestone delivery date by 5 days. Buyer is requesting a partial refund.</p>
+</div>
+</div>
+<!-- Conversation History -->
+<div class="flex flex-col gap-6">
+<h4 class="text-label-lg font-label-lg text-on-surface-variant uppercase tracking-wider">Communication Timeline</h4>
+<!-- Buyer Message -->
+<div class="flex gap-3">
+<img alt="Elena" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A close up portrait of a young woman with natural makeup and subtle lighting, used as a user avatar placeholder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3xVjQ2tcBj7FKROJNzMfxUW-3IArkATMrU_I6NCFMSNguBJqodjeHnOcx4SmgM96RxUKXQW1nLNv_oWuJ2ngmor03LF9ZuCJksrCFE6EjQTXFyJUPDINtAqoTU3-4JaxF-CPp0k-3f1d_t41lMpupWVYXvzDPh-vN4MPHMu-EvIAwD5MCmM3Z048AERg2nVv58EjcNduBr0Cp8eAQpQvqVMP9K-zt0FZy8pn2wfzv-PNob76OKBXE7NBCho-Mu2xDs6n1mQpytpo"/>
+<div class="flex-1 bg-surface-container-low rounded-xl rounded-tl-none p-4 border border-outline-variant/50">
+<div class="flex justify-between items-center mb-1">
+<span class="text-label-md font-label-md text-on-surface font-semibold">Elena R. (Buyer)</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Oct 26, 10:42 AM</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">Hello, the milestone for the dyeing process was due last week. Can I get an update? If this is delayed further I might need to cancel.</p>
+</div>
+</div>
+<!-- Artisan Message -->
+<div class="flex gap-3 flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-label-md font-label-md border border-outline-variant">SK</div>
+<div class="flex-1 bg-primary-container/10 rounded-xl rounded-tr-none p-4 border border-primary/10">
+<div class="flex justify-between items-center mb-1">
+<span class="text-label-md font-label-md text-on-surface font-semibold">Studio Kashi (Artisan)</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Oct 26, 2:15 PM</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">Apologies Elena. The monsoon rains have heavily impacted our natural indigo drying process. We need 4 more days to ensure the quality is perfect. I have attached a photo of the current state.</p>
+<div class="mt-3 w-32 h-24 bg-surface-variant rounded-md overflow-hidden border border-outline-variant">
+<img alt="Indigo Dyeing" class="w-full h-full object-cover opacity-80" data-alt="Close up shot of dark blue indigo dyed yarn hanging to dry in a rustic workshop setting. Rich textures and natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd5c8wrSUfYkTLYLLHf_iqqwzN8d2dbeC8Ei8sjacyzrvbSBDJiSfsj3F7KgBRTI4Ifwufpozdf8xqu9TfBuCUi3gVLZ00S-Uu2Zh5X_M2FPKeAD3tEpE0WaUsCSI_pBqzbnTuIcLF4WZGY8wUSQpBwvQ72SOJJsHRucOJltmxwBCNB9rI9KX7ZGd7G9Sb5p8pSARHNH8-hrLxbNsHhjli_6BWu2VjcLBP4recP3k1-CgEM4iJ9G_teQcAQ0HOQTq9IgJI3z87q5k"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin Action Footer -->
+<div class="p-6 border-t border-outline-variant bg-surface-container-lowest flex flex-col gap-3 shrink-0">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-lg text-label-lg font-label-lg hover:bg-surface-tint transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="gavel">gavel</span> Intervene in Dispute
+                    </button>
+<div class="flex gap-3">
+<button class="flex-1 py-2 px-4 border border-outline-variant rounded-lg text-label-lg font-label-lg text-on-surface hover:bg-surface-container-low transition-colors text-center">
+                            Adjust Fee
+                        </button>
+<button class="flex-1 py-2 px-4 bg-secondary text-on-secondary rounded-lg text-label-lg font-label-lg hover:bg-secondary/90 transition-colors text-center">
+                            Message Parties
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - Address | Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1c1b1b",
+                      "inverse-primary": "#ffb59f",
+                      "tertiary": "#844f00",
+                      "surface-tint": "#a04021",
+                      "surface-bright": "#fcf9f8",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline-variant": "#ddc0b8",
+                      "inverse-surface": "#313030",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#bc5434",
+                      "tertiary-fixed": "#ffddbb",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-tertiary-container": "#fffbfa",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "secondary-container": "#d3e9ca",
+                      "on-surface-variant": "#56423c",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "secondary-fixed": "#d3e9ca",
+                      "on-secondary-container": "#566a51",
+                      "surface-container-high": "#eae7e7",
+                      "surface-container": "#f0eded",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-low": "#f6f3f2",
+                      "on-primary-fixed-variant": "#81290c",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1c1b1b",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#b7cdaf",
+                      "surface-container-highest": "#e5e2e1",
+                      "secondary": "#50644b",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#ffdbd1",
+                      "background": "#fcf9f8",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-container": "#fffaf9",
+                      "outline": "#8a726b",
+                      "primary": "#9c3c1e",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#a4660d",
+                      "on-secondary-fixed": "#0f1f0c",
+                      "on-primary-fixed": "#3a0a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "headline-xl": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom radio button styles for an editorial look */
+        input[type="radio"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 1px solid #1c1b1b;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--radio-color, #9c3c1e);
+        }
+
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+        
+        input[type="radio"]:checked {
+            border-color: #9c3c1e;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- Transactional Minimal Header (Suppressed Main Nav) -->
+<header class="w-full bg-surface border-b border-outline-variant h-20 flex items-center justify-center sticky top-0 z-50">
+<a aria-label="Heritage Guild Home" class="text-headline-md font-headline-md text-primary" href="#">
+            Heritage Guild
+        </a>
+<div class="absolute right-margin-mobile md:right-margin-desktop flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-label-md font-label-md hidden md:block uppercase tracking-wider">Secure Checkout</span>
+</div>
+</header>
+<!-- Main Checkout Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-16">
+<!-- Left Column: Checkout Steps & Form -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-12">
+<!-- Progress Indicator -->
+<nav aria-label="Progress" class="w-full">
+<ol class="flex items-center" role="list">
+<li class="relative pr-4 sm:pr-8">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-px w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-label-md font-label-md text-primary whitespace-nowrap">Cart</span>
+</li>
+<li class="relative pr-4 sm:pr-8 flex-1">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-px w-full bg-outline-variant"></div>
+</div>
+<div class="relative flex h-8 w-8 items-center justify-center rounded-full bg-surface border-2 border-primary">
+<span class="text-label-md font-label-md text-primary">2</span>
+</div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-label-md font-label-md text-primary font-bold whitespace-nowrap">Address</span>
+</li>
+<li class="relative pr-4 sm:pr-8 flex-1">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-px w-full bg-outline-variant"></div>
+</div>
+<div class="relative flex h-8 w-8 items-center justify-center rounded-full bg-surface border border-outline-variant">
+<span class="text-label-md font-label-md text-outline">3</span>
+</div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-label-md font-label-md text-outline whitespace-nowrap">Review</span>
+</li>
+<li class="relative">
+<div class="relative flex h-8 w-8 items-center justify-center rounded-full bg-surface border border-outline-variant">
+<span class="text-label-md font-label-md text-outline">4</span>
+</div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-label-md font-label-md text-outline whitespace-nowrap">Confirmation</span>
+</li>
+</ol>
+</nav>
+<!-- Step Content: Address -->
+<section class="flex flex-col gap-8 pt-6">
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-background mb-2">Shipping Address</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">Select a delivery location for your handcrafted artifacts.</p>
+</div>
+<!-- Saved Addresses List -->
+<div class="flex flex-col gap-4">
+<!-- Address Card 1 (Selected) -->
+<label class="relative flex cursor-pointer rounded-lg border border-primary bg-surface-container-lowest p-6 focus:outline-none shadow-sm transition-all hover:border-primary-container">
+<input checked="" class="mt-1" name="address" type="radio" value="Home"/>
+<span class="ml-4 flex flex-col">
+<span class="flex items-center justify-between w-full">
+<span class="text-body-lg font-body-lg text-on-background font-medium">Eleanor Vance</span>
+<span class="bg-secondary-container text-on-secondary-container text-label-md font-label-md px-2 py-1 rounded-sm uppercase tracking-wider">Default</span>
+</span>
+<span class="text-body-md font-body-md text-on-surface-variant mt-2">
+                                    1428 Elm Street, Apt 3B<br/>
+                                    Brooklyn, NY 11201<br/>
+                                    United States
+                                </span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span> +1 (555) 123-4567
+                                </span>
+</span>
+<div class="absolute right-6 bottom-6 flex gap-3">
+<button class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider underline underline-offset-4 decoration-1" type="button">Edit</button>
+</div>
+</label>
+<!-- Address Card 2 -->
+<label class="relative flex cursor-pointer rounded-lg border border-outline-variant bg-surface-container-lowest p-6 focus:outline-none transition-all hover:border-outline">
+<input class="mt-1" name="address" type="radio" value="Work"/>
+<span class="ml-4 flex flex-col">
+<span class="flex items-center justify-between w-full">
+<span class="text-body-lg font-body-lg text-on-background font-medium">Eleanor Vance (Studio)</span>
+</span>
+<span class="text-body-md font-body-md text-on-surface-variant mt-2">
+                                    450 West 31st Street, Floor 12<br/>
+                                    New York, NY 10001<br/>
+                                    United States
+                                </span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span> +1 (555) 987-6543
+                                </span>
+</span>
+<div class="absolute right-6 bottom-6 flex gap-3">
+<button class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider underline underline-offset-4 decoration-1" type="button">Edit</button>
+</div>
+</label>
+</div>
+<!-- Add New Address Action -->
+<button class="w-full sm:w-auto self-start flex items-center justify-center gap-2 px-8 py-4 border border-on-background text-on-background hover:bg-surface-container transition-colors duration-300" type="button">
+<span class="material-symbols-outlined">add</span>
+<span class="text-label-lg font-label-lg uppercase tracking-wider">Add New Address</span>
+</button>
+</section>
+</div>
+<!-- Right Column: Order Summary Sidebar -->
+<div class="lg:col-span-5 xl:col-span-4 mt-12 lg:mt-0">
+<aside class="sticky top-28 bg-surface-container-lowest border border-outline-variant rounded-none p-6 md:p-8 flex flex-col gap-8 shadow-[0_4px_24px_rgba(156,60,30,0.04)]">
+<h2 class="text-headline-sm font-headline-sm text-on-background border-b border-outline-variant pb-4">Order Summary</h2>
+<!-- Items Preview -->
+<div class="flex flex-col gap-6 max-h-[409px] overflow-y-auto pr-2 custom-scrollbar">
+<!-- Item 1 -->
+<div class="flex gap-4 items-start">
+<div class="w-20 h-24 flex-shrink-0 bg-surface-container relative overflow-hidden">
+<img alt="A beautifully crafted, hand-thrown ceramic vase with a textured terracotta finish. The vase is photographed in a minimalist studio setting with soft, diffused, light-mode illumination. The warm, earthy tones of the pottery complement the neutral cream background, highlighting the artisanal quality." class="w-full h-full object-cover" data-alt="A beautifully crafted, hand-thrown ceramic vase with a textured terracotta finish. The vase is photographed in a minimalist studio setting with soft, diffused, light-mode illumination. The warm, earthy tones of the pottery complement the neutral cream background, highlighting the artisanal quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvb48fIWyObVmxxbj3AwWvkb0fQfO_uEs1_WJRwN52nQM473CwqOikBkK8ft8VroUbeU4z56GhHnHccvSt-obtR0LJ3oe7-L2kIHTfpXg4CqE_kiW7SJYstrWTxproBoNX_okrb_wI87ojMTus4-xLgNEuSG2OvZRu_H8vjxbz_RuBTOcDLzC-Z-498MwCs1uZ_jicR6me_cxSf52CpqMdif3v3fMiLT5SUM_nMKaJ5kRvvOw-r53hZwrOjOOL5dOXA8MJig-pqY"/>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="text-body-lg font-body-lg text-on-background leading-tight mb-1">Terracotta Amphora Vase</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mb-2">Artisan: R. Sharma</span>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-label-md font-label-md text-on-surface-variant">Qty: 1</span>
+<span class="text-body-md font-body-md text-on-background font-medium">$145.00</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 items-start">
+<div class="w-20 h-24 flex-shrink-0 bg-surface-container relative overflow-hidden">
+<img alt="A folded stack of hand-loomed raw silk fabric featuring subtle, organic dye patterns in muted olive and saffron. The textile rests on a clean wooden surface under bright, natural light, emphasizing a premium, modern heritage aesthetic. The texture of the weave is clearly visible, conveying high craftsmanship." class="w-full h-full object-cover" data-alt="A folded stack of hand-loomed raw silk fabric featuring subtle, organic dye patterns in muted olive and saffron. The textile rests on a clean wooden surface under bright, natural light, emphasizing a premium, modern heritage aesthetic. The texture of the weave is clearly visible, conveying high craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbww_Fz4EirgVkuVgUteK-TB8RbMZFgHGBn4CgYKqjdWFrRAMSOnPddtaE8Gs5Qv7Te57boL3M98WB_W1NQMFovF7uM1v9QWzYK_uAZ1P49g-vhzKYin5ZyIAycwQfatgZHcjd22oaDSEXReUhQFHU9b5Wo4HuIaUyc72CucORNbRuvDTgqVKmcSNpGSmTYUN_SmQszin9UNQezTZRoWYpe69qghucM24nYTE-p1DmkfLJbZf7yn71q5NjDOGlO7Xgo3p8wZhCEUo"/>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="text-body-lg font-body-lg text-on-background leading-tight mb-1">Raw Silk Throw</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mb-2">Artisan: Weaver's Collective</span>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-label-md font-label-md text-on-surface-variant">Qty: 2</span>
+<span class="text-body-md font-body-md text-on-background font-medium">$280.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Totals -->
+<div class="flex flex-col gap-3 pt-6 border-t border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Subtotal</span>
+<span class="text-body-md font-body-md text-on-background">$425.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Shipping</span>
+<span class="text-body-md font-body-md text-on-background">Calculated next step</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Estimated Tax</span>
+<span class="text-body-md font-body-md text-on-background">$36.12</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-4 border-t border-outline-variant">
+<span class="text-body-lg font-body-lg text-on-background">Total</span>
+<div class="text-right">
+<span class="block text-headline-sm font-headline-sm text-primary mb-1">$461.12</span>
+<span class="text-label-md font-label-md text-on-surface-variant">USD</span>
+</div>
+</div>
+<!-- Primary CTA -->
+<button class="w-full bg-primary text-on-primary py-4 px-6 flex items-center justify-center gap-2 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] hover:bg-surface-tint transition-colors duration-300 mt-2" type="button">
+<span class="text-label-lg font-label-lg uppercase tracking-wider">Continue to Review</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<div class="flex items-start gap-2 mt-2">
+<span class="material-symbols-outlined text-outline text-[18px]">verified_user</span>
+<p class="text-label-md font-label-md text-on-surface-variant leading-relaxed">
+                            Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.
+                        </p>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low border-t border-outline-variant py-12 px-margin-mobile md:px-margin-desktop mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+                © 2024 Heritage Guild. Honoring Indian Craftsmanship.
+            </span>
+<div class="flex gap-6">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<style>
+        /* Custom scrollbar for order summary items */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--tw-colors-outline-variant);
+            border-radius: 4px;
+        }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+            background: var(--tw-colors-outline);
+        }
+    </style>
+</body></html>

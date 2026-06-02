@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#0f1f0c",
+                      "tertiary-container": "#a4660d",
+                      "outline-variant": "#ddc0b8",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#844f00",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#a04021",
+                      "primary-fixed-dim": "#ffb59f",
+                      "on-primary-fixed": "#3a0a00",
+                      "surface-container-high": "#eae7e7",
+                      "on-surface-variant": "#56423c",
+                      "secondary-container": "#d3e9ca",
+                      "on-secondary-fixed-variant": "#394c35",
+                      "on-primary-container": "#fffaf9",
+                      "on-error": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-dim": "#dcd9d9",
+                      "on-tertiary-container": "#fffbfa",
+                      "on-background": "#1c1b1b",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffddbb",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-primary-fixed-variant": "#81290c",
+                      "surface-variant": "#e5e2e1",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#d3e9ca",
+                      "on-surface": "#1c1b1b",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#ffb59f",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#ffdbd1",
+                      "outline": "#8a726b",
+                      "on-secondary-container": "#566a51",
+                      "surface-bright": "#fcf9f8",
+                      "secondary": "#50644b",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "inverse-surface": "#313030",
+                      "surface-container": "#f0eded",
+                      "primary-container": "#bc5434",
+                      "tertiary-fixed-dim": "#ffb868",
+                      "on-tertiary-fixed": "#2b1700",
+                      "primary": "#9c3c1e",
+                      "background": "#fcf9f8",
+                      "secondary-fixed-dim": "#b7cdaf"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "unit": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Playfair Display"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Playfair Display"],
+                      "label-md": ["Plus Jakarta Sans"],
+                      "headline-md": ["Playfair Display"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "label-lg": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "headline-sm": ["Playfair Display"],
+                      "headline-xl-mobile": ["Playfair Display"],
+                      "headline-xl": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                      "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                      "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                      "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                      "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                      "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Ambient Glow utility */
+        .ambient-glow {
+            box-shadow: 0 8px 32px -8px rgba(156, 60, 30, 0.05); /* Tinted with Primary */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+<!-- Admin Sidebar (Custom designed for internal tooling, suppressing public JSON nav) -->
+<aside class="w-72 bg-surface-container-lowest border-r border-outline-variant flex flex-col hidden md:flex z-10 relative">
+<div class="p-8 border-b border-outline-variant/50">
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Heritage Guild</h1>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1 uppercase tracking-widest">Operations</p>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+<a class="flex items-center gap-4 bg-primary-container/20 text-primary px-4 py-3 rounded-lg font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined fill">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container hover:text-on-surface px-4 py-3 rounded-lg font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+                Orders
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container hover:text-on-surface px-4 py-3 rounded-lg font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+                Active Sellers
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container hover:text-on-surface px-4 py-3 rounded-lg font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container hover:text-on-surface px-4 py-3 rounded-lg font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined">forum</span>
+                Custom Requests
+            </a>
+</nav>
+<div class="p-4 border-t border-outline-variant/50">
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-4 py-3 font-label-lg text-label-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                System Settings
+            </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Header -->
+<header class="h-20 border-b border-outline-variant/50 bg-surface/80 backdrop-blur-md flex items-center justify-between px-8 shrink-0 z-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Dashboard</h2>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<div class="h-8 w-px bg-outline-variant/50"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden bg-surface-container">
+<img alt="Profile photo of an administrative user" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A professional headshot of a female administrative user in a brightly lit, modern office setting. The lighting is soft and neutral, aligning with a clean, light-mode UI aesthetic. She is wearing subtle, earthy-toned clothing that complements a sophisticated, heritage-inspired color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdJAssyLpjGRRJxQFiSLsK1riBOjuJKs4kLW2hy7kiv3B7J6p0QvUgwv28VavqaJqkdDnsJMd7XPGfzOn40D6LkMFtw0gwEgreCcz7orlaIx7tPFnPwpJ6w2UcobKGCJbmOQRzHYvHTRJN5Dg5LDixntxL_2GxqNIUS2KJGp2kKsRM-AVkecKG1cBQdbfyTJ-PaxO9cMySug-gHnzlquaGUdsvPgc0BM_7ZMlFPkvibb5HLWQgfMubTMoKbJQ04PqJmdrO13VBmDo"/>
+</div>
+<div class="hidden md:block">
+<p class="font-label-lg text-label-lg text-on-surface">Admin User</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Superuser</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 bg-surface pattern-dots">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- GMV Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Gross Merchandise Value</h3>
+<span class="material-symbols-outlined text-primary/70">payments</span>
+</div>
+<div class="relative z-10">
+<p class="font-headline-lg text-headline-lg text-on-surface">₹42.8M</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="flex items-center text-secondary font-label-md text-label-md bg-secondary-container/30 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    12.5%
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Total Orders -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/5 rounded-full group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Total Orders</h3>
+<span class="material-symbols-outlined text-secondary/70">local_shipping</span>
+</div>
+<div class="relative z-10">
+<p class="font-headline-lg text-headline-lg text-on-surface">1,284</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="flex items-center text-secondary font-label-md text-label-md bg-secondary-container/30 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    8.2%
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Active Sellers -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-tertiary/5 rounded-full group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Active Sellers</h3>
+<span class="material-symbols-outlined text-tertiary/70">storefront</span>
+</div>
+<div class="relative z-10">
+<p class="font-headline-lg text-headline-lg text-on-surface">342</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="flex items-center text-secondary font-label-md text-label-md bg-secondary-container/30 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">add</span>
+                                    14
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">new this week</span>
+</div>
+</div>
+</div>
+<!-- New Products -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-surface-variant rounded-full group-hover:scale-150 transition-transform duration-700 ease-out"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Pending Approvals</h3>
+<span class="material-symbols-outlined text-on-surface-variant/70">pending_actions</span>
+</div>
+<div class="relative z-10">
+<p class="font-headline-lg text-headline-lg text-on-surface">56</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="flex items-center text-error font-label-md text-label-md bg-error-container/30 px-2 py-0.5 rounded-full">
+                                    Requires Action
+                                </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Charts & Complex Data Row -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Revenue Chart (Stylized CSS representation) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Revenue Over Time</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Monthly performance for the current fiscal year</p>
+</div>
+<button class="font-label-md text-label-md text-on-surface border border-outline-variant px-3 py-1.5 rounded flex items-center gap-2 hover:bg-surface-container transition-colors">
+                                This Year <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- CSS Bar Chart -->
+<div class="flex-1 flex items-end justify-between gap-2 pt-4 border-b border-outline-variant/30 pb-2 h-48">
+<div class="w-full bg-primary/10 rounded-t-sm h-[30%] relative group cursor-pointer hover:bg-primary/20 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹1.2M</div></div>
+<div class="w-full bg-primary/10 rounded-t-sm h-[45%] relative group cursor-pointer hover:bg-primary/20 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹1.8M</div></div>
+<div class="w-full bg-primary/10 rounded-t-sm h-[40%] relative group cursor-pointer hover:bg-primary/20 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹1.6M</div></div>
+<div class="w-full bg-primary/10 rounded-t-sm h-[60%] relative group cursor-pointer hover:bg-primary/20 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹2.4M</div></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-[85%] relative group cursor-pointer hover:bg-primary/60 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹3.4M</div></div>
+<div class="w-full bg-primary/10 rounded-t-sm h-[70%] relative group cursor-pointer hover:bg-primary/20 transition-colors"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">₹2.8M</div></div>
+<div class="w-full bg-primary rounded-t-sm h-[100%] relative group cursor-pointer shadow-[0_0_15px_rgba(156,60,30,0.3)]"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-100 pointer-events-none">₹4.2M</div></div>
+</div>
+<div class="flex justify-between text-label-md text-on-surface-variant mt-2 px-1">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+</div>
+</div>
+<!-- Seller Growth / Distribution -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow flex flex-col">
+<div class="mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Artisan Regions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Distribution by state</p>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-4">
+<div class="space-y-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Rajasthan</span>
+<span>42%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Gujarat</span>
+<span>28%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary/70 h-full rounded-full" style="width: 28%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>West Bengal</span>
+<span>15%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary/40 h-full rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Others</span>
+<span>15%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-outline-variant h-full rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity Feed -->
+<section class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl ambient-glow">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Operational Activity</h3>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">View All Logs</a>
+</div>
+<div class="space-y-4">
+<!-- Item 1: Application -->
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-surface-container/50 transition-colors border border-transparent hover:border-outline-variant/50">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">New Seller Application: "Weavers of Kutch"</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Application submitted for category: Handloom Textiles.</p>
+<p class="font-label-md text-label-md text-outline mt-2">10 mins ago</p>
+</div>
+<div class="shrink-0 flex gap-2">
+<button class="px-4 py-2 border border-outline-variant rounded text-on-surface font-label-md hover:bg-surface-container transition-colors">Review</button>
+</div>
+</div>
+<!-- Item 2: Flagged -->
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-surface-container/50 transition-colors border border-transparent hover:border-outline-variant/50">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">Product Flagged: "Vintage Brass Urli"</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Automated system flagged image quality below threshold. Storefront: Jaipur Antiques.</p>
+<p class="font-label-md text-label-md text-outline mt-2">1 hour ago</p>
+</div>
+<div class="shrink-0 flex gap-2">
+<button class="px-4 py-2 border border-outline-variant rounded text-on-surface font-label-md hover:bg-surface-container transition-colors">Inspect</button>
+</div>
+</div>
+<!-- Item 3: Custom Request -->
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-surface-container/50 transition-colors border border-transparent hover:border-outline-variant/50">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">draw</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg text-on-surface">High-Value Custom Request</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Customer initiated a ₹1.5L custom order inquiry with artisan "Studio Tara".</p>
+<p class="font-label-md text-label-md text-outline mt-2">3 hours ago</p>
+</div>
+<div class="shrink-0 flex gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded font-label-md hover:bg-surface-tint transition-colors">Monitor Thread</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Minimal Admin Footer -->
+<footer class="mt-12 py-6 border-t border-outline-variant/30 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Heritage Guild Operations Platform. Secure Access Only.</p>
+</footer>
+</div>
+</main>
+</body></html>

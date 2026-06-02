@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Buyer Custom Order Detail | Heritage Guild</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1c1b1b",
+                    "inverse-primary": "#ffb59f",
+                    "tertiary": "#844f00",
+                    "surface-tint": "#a04021",
+                    "surface-bright": "#fcf9f8",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f3f0ef",
+                    "outline-variant": "#ddc0b8",
+                    "inverse-surface": "#313030",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#bc5434",
+                    "tertiary-fixed": "#ffddbb",
+                    "tertiary-fixed-dim": "#ffb868",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-tertiary-container": "#fffbfa",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "secondary-container": "#d3e9ca",
+                    "on-surface-variant": "#56423c",
+                    "on-secondary-fixed-variant": "#394c35",
+                    "secondary-fixed": "#d3e9ca",
+                    "on-secondary-container": "#566a51",
+                    "surface-container-high": "#eae7e7",
+                    "surface-container": "#f0eded",
+                    "surface-variant": "#e5e2e1",
+                    "surface-container-low": "#f6f3f2",
+                    "on-primary-fixed-variant": "#81290c",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b7cdaf",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary": "#50644b",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#ffdbd1",
+                    "background": "#fcf9f8",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary-container": "#fffaf9",
+                    "outline": "#8a726b",
+                    "primary": "#9c3c1e",
+                    "primary-fixed-dim": "#ffb59f",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#a4660d",
+                    "on-secondary-fixed": "#0f1f0c",
+                    "on-primary-fixed": "#3a0a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-xl-mobile": [
+                            "Playfair Display"
+                    ],
+                    "headline-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "body-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-sm": [
+                            "Playfair Display"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "headline-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-xl": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-lg": [
+                            "14px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "22px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-xl": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Navigation Links (Left) -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 text-label-lg font-label-lg" href="#">Shop</a>
+<a class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 text-label-lg font-label-lg" href="#">Categories</a>
+<a class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 text-label-lg font-label-lg" href="#">Storefronts</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 text-label-lg font-label-lg opacity-80 transition-all duration-200" href="#">Custom Orders</a>
+<a class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 text-label-lg font-label-lg" href="#">Our Story</a>
+</nav>
+<!-- Brand Logo (Center) -->
+<div class="text-headline-lg font-headline-lg text-primary dark:text-primary-fixed-dim text-center flex-1 md:flex-none">
+                Heritage Guild
+            </div>
+<!-- Trailing Icon Actions (Right) -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-on-surface dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
+<!-- Page Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline-variant pb-8">
+<div class="space-y-4">
+<nav class="flex text-on-surface-variant text-label-md font-label-md space-x-2">
+<a class="hover:text-primary transition-colors" href="#">Custom Orders</a>
+<span>/</span>
+<span class="text-on-surface">Order #CO-8294</span>
+</nav>
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-background">
+                    Hand-Carved Rosewood Dining Table
+                </h1>
+</div>
+<div class="flex items-center gap-3 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full w-fit">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+<span class="text-label-lg font-label-lg">Awaiting Buyer Action</span>
+</div>
+</div>
+<!-- Asymmetric Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter relative items-start">
+<!-- Left Column: Details & Narrative (Spans 8 cols) -->
+<div class="lg:col-span-8 space-y-16">
+<!-- Editorial Introduction -->
+<section class="prose prose-stone max-w-none">
+<h2 class="text-headline-sm font-headline-sm text-primary mb-6">Project Vision</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+                        A bespoke dining piece designed to seat ten, celebrating the natural imperfections and deep, rich tones of sustainably sourced Indian Rosewood. The request involves subtle, geometric hand-carving along the apron, merging contemporary minimalist lines with traditional Jaipur woodworking techniques. 
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mt-4">
+                        Dimensions specified are 120" x 42" x 30", with a matte, hand-rubbed oil finish to maintain the tactile quality of the timber over generations.
+                    </p>
+</section>
+<!-- Milestone Tracker (Custom 'Tactile' UI) -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-8 md:p-12">
+<h2 class="text-headline-sm font-headline-sm text-on-background mb-8">Production Journey</h2>
+<div class="relative border-l border-outline-variant ml-4 space-y-12">
+<!-- Step 1: Completed -->
+<div class="relative pl-10">
+<div class="absolute -left-[13px] top-1 bg-surface border border-outline-variant rounded-full w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<h3 class="text-label-lg font-label-lg text-on-background">Request Submitted</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Oct 12, 2023 • Details and initial references provided.</p>
+</div>
+<!-- Step 2: Completed -->
+<div class="relative pl-10">
+<div class="absolute -left-[13px] top-1 bg-surface border border-outline-variant rounded-full w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<h3 class="text-label-lg font-label-lg text-on-background">Artisan Consultation</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Oct 15, 2023 • Feasibility confirmed by Studio Aranya.</p>
+</div>
+<!-- Step 3: Active / Action Required -->
+<div class="relative pl-10">
+<!-- Pulse effect for active state -->
+<div class="absolute -left-[13px] top-1 bg-primary text-on-primary rounded-full w-6 h-6 flex items-center justify-center shadow-[0_0_0_4px_rgba(156,60,30,0.2)]">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<h3 class="text-label-lg font-label-lg text-primary">Quote Review</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Current Phase • Awaiting your approval to commence work.</p>
+</div>
+<!-- Step 4: Pending -->
+<div class="relative pl-10 opacity-50">
+<div class="absolute -left-[13px] top-1 bg-surface border border-outline-variant rounded-full w-6 h-6"></div>
+<h3 class="text-label-lg font-label-lg text-on-surface">Material Procurement &amp; Preparation</h3>
+</div>
+<!-- Step 5: Pending -->
+<div class="relative pl-10 opacity-50">
+<div class="absolute -left-[13px] top-1 bg-surface border border-outline-variant rounded-full w-6 h-6"></div>
+<h3 class="text-label-lg font-label-lg text-on-surface">Hand-Carving &amp; Assembly</h3>
+</div>
+</div>
+</section>
+<!-- Reference Materials (Bento Grid) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-headline-sm font-headline-sm text-on-background">Reference Archive</h2>
+<span class="text-label-md font-label-md text-on-surface-variant bg-surface-container py-1 px-3 rounded-full">3 Items</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Image Reference -->
+<div class="group relative aspect-square bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant">
+<img alt="Reference" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up, high-quality photograph of dark rosewood timber samples resting on a clean, light cream surface. The lighting is soft, natural, and diffused, emphasizing the rich, warm grain patterns of the wood. The composition is minimal and editorial, focusing on tactile quality and premium material selection within a modern heritage aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9SqLEIvxr51LiwepxpqYlOPzuEmnoUUP78gAaxVppBsiQzIPppbgp8ulVoVgR2-41B6OJaicUBgnOiLVyLHTJYenpAGyac5didBPBWu7y-oFmuSQrXQIBnElMfsV8_f0gmNhkmtrV3ZLQ0qmh7dqDYB5jUyDN9H3GXAYjmYF7HRD7LB5JMsVvxxzeTKEcXstI1evQszKV335Gj7P6xC1UvnKekBNWtaN4u5wjg8cKDoDI9jpx_O64oFvhJC3_1rl4EfbfscZHwAE"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[32px]">zoom_in</span>
+</div>
+</div>
+<!-- Document Reference -->
+<div class="group relative aspect-square bg-surface-container rounded-lg border border-outline-variant flex flex-col items-center justify-center p-6 text-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-tertiary text-[48px] mb-4">description</span>
+<span class="text-label-md font-label-md text-on-surface-variant line-clamp-2">Dimensional Sketches v2.pdf</span>
+</div>
+<!-- Add New -->
+<button class="aspect-square bg-transparent border-2 border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] mb-2">add</span>
+<span class="text-label-md font-label-md">Add Material</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Quote Panel (Spans 4 cols) -->
+<div class="lg:col-span-4 relative">
+<aside class="sticky top-28 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+<!-- Artisan Context -->
+<div class="flex items-center gap-4 border-b border-outline-variant pb-6 mb-6">
+<img alt="Artisan Avatar" class="w-12 h-12 rounded-full object-cover border border-outline" data-alt="A natural, authentic portrait of an Indian artisan in a well-lit, contemporary workshop. The artisan is looking softly towards the camera, surrounded by beautifully crafted wooden objects. The lighting is bright and airy, with an earthy, warm color palette emphasizing trust and craftsmanship. The aesthetic is clean, professional, and editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWkcqQjB2M3XeeL4mlymlu_viv1_v0EWwjU99DL9wmkHSpSjDRqFdAwTgLR-tK-vTsr2RyDiROSlKpI7anSy4ShSLBxNN5RhMtLuNutS2uEDQchBWMHMxDHbnH5Xyts4KGhO60L0TxJU9fq3uoXz72pQX9C7rAiHCEuwzWMiVvMlQWhfbJKaWxuRfy4G2-U0AVTSA2eh2z90B2u2buTjgzmLpwGKl4IYZjAH13QGFZ4cvyTtzfHFZH1ci1reCtZtfuRy2neIyA21A"/>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Crafted by</p>
+<p class="text-label-lg font-label-lg text-on-background">Studio Aranya</p>
+</div>
+</div>
+<!-- Quote Breakdown -->
+<h3 class="text-headline-sm font-headline-sm text-on-background mb-6">Investment Proposal</h3>
+<ul class="space-y-4 mb-8 text-body-md font-body-md text-on-surface-variant">
+<li class="flex justify-between items-center">
+<span>Material Procurement (Rosewood)</span>
+<span>$1,450.00</span>
+</li>
+<li class="flex justify-between items-center">
+<span>Artisanal Labor &amp; Hand-Carving</span>
+<span>$2,800.00</span>
+</li>
+<li class="flex justify-between items-center">
+<span>Finishing &amp; Curing</span>
+<span>$350.00</span>
+</li>
+<li class="flex justify-between items-center text-on-surface opacity-75">
+<span>Estimated Freight (To NY)</span>
+<span>$650.00</span>
+</li>
+</ul>
+<div class="border-t border-outline-variant pt-6 mb-8 flex justify-between items-end">
+<span class="text-label-lg font-label-lg text-on-surface">Total Estimation</span>
+<span class="text-headline-md font-headline-md text-primary">$5,250.00</span>
+</div>
+<!-- Deposit Logic -->
+<div class="bg-surface-container p-4 rounded-lg mb-8">
+<div class="flex justify-between items-center mb-1">
+<span class="text-label-md font-label-md text-on-surface-variant">Required Deposit (50%)</span>
+<span class="text-label-lg font-label-lg text-on-background font-bold">$2,625.00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant text-xs mt-2">Balance due upon final inspection before shipping.</p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<!-- Primary Button -->
+<button class="w-full bg-primary text-on-primary py-4 px-6 rounded text-label-lg font-label-lg shadow-sm hover:bg-surface-tint transition-colors flex items-center justify-center gap-2">
+                            Accept &amp; Pay Deposit
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Outline Button -->
+<button class="w-full bg-transparent border border-outline-variant text-on-surface-variant py-4 px-6 rounded text-label-lg font-label-lg hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
+                            Request Revision
+                            <span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+</div>
+<p class="text-center text-label-md font-label-md text-on-surface-variant mt-6 opacity-75">
+                        Quote valid until Nov 15, 2023
+                    </p>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline full-width bottom mt-24">
+<div class="w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="flex flex-col space-y-4">
+<span class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim">Heritage Guild</span>
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant">
+                    © 2024 Heritage Guild. Honoring Indian Craftsmanship.
+                </p>
+</div>
+<div class="flex flex-col space-y-3 col-span-1 md:col-span-3 md:items-end justify-center">
+<div class="flex flex-wrap gap-6 md:justify-end">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Shipping &amp; Returns</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Artisan Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all text-body-md font-body-md" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

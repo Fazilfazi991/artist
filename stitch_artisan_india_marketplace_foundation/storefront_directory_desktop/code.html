@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Discover the Makers - Heritage Guild</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffbfa",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "tertiary-fixed": "#ffddbb",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-primary-fixed-variant": "#81290c",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0eded",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-surface-variant": "#56423c",
+                        "primary-container": "#bc5434",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary": "#9c3c1e",
+                        "secondary": "#50644b",
+                        "tertiary-container": "#a4660d",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#ddc0b8",
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#d3e9ca",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-container": "#566a51",
+                        "tertiary": "#844f00",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-primary-container": "#fffaf9",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "secondary-fixed": "#d3e9ca",
+                        "on-surface": "#1c1b1b",
+                        "surface-tint": "#a04021",
+                        "outline": "#8a726b",
+                        "primary-fixed": "#ffdbd1",
+                        "inverse-primary": "#ffb59f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- TopAppBar (Web) -->
+<header class="hidden md:flex bg-surface text-primary border-b border-outline-variant w-full sticky top-0 z-40 transition-all duration-300">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a class="text-headline-lg font-headline-lg text-primary flex items-center gap-2" href="#">
+                Heritage Guild
+            </a>
+<!-- Navigation -->
+<nav class="flex items-center gap-8">
+<a class="text-on-surface hover:text-primary transition-colors duration-300 text-label-lg font-label-lg" href="#">Shop</a>
+<a class="text-on-surface hover:text-primary transition-colors duration-300 text-label-lg font-label-lg" href="#">Categories</a>
+<a class="text-primary border-b-2 border-primary pb-1 text-label-lg font-label-lg opacity-80 transition-all duration-200" href="#">Storefronts</a>
+<a class="text-on-surface hover:text-primary transition-colors duration-300 text-label-lg font-label-lg" href="#">Custom Orders</a>
+<a class="text-on-surface hover:text-primary transition-colors duration-300 text-label-lg font-label-lg" href="#">Our Story</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4 text-primary">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Mobile) -->
+<div class="md:hidden">
+<!-- Minimal Top Bar for Mobile -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant sticky top-0 z-40">
+<a class="text-headline-md font-headline-md text-primary" href="#">Heritage Guild</a>
+<button class="p-2 text-primary" id="mobileMenuBtn"><span class="material-symbols-outlined">menu</span></button>
+</header>
+<!-- Mobile Drawer -->
+<nav class="fixed inset-y-0 left-0 w-80 z-50 flex flex-col p-6 bg-surface border-r border-outline-variant shadow-sm transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobileNav">
+<div class="mb-8">
+<div class="flex justify-between items-start mb-4">
+<h2 class="text-headline-md font-headline-md text-primary">Heritage Guild</h2>
+<button class="p-2 text-on-surface-variant" id="closeMobileMenuBtn"><span class="material-symbols-outlined">close</span></button>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Modern Indian Craftsmanship</p>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span> Shop
+                </a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span> Categories
+                </a>
+<a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg p-3 scale-95 transition-transform duration-150 text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="person_pin_circle">person_pin_circle</span> Storefronts
+                </a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span> Custom Orders
+                </a>
+<a class="flex items-center gap-4 text-on-surface-variant p-3 rounded-lg hover:bg-surface-container-high text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span> Our Story
+                </a>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 bg-secondary text-on-secondary px-6 py-3 rounded-full hover:bg-opacity-90 transition-all font-label-lg text-label-lg">
+<span class="material-symbols-outlined">campaign</span> Become a Seller
+                </button>
+</div>
+</nav>
+<!-- Overlay -->
+<div class="fixed inset-0 bg-on-surface/20 z-40 hidden transition-opacity" id="mobileOverlay"></div>
+</div>
+<!-- Main Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 flex flex-col gap-16">
+<!-- Editorial Header -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-b border-outline-variant pb-12">
+<div class="max-w-2xl">
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-surface mb-4">Discover the Makers</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-lg">Meet the independent artisans and small studios preserving India's rich heritage through meticulous craftsmanship and contemporary vision.</p>
+</div>
+<!-- Controls / Filters -->
+<div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container border border-outline-variant rounded-full text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Search artisans..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 sm:pb-0 hide-scrollbar">
+<select class="bg-surface border border-outline-variant text-on-surface rounded-full px-4 py-3 text-body-sm font-body-sm outline-none appearance-none cursor-pointer focus:border-primary pr-10">
+<option value="">Craft: All</option>
+<option value="textile">Textile &amp; Weave</option>
+<option value="wood">Woodwork</option>
+<option value="metal">Metal &amp; Brass</option>
+<option value="ceramics">Ceramics</option>
+</select>
+<select class="bg-surface border border-outline-variant text-on-surface rounded-full px-4 py-3 text-body-sm font-body-sm outline-none appearance-none cursor-pointer focus:border-primary pr-10">
+<option value="">Location: All</option>
+<option value="gujarat">Gujarat</option>
+<option value="rajasthan">Rajasthan</option>
+<option value="kerala">Kerala</option>
+<option value="west_bengal">West Bengal</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Storefront Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<article class="group bg-surface border border-[#E5E2DA] rounded-xl overflow-hidden hover:shadow-[0_8px_30px_rgb(156,60,30,0.06)] transition-all duration-300 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img alt="A sunlit, dusty artisan workshop in India filled with wooden handlooms. Colorful threads are strung across the frames. The mood is warm and industrious, capturing the authentic texture of a traditional craft space. Earthy tones of terracotta and wood dominate the high-key, editorial lighting." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A sunlit, dusty artisan workshop in India filled with wooden handlooms. Colorful threads are strung across the frames. The mood is warm and industrious, capturing the authentic texture of a traditional craft space. Earthy tones of terracotta and wood dominate the high-key, editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB87uMjlIPCBXRrWGOi59bvWPK8uag0Jm3XXyb0fAkyDs5nWBwUUYxk65raU3p2F4Gg7VYKh56v559SkFk4h3a0ZKiC9-LOPptjDh1t7mGMhRaawW6xKhJCGNMBfrcISJL2Gh0-Zvpuau3h5GJaDEQJ2BAp63aeEDVDUpYZw7GEbrcB_FFRxRtUqSsZNqhwVD_tKAvqLaxbAzdJpgrLUbtp6qIz11Bg72dxWvYD1P2AZG6poXuPqo-4cgunrlmaz6bPRpjV8fPtKH4"/>
+<div class="absolute top-4 left-4 bg-secondary/10 backdrop-blur-sm text-on-surface px-3 py-1 rounded-full text-label-md font-label-md border border-outline-variant/30">
+                        Textiles
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow relative">
+<!-- Avatar pushing up into image -->
+<div class="absolute -top-10 right-6 h-16 w-16 rounded-full border-4 border-surface overflow-hidden bg-surface-container shadow-sm">
+<img alt="A close-up portrait of an older Indian artisan woman with a warm, weathered smile, wearing traditional textiles. Shot in soft, natural window light against a neutral background. The style is professional editorial portraiture, highlighting human connection and heritage." class="w-full h-full object-cover" data-alt="A close-up portrait of an older Indian artisan woman with a warm, weathered smile, wearing traditional textiles. Shot in soft, natural window light against a neutral background. The style is professional editorial portraiture, highlighting human connection and heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EZWFfftWI6FgL7kExHslbW94al4MYsV2LWuCs2B2S8i7sR6dFZ5nTENDtjzTfnO5oZqjRQDjL2JdxzTeqMmP7imUI5W0nCLT_SlbXbS5Rqdm6zQBRyWoP3HhpgOL7mbqPXTIxzxrypDWw6U8aGwiGWSZ33P_GzhKBxPriCfR7CDyW1VWhCOe0zK0YEo0kzBPOE_J_82zfmWQAyRB5lHNTbJHrwRJ8sB1WcJH64g0hqx0sncKmuXcJ6JMbq8RpJrDHJtra_HCsJY"/>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Kutch Weavers Collective</h3>
+<span class="material-symbols-outlined text-primary text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-label-md font-label-md mb-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Bhuj, Gujarat</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-tertiary-container text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span> 4.9 (120)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 line-clamp-2">
+                        A family of master weavers preserving the intricate Bhujodi weaving technique, using locally sourced organic cotton and natural indigo dyes.
+                    </p>
+<div class="mt-auto">
+<a class="inline-flex items-center justify-center w-full bg-surface border border-[#1A1A1A] text-on-surface px-6 py-3 rounded-lg hover:bg-[#1A1A1A] hover:text-surface transition-colors font-label-lg text-label-lg" href="#">
+                            Visit Storefront
+                        </a>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group bg-surface border border-[#E5E2DA] rounded-xl overflow-hidden hover:shadow-[0_8px_30px_rgb(156,60,30,0.06)] transition-all duration-300 flex flex-col">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img alt="A serene pottery studio with half-finished ceramic vessels resting on wooden shelves. Soft, diffused daylight filters through a large window, casting gentle shadows. The palette is dominated by raw clay tones, creams, and soft greys. The composition is minimal and editorial, highlighting the tactile nature of ceramics." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A serene pottery studio with half-finished ceramic vessels resting on wooden shelves. Soft, diffused daylight filters through a large window, casting gentle shadows. The palette is dominated by raw clay tones, creams, and soft greys. The composition is minimal and editorial, highlighting the tactile nature of ceramics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXFLhWF5uHuNDBws46RWlwXxgwaidGX24tCayaCnUDnOjaNd8aiiaz8iCmzeGZNSqGGLjZQX3eC8LHHp_E39tabapckHktbCgUY8Bkfocd7_sPvsxq_wqANo64UKR6qdYMOVBNqM4ufekvPkaAmy_NEb1F5222HG7rVLyaMnaYNcve2EovjmXd_VtbG0SLTSvAWY3z3CU6NuSp_6e3LQpyMRvk98SzooYfQj7bwOWxBw56eb9UmlKIOUb3MzfYtAQUevVS6N00DgE"/>
+<div class="absolute top-4 left-4 bg-tertiary-container/10 backdrop-blur-sm text-on-surface px-3 py-1 rounded-full text-label-md font-label-md border border-outline-variant/30">
+                        Ceramics
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow relative">
+<div class="absolute -top-10 right-6 h-16 w-16 rounded-full border-4 border-surface overflow-hidden bg-surface-container shadow-sm">
+<img alt="A portrait of a male ceramic artist with clay-dusted hands resting on his apron. He looks thoughtfully away from the camera. The lighting is moody yet soft, emphasizing the textures of his clothing and skin. The style is modern editorial, evoking dedication and craftsmanship." class="w-full h-full object-cover" data-alt="A portrait of a male ceramic artist with clay-dusted hands resting on his apron. He looks thoughtfully away from the camera. The lighting is moody yet soft, emphasizing the textures of his clothing and skin. The style is modern editorial, evoking dedication and craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWqEkWu5d6D5jGXJmzuhxEiSpf6cZcJSQUdU89WZbfTBb-GyTHzGb5geETnXGYfTPAyNMtIXXRBPUrRNHsn3Np89d7VUsfqz9vmJN2V2VwIELscyf5JEDb24BSxSFap51HjyiyReZEsqa4puC52bjI_OxOC0Vyx6mpxEgZc2jEQZEJS_R_QJpzTYwx5clmThUOwK7Mt3zy7_wlWuH7l8qkBmoj8Vhs_sAgwPLBG6kRJ5Fqe1SlKx3zBXqaYv_sxsYmganc9BTCvew"/>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Mati Earthworks</h3>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-label-md font-label-md mb-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> Jaipur, Rajasthan</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-tertiary-container text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span> 4.8 (85)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6 line-clamp-2">
+                        Contemporary functional ceramics that blend traditional wheel-throwing techniques with modern minimalist glazes.
+                    </p>
+<div class="mt-auto">
+<a class="inline-flex items-center justify-center w-full bg-surface border border-[#1A1A1A] text-on-surface px-6 py-3 rounded-lg hover:bg-[#1A1A1A] hover:text-surface transition-colors font-label-lg text-label-lg" href="#">
+                            Visit Storefront
+                        </a>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low text-primary border-t border-outline-variant w-full mt-auto">
+<div class="w-full py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<span class="text-headline-md font-headline-md text-primary">Heritage Guild</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">© 2024 Heritage Guild. Honoring Indian Craftsmanship.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-end h-full">
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm font-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm font-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm font-body-sm" href="#">Shipping &amp; Returns</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm font-body-sm" href="#">Artisan Resources</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all text-body-sm font-body-sm" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<!-- Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            function toggleMobileMenu() {
+                const isOpen = !mobileNav.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    mobileNav.classList.add('-translate-x-full');
+                    mobileOverlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                } else {
+                    mobileNav.classList.remove('-translate-x-full');
+                    mobileOverlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileOverlay.addEventListener('click', toggleMobileMenu);
+        });
+    </script>
+</body></html>

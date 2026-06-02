@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details | Heritage Guild Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#3a0a00",
+                        "tertiary-fixed": "#ffddbb",
+                        "surface-tint": "#a04021",
+                        "on-error-container": "#93000a",
+                        "outline": "#8a726b",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fffbfa",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d3e9ca",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#ddc0b8",
+                        "secondary-container": "#d3e9ca",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary": "#50644b",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary-container": "#fffaf9",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-container": "#566a51",
+                        "on-secondary-fixed": "#0f1f0c",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#bc5434",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#56423c",
+                        "primary": "#9c3c1e",
+                        "inverse-surface": "#313030",
+                        "tertiary": "#844f00",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-background": "#1c1b1b",
+                        "tertiary-container": "#a4660d",
+                        "surface-container-low": "#f6f3f2",
+                        "background": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#394c35",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7cdaf",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary-fixed-dim": "#ffb868",
+                        "surface-container": "#f0eded",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#81290c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle dashed line for timeline */
+        .timeline-line {
+            background-image: linear-gradient(to bottom, var(--tw-colors-outline-variant) 50%, transparent 50%);
+            background-size: 2px 8px;
+            background-repeat: repeat-y;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Task-Focused Layout: Suppressing global navs to prioritize the operational Canvas -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16">
+<!-- Header Actions -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-outline-variant pb-8">
+<div class="space-y-4">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-label-lg text-label-lg">Back to Active Orders</span>
+</a>
+<div class="flex items-center gap-4 flex-wrap">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Order #HG-8492-MK</h1>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md border border-secondary/20">
+                        Pending Fulfillment
+                    </span>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Placed on</p>
+<p class="font-label-lg text-label-lg text-on-surface">Oct 24, 2023 at 14:30 IST</p>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Column -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Product Snapshot Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">inventory_2</span>
+                        Item Details
+                    </h2>
+<div class="flex flex-col sm:flex-row gap-6 items-start">
+<div class="w-24 h-24 sm:w-32 sm:h-32 rounded-lg overflow-hidden border border-outline-variant shrink-0 bg-surface-container">
+<img alt="Hand-Carved Wooden Block Print Stamp" class="w-full h-full object-cover" data-alt="A close-up studio shot of a beautifully hand-carved wooden block print stamp featuring an intricate floral mandala design. The wood is a warm, rich teak with natural grain visible, resting on a textured cream linen cloth. Lighting is soft, directional, and natural, highlighting the deep grooves and tactile quality of the craftsmanship. The overall aesthetic is earthy, premium, and artisanal, consistent with a modern heritage marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtbHRWBSmxA3Bq4HIL-tGEmEtaFyiaaX2tI8t_heIPkpss-J9u10fsRUPEM8GKWkuoQ7u8Dy16bTzK1Kk4gTolygrlAU_6sUIpXbh4Jw5IGbA6NVHGC68qGtqi2JQwSotVZ_A4hrO87WukwFDRpOxYz6i936uypFs1CHbdlxdhUOTLFOehKBDSovB3NVBWxvf7ax3j41kLj--RfHTdfR4v1W6Utr_bf6N1AIlwSfuP8xSDO1PbFi_-VO42c_nI6a1wN9YtUVtNOk8"/>
+</div>
+<div class="flex-grow space-y-2 w-full">
+<div class="flex justify-between items-start gap-4 flex-wrap">
+<div>
+<h3 class="font-headline-md text-headline-sm md:text-headline-md text-on-surface">Hand-Carved Teakwood Mandala Stamp</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">SKU: WD-STMP-004 • Variant: Standard Size</p>
+</div>
+<div class="text-right">
+<p class="font-label-lg text-label-lg text-on-surface">₹ 3,450.00</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/50">
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                                    Buyer requested minimal plastic packaging.
+                                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer & Shipping Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Customer Info Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">person</span>
+                            Buyer Information
+                        </h2>
+<div class="space-y-4">
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Elena Rostova</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">First-time buyer</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Email</p>
+<p class="font-body-md text-body-md text-on-surface">elena.r.design@example.com</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Phone</p>
+<p class="font-body-md text-body-md text-on-surface">+1 (555) 019-8372</p>
+</div>
+</div>
+</section>
+<!-- Shipping Info Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">local_shipping</span>
+                            Shipping Address
+                        </h2>
+<div class="space-y-4">
+<div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                                    Elena Rostova<br/>
+                                    Studio 4B, The Artisan Lofts<br/>
+                                    1294 Maker Street<br/>
+                                    Portland, OR 97209<br/>
+                                    United States
+                                </p>
+</div>
+<div class="pt-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Method</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">International Priority (5-7 Days)</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Fulfillment Timeline Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">schedule</span>
+                        Fulfillment Timeline
+                    </h2>
+<div class="relative pl-4 space-y-8">
+<!-- Vertical Line -->
+<div class="absolute left-6 top-2 bottom-6 w-[2px] timeline-line"></div>
+<!-- Step 1: Placed -->
+<div class="relative flex gap-6 items-start">
+<div class="w-5 h-5 rounded-full bg-secondary flex items-center justify-center shrink-0 z-10 mt-1 ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px] text-on-secondary icon-fill">check</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Order Placed</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 24, 14:30 IST</p>
+</div>
+</div>
+<!-- Step 2: Processing (Active) -->
+<div class="relative flex gap-6 items-start">
+<div class="w-5 h-5 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center shrink-0 z-10 mt-1 ring-4 ring-surface-container-lowest">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-primary">Pending Shipment</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Awaiting your confirmation and tracking details.</p>
+<p class="font-body-sm text-body-sm text-error mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                    Ship by Oct 27 to meet SLA.
+                                </p>
+</div>
+</div>
+<!-- Step 3: Shipped (Future) -->
+<div class="relative flex gap-6 items-start opacity-50">
+<div class="w-5 h-5 rounded-full bg-surface-container border-2 border-outline-variant shrink-0 z-10 mt-1 ring-4 ring-surface-container-lowest"></div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Shipped</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tracking information pending</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column / Contextual Sidebar -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Operational Actions Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4 sticky top-6 shadow-sm shadow-outline-variant/10">
+<h3 class="font-label-lg text-label-lg text-on-surface mb-2 tracking-widest uppercase text-outline">Take Action</h3>
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-label-lg text-label-lg py-4 px-6 rounded-DEFAULT transition-colors duration-200 flex items-center justify-center gap-2 group border border-transparent">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">local_shipping</span>
+                        Confirm Shipment
+                    </button>
+<button class="w-full bg-transparent border border-outline text-on-surface hover:bg-surface-container-low font-label-lg text-label-lg py-3 px-6 rounded-DEFAULT transition-colors duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                        Print Packing Slip
+                    </button>
+<button class="w-full bg-transparent border border-outline text-on-surface hover:bg-surface-container-low font-label-lg text-label-lg py-3 px-6 rounded-DEFAULT transition-colors duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+                        Message Buyer
+                    </button>
+</section>
+<!-- Financial Breakdown Card -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6">Seller Earnings</h3>
+<div class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+<div class="flex justify-between">
+<span>Item Subtotal</span>
+<span>₹ 3,450.00</span>
+</div>
+<div class="flex justify-between">
+<span>Shipping Collected</span>
+<span>₹ 850.00</span>
+</div>
+<div class="flex justify-between pt-3 border-t border-outline-variant/50 text-error">
+<span>Marketplace Fee (12%)</span>
+<span>- ₹ 414.00</span>
+</div>
+<div class="flex justify-between text-error">
+<span>Payment Processing (2%)</span>
+<span>- ₹ 86.00</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline text-on-surface flex justify-between items-end">
+<span class="font-label-lg text-label-lg">Net Earnings</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹ 3,800.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-2 text-right">Funds available 3 days after delivery.</p>
+</section>
+<!-- Internal Notes -->
+<section class="bg-surface-container-lowest border border-outline-variant border-dashed rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-lg text-label-lg text-on-surface">Private Seller Notes</h3>
+<button class="text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+                        No notes added yet. Use this space for internal order tracking or special instructions for your workshop.
+                    </p>
+</section>
+</div>
+</div>
+</main>
+</body></html>
