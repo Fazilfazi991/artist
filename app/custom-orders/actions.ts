@@ -11,11 +11,18 @@ export async function submitCustomOrderRequestAction(formData: FormData) {
   const next = text(formData, 'next') || '/custom-orders';
   const user = await getCurrentUser();
   if (!user) redirect(`/login?next=${encodeURIComponent(next)}`);
+  let requestId = '';
   try {
     const request = await createCustomOrderRequest(formData);
+    requestId = request.id;
     revalidatePath('/account/custom-orders');
-    redirect(`/account/custom-orders/${request.id}?created=1`);
+    revalidatePath('/seller/custom-requests');
+    revalidatePath('/seller/messages');
+    revalidatePath('/seller/dashboard');
+    revalidatePath('/seller/analytics');
   } catch (error: any) {
-    redirect(`${next}?error=${encodeURIComponent(error.message || 'Could not submit custom request.')}`);
+    const message = error?.issues?.[0]?.message || error?.message || 'Could not submit custom request.';
+    redirect(`${next}?error=${encodeURIComponent(message)}`);
   }
+  redirect(`/account/custom-orders/${requestId}?created=1`);
 }
