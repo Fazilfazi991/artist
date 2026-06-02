@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BarChart3, Bell, CreditCard, Grid2X2, Inbox, Layers3, LogOut, MessageSquare, Package, Palette, Settings, ShoppingBag, Star, Store } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { logoutAction } from "@/app/auth/actions";
 
 type SellerShellProfile = {
@@ -11,12 +12,14 @@ type SellerShellProfile = {
   profileImageUrl?: string | null;
 };
 
-const groups = [
+type SellerNavItem = [string, string, LucideIcon];
+
+const groups: Array<{ title: string; items: SellerNavItem[] }> = [
   { title: "Main", items: [["Overview", "/seller/dashboard", Grid2X2], ["Orders", "/seller/orders", ShoppingBag], ["Products", "/seller/products", Package], ["Collections", "/seller/collections", Layers3]] },
   { title: "Store", items: [["Storefront", "/seller/storefront", Store], ["Custom Orders", "/seller/custom-requests", Palette]] },
   { title: "Insights", items: [["Analytics", "/seller/analytics", BarChart3], ["Reviews", "/seller/reviews", Star]] },
   { title: "Account", items: [["Messages", "/seller/messages", MessageSquare], ["Payouts", "/seller/payouts", CreditCard], ["Settings", "/seller/settings", Settings]] }
-] as const;
+];
 
 export function SellerWorkspace({ seller, children }: { seller: SellerShellProfile | null; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -58,7 +61,7 @@ export function SellerWorkspace({ seller, children }: { seller: SellerShellProfi
             </div>
           </div>
           <nav className="mt-3 flex gap-2 overflow-x-auto pb-1 lg:hidden">
-            {[...groups[0].items, ...groups[1].items].map(([label, href, Icon]) => <Link key={href} href={href} className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-lg border px-3 text-sm font-black ${active(href) ? "border-rust bg-rust text-white" : "border-line bg-white text-ink"}`}><Icon size={16} />{label}</Link>)}
+            {groups.flatMap((group) => group.items).map(([label, href, Icon]) => <Link key={href} href={href} className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-lg border px-3 text-sm font-black ${active(href) ? "border-rust bg-rust text-white" : "border-line bg-white text-ink"}`}><Icon size={16} />{label}</Link>)}
           </nav>
         </header>
         <main className="min-w-0 px-4 py-5 lg:px-6">{children}</main>

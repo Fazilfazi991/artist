@@ -35,6 +35,11 @@ export async function saveTemplateAction(formData: FormData) {
   const { error } = await supabase.from('storefront_settings').update({ template_key: key }).eq('seller_id', seller.id);
   if (error) fail('/seller/storefront/template', error.message);
   revalidatePath('/seller/storefront');
+  revalidatePath('/seller/storefront/template');
+  revalidatePath('/seller/storefront/preview');
+  revalidatePath(`/artisan/${seller.store_slug}`);
+  revalidatePath(`/artisan/${seller.store_slug}/products`);
+  revalidatePath(`/artisan/${seller.store_slug}/collections`);
   redirect('/seller/storefront/template?saved=1');
 }
 

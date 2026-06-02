@@ -34,9 +34,11 @@ export default async function TemplatePage({ searchParams }: { searchParams: Pro
     supabase.from('products').select('name, base_price, product_images(image_url, display_order, is_primary)').eq('seller_id', seller.id).eq('status', 'active').order('is_featured', { ascending: false }).order('created_at', { ascending: false }).limit(8),
     supabase.from('seller_collections').select('name, image_url, display_order').eq('seller_id', seller.id).eq('is_active', true).order('display_order', { ascending: true }).limit(6)
   ]);
+  const selectedTemplateKey = settings?.template_key || 'warm-editorial';
+  const selectedPreviewHref = `/seller/storefront/preview?template=${selectedTemplateKey}`;
 
   return <div className="mx-auto max-w-7xl">
-    <SectionHeading eyebrow="Storefront Design Studio" title="Choose your mini-site template" copy="Switching templates changes the storefront presentation only. Products, collections, branding, hero text, images, policies, social links, and your public URL stay intact." action={<Link href="/seller/storefront/preview" className="rounded-lg border border-line bg-white px-4 py-3 font-black">Open Storefront Preview</Link>} />
+    <SectionHeading eyebrow="Storefront Design Studio" title="Choose your mini-site template" copy="Switching templates changes the storefront presentation only. Products, collections, branding, hero text, images, policies, social links, and your public URL stay intact." action={<Link href={selectedPreviewHref} className="rounded-lg border border-line bg-white px-4 py-3 font-black">Open Storefront Preview</Link>} />
     {params.saved ? <p className="mb-4 rounded-lg border border-success/30 bg-sage/10 p-3 font-bold text-success">Template saved.</p> : null}
     <div className="mb-5 rounded-xl border border-line bg-white p-4 text-sm font-bold text-muted">
       <span className="text-rust">Unsaved changes notice:</span> select a template card to save it immediately. You can preview your storefront before or after switching.
@@ -66,7 +68,7 @@ export default async function TemplatePage({ searchParams }: { searchParams: Pro
             </div>
             <div className="mt-4 grid gap-2 text-sm text-muted">{style.features.map((feature) => <span key={feature} className="flex items-center gap-2"><BadgeCheck size={15} className="text-success" />{feature}</span>)}</div>
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-              <Link href="/seller/storefront/preview" className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg border border-line bg-paper px-4 text-sm font-black"><Eye size={16} />Preview</Link>
+              <Link href={`/seller/storefront/preview?template=${template.key}`} className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg border border-line bg-paper px-4 text-sm font-black"><Eye size={16} />Preview</Link>
               <form action={saveTemplateAction} className="flex-1"><input type="hidden" name="template_key" value={template.key}/><button className="min-h-11 w-full rounded-lg bg-rust px-4 text-sm font-black text-white">{current ? 'Selected' : 'Select Template'}</button></form>
             </div>
           </div>
@@ -75,7 +77,7 @@ export default async function TemplatePage({ searchParams }: { searchParams: Pro
     </div>
     <div className="mt-5 flex flex-wrap justify-end gap-3">
       <Link href="/seller/storefront" className="rounded-lg border border-line bg-white px-5 py-3 font-black">Cancel Changes</Link>
-      <Link href="/seller/storefront/preview" className="rounded-lg bg-ink px-5 py-3 font-black text-white">Open Storefront Preview</Link>
+      <Link href={selectedPreviewHref} className="rounded-lg bg-ink px-5 py-3 font-black text-white">Open Storefront Preview</Link>
     </div>
   </div>;
 }
