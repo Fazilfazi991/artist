@@ -162,7 +162,7 @@ function CategoryBubble({ category }: { category: Category }) {
 
 function HomeProductCard({ product, index }: { product: Product; index: number }) {
   return <article className="group min-w-0">
-    <div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-sand shadow-[0_10px_26px_rgba(42,39,36,.08)]">
+    <div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-sand shadow-[0_10px_26px_rgba(105,41,106,.10)]">
       <Link href={`/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.title} />
       <Image src={product.images[0]?.src || '/artisan-hero.png'} alt={product.images[0]?.alt || product.title} fill sizes="(min-width:1024px) 220px, 50vw" className="object-cover transition duration-500 group-hover:scale-105" style={{ objectPosition: product.images[0]?.position || 'center' }} />
       {index === 3 ? <span className="absolute left-3 top-3 z-20 rounded bg-success px-2 py-1 text-[11px] font-black text-white">Bestseller</span> : null}

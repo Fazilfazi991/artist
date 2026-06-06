@@ -30,7 +30,7 @@ export default async function SellerDashboardPage() {
   const orderCounts = trackedStatuses.map((status) => [status, orderItems.filter((order: any) => normalizeStatus(order.status) === status).length] as const);
 
   return <div className="mx-auto grid max-w-7xl gap-5">
-    <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.05)] sm:p-6">
+    <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.09)] sm:p-6">
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
         <div>
           <p className="text-xs font-black uppercase tracking-[.12em] text-rust">{seller.store_name}</p>
@@ -102,11 +102,11 @@ export default async function SellerDashboardPage() {
 }
 
 function Metric({ title, value, copy }: { title: string; value: string; copy: string }) {
-  return <article className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><p className="text-sm font-black text-muted">{title}</p><strong className="mt-2 block text-3xl">{value}</strong><p className="mt-2 text-xs font-bold text-success">{copy}</p></article>;
+  return <article className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><p className="text-sm font-black text-muted">{title}</p><strong className="mt-2 block text-3xl">{value}</strong><p className="mt-2 text-xs font-bold text-success">{copy}</p></article>;
 }
 
 function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><div className="mb-4 flex items-center justify-between gap-3"><h3 className="font-black">{title}</h3>{action ? <div className="text-xs font-black text-rust">{action}</div> : null}</div>{children}</section>;
+  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><div className="mb-4 flex items-center justify-between gap-3"><h3 className="font-black">{title}</h3>{action ? <div className="text-xs font-black text-rust">{action}</div> : null}</div>{children}</section>;
 }
 
 function ProductRow({ product }: { product: any }) {

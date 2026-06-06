@@ -22,7 +22,7 @@ type Theme = {
 
 const earth: Theme = { bg: 'bg-[#fbf9f4]', surface: 'bg-[#ffffff]', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#71472f]', accentText: 'text-[#71472f]', soft: 'bg-[#f5f3ee]' };
 const olive: Theme = { bg: 'bg-[#fbf9f4]', surface: 'bg-white', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#56624d]', accentText: 'text-[#56624d]', soft: 'bg-[#f0eee9]' };
-const blush: Theme = { bg: 'bg-[#fff8f5]', surface: 'bg-white', text: 'text-[#28170d]', muted: 'text-[#6c5146]', line: 'border-[#ead1c6]', accent: 'bg-[#955943]', accentText: 'text-[#955943]', soft: 'bg-[#ffe8df]' };
+const blush: Theme = { bg: 'bg-white', surface: 'bg-white', text: 'text-[#241124]', muted: 'text-[#602060]', line: 'border-[#F7A1B5]', accent: 'bg-[#69296A]', accentText: 'text-[#69296A]', soft: 'bg-[#F7A1B5]' };
 const gallery: Theme = { bg: 'bg-[#f7f1e7]', surface: 'bg-[#fffdf8]', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#30312e]', accentText: 'text-[#71472f]', soft: 'bg-[#e7e1d5]' };
 const boutique: Theme = { bg: 'bg-[#f4eadc]', surface: 'bg-[#fffaf2]', text: 'text-[#25150c]', muted: 'text-[#6e5647]', line: 'border-[#d9b98f]', accent: 'bg-[#25150c]', accentText: 'text-[#8c5e45]', soft: 'bg-[#eadac5]' };
 

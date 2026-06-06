@@ -3,38 +3,38 @@ const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: { extend: {
     colors: {
-      background: "#fcf9f8",
-      ink: "#1c1b1b",
-      muted: "#56423c",
-      paper: "#fcf9f8",
+      background: "#FFFFFF",
+      ink: "#241124",
+      muted: "#602060",
+      paper: "#FFFFFF",
       surface: "#ffffff",
-      "surface-low": "#f6f3f2",
-      "surface-mid": "#f0eded",
-      "surface-high": "#eae7e7",
-      "surface-highest": "#e5e2e1",
-      line: "#ddc0b8",
-      outline: "#8a726b",
-      rust: "#9c3c1e",
-      "rust-hover": "#81290c",
-      "rust-soft": "#ffdbd1",
-      sage: "#50644b",
-      "sage-soft": "#d3e9ca",
-      sand: "#e5e2e1",
-      success: "#50644b",
-      clay: "#bc5434",
-      marigold: "#a4660d",
-      saffron: "#ffb868",
-      error: "#ba1a1a",
-      "error-soft": "#ffdad6"
+      "surface-low": "#fff7fa",
+      "surface-mid": "#fde7ee",
+      "surface-high": "#F7A1B5",
+      "surface-highest": "#F38FA4",
+      line: "#F7A1B5",
+      outline: "#69296A",
+      rust: "#69296A",
+      "rust-hover": "#602060",
+      "rust-soft": "#F7A1B5",
+      sage: "#F38FA4",
+      "sage-soft": "#F7A1B5",
+      sand: "#FFFFFF",
+      success: "#69296A",
+      clay: "#F38FA4",
+      marigold: "#F38FA4",
+      saffron: "#F7A1B5",
+      error: "#602060",
+      "error-soft": "#F7A1B5"
     },
     fontFamily: {
       serif: ["Playfair Display", "Georgia", "Times New Roman", "serif"],
       sans: ["Hanken Grotesk", "Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui", "sans-serif"]
     },
     boxShadow: {
-      soft: "0 18px 45px rgba(28, 27, 27, .05)",
-      lift: "0 24px 70px rgba(28, 27, 27, .08)",
-      glow: "0 0 0 1px rgba(156, 60, 30, .08), 0 18px 50px rgba(156, 60, 30, .08)"
+      soft: "0 18px 45px rgba(105, 41, 106, .08)",
+      lift: "0 24px 70px rgba(105, 41, 106, .14)",
+      glow: "0 0 0 1px rgba(105, 41, 106, .12), 0 18px 50px rgba(243, 143, 164, .2)"
     }
   } },
   plugins: []

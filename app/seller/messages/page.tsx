@@ -84,7 +84,7 @@ function Summary({ icon, title, value, copy }: { icon: React.ReactNode; title: s
 }
 
 function Panel({ title, children }: { title: string; children: React.ReactNode }) {
-  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><h2 className="mb-4 font-black">{title}</h2>{children}</section>;
+  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><h2 className="mb-4 font-black">{title}</h2>{children}</section>;
 }
 
 function Empty({ copy }: { copy: string }) {

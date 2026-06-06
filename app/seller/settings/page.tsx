@@ -88,7 +88,7 @@ function Metric({ icon, title, value, copy }: { icon: React.ReactNode; title: st
 }
 
 function Panel({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
-  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><div className="mb-4 flex items-center gap-2 text-rust">{icon}<h2 className="font-black text-ink">{title}</h2></div>{children}</section>;
+  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><div className="mb-4 flex items-center gap-2 text-rust">{icon}<h2 className="font-black text-ink">{title}</h2></div>{children}</section>;
 }
 
 function Info({ label, value }: { label: string; value: string }) {

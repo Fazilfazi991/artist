@@ -10,9 +10,9 @@ import { saveTemplateAction } from '../actions';
 export const dynamic = 'force-dynamic';
 
 const styles: Record<string, { label: string; palette: string[]; features: string[] }> = {
-  'warm-editorial': { label: 'Warm beige / editorial serif', palette: ['#FBF8F3', '#B85C43', '#7E9478'], features: ['Large story section', 'Featured collections', 'Craft process'] },
+  'warm-editorial': { label: 'Plum editorial / story-led', palette: ['#FFFFFF', '#69296A', '#F38FA4'], features: ['Large story section', 'Featured collections', 'Craft process'] },
   'clean-grid': { label: 'Minimal white / product-first', palette: ['#FFFFFF', '#2A2724', '#E7DED3'], features: ['Clean filters', 'Best sellers', 'Compact storytelling'] },
-  'personalized-gifts': { label: 'Soft pastel / occasion-led', palette: ['#fff1f2', '#B85C43', '#D5A24C'], features: ['Custom-order CTA', 'Gift collections', 'Personalization section'] },
+  'personalized-gifts': { label: 'Soft pink / occasion-led', palette: ['#FFFFFF', '#69296A', '#F7A1B5'], features: ['Custom-order CTA', 'Gift collections', 'Personalization section'] },
   'visual-portfolio': { label: 'Image-focused / gallery-led', palette: ['#F7F2EA', '#2A2724', '#C98A6B'], features: ['Portfolio gallery', 'Large cards', 'Custom-project CTA'] },
   'boutique-brand': { label: 'Premium brand / curated', palette: ['#fbfaf7', '#2A2724', '#B8955D'], features: ['Campaign hero', 'Collection banners', 'Newsletter area'] }
 };
@@ -47,7 +47,7 @@ export default async function TemplatePage({ searchParams }: { searchParams: Pro
       {STOREFRONT_TEMPLATES.map((template) => {
         const style = styles[template.key];
         const current = settings?.template_key === template.key;
-        return <article key={template.key} className={`overflow-hidden rounded-xl border bg-white shadow-[0_12px_30px_rgba(42,39,36,.05)] ${current ? 'border-rust ring-2 ring-rust/15' : 'border-line'}`}>
+        return <article key={template.key} className={`overflow-hidden rounded-xl border bg-white shadow-[0_12px_30px_rgba(105,41,106,.08)] ${current ? 'border-rust ring-2 ring-rust/15' : 'border-line'}`}>
           <TemplatePreview templateKey={template.key} seller={seller} settings={settings} products={products || []} collections={collections || []} />
           <div className="p-5">
             <div className="mb-3 flex items-start justify-between gap-3">
@@ -127,7 +127,7 @@ function GiftsPreview({ seller, settings, products, collections }: PreviewProps)
       <div className="p-4"><MiniHeading>{settings?.hero_title || 'Make every moment truly theirs.'}</MiniHeading><MiniButton>Explore Gifts</MiniButton></div>
       <MiniImage src={image(products, collections, settings, seller, 0)} className="h-full" />
     </div>
-    <div className="p-3"><MiniTitle>Shop by Occasion</MiniTitle><div className="mt-2 grid grid-cols-5 gap-2">{[0,1,2,3,4].map((i) => <div key={i} className="rounded-md bg-[#ffd1c6] p-1 text-center"><MiniImage src={image(products, collections, settings, seller, i)} className="h-10 rounded" /><span className="block truncate text-[6px] font-bold">{collectionName(collections, i)}</span></div>)}</div></div>
+    <div className="p-3"><MiniTitle>Shop by Occasion</MiniTitle><div className="mt-2 grid grid-cols-5 gap-2">{[0,1,2,3,4].map((i) => <div key={i} className="rounded-md bg-[#F7A1B5] p-1 text-center"><MiniImage src={image(products, collections, settings, seller, i)} className="h-10 rounded" /><span className="block truncate text-[6px] font-bold">{collectionName(collections, i)}</span></div>)}</div></div>
     <div className="grid grid-cols-4 gap-2 bg-[#ffe1dc] p-3 text-center text-[6px] font-bold text-[#a54f45]"><span>Choose</span><span>Add details</span><span>We create</span><span>Deliver</span></div>
     <MiniProductGrid products={products} collections={collections} settings={settings} seller={seller} />
   </PreviewShell>;
@@ -140,16 +140,16 @@ function PortfolioPreview({ seller, settings, products, collections }: PreviewPr
     <div className="grid grid-cols-[1fr_1fr_1fr] gap-2 p-3">
       {[0,1,2].map((i) => <MiniImage key={i} src={image(products, collections, settings, seller, i)} className={i === 0 ? 'h-24 rounded-md' : 'h-16 rounded-md'} />)}
     </div>
-    <div className="grid grid-cols-[1.05fr_.95fr] gap-3 bg-[#566033] p-3 text-white"><div><MiniTitle>Featured Project</MiniTitle><MiniLines count={3} light /></div><MiniImage src={image(products, collections, settings, seller, 3)} className="h-20 rounded-md" /></div>
+    <div className="grid grid-cols-[1.05fr_.95fr] gap-3 bg-[#69296A] p-3 text-white"><div><MiniTitle>Featured Project</MiniTitle><MiniLines count={3} light /></div><MiniImage src={image(products, collections, settings, seller, 3)} className="h-20 rounded-md" /></div>
     <MiniProductGrid products={products} collections={collections} settings={settings} seller={seller} compact />
   </PreviewShell>;
 }
 
 function BoutiquePreview({ seller, settings, products, collections }: PreviewProps) {
-  return <PreviewShell className="bg-[#28170d] text-[#f8edd9]">
+  return <PreviewShell className="bg-[#241124] text-white">
     <MiniNav seller={seller} settings={settings} dark />
     <div className="relative h-36"><MiniImage src={image(products, collections, settings, seller, 0)} className="h-full opacity-70" /><div className="absolute inset-0 p-4"><MiniHeading>{settings?.hero_title || 'Curated with intention. Made to be cherished.'}</MiniHeading><MiniButton gold>Shop</MiniButton></div></div>
-    <div className="grid grid-cols-4 gap-2 bg-[#fbf2e3] p-3 text-center text-[6px] font-bold text-[#49311f]"><span>Premium</span><span>Handmade</span><span>Sustainable</span><span>Gift ready</span></div>
+    <div className="grid grid-cols-4 gap-2 bg-[#F7A1B5] p-3 text-center text-[6px] font-bold text-[#241124]"><span>Premium</span><span>Handmade</span><span>Sustainable</span><span>Gift ready</span></div>
     <MiniCollectionRow collections={collections} bg="bg-[#ead5b5]" />
     <MiniProductGrid products={products} collections={collections} settings={settings} seller={seller} dark compact />
   </PreviewShell>;
@@ -197,7 +197,7 @@ function MiniCollectionRow({ collections, bg }: { collections: any[]; bg: string
 }
 
 function MiniProductGrid({ products, collections, settings, seller, compact, dark }: { products: any[]; collections: any[]; settings: any; seller: any; compact?: boolean; dark?: boolean }) {
-  return <div className={`p-3 ${dark ? 'bg-[#fbf2e3] text-[#28170d]' : ''}`}><MiniTitle>Featured Picks</MiniTitle><div className={`mt-2 grid ${compact ? 'grid-cols-4' : 'grid-cols-3'} gap-2`}>{[0,1,2,3,4,5].slice(0, compact ? 4 : 6).map((i) => <div key={i} className="min-w-0 rounded-md bg-white/80 p-1 shadow-sm"><MiniImage src={image(products, collections, settings, seller, i)} className="aspect-square rounded" /><span className="mt-1 block truncate text-[6px] font-black">{productName(products, i)}</span><span className="block text-[6px] font-bold text-rust">{price(products, i)}</span></div>)}</div></div>;
+  return <div className={`p-3 ${dark ? 'bg-[#F7A1B5] text-[#241124]' : ''}`}><MiniTitle>Featured Picks</MiniTitle><div className={`mt-2 grid ${compact ? 'grid-cols-4' : 'grid-cols-3'} gap-2`}>{[0,1,2,3,4,5].slice(0, compact ? 4 : 6).map((i) => <div key={i} className="min-w-0 rounded-md bg-white/80 p-1 shadow-sm"><MiniImage src={image(products, collections, settings, seller, i)} className="aspect-square rounded" /><span className="mt-1 block truncate text-[6px] font-black">{productName(products, i)}</span><span className="block text-[6px] font-bold text-rust">{price(products, i)}</span></div>)}</div></div>;
 }
 
 function image(products: any[], collections: any[], settings: any, seller: any, index: number) {

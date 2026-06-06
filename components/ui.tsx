@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, LogOut, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Sparkles, Star, Store, Truck, Upload, User, X } from "lucide-react";
+import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, LogOut, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Star, Store, Truck, Upload, User, X } from "lucide-react";
 import { artisans, categories, occasions, products } from "@/lib/seed";
 import type { Artisan, Category, Product } from "@/lib/types";
 import { CartCountBadge } from "@/components/cart-count";
@@ -20,9 +20,8 @@ export function AnnouncementBar() {
 }
 
 export function Logo() {
-  return <Link href="/" className="flex min-w-max items-center gap-3 text-rust">
-    <span className="grid h-10 w-10 place-items-center rounded border border-line bg-surface text-rust shadow-soft"><Sparkles size={18} /></span>
-    <span className="leading-none"><span className="block font-serif text-2xl font-semibold">Plumlet</span><span className="mt-1 hidden text-[10px] font-extrabold uppercase tracking-[.16em] text-muted sm:block">Modern Indian craft</span></span>
+  return <Link href="/" className="flex min-w-max items-center" aria-label="Plumlet home">
+    <Image src="/plumlet-logo.png" alt="Plumlet" width={220} height={79} priority className="h-12 w-auto sm:h-14" />
   </Link>;
 }
 

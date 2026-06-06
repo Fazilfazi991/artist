@@ -57,7 +57,7 @@ export function mapProduct(row: any): Product {
     occasion: 'Handmade gifting',
     customizable: Boolean(row.is_customizable),
     stock: row.stock_quantity,
-    colors: ['#B85C43', '#7E9478'],
+    colors: ['#69296A', '#F38FA4'],
     features: [row.product_type, row.status, seller?.store_name].filter(Boolean),
     images: [{ src: img(primary?.image_url), alt: primary?.alt_text || row.name, position: 'center' }],
     rating: 4.8,

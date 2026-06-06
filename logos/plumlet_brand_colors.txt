@@ -1,0 +1,9 @@
+Plumlet Logo Brand Colors
+
+Primary Plum Purple: #6A296A
+Deep Plum Shade: #602060
+Soft Blush Pink: #F3829F
+Light Pink Highlight: #F7A1B5
+White Background: #FFFFFF
+
+Note: The logo was generated as a raster artwork. The SVG file is a clean SVG wrapper with the logo embedded for easy web placement, not a manually redrawn vector path.

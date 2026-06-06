@@ -89,11 +89,11 @@ export default async function SellerAnalyticsPage() {
 }
 
 function Metric({ icon, title, value, copy }: { icon: React.ReactNode; title: string; value: string; copy: string }) {
-  return <article className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><div className="flex items-center gap-2 text-rust">{icon}<p className="text-sm font-black text-muted">{title}</p></div><strong className="mt-3 block text-3xl">{value}</strong><p className="mt-2 text-xs font-bold text-success">{copy}</p></article>;
+  return <article className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><div className="flex items-center gap-2 text-rust">{icon}<p className="text-sm font-black text-muted">{title}</p></div><strong className="mt-3 block text-3xl">{value}</strong><p className="mt-2 text-xs font-bold text-success">{copy}</p></article>;
 }
 
 function Panel({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
-  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(42,39,36,.04)]"><div className="mb-4 flex items-center justify-between gap-3"><h2 className="font-black">{title}</h2>{action ? <div className="text-xs font-black text-rust">{action}</div> : null}</div>{children}</section>;
+  return <section className="rounded-xl border border-line bg-white p-5 shadow-[0_10px_30px_rgba(105,41,106,.08)]"><div className="mb-4 flex items-center justify-between gap-3"><h2 className="font-black">{title}</h2>{action ? <div className="text-xs font-black text-rust">{action}</div> : null}</div>{children}</section>;
 }
 
 function Empty({ copy }: { copy: string }) {
