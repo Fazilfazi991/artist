@@ -28,8 +28,9 @@ const config: Config = {
       "error-soft": "#F7A1B5"
     },
     fontFamily: {
-      serif: ["Playfair Display", "Georgia", "Times New Roman", "serif"],
-      sans: ["Hanken Grotesk", "Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+      display: ["Fredoka", "Nunito", "ui-rounded", "system-ui", "sans-serif"],
+      serif: ["Fredoka", "Nunito", "ui-rounded", "system-ui", "sans-serif"],
+      sans: ["Nunito", "Inter", "ui-sans-serif", "system-ui", "sans-serif"]
     },
     boxShadow: {
       soft: "0 18px 45px rgba(105, 41, 106, .08)",

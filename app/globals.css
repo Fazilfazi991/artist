@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -58,5 +58,9 @@ button { cursor: pointer; }
 
   .heritage-button {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded px-5 py-3 text-sm font-extrabold transition;
+  }
+
+  .plumlet-banner-title {
+    @apply font-display font-bold;
   }
 }
