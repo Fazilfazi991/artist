@@ -18,8 +18,9 @@ async function getSessionChrome() {
       supabase.from("profiles").select("role").eq("id", user.id).maybeSingle(),
       supabase.from("seller_profiles").select("id,status").eq("user_id", user.id).maybeSingle()
     ]);
-    const isSeller = seller?.status === "approved" || profile?.role === "seller";
-    return { isSeller, accountKind: isSeller ? "seller" as const : "buyer" as const };
+    const hasSellerApplication = Boolean(seller) || profile?.role === "seller";
+    const isSeller = seller?.status === "approved";
+    return { isSeller, accountKind: hasSellerApplication ? "seller" as const : "buyer" as const };
   } catch {
     return { isSeller: false, accountKind: "guest" as const };
   }

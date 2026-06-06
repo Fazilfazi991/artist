@@ -2,12 +2,13 @@
 
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createServiceRoleClient } from '@/lib/supabase/server';
 import { mergeGuestCartIntoUserCart } from '@/lib/services/cart';
 
 function requireString(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function fail(path: string, message: string) { redirect(`${path}?error=${encodeURIComponent(message)}`); }
 function slugify(value: string) { return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+function sellerSlug(value: string, userId: string) { return `${slugify(value) || 'seller'}-${userId.slice(0, 8)}`; }
 
 async function getRequestOrigin() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
@@ -47,18 +48,36 @@ export async function registerAction(formData: FormData) {
     email,
     password,
     options: {
-      data: { full_name: fullName, phone, account_type: accountType, business_name: businessName, country, business_category: businessCategory },
+      data: { full_name: fullName, phone, account_type: accountType, business_name: businessName, business_description: businessDescription, country, business_category: businessCategory },
       emailRedirectTo: `${siteOrigin}/auth/callback?next=${encodeURIComponent(next)}`
     }
   });
   if (error) fail(failPath, error.message);
   if (data.user) {
-    await supabase.from('profiles').update({ phone, full_name: fullName }).eq('id', data.user.id);
+    const profilePatch = { phone, full_name: fullName, role: accountType };
+    if (accountType === 'seller') {
+      try {
+        const admin = createServiceRoleClient();
+        await admin.from('profiles').update(profilePatch).eq('id', data.user.id);
+        await admin.from('seller_profiles').upsert({
+          user_id: data.user.id,
+          store_name: businessName,
+          store_slug: sellerSlug(businessName || fullName, data.user.id),
+          short_bio: businessDescription,
+          shipping_regions: [country],
+          status: 'draft'
+        }, { onConflict: 'user_id' });
+      } catch (error) {
+        console.error('seller draft creation failed', error);
+      }
+    } else {
+      await supabase.from('profiles').update(profilePatch).eq('id', data.user.id);
+    }
     if (accountType === 'seller' && data.session) {
       await supabase.from('seller_profiles').upsert({
         user_id: data.user.id,
         store_name: businessName,
-        store_slug: slugify(businessName || fullName),
+        store_slug: sellerSlug(businessName || fullName, data.user.id),
         short_bio: businessDescription,
         shipping_regions: [country],
         status: 'draft'
