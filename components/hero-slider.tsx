@@ -2,31 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CreditCard, PackageCheck, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, CreditCard, PackageCheck, ShieldCheck, Truck } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 const slides = [
   {
     src: "/hero-slides/slide-1.png",
-    alt: "Curated handmade products styled for modern Indian homes",
-    eyebrow: "Plumlet Picks",
-    title: "Handmade pieces with a personal story.",
-    copy: "Shop unique decor, gifts, and keepsakes directly from independent makers."
+    alt: "Handmade with love chosen for smiles gift collection"
   },
   {
     src: "/hero-slides/slide-2.png",
-    alt: "Artisan craft collection in Plumlet's modern pink and purple palette",
-    eyebrow: "Custom Made",
-    title: "Bring your idea to an artisan.",
-    copy: "Share references, approve a quote, and follow the making journey from request to delivery."
+    alt: "Gifts that speak from the heart handmade surprise collection"
   },
   {
     src: "/hero-slides/slide-3.png",
-    alt: "Premium artisan storefront campaign for Plumlet marketplace",
-    eyebrow: "Meet the Makers",
-    title: "Discover storefronts built around craft.",
-    copy: "Explore maker stories, collections, and products made with care."
+    alt: "Made by passionate sellers artisan storefront campaign"
   }
 ] as const;
 
@@ -39,25 +30,18 @@ export function HeroSlider() {
   }, []);
 
   const go = (direction: -1 | 1) => setActive((value) => (value + direction + slides.length) % slides.length);
-  const slide = slides[active];
-
   return <section className="relative overflow-hidden border-b border-line bg-white">
-    <div className="absolute inset-0">
+    <div className="relative aspect-[1914/823] min-h-[360px] w-full overflow-hidden sm:min-h-[430px]">
       {slides.map((item, index) => <Image key={item.src} src={item.src} alt={item.alt} fill priority={index === 0} sizes="100vw" className={`object-cover object-center transition-opacity duration-700 ${index === active ? "opacity-100" : "opacity-0"}`} />)}
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/82 to-white/18" />
-      <div className="absolute inset-0 bg-gradient-to-t from-white/74 via-transparent to-transparent" />
-    </div>
 
-    <div className="heritage-container relative z-10 flex min-h-[410px] flex-col justify-center py-10 sm:min-h-[450px] sm:py-12">
-      <p className="heritage-label text-rust">{slide.eyebrow}</p>
-      <h1 className="mt-5 max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-7xl">{slide.title}</h1>
-      <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{slide.copy}</p>
-      <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <Link href="/shop" className="heritage-button border border-rust bg-rust text-white hover:bg-rust-hover">Shop Collection</Link>
-        <Link href="/storefronts" className="heritage-button border border-ink/80 bg-white/70 text-ink hover:border-rust hover:text-rust">Meet the Makers</Link>
+      <div className="heritage-container absolute inset-x-0 bottom-[11%] z-10 flex flex-col items-start gap-5 sm:bottom-[13%] lg:bottom-[15%]">
+        <Link href="/shop" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-[999px] border-2 border-rust bg-rust px-7 py-3 text-sm font-black uppercase tracking-[.06em] text-white shadow-[0_16px_34px_rgba(105,41,106,.22)] transition hover:-translate-y-0.5 hover:bg-rust-hover sm:min-h-14 sm:px-9 sm:text-base">
+          Shop Now
+          <ArrowRight size={18} className="transition group-hover:translate-x-0.5" />
+        </Link>
       </div>
 
-      <div className="mt-8 flex items-center gap-3">
+      <div className="absolute bottom-5 right-5 z-10 flex items-center gap-3 sm:bottom-7 sm:right-8">
         <button type="button" onClick={() => go(-1)} className="grid h-10 w-10 place-items-center rounded-full border border-line bg-white/82 text-rust shadow-soft transition hover:bg-rust hover:text-white" aria-label="Previous hero slide"><ChevronLeft size={18} /></button>
         <div className="flex gap-2">
           {slides.map((item, index) => <button key={item.src} type="button" onClick={() => setActive(index)} className={`h-2.5 rounded-full transition ${index === active ? "w-8 bg-rust" : "w-2.5 bg-rust-soft"}`} aria-label={`Show hero slide ${index + 1}`} aria-current={index === active} />)}
