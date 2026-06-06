@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, CircleEllipsis, CreditCard, Globe2, Heart, PackageCheck, ShieldCheck, Star, Truck, UsersRound } from 'lucide-react';
 import { StorefrontCardView } from '@/components/storefront-directory';
+import { HeroSlider } from '@/components/hero-slider';
 import { getFeaturedCategories, getFeaturedProducts } from '@/lib/services/public-marketplace';
 import { getFeaturedStorefronts } from '@/lib/services/storefront-directory';
 import type { Category, Product } from '@/lib/types';
@@ -39,27 +40,7 @@ export default async function HomePage() {
 
   return <main className="bg-paper">
     <div className="overflow-hidden">
-      <section className="relative overflow-hidden border-b border-line">
-        <Image src="/artisan-hero.png" alt="Indian artisan arranging handmade products in a warm studio" fill priority sizes="(min-width:1024px) 1200px, 100vw" className="object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/80 to-paper/10" />
-        <div className="heritage-container relative z-10 flex min-h-[390px] flex-col justify-center py-10 sm:min-h-[430px] sm:py-12">
-          <p className="heritage-label text-rust">Modern Heritage</p>
-          <h1 className="mt-5 max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-7xl">Heritage crafted for modern living.</h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Discover unique, customizable pieces directly from India's independent makers. Elevate your home with objects that carry soul and story.</p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="/shop" className="heritage-button border border-rust bg-rust text-white hover:bg-rust-hover">Shop Collection</Link>
-            <Link href="/storefronts" className="heritage-button border border-ink/80 bg-transparent text-ink hover:border-rust hover:text-rust">Meet the Makers</Link>
-          </div>
-        </div>
-        <div className="relative z-10 border-t border-line bg-paper/84 px-4 py-4 backdrop-blur sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-3 rounded-lg border border-line bg-paper/72 px-4 py-4 text-sm font-black text-ink shadow-soft sm:grid-cols-2 lg:grid-cols-4">
-            <HeroTrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
-            <HeroTrustItem icon={<CreditCard size={18} />} label="Protected Online Payments" />
-            <HeroTrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
-            <HeroTrustItem icon={<Truck size={18} />} label="Worldwide Shipping" />
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section className="heritage-container border-b border-line py-16">
         <SectionTitle title="Shop by Category" href="/shop" label="View all categories" />
@@ -144,10 +125,6 @@ function TrustBenefit({ icon, title, copy }: { icon: React.ReactNode; title: str
     <h2 className="mt-3 text-[11px] font-black uppercase tracking-[.1em]">{title}</h2>
     <p className="mt-1.5 text-xs leading-5 text-muted">{copy}</p>
   </article>;
-}
-
-function HeroTrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return <span className="flex items-center justify-center gap-3 text-center sm:justify-start"><span className="text-rust">{icon}</span>{label}</span>;
 }
 
 function CategoryBubble({ category }: { category: Category }) {
