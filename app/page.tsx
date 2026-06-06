@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, CircleEllipsis, CreditCard, Globe2, Heart, PackageCheck, ShieldCheck, Star, Truck, UsersRound } from 'lucide-react';
-import { StorefrontCardView } from '@/components/storefront-directory';
+import { ArrowRight, BadgeCheck, Boxes, CircleEllipsis, CreditCard, Globe2, Heart, Layers3, MapPin, PackageCheck, ShieldCheck, Star, Truck, UsersRound } from 'lucide-react';
 import { HeroSlider } from '@/components/hero-slider';
 import { getFeaturedCategories, getFeaturedProducts } from '@/lib/services/public-marketplace';
 import { getFeaturedStorefronts } from '@/lib/services/storefront-directory';
+import type { StorefrontCard } from '@/lib/services/storefront-directory';
 import type { Category, Product } from '@/lib/types';
 
 const fallbackCategories = [
@@ -69,7 +69,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-sage via-sage/92 to-sage/20" />
         <div className="heritage-container relative z-10 py-24 text-white">
           <p className="text-xs font-extrabold uppercase tracking-[.16em] text-sage-soft">Our Mission</p>
-          <h2 className="mt-4 max-w-2xl font-serif text-5xl font-semibold leading-tight">Preserving traditions, empowering hands.</h2>
+          <h2 className="plumlet-banner-title mt-4 max-w-2xl text-5xl leading-tight">Preserving traditions, empowering hands.</h2>
           <p className="mt-5 max-w-xl leading-8 text-white/82">Every purchase helps independent artisans grow their craft, support their families, and keep heritage techniques alive.</p>
           <Link href="/about" className="mt-7 inline-flex min-h-11 items-center justify-center rounded border border-white bg-transparent px-5 text-sm font-extrabold text-white hover:bg-white hover:text-sage">Our Story</Link>
         </div>
@@ -82,11 +82,25 @@ export default async function HomePage() {
         <Stat icon={<Globe2 size={24} />} value="28+" label="States Covered" />
       </section>
 
-      <section className="heritage-container border-b border-line py-16">
-        <SectionTitle title="Meet the makers behind the craft" href="/storefronts" label="View All Storefronts" />
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Explore independent artisan storefronts, discover their stories, and shop products made with care.</p>
-        <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {storefrontItems.map((storefront) => <StorefrontCardView key={storefront.sellerId} storefront={storefront} compact />)}
+      <section className="relative overflow-hidden border-b border-line bg-[#fff7f8]">
+        <div className="heritage-container relative z-10 py-16">
+          <div className="flex items-start justify-between gap-6">
+            <div className="relative max-w-4xl pl-9">
+              <span className="absolute left-0 top-1 h-20 w-px bg-rust/25" />
+              <span className="absolute left-2 top-0 h-3 w-3 rounded-full border border-rust/40" />
+              <h2 className="plumlet-banner-title text-4xl leading-tight text-ink sm:text-5xl">Meet the makers behind the craft</h2>
+              <p className="mt-3 text-sm leading-6 text-muted sm:text-base">Explore independent artisan storefronts, discover their stories, and shop products made with care.</p>
+            </div>
+            <Link href="/storefronts" className="hidden shrink-0 items-center gap-2 pt-3 text-sm font-extrabold text-rust sm:inline-flex">View All Storefronts <ArrowRight size={15} /></Link>
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {storefrontItems.map((storefront) => <FeaturedMakerCard key={storefront.sellerId} storefront={storefront} />)}
+          </div>
+          <div className="mt-8 flex items-center justify-center gap-3 text-rust/50">
+            <span className="h-px w-24 bg-rust/20" />
+            <Heart size={18} className="fill-rust-soft text-rust-soft" />
+            <span className="h-px w-24 bg-rust/20" />
+          </div>
         </div>
       </section>
 
@@ -135,6 +149,48 @@ function CategoryBubble({ category }: { category: Category }) {
     </span>
     <span className="leading-tight">{category.name}</span>
   </Link>;
+}
+
+function FeaturedMakerCard({ storefront }: { storefront: StorefrontCard }) {
+  return <article className="group overflow-hidden rounded-lg border border-rust-soft/70 bg-white shadow-[0_18px_40px_rgba(105,41,106,.10)] transition hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(105,41,106,.16)]">
+    <div className="relative aspect-[1.55] bg-surface-low">
+      <Image src={storefront.coverImage} alt={`${storefront.storeName} storefront cover`} fill sizes="(min-width:1280px) 25vw, (min-width:768px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
+      <span className="absolute -bottom-8 left-6 h-20 w-20 overflow-hidden rounded-full border-4 border-white bg-paper shadow-soft">
+        <Image src={storefront.logoImage} alt={`${storefront.storeName} logo`} fill sizes="80px" className="object-cover" />
+      </span>
+      <button className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-white text-rust shadow-soft transition hover:bg-rust hover:text-white" aria-label={`Save ${storefront.storeName}`}>
+        <Heart size={18} />
+      </button>
+    </div>
+    <div className="px-6 pb-6 pt-12">
+      <Link href={`/artisan/${storefront.storeSlug}`} className="font-serif text-2xl font-semibold leading-tight text-ink hover:text-rust">{storefront.storeName}</Link>
+      <p className="mt-2 flex items-center gap-1.5 text-xs font-bold text-muted"><MapPin size={14} className="text-rust" />{storefront.city}, {storefront.state}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span className="inline-flex items-center gap-1 rounded bg-rust-soft px-2.5 py-1 text-[11px] font-extrabold text-rust"><BadgeCheck size={13} />Verified artisan</span>
+        {storefront.customOrdersEnabled ? <span className="rounded bg-[#f7d6df] px-2.5 py-1 text-[11px] font-extrabold text-rust">Custom orders</span> : null}
+      </div>
+      <div className="my-5 flex items-center gap-3 text-rust/35">
+        <span className="h-px flex-1 bg-line" />
+        <Star size={13} />
+        <span className="h-px flex-1 bg-line" />
+      </div>
+      <div className="flex items-start gap-3">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-surface-low text-rust"><PackageCheck size={19} /></span>
+        <div>
+          <p className="text-sm font-extrabold text-rust">{storefront.artisanName} / {storefront.category}</p>
+          <p className="mt-1 line-clamp-2 min-h-10 text-sm leading-5 text-muted">{storefront.shortBio || storefront.heroTitle}</p>
+        </div>
+      </div>
+      <div className="mt-5 grid grid-cols-2 gap-3 text-xs font-extrabold text-rust">
+        <span className="flex items-center gap-2"><Boxes size={15} />{storefront.productCount} products</span>
+        <span className="flex items-center gap-2"><Layers3 size={15} />{storefront.collectionCount} collections</span>
+      </div>
+      <div className="mt-6 grid gap-2 sm:grid-cols-[1fr_1.15fr]">
+        <Link href={`/artisan/${storefront.storeSlug}`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded bg-rust px-3 text-[11px] font-extrabold text-white transition hover:bg-rust-hover">Visit Storefront <ArrowRight size={14} /></Link>
+        {storefront.customOrdersEnabled ? <Link href={`/artisan/${storefront.storeSlug}/custom-order`} className="inline-flex min-h-11 items-center justify-center rounded border border-rust bg-white px-3 text-center text-[11px] font-extrabold leading-tight text-rust transition hover:bg-rust-soft">Request Custom Order</Link> : null}
+      </div>
+    </div>
+  </article>;
 }
 
 function HomeProductCard({ product, index }: { product: Product; index: number }) {
