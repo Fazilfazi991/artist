@@ -49,7 +49,7 @@ export function DesktopNavigation() {
 }
 
 const accountLinks = {
-  guest: [["Login", "/login"], ["Create Buyer Account", "/register"], ["Seller Registration", "/seller/register"], ["Sell With Us", "/become-a-seller"]],
+  guest: [["Login", "/login"], ["Create Account", "/register"]],
   buyer: [["My Account", "/account"], ["Orders", "/account/orders"], ["Saved Items", "/account/wishlist"], ["Addresses", "/account/addresses"], ["Logout", "/logout"]],
   seller: [["Seller Dashboard", "/seller/dashboard"], ["Manage Products", "/seller/products"], ["Orders", "/seller/orders"], ["Storefront Settings", "/seller/storefront"], ["Account Settings", "/seller/settings"], ["Logout", "/logout"]]
 } as const;

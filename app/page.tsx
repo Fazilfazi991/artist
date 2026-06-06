@@ -39,10 +39,10 @@ export default async function HomePage() {
 
   return <main className="bg-paper">
     <div className="overflow-hidden">
-      <section className="relative min-h-[520px] overflow-hidden border-b border-line sm:min-h-[560px]">
+      <section className="relative overflow-hidden border-b border-line">
         <Image src="/artisan-hero.png" alt="Indian artisan arranging handmade products in a warm studio" fill priority sizes="(min-width:1024px) 1200px, 100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/80 to-paper/10" />
-        <div className="heritage-container relative z-10 flex min-h-[520px] flex-col justify-center py-14 sm:min-h-[560px] sm:py-16">
+        <div className="heritage-container relative z-10 flex min-h-[390px] flex-col justify-center py-10 sm:min-h-[430px] sm:py-12">
           <p className="heritage-label text-rust">Modern Heritage</p>
           <h1 className="mt-5 max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-7xl">Heritage crafted for modern living.</h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Discover unique, customizable pieces directly from India's independent makers. Elevate your home with objects that carry soul and story.</p>
@@ -51,17 +51,12 @@ export default async function HomePage() {
             <Link href="/storefronts" className="heritage-button border border-ink/80 bg-transparent text-ink hover:border-rust hover:text-rust">Meet the Makers</Link>
           </div>
         </div>
-      </section>
-
-      <section className="border-b border-line bg-surface-low px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            <TrustBenefit icon={<CreditCard size={26} />} title="Protected Online Payments" copy="Pay through a secure, tracked checkout." />
-            <TrustBenefit icon={<ShieldCheck size={26} />} title="Secure Checkout" copy="Your order and payment details stay protected." />
-            <TrustBenefit icon={<PackageCheck size={26} />} title="Easy Returns" copy="A clear return process for eligible orders." />
-            <TrustBenefit icon={<Truck size={26} />} title="Fast Delivery" copy="Reliable shipping across supported locations." />
-            <TrustBenefit icon={<BadgeCheck size={26} />} title="Verified Sellers" copy="Shop from reviewed artisan businesses." />
-            <TrustBenefit icon={<Heart size={26} />} title="Customer Support" copy="Help is available when you need it." />
+        <div className="relative z-10 border-t border-line bg-paper/84 px-4 py-4 backdrop-blur sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-3 rounded-lg border border-line bg-paper/72 px-4 py-4 text-sm font-black text-ink shadow-soft sm:grid-cols-2 lg:grid-cols-4">
+            <HeroTrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
+            <HeroTrustItem icon={<CreditCard size={18} />} label="Protected Online Payments" />
+            <HeroTrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
+            <HeroTrustItem icon={<Truck size={18} />} label="Worldwide Shipping" />
           </div>
         </div>
       </section>
@@ -112,11 +107,18 @@ export default async function HomePage() {
         <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {storefrontItems.map((storefront) => <StorefrontCardView key={storefront.sellerId} storefront={storefront} compact />)}
         </div>
-        <div className="mt-8 grid gap-3 rounded-lg border border-line bg-surface-low px-4 py-4 text-sm font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">
-          <TrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
-          <TrustItem icon={<CreditCard size={18} />} label="Protected Online Payments" />
-          <TrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
-          <TrustItem icon={<Truck size={18} />} label="Worldwide Shipping" />
+      </section>
+
+      <section className="border-b border-line bg-surface-low px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            <TrustBenefit icon={<CreditCard size={21} />} title="Protected Online Payments" copy="Secure, tracked checkout." />
+            <TrustBenefit icon={<ShieldCheck size={21} />} title="Secure Checkout" copy="Order details stay protected." />
+            <TrustBenefit icon={<PackageCheck size={21} />} title="Easy Returns" copy="Clear returns for eligible orders." />
+            <TrustBenefit icon={<Truck size={21} />} title="Fast Delivery" copy="Reliable supported-location shipping." />
+            <TrustBenefit icon={<BadgeCheck size={21} />} title="Verified Sellers" copy="Reviewed artisan businesses." />
+            <TrustBenefit icon={<Heart size={21} />} title="Customer Support" copy="Help when you need it." />
+          </div>
         </div>
       </section>
 
@@ -136,16 +138,16 @@ function SectionTitle({ title, href, label }: { title: string; href: string; lab
   return <div className="flex items-center justify-between gap-4"><h2 className="font-serif text-4xl font-semibold">{title}</h2><Link href={href} className="hidden items-center gap-1 text-sm font-extrabold text-rust sm:inline-flex">{label} <ArrowRight size={14} /></Link></div>;
 }
 
-function TrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return <span className="flex items-center justify-center gap-2 text-center sm:justify-start"><span className="text-rust">{icon}</span>{label}</span>;
+function TrustBenefit({ icon, title, copy }: { icon: React.ReactNode; title: string; copy: string }) {
+  return <article className="rounded-lg border border-line bg-white p-4 shadow-soft transition hover:-translate-y-0.5 hover:border-rust/40">
+    <div className="grid h-10 w-10 place-items-center rounded-lg bg-rust-soft text-rust">{icon}</div>
+    <h2 className="mt-3 text-[11px] font-black uppercase tracking-[.1em]">{title}</h2>
+    <p className="mt-1.5 text-xs leading-5 text-muted">{copy}</p>
+  </article>;
 }
 
-function TrustBenefit({ icon, title, copy }: { icon: React.ReactNode; title: string; copy: string }) {
-  return <article className="rounded-xl border border-line bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:border-rust/40">
-    <div className="grid h-12 w-12 place-items-center rounded-lg bg-rust-soft text-rust">{icon}</div>
-    <h2 className="mt-4 text-sm font-black uppercase tracking-[.1em]">{title}</h2>
-    <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
-  </article>;
+function HeroTrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return <span className="flex items-center justify-center gap-3 text-center sm:justify-start"><span className="text-rust">{icon}</span>{label}</span>;
 }
 
 function CategoryBubble({ category }: { category: Category }) {
