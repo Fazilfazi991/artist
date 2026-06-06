@@ -29,7 +29,7 @@ const config: Config = {
     },
     fontFamily: {
       serif: ["Playfair Display", "Georgia", "Times New Roman", "serif"],
-      sans: ["Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+      sans: ["Hanken Grotesk", "Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui", "sans-serif"]
     },
     boxShadow: {
       soft: "0 18px 45px rgba(28, 27, 27, .05)",

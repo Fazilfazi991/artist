@@ -8,6 +8,10 @@ import { addressSchema } from '@/lib/validators/address';
 
 function text(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function fail(path: string, message: string) { redirect(`${path}?error=${encodeURIComponent(message)}`); }
+function phoneFromParts(formData: FormData) {
+  const local = text(formData, 'phoneLocal');
+  return local ? `${text(formData, 'phoneCountryCode') || '+91'} ${local}` : text(formData, 'existingPhone') || text(formData, 'phone');
+}
 
 export async function saveAccountAddressAction(formData: FormData) {
   const user = await requireAuth();
@@ -17,7 +21,7 @@ export async function saveAccountAddressAction(formData: FormData) {
     parsed = addressSchema.parse({
       label: text(formData, 'label') || 'Home',
       full_name: text(formData, 'full_name'),
-      phone: text(formData, 'phone'),
+      phone: phoneFromParts(formData),
       address_line_1: text(formData, 'address_line_1'),
       address_line_2: text(formData, 'address_line_2') || undefined,
       city: text(formData, 'city'),
@@ -58,7 +62,7 @@ export async function deleteAccountAddressAction(formData: FormData) {
 export async function saveProfileAction(formData: FormData) {
   const user = await requireAuth();
   const fullName = text(formData, 'full_name');
-  const phone = text(formData, 'phone');
+  const phone = phoneFromParts(formData);
   if (fullName.length < 2) fail('/account/profile', 'Full name is required.');
   const supabase = createServiceRoleClient();
   const { error } = await supabase.from('profiles').update({ full_name: fullName, phone: phone || null }).eq('id', user.id);

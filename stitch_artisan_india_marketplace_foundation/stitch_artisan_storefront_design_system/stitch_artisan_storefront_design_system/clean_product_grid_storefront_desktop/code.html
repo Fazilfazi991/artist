@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hearth &amp; Clay Studio | Clean Product Grid</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f01",
+                        "on-primary-container": "#ffe4d7",
+                        "on-secondary-container": "#5a6651",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#f4ba9c",
+                        "tertiary": "#78422d",
+                        "inverse-primary": "#f4ba9c",
+                        "secondary": "#56624d",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "background": "#fbf9f4",
+                        "outline": "#83746d",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary-fixed": "#311302",
+                        "on-primary-fixed-variant": "#653d26",
+                        "secondary-fixed-dim": "#becbb0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-container": "#955943",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary-container": "#ffe3d9",
+                        "primary": "#71472f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-tint": "#80543c",
+                        "outline-variant": "#d5c3ba",
+                        "on-secondary-fixed": "#141e0e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "primary-container": "#8c5e45",
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d7e4c9",
+                        "secondary-fixed": "#dae7cc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f4a36",
+                        "on-background": "#1b1c19",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#51443e",
+                        "on-tertiary-fixed-variant": "#6c3924",
+                        "surface-variant": "#e4e2dd",
+                        "surface": "#fbf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "section-desktop": "120px",
+                        "section-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "script-accent": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "script-accent": ["20px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased">
+<!-- Announcement Bar -->
+<div class="bg-surface-container-highest text-on-surface text-center py-2 px-margin-mobile md:px-margin-desktop font-label-caps text-label-caps">
+        Free shipping on all orders over $150
+    </div>
+<!-- TopNavBar -->
+<nav class="bg-surface/90 dark:bg-surface/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-outline-variant/30 dark:border-outline/20">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="hidden md:flex items-center gap-6 font-label-caps text-label-caps">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 hover:opacity-80 transition-opacity" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80" href="#">Products</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80" href="#">Collections</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80" href="#">Custom Orders</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80" href="#">Contact</a>
+</div>
+<a class="font-headline-md text-headline-md font-medium text-primary dark:text-primary-fixed-dim tracking-tight" href="#">Hearth &amp; Clay Studio</a>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+<button class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span></button>
+</div>
+</div>
+</nav>
+<!-- Minimal Hero -->
+<header class="py-section-mobile md:py-section-desktop px-margin-mobile md:px-margin-desktop max-w-screen-xl mx-auto flex flex-col items-center text-center">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6 max-w-2xl">Handmade pieces, made to be loved.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8">Functional ceramics for everyday rituals, crafted with intention in our studio.</p>
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 rounded hover:opacity-90 transition-opacity" href="#">Shop the Collection</a>
+</header>
+<!-- Best Sellers Grid (Dense) -->
+<section class="py-section-mobile md:py-section-desktop px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+<div class="flex justify-between items-end mb-12">
+<h2 class="font-headline-lg text-headline-lg text-primary">Best Sellers</h2>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<a class="group block" href="#">
+<div class="aspect-w-3 aspect-h-4 bg-surface-container mb-4 overflow-hidden rounded-sm relative">
+<img alt="Product Image" class="object-cover w-full h-full object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzk_nlqL3TNewmeaLHGMyxYpd3VHBtJyQtn4YQXvfXeor10kY0PwOgjdjJVJ-QRShzNYNns69OCIVY1hqDVqz0hsR5-9efWd-lZ5a4BW77jpeM8x1oa_HDh7kc0ArK2yXKjU0MIFCX-9xE8RRqaT4yPx8TaLun9LrJBi_-aElom7sGRsUGRSrXvTWU_0JcRY9_wGHBlO6kxRCyoiiZjSZW2V61U0wrSP0e7kQrfOA01Q53iSUlQ4n2ebvUu2h9kyLQPKokMsXUqHwo"/>
+</div>
+<div class="text-center">
+<h3 class="font-body-md text-body-md text-on-surface">Speckled Mug</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">$32.00</p>
+</div>
+</a>
+<!-- Duplicate cards omitted for brevity in minimal effort response -->
+<a class="group block" href="#">
+<div class="aspect-w-3 aspect-h-4 bg-surface-container mb-4 overflow-hidden rounded-sm relative">
+<img alt="Product Image" class="object-cover w-full h-full object-center group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist handmade ceramic bowl in a studio setting, natural lighting, soft shadows, wabi sabi aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-jXBuL9JxlwfFbwBGHDsmfSxmxHLFGWzNNm8qFECjbd7DFozVw4vCUyKw44_MEbbva5AWEZMaQpXx7GWyPeGVSxbmSypDOPtRTP2sHUIlvmCHM07pF_RV2p07sgvW1cU6-K6s32q7l_V7o3JtyjDLZ_DEeQuCPhsFNgQy50TsNpRy5LdvJuXvdBsfEdjP0d_OG1sR60Vf13jyLDdPmV-IUOBtlM44FNaBhF_oVhKzdW_eLp84UnD0r5yPFa-36gJDEIpjbDrzJRFB"/>
+</div>
+<div class="text-center">
+<h3 class="font-body-md text-body-md text-on-surface">Everyday Bowl</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">$45.00</p>
+</div>
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest w-full px-margin-desktop py-section-desktop flex flex-col items-center gap-gutter px-margin-mobile md:px-margin-desktop mt-section-desktop">
+<h2 class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim">Artisan Collective</h2>
+<div class="flex gap-6 font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Newsletter</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Socials</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Policies</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Our Mission</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-8">© 2024 Artisan Collective. All rights reserved. Crafted with intention.</p>
+</footer>
+</body></html>

@@ -1,191 +1,292 @@
 import Link from 'next/link';
+import { ArrowRight, Heart, Search, ShoppingBag, User } from 'lucide-react';
 import type { StorefrontContext } from '@/lib/storefront/storefront-types';
 import { CartCountBadge } from '@/components/cart-count';
 
-const img = (value?: string | null) => value || '/artisan-hero.png';
+const fallback = '/artisan-hero.png';
+const img = (value?: string | null) => value || fallback;
 const money = (value: number | string | null | undefined) => value == null ? 'Quote required' : `Rs. ${Number(value).toLocaleString('en-IN')}`;
 const firstImage = (product: any) => img(product.product_images?.[0]?.image_url);
 const productType = (value?: string) => value === 'ready_to_ship' ? 'Ready to ship' : value === 'customized' ? 'Customizable' : 'Made to order';
 
-function policyText(context: StorefrontContext) {
-  return [
-    context.settings.shipping_policy || 'Shipping timelines are shared before checkout.',
-    context.settings.return_policy || 'Returns are handled with care based on product type.',
-    context.settings.production_timeline_note || 'Handmade timelines vary by piece.'
-  ];
+type Theme = {
+  bg: string;
+  surface: string;
+  text: string;
+  muted: string;
+  line: string;
+  accent: string;
+  accentText: string;
+  soft: string;
+};
+
+const earth: Theme = { bg: 'bg-[#fbf9f4]', surface: 'bg-[#ffffff]', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#71472f]', accentText: 'text-[#71472f]', soft: 'bg-[#f5f3ee]' };
+const olive: Theme = { bg: 'bg-[#fbf9f4]', surface: 'bg-white', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#56624d]', accentText: 'text-[#56624d]', soft: 'bg-[#f0eee9]' };
+const blush: Theme = { bg: 'bg-[#fff8f5]', surface: 'bg-white', text: 'text-[#28170d]', muted: 'text-[#6c5146]', line: 'border-[#ead1c6]', accent: 'bg-[#955943]', accentText: 'text-[#955943]', soft: 'bg-[#ffe8df]' };
+const gallery: Theme = { bg: 'bg-[#f7f1e7]', surface: 'bg-[#fffdf8]', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#30312e]', accentText: 'text-[#71472f]', soft: 'bg-[#e7e1d5]' };
+const boutique: Theme = { bg: 'bg-[#f4eadc]', surface: 'bg-[#fffaf2]', text: 'text-[#25150c]', muted: 'text-[#6e5647]', line: 'border-[#d9b98f]', accent: 'bg-[#25150c]', accentText: 'text-[#8c5e45]', soft: 'bg-[#eadac5]' };
+
+function HeroImage({ context, className = '' }: { context: StorefrontContext; className?: string }) {
+  return <img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className={`h-full w-full object-cover ${className}`} />;
 }
 
-function StoreNav({ context, dark = false, compact = false }: { context: StorefrontContext; dark?: boolean; compact?: boolean }) {
-  const cls = dark ? 'border-white/10 bg-[#21160f]/88 text-white' : 'border-line bg-white/90 text-ink';
-  return <header className={`sticky top-0 z-30 border-b px-4 py-3 backdrop-blur sm:px-6 lg:px-8 ${cls}`}>
-    <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-      <Link href={`/artisan/${context.seller.store_slug}`} className="flex min-w-0 items-center gap-2">
-        <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full bg-sand text-sm font-black text-rust">
-          {context.settings.logo_url ? <img src={context.settings.logo_url} alt={context.seller.store_name} className="h-full w-full object-cover" /> : context.seller.store_name?.[0]}
-        </span>
-        <span className="min-w-0"><strong className="block truncate font-serif text-lg">{context.seller.store_name}</strong><span className="hidden text-[11px] font-bold text-muted sm:block">{context.seller.city}, {context.seller.state}</span></span>
-      </Link>
-      <nav className={`flex items-center gap-3 text-xs font-black ${compact ? 'sm:gap-4' : 'sm:gap-5'}`}>
-        <Link href={`/artisan/${context.seller.store_slug}`}>Home</Link>
-        <Link href={`/artisan/${context.seller.store_slug}/collections`}>Collections</Link>
-        <Link href={`/artisan/${context.seller.store_slug}/products`}>Shop</Link>
-        {context.settings.custom_orders_enabled ? <Link className="hidden sm:inline" href={`/artisan/${context.seller.store_slug}/custom-order`}>Custom Order</Link> : null}
-        <Link href="/cart" className="relative rounded-md border border-current/20 px-2 py-1">Cart<CartCountBadge /></Link>
+function StoreNav({ context, theme = earth, centered = false, dark = false }: { context: StorefrontContext; theme?: Theme; centered?: boolean; dark?: boolean }) {
+  const store = context.seller.store_slug;
+  const text = dark ? 'text-white' : theme.text;
+  const muted = dark ? 'text-white/72' : theme.muted;
+  const border = dark ? 'border-white/15' : theme.line;
+  const bg = dark ? 'bg-[#25150c]/88' : 'bg-[#fbf9f4]/90';
+
+  return <header className={`sticky top-0 z-40 border-b ${border} ${bg} px-4 py-4 backdrop-blur-xl sm:px-6 lg:px-12`}>
+    <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-4">
+      <nav className={`hidden items-center gap-7 text-[12px] font-bold uppercase tracking-[.14em] ${muted} lg:flex`}>
+        <Link className={theme.accentText} href={`/artisan/${store}`}>Home</Link>
+        <Link href={`/artisan/${store}/products`}>Products</Link>
+        <Link href={`/artisan/${store}/collections`}>Collections</Link>
+        <Link href={`/artisan/${store}/about`}>About</Link>
+        {context.settings.custom_orders_enabled ? <Link href={`/artisan/${store}/custom-order`}>Custom Orders</Link> : null}
       </nav>
+      <Link href={`/artisan/${store}`} className={`${centered ? 'lg:absolute lg:left-1/2 lg:-translate-x-1/2' : ''} min-w-0 truncate font-serif text-2xl font-medium ${text}`}>{context.seller.store_name}</Link>
+      <div className={`flex items-center gap-4 ${dark ? 'text-white' : theme.accentText}`}>
+        <Search size={19} />
+        <Heart size={19} className="hidden sm:block" />
+        <User size={19} className="hidden sm:block" />
+        <Link href="/cart" className="relative" aria-label="Cart"><ShoppingBag size={20} /><CartCountBadge /></Link>
+      </div>
     </div>
   </header>;
 }
 
-function ProductCard({ product, storeSlug, dark = false, compact = false }: { product: any; storeSlug: string; dark?: boolean; compact?: boolean }) {
-  return <Link href={`/artisan/${storeSlug}/product/${product.slug}`} className={`group block overflow-hidden rounded-lg border ${dark ? 'border-white/10 bg-white/8' : 'border-line bg-white'}`}>
-    <div className={`overflow-hidden ${compact ? 'aspect-[4/3]' : 'aspect-square'}`}><img src={firstImage(product)} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /></div>
-    <div className="p-3 sm:p-4">
-      <p className={`text-[11px] font-black uppercase ${dark ? 'text-white/55' : 'text-rust'}`}>{product.categories?.name || productType(product.product_type)}</p>
-      <h3 className={`mt-1 line-clamp-2 min-h-10 text-sm font-black ${dark ? 'text-white' : 'text-ink'}`}>{product.name}</h3>
-      <p className={`mt-2 text-sm font-black ${dark ? 'text-[#e8cbaa]' : 'text-rust'}`}>{money(product.base_price)}</p>
+function StoreFooter({ context, theme = earth, dark = false }: { context: StorefrontContext; theme?: Theme; dark?: boolean }) {
+  const store = context.seller.store_slug;
+  const bg = dark ? 'bg-[#25150c]' : theme.soft;
+  const text = dark ? 'text-white' : theme.text;
+  const muted = dark ? 'text-white/65' : theme.muted;
+  const border = dark ? 'border-white/15' : theme.line;
+  return <footer className={`${bg} ${text} border-t ${border} px-4 py-16 sm:px-6 lg:px-12`}>
+    <div className="mx-auto grid max-w-screen-2xl gap-10 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div>
+        <h2 className="font-serif text-3xl font-medium">{context.seller.store_name}</h2>
+        <p className={`mt-4 max-w-sm text-sm leading-7 ${muted}`}>{context.seller.short_bio || context.settings.hero_subtitle}</p>
+      </div>
+      <FooterLinks title="Shop" links={[['Products', `/artisan/${store}/products`], ['Collections', `/artisan/${store}/collections`], ['Custom Orders', `/artisan/${store}/custom-order`]]} muted={muted} />
+      <FooterLinks title="Story" links={[['About', `/artisan/${store}/about`], ['Policies', `/artisan/${store}`], ['Contact', `/artisan/${store}`]]} muted={muted} />
+      <div>
+        <h3 className="text-xs font-bold uppercase tracking-[.16em]">Newsletter</h3>
+        <p className={`mt-4 text-sm leading-6 ${muted}`}>New work, studio notes, and collection launches.</p>
+        <form className={`mt-5 flex border-b ${border}`}>
+          <input className="min-w-0 flex-1 bg-transparent py-2 text-sm outline-none" placeholder="Email address" />
+          <button className={`text-xs font-bold uppercase tracking-[.14em] ${dark ? 'text-white' : theme.accentText}`} type="button">Join</button>
+        </form>
+      </div>
+    </div>
+    <p className={`mx-auto mt-12 max-w-screen-2xl border-t ${border} pt-6 text-xs ${muted}`}>© 2026 {context.seller.store_name}. Crafted with intention.</p>
+  </footer>;
+}
+
+function FooterLinks({ title, links, muted }: { title: string; links: [string, string][]; muted: string }) {
+  return <div><h3 className="text-xs font-bold uppercase tracking-[.16em]">{title}</h3><div className={`mt-4 grid gap-3 text-sm ${muted}`}>{links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</div></div>;
+}
+
+function ProductCard({ product, storeSlug, theme = earth, centered = false, border = false }: { product: any; storeSlug: string; theme?: Theme; centered?: boolean; border?: boolean }) {
+  return <Link href={`/artisan/${storeSlug}/product/${product.slug}`} className={`group block ${border ? `border ${theme.line} ${theme.surface} p-3` : ''}`}>
+    <div className="aspect-[3/4] overflow-hidden bg-[#f0eee9]">
+      <img src={firstImage(product)} alt={product.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+    </div>
+    <div className={`pt-4 ${centered ? 'text-center' : ''}`}>
+      <p className={`text-[11px] font-bold uppercase tracking-[.14em] ${theme.accentText}`}>{product.categories?.name || productType(product.product_type)}</p>
+      <h3 className="mt-2 line-clamp-2 font-serif text-xl font-medium">{product.name}</h3>
+      <p className={`mt-2 text-sm font-bold ${theme.muted}`}>{money(product.base_price)}</p>
     </div>
   </Link>;
 }
 
-function CollectionCards({ context, shape = 'rect', dark = false }: { context: StorefrontContext; shape?: 'rect' | 'circle' | 'banner'; dark?: boolean }) {
-  if (!context.collections.length) return null;
-  const base = shape === 'circle' ? 'grid grid-cols-2 gap-4 sm:grid-cols-5' : shape === 'banner' ? 'grid gap-4 md:grid-cols-3' : 'grid grid-cols-2 gap-3 sm:grid-cols-4';
-  return <div className={base}>{context.collections.slice(0, 5).map((collection: any, index: number) => <Link key={collection.id} href={`/artisan/${context.seller.store_slug}/collections/${collection.slug}`} className={shape === 'circle' ? 'group grid justify-items-center gap-2 text-center text-sm font-black' : `group overflow-hidden rounded-lg border ${dark ? 'border-white/10 bg-white/8 text-white' : 'border-line bg-white'}`}>
-    {shape === 'circle' ? <span className="relative h-20 w-20 overflow-hidden rounded-full bg-sand shadow-soft"><img src={img(collection.image_url || context.products[index]?.product_images?.[0]?.image_url || context.settings.hero_image_url || context.seller.cover_image_url)} alt={collection.name} className="h-full w-full object-cover transition group-hover:scale-105" /></span> : <div className={shape === 'banner' ? 'aspect-[16/9] overflow-hidden' : 'aspect-[4/3] overflow-hidden'}><img src={img(collection.image_url || context.products[index]?.product_images?.[0]?.image_url || context.settings.hero_image_url || context.seller.cover_image_url)} alt={collection.name} className="h-full w-full object-cover transition group-hover:scale-105" /></div>}
-    <span className={shape === 'circle' ? '' : 'block p-3 text-sm font-black'}>{collection.name}</span>
-  </Link>)}</div>;
+function ProductGrid({ context, title, theme = earth, centered = false, border = false, limit = 8, offset = 0 }: { context: StorefrontContext; title: string; theme?: Theme; centered?: boolean; border?: boolean; limit?: number; offset?: number }) {
+  const products = context.products.slice(offset, offset + limit);
+  return <section className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-12 lg:py-24">
+    <div className="mb-10 flex items-end justify-between gap-5">
+      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>{title}</h2>
+      <Link href={`/artisan/${context.seller.store_slug}/products`} className={`hidden text-xs font-bold uppercase tracking-[.14em] ${theme.muted} sm:inline-flex`}>View All</Link>
+    </div>
+    {products.length ? <div className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:gap-7">{products.map((product: any) => <ProductCard key={product.id} product={product} storeSlug={context.seller.store_slug} theme={theme} centered={centered} border={border} />)}</div> : <div className={`border ${theme.line} ${theme.surface} p-8 ${theme.muted}`}>No live products yet.</div>}
+  </section>;
 }
 
-function Newsletter({ dark = false }: { dark?: boolean }) {
-  return <section className={`${dark ? 'bg-[#21160f] text-white' : 'bg-[#fff7ec]'} px-4 py-8 sm:px-6 lg:px-8`}>
-    <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <div><h2 className="font-serif text-2xl">Be the first to know</h2><p className={`mt-1 text-sm ${dark ? 'text-white/65' : 'text-muted'}`}>New collections, stories, and exclusive offers.</p></div>
-      <form className="flex max-w-md overflow-hidden rounded-lg border border-line bg-white"><input className="min-w-0 flex-1 px-4 text-sm outline-none" placeholder="Enter your email" /><button type="button" className="bg-rust px-4 py-3 text-sm font-black text-white">Subscribe</button></form>
+function CollectionCards({ context, theme = earth, shape = 'rect' }: { context: StorefrontContext; theme?: Theme; shape?: 'rect' | 'circle' | 'banner' }) {
+  if (!context.collections.length) return null;
+  const store = context.seller.store_slug;
+  return <section id="collections" className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-12 lg:py-24">
+    <div className="mb-10 flex items-end justify-between gap-5">
+      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>Collections</h2>
+      <Link href={`/artisan/${store}/collections`} className={`text-xs font-bold uppercase tracking-[.14em] ${theme.muted}`}>View all</Link>
+    </div>
+    <div className={shape === 'circle' ? 'grid grid-cols-2 gap-8 text-center sm:grid-cols-5' : shape === 'banner' ? 'grid gap-5 md:grid-cols-3' : 'grid grid-cols-2 gap-5 md:grid-cols-4'}>
+      {context.collections.slice(0, 5).map((collection: any, index: number) => {
+        const src = img(collection.image_url || context.products[index]?.product_images?.[0]?.image_url || context.settings.hero_image_url || context.seller.cover_image_url);
+        return <Link key={collection.id} href={`/artisan/${store}/collections/${collection.slug}`} className="group block">
+          <div className={`${shape === 'circle' ? 'mx-auto h-28 w-28 rounded-full' : shape === 'banner' ? 'aspect-[16/9]' : 'aspect-[4/3]'} overflow-hidden bg-[#f0eee9]`}>
+            <img src={src} alt={collection.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+          </div>
+          <span className={`mt-4 block text-sm font-bold ${theme.text}`}>{collection.name}</span>
+        </Link>;
+      })}
     </div>
   </section>;
 }
 
-function StoreFooter({ context, dark = false }: { context: StorefrontContext; dark?: boolean }) {
-  const cls = dark ? 'border-white/10 bg-[#1a100b] text-white' : 'border-line bg-white';
-  return <footer className={`border-t px-4 py-8 sm:px-6 lg:px-8 ${cls}`}>
-    <div className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div><h2 className="font-serif text-2xl">{context.seller.store_name}</h2><p className={`mt-2 text-sm leading-6 ${dark ? 'text-white/65' : 'text-muted'}`}>{context.seller.short_bio}</p></div>
-      <FooterCol title="Shop" dark={dark} links={[['All Products', `/artisan/${context.seller.store_slug}/products`], ['Collections', `/artisan/${context.seller.store_slug}/collections`], ['New Arrivals', `/artisan/${context.seller.store_slug}/products`]]} />
-      <FooterCol title="Information" dark={dark} links={[['About Us', `/artisan/${context.seller.store_slug}/about`], ['Shipping', `/artisan/${context.seller.store_slug}`], ['Returns', `/artisan/${context.seller.store_slug}`]]} />
-      <div><h3 className="font-black">Connect</h3><div className={`mt-3 grid gap-2 text-sm ${dark ? 'text-white/65' : 'text-muted'}`}>{context.socialLinks.length ? context.socialLinks.map((link: any) => <a key={link.id} href={link.url}>{link.platform}</a>) : <span>{context.settings.contact_email || context.seller.store_name}</span>}</div></div>
+function ProcessBand({ context, theme = earth, dark = false }: { context: StorefrontContext; theme?: Theme; dark?: boolean }) {
+  const steps = ['Sourced carefully', 'Made by hand', 'Finished slowly'];
+  return <section className={`${dark ? 'bg-white/8 text-white' : `${theme.soft} ${theme.text}`} px-4 py-16 sm:px-6 lg:px-12`}>
+    <div className="mx-auto max-w-screen-xl text-center">
+      <h2 className="font-serif text-4xl font-medium">Our Philosophy</h2>
+      <div className={`mx-auto mt-6 h-px w-16 ${dark ? 'bg-white/25' : 'bg-[#d5c3ba]'}`} />
+      <div className="mt-12 grid gap-10 md:grid-cols-3">
+        {steps.map((step) => <div key={step}>
+          <div className={`mx-auto grid h-16 w-16 place-items-center rounded-full ${dark ? 'bg-white/12' : 'bg-white'} ${theme.accentText}`}>{step.slice(0, 1)}</div>
+          <h3 className="mt-5 font-serif text-2xl font-medium">{step}</h3>
+          <p className={`mt-3 text-sm leading-7 ${dark ? 'text-white/70' : theme.muted}`}>{context.settings.craft_process_content || 'Every piece is shaped with attention, patience, and respect for material.'}</p>
+        </div>)}
+      </div>
     </div>
-    <p className={`mx-auto mt-8 max-w-7xl border-t pt-4 text-xs ${dark ? 'border-white/10 text-white/45' : 'border-line text-muted'}`}>© 2026 {context.seller.store_name}. All rights reserved.</p>
-  </footer>;
+  </section>;
 }
 
-function FooterCol({ title, links, dark }: { title: string; links: [string, string][]; dark?: boolean }) {
-  return <div><h3 className="font-black">{title}</h3><div className={`mt-3 grid gap-2 text-sm ${dark ? 'text-white/65' : 'text-muted'}`}>{links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</div></div>;
+function CustomCta({ context, theme = earth, dark = false, title = 'Have something custom in mind?', button = 'Request Custom Order' }: { context: StorefrontContext; theme?: Theme; dark?: boolean; title?: string; button?: string }) {
+  if (!context.settings.custom_orders_enabled) return null;
+  return <section className={`${dark ? 'bg-[#30312e] text-white' : `${theme.soft} ${theme.text}`} px-4 py-12 sm:px-6 lg:px-12`}>
+    <div className="mx-auto flex max-w-screen-xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <div><h2 className="font-serif text-3xl font-medium">{title}</h2><p className={`mt-2 max-w-2xl text-sm leading-7 ${dark ? 'text-white/70' : theme.muted}`}>{context.settings.custom_order_policy_note || 'Share references, measurements, files, videos, and links. We will review and quote your piece.'}</p></div>
+      <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex justify-center rounded px-6 py-4 text-xs font-bold uppercase tracking-[.14em] ${dark ? 'bg-white text-[#30312e]' : `${theme.accent} text-white`}`}>{context.settings.custom_order_cta_text || button}</Link>
+    </div>
+  </section>;
 }
 
-function ProcessBand({ context, dark = false }: { context: StorefrontContext; dark?: boolean }) {
-  const items = ['Clay Preparation', 'Hand Shaping', 'Polishing', 'Packing'];
-  return <section className={`${dark ? 'bg-white/8' : 'bg-[#f2dfc8]'} px-4 py-8 sm:px-6 lg:px-8`}>
-    <div className="mx-auto max-w-7xl">
-      <h2 className="text-center font-serif text-2xl">The Art of Making</h2>
-      <div className="mt-5 grid gap-4 sm:grid-cols-4">{items.map((item, index) => <div key={item} className="text-center text-sm"><div className="mx-auto grid h-9 w-9 place-items-center rounded-full border border-rust/30 font-black text-rust">{index + 1}</div><strong className="mt-2 block">{item}</strong><p className={`${dark ? 'text-white/60' : 'text-muted'}`}>{context.settings.craft_process_content || 'Carefully finished by hand.'}</p></div>)}</div>
+function StoryQuote({ context, theme = earth, imageLeft = false, dark = false }: { context: StorefrontContext; theme?: Theme; imageLeft?: boolean; dark?: boolean }) {
+  const text = context.settings.artisan_story || context.seller.full_story || context.seller.short_bio;
+  return <section className={`mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-12 lg:py-24 ${dark ? 'text-white' : theme.text}`}>
+    {imageLeft ? <img src={img(context.seller.profile_image_url || context.settings.hero_image_url)} alt="" className="aspect-[4/3] h-full w-full object-cover" /> : null}
+    <div className={`${dark ? 'bg-white/10' : theme.surface} border ${dark ? 'border-white/15' : theme.line} p-8 lg:p-12`}>
+      <p className="font-serif text-3xl font-medium leading-snug">"{text}"</p>
+      <p className={`mt-6 text-xs font-bold uppercase tracking-[.16em] ${dark ? 'text-white/70' : theme.accentText}`}>{context.seller.store_name}</p>
     </div>
+    {!imageLeft ? <img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt="" className="aspect-[4/3] h-full w-full object-cover" /> : null}
   </section>;
 }
 
 export function WarmEditorialTemplate({ context }: { context: StorefrontContext }) {
-  return <main className="bg-[#fbf1e4] text-[#2b211b]">
-    <StoreNav context={context} />
-    <section className="mx-auto grid max-w-7xl overflow-hidden bg-[#ead1b4] lg:grid-cols-[.82fr_1.18fr]">
-      <div className="flex min-h-[420px] flex-col justify-center px-6 py-12 sm:px-10"><h1 className="font-serif text-5xl leading-tight lg:text-6xl">{context.settings.hero_title || `Handmade with earth, crafted with love.`}</h1><p className="mt-5 max-w-sm text-sm leading-6 text-muted">{context.settings.hero_subtitle || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/collections`} className="mt-7 w-fit rounded-md bg-rust px-5 py-3 text-sm font-black text-white">Explore Collections</Link></div>
-      <img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className="h-full min-h-[420px] w-full object-cover" />
+  return <main className={`${earth.bg} ${earth.text} font-sans`}>
+    <div className="bg-[#78422d] px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em] text-white">Free shipping on domestic orders above Rs. 999</div>
+    <StoreNav context={context} theme={earth} centered />
+    <section className="grid min-h-[82vh] md:grid-cols-2">
+      <div className={`${earth.soft} order-2 flex items-center px-4 py-16 sm:px-8 lg:px-12 md:order-1`}>
+        <div className="mx-auto max-w-xl md:mr-0">
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#78422d]">{context.seller.store_name}</p>
+          <h1 className="mt-6 font-serif text-5xl font-semibold leading-[1.08] sm:text-6xl">{context.settings.hero_title || 'Rooted in craft. Inspired by nature.'}</h1>
+          <p className={`${earth.muted} mt-7 max-w-md text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+          <Link href={`/artisan/${context.seller.store_slug}/collections`} className={`${earth.accent} mt-9 inline-flex rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Explore Collections</Link>
+        </div>
+      </div>
+      <div className="order-1 min-h-[48vh] md:order-2"><HeroImage context={context} /></div>
     </section>
-    <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8"><div><h2 className="font-serif text-2xl">Our Story</h2><p className="mt-3 text-sm leading-7 text-muted">{context.settings.about_content || context.seller.full_story || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/about`} className="mt-3 inline-block text-sm font-black text-rust">Know More</Link></div><img src={img(context.products[0]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/7] w-full rounded-lg object-cover" /></section>
-    <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Shop by Collection</h2><Link href={`/artisan/${context.seller.store_slug}/collections`} className="text-xs font-black text-rust">View all</Link></div><CollectionCards context={context} /></section>
-    <ProcessBand context={context} />
-    <ProductSection context={context} title="Featured Products" />
-    {context.settings.custom_orders_enabled ? <CustomCta context={context} /> : null}
-    <QuoteStory context={context} />
-    <StoreFooter context={context} />
+    <ProcessBand context={context} theme={earth} />
+    <CollectionCards context={context} theme={earth} />
+    <ProductGrid context={context} title="Featured Pieces" theme={earth} border />
+    <CustomCta context={context} theme={earth} />
+    <StoryQuote context={context} theme={earth} />
+    <StoreFooter context={context} theme={earth} />
   </main>;
 }
 
 export function CleanGridTemplate({ context }: { context: StorefrontContext }) {
-  return <main className="bg-[#fbfbf8] text-ink">
-    <StoreNav context={context} compact />
-    <section className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8"><div className="flex flex-col justify-center"><h1 className="font-serif text-5xl leading-tight">{context.settings.hero_title || 'Minimal pieces. Made to be loved daily.'}</h1><p className="mt-4 max-w-md text-sm leading-7 text-muted">{context.settings.hero_subtitle || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/products`} className="mt-6 w-fit rounded-md bg-sage px-5 py-3 text-sm font-black text-white">Shop Now</Link></div><img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className="aspect-[16/9] w-full rounded-lg object-cover" /></section>
-    <TrustRow items={['Handmade', 'Easy Returns', 'Secure Payment', 'Gift Ready']} />
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Shop by Category</h2><Link href={`/artisan/${context.seller.store_slug}/collections`} className="text-xs font-black text-sage">View all</Link></div><CollectionCards context={context} shape="circle" /></section>
-    <ProductSection context={context} title="Best Sellers" clean />
-    <ProductSection context={context} title="New Arrivals" clean offset={4} />
-    <QuoteStory context={context} compact />
-    <Newsletter />
-    <StoreFooter context={context} />
+  return <main className={`${olive.bg} ${olive.text} font-sans`}>
+    <div className={`${olive.soft} px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em]`}>Free shipping on all orders above Rs. 999</div>
+    <StoreNav context={context} theme={olive} />
+    <header className="mx-auto flex max-w-screen-xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-12 lg:py-28">
+      <h1 className={`${olive.accentText} max-w-3xl font-serif text-5xl font-semibold leading-tight sm:text-6xl`}>{context.settings.hero_title || 'Handmade pieces, made to be loved.'}</h1>
+      <p className={`${olive.muted} mt-6 max-w-xl text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+      <Link href={`/artisan/${context.seller.store_slug}/products`} className={`${olive.accent} mt-8 rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Shop the Collection</Link>
+    </header>
+    <ProductGrid context={context} title="Best Sellers" theme={olive} centered limit={8} />
+    <CollectionCards context={context} theme={olive} shape="circle" />
+    <ProductGrid context={context} title="New Arrivals" theme={olive} centered offset={4} limit={4} />
+    <CustomCta context={context} theme={olive} title="Need a different size or finish?" />
+    <StoreFooter context={context} theme={olive} />
   </main>;
 }
 
 export function PersonalizedGiftsTemplate({ context }: { context: StorefrontContext }) {
-  return <main className="bg-[#fff4ee] text-ink">
-    <StoreNav context={context} />
-    <section className="mx-auto grid max-w-7xl overflow-hidden bg-[#ffe4da] lg:grid-cols-[.9fr_1.1fr]"><div className="flex min-h-[380px] flex-col justify-center px-6 py-10 sm:px-10"><h1 className="font-serif text-5xl leading-tight">{context.settings.hero_title || 'Make every moment truly theirs.'}</h1><p className="mt-4 max-w-md text-sm leading-7 text-muted">{context.settings.hero_subtitle || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/collections`} className="mt-6 w-fit rounded-md bg-[#e36652] px-5 py-3 text-sm font-black text-white">Explore Gifts</Link></div><img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className="h-full min-h-[380px] w-full object-cover" /></section>
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Shop by Occasion</h2><Link href={`/artisan/${context.seller.store_slug}/collections`} className="text-xs font-black text-rust">View all</Link></div><CollectionCards context={context} shape="circle" /></section>
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><h2 className="font-serif text-2xl">How Personalization Works</h2><div className="mt-5 grid gap-4 md:grid-cols-4">{['Choose product', 'Add personalization', 'We create it', 'Delivered to you'].map((item, index) => <div key={item} className="rounded-lg bg-white p-5 text-center"><div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-[#ffe0d7] font-black text-rust">{index + 1}</div><strong className="mt-3 block text-sm">{item}</strong><p className="mt-1 text-xs text-muted">Crafted with care from your details.</p></div>)}</div></section>
-    <ProductSection context={context} title="Popular Personalized Gifts" />
-    {context.settings.custom_orders_enabled ? <CustomCta context={context} title="Have something custom in mind?" button="Request Custom Gift" /> : null}
-    <QuoteStory context={context} compact />
-    <Newsletter />
-    <StoreFooter context={context} />
+  return <main className={`${blush.bg} ${blush.text} font-sans`}>
+    <StoreNav context={context} theme={blush} centered />
+    <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
+      <div className="flex flex-col justify-center">
+        <p className={`${blush.accentText} text-xs font-bold uppercase tracking-[.18em]`}>Heartfelt Studio</p>
+        <h1 className="mt-6 max-w-xl font-serif text-5xl font-semibold leading-tight sm:text-6xl">{context.settings.hero_title || 'Make every moment truly theirs.'}</h1>
+        <p className={`${blush.muted} mt-6 max-w-lg text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+        <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`${blush.accent} mt-8 w-fit rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Start a Gift Brief</Link>
+      </div>
+      <div className="min-h-[440px] overflow-hidden rounded-lg"><HeroImage context={context} /></div>
+    </section>
+    <section className={`${blush.soft} px-4 py-14 sm:px-6 lg:px-12`}>
+      <div className="mx-auto max-w-screen-xl">
+        <h2 className="text-center font-serif text-4xl font-medium">How personalization works</h2>
+        <div className="mt-10 grid gap-5 md:grid-cols-4">{['Choose a piece', 'Add names or references', 'Approve the details', 'Receive your gift'].map((step, index) => <div key={step} className="rounded-lg bg-white p-6 text-center"><span className={`${blush.accent} mx-auto grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white`}>{index + 1}</span><strong className="mt-4 block">{step}</strong></div>)}</div>
+      </div>
+    </section>
+    <CollectionCards context={context} theme={blush} shape="circle" />
+    <ProductGrid context={context} title="Popular Personalized Gifts" theme={blush} centered border />
+    <CustomCta context={context} theme={blush} title="Have a custom gift in mind?" button="Request Custom Gift" />
+    <StoreFooter context={context} theme={blush} />
   </main>;
 }
 
 export function VisualPortfolioTemplate({ context }: { context: StorefrontContext }) {
-  return <main className="bg-[#f2eadc] text-ink">
-    <StoreNav context={context} />
-    <section className="relative min-h-[430px] overflow-hidden"><img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-[#1f2418]/80 to-transparent" /><div className="relative mx-auto flex min-h-[430px] max-w-7xl flex-col justify-center px-4 py-12 text-white sm:px-6 lg:px-8"><h1 className="max-w-lg font-serif text-5xl leading-tight">{context.settings.hero_title || 'Art that brings texture to life.'}</h1><p className="mt-4 max-w-md text-sm leading-7 text-white/75">{context.settings.hero_subtitle || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/collections`} className="mt-6 w-fit rounded-md bg-white px-5 py-3 text-sm font-black text-ink">Explore Portfolio</Link></div></section>
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Portfolio Highlights</h2><Link href={`/artisan/${context.seller.store_slug}/products`} className="text-xs font-black text-rust">View all</Link></div><MasonryProducts context={context} /></section>
-    {context.products[0] ? <section className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8"><div className="rounded-lg bg-[#536036] p-6 text-white"><p className="text-xs font-black uppercase">Featured Project</p><h2 className="mt-2 font-serif text-3xl">{context.products[0].name}</h2><p className="mt-3 text-sm text-white/75">{context.products[0].short_description || context.products[0].description}</p><Link href={`/artisan/${context.seller.store_slug}/product/${context.products[0].slug}`} className="mt-5 inline-block rounded-md bg-white px-4 py-2 text-sm font-black text-ink">View Project</Link></div><img src={firstImage(context.products[0])} alt={context.products[0].name} className="aspect-[16/8] w-full rounded-lg object-cover" /></section> : null}
-    <QuoteStory context={context} imageLeft />
-    <ProductSection context={context} title="Selected Pieces" large />
-    {context.settings.custom_orders_enabled ? <CustomCta context={context} title="Have a custom project in mind?" button="Enquire Now" dark /> : null}
-    <StoreFooter context={context} />
+  const products = context.products.slice(0, 6);
+  return <main className={`${gallery.bg} ${gallery.text} font-sans`}>
+    <StoreNav context={context} theme={gallery} dark />
+    <section className="relative min-h-[76vh] overflow-hidden bg-[#30312e] text-white">
+      <HeroImage context={context} className="absolute inset-0 opacity-58" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#30312e]/90 via-[#30312e]/55 to-transparent" />
+      <div className="relative z-10 mx-auto flex min-h-[76vh] max-w-screen-2xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-12">
+        <p className="text-xs font-bold uppercase tracking-[.18em] text-white/70">Visual Portfolio</p>
+        <h1 className="mt-6 max-w-2xl font-serif text-5xl font-semibold leading-tight sm:text-7xl">{context.settings.hero_title || 'Art that brings texture to life.'}</h1>
+        <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">{context.settings.hero_subtitle || context.seller.short_bio}</p>
+      </div>
+    </section>
+    <section className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-12 lg:py-24">
+      <div className="mb-10 flex items-end justify-between"><h2 className="font-serif text-4xl font-medium">Portfolio Highlights</h2><Link href={`/artisan/${context.seller.store_slug}/products`} className="text-xs font-bold uppercase tracking-[.14em] text-[#71472f]">View all</Link></div>
+      <div className="grid gap-5 md:grid-cols-4">{products.map((product: any, index: number) => <Link key={product.id} href={`/artisan/${context.seller.store_slug}/product/${product.slug}`} className={`${index === 1 ? 'md:col-span-2 md:row-span-2' : ''} group overflow-hidden bg-[#e7e1d5]`}><img src={firstImage(product)} alt={product.name} className="h-full min-h-64 w-full object-cover transition duration-700 group-hover:scale-105" /></Link>)}</div>
+    </section>
+    <StoryQuote context={context} theme={gallery} imageLeft />
+    <ProductGrid context={context} title="Selected Pieces" theme={gallery} border limit={6} />
+    <CustomCta context={context} theme={gallery} dark title="Have a custom project in mind?" button="Enquire Now" />
+    <StoreFooter context={context} theme={gallery} />
   </main>;
 }
 
 export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext }) {
-  return <main className="bg-[#f7ead9] text-[#28170d]">
-    <StoreNav context={context} dark />
-    <section className="relative min-h-[470px] overflow-hidden bg-[#25150c] text-white"><img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className="absolute inset-0 h-full w-full object-cover opacity-55" /><div className="relative mx-auto flex min-h-[470px] max-w-7xl flex-col justify-center px-4 py-12 sm:px-6 lg:px-8"><h1 className="max-w-lg font-serif text-5xl leading-tight">{context.settings.hero_title || 'Curated with intention. Made to be cherished.'}</h1><p className="mt-4 max-w-md text-sm leading-7 text-white/75">{context.settings.hero_subtitle || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/collections`} className="mt-6 w-fit rounded-md bg-[#c59042] px-5 py-3 text-sm font-black text-white">Shop Collection</Link></div></section>
-    <TrustRow items={['Premium quality', 'Handcrafted', 'Sustainable', 'Gift packaging']} dark />
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Our Collections</h2><Link href={`/artisan/${context.seller.store_slug}/collections`} className="text-xs font-black text-rust">View all</Link></div><CollectionCards context={context} shape="banner" /></section>
-    <ProductSection context={context} title="Featured Picks" />
-    <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8"><div className="rounded-lg bg-[#28170d] p-8 text-white"><h2 className="font-serif text-3xl">Our Philosophy</h2><p className="mt-4 leading-7 text-white/75">{context.settings.artisan_story || context.seller.full_story || context.seller.short_bio}</p><Link href={`/artisan/${context.seller.store_slug}/about`} className="mt-5 inline-block text-sm font-black text-[#d7a45b]">More About Us</Link></div><img src={img(context.products[1]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/9] w-full rounded-lg object-cover" /></section>
-    <ProductSection context={context} title="From the Journal" clean offset={2} />
-    <Newsletter dark />
-    <StoreFooter context={context} dark />
+  return <main className={`${boutique.bg} ${boutique.text} font-sans`}>
+    <StoreNav context={context} theme={boutique} centered dark />
+    <section className="relative min-h-[78vh] overflow-hidden bg-[#25150c] text-white">
+      <HeroImage context={context} className="absolute inset-0 opacity-55" />
+      <div className="absolute inset-0 bg-[#25150c]/45" />
+      <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-screen-2xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-12">
+        <p className="text-xs font-bold uppercase tracking-[.18em] text-[#d9b98f]">Atelier Collection</p>
+        <h1 className="mt-6 max-w-xl font-serif text-5xl font-semibold leading-tight sm:text-7xl">{context.settings.hero_title || 'Curated with intention. Made to be cherished.'}</h1>
+        <p className="mt-6 max-w-lg text-lg leading-8 text-white/72">{context.settings.hero_subtitle || context.seller.short_bio}</p>
+        <Link href={`/artisan/${context.seller.store_slug}/products`} className="mt-9 w-fit rounded bg-[#c59042] px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white">Shop Collection</Link>
+      </div>
+    </section>
+    <CollectionCards context={context} theme={boutique} shape="banner" />
+    <ProductGrid context={context} title="Featured Picks" theme={boutique} centered limit={4} />
+    <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
+      <div className="bg-[#25150c] p-8 text-white lg:p-12">
+        <h2 className="font-serif text-4xl font-medium">Our Philosophy</h2>
+        <p className="mt-6 leading-8 text-white/75">{context.settings.artisan_story || context.seller.full_story || context.seller.short_bio}</p>
+        <Link href={`/artisan/${context.seller.store_slug}/about`} className="mt-7 inline-flex text-xs font-bold uppercase tracking-[.14em] text-[#d9b98f]">More About Us <ArrowRight size={14} className="ml-2" /></Link>
+      </div>
+      <img src={img(context.products[1]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/10] h-full w-full object-cover" />
+    </section>
+    <CustomCta context={context} theme={boutique} title="Commission a signature piece" />
+    <StoreFooter context={context} theme={boutique} dark />
   </main>;
-}
-
-function ProductSection({ context, title, clean = false, large = false, offset = 0 }: { context: StorefrontContext; title: string; clean?: boolean; large?: boolean; offset?: number }) {
-  const products = context.products.slice(offset, offset + (large ? 6 : 8));
-  return <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">{title}</h2><Link href={`/artisan/${context.seller.store_slug}/products`} className="text-xs font-black text-rust">View all</Link></div>{products.length ? <div className={`grid gap-4 ${large ? 'sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-2 lg:grid-cols-4'}`}>{products.map((product: any) => <ProductCard key={product.id} product={product} storeSlug={context.seller.store_slug} compact={clean} />)}</div> : <div className="rounded-lg border border-line bg-white p-8 text-muted">No live products yet.</div>}</section>;
-}
-
-function MasonryProducts({ context }: { context: StorefrontContext }) {
-  const products = context.products.slice(0, 5);
-  return <div className="grid gap-4 md:grid-cols-4">{products.map((product: any, index: number) => <Link key={product.id} href={`/artisan/${context.seller.store_slug}/product/${product.slug}`} className={index === 1 ? 'overflow-hidden rounded-lg md:col-span-2 md:row-span-2' : 'overflow-hidden rounded-lg'}><img src={firstImage(product)} alt={product.name} className="h-full min-h-44 w-full object-cover" /></Link>)}</div>;
-}
-
-function CustomCta({ context, title = 'Want something custom?', button = 'Order Custom', dark = false }: { context: StorefrontContext; title?: string; button?: string; dark?: boolean }) {
-  return <section className={`${dark ? 'bg-[#536036] text-white' : 'bg-[#f0d7bd]'} px-4 py-6 sm:px-6 lg:px-8`}><div className="mx-auto flex max-w-7xl flex-col gap-3 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left"><div><h2 className="font-serif text-2xl">{title}</h2><p className={`text-sm ${dark ? 'text-white/75' : 'text-muted'}`}>{context.settings.custom_order_policy_note || 'We create personalized pieces just for you.'}</p></div><Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex justify-center rounded-md px-5 py-3 text-sm font-black ${dark ? 'bg-white text-ink' : 'bg-rust text-white'}`}>{context.settings.custom_order_cta_text || button}</Link></div></section>;
-}
-
-function QuoteStory({ context, compact = false, imageLeft = false }: { context: StorefrontContext; compact?: boolean; imageLeft?: boolean }) {
-  return <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
-    {imageLeft ? <img src={img(context.seller.profile_image_url || context.settings.hero_image_url)} alt="" className="aspect-[4/3] w-full rounded-lg object-cover" /> : null}
-    <div className="rounded-lg bg-white p-6"><p className="font-serif text-2xl leading-snug">"{context.settings.artisan_story || context.seller.full_story || context.seller.short_bio}"</p><p className="mt-4 text-sm font-black text-rust">- {context.seller.store_name}</p></div>
-    {!imageLeft && !compact ? <img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt="" className="aspect-[4/3] w-full rounded-lg object-cover" /> : null}
-  </section>;
-}
-
-function TrustRow({ items, dark = false }: { items: string[]; dark?: boolean }) {
-  return <section className={`${dark ? 'bg-[#fff7ec]' : 'bg-[#f4f1e8]'} px-4 py-5 sm:px-6 lg:px-8`}><div className="mx-auto grid max-w-7xl gap-3 text-xs font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">{items.map((item) => <span key={item} className="flex items-center justify-center gap-2 text-center"><span className="h-2 w-2 rounded-full bg-rust" />{item}</span>)}</div></section>;
 }

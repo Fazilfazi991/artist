@@ -22,6 +22,7 @@ function hasSupabaseMiddlewareEnv() {
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+  if (request.nextUrl.pathname.startsWith('/seller/register')) return response;
   const matchedRoute = roleRoutes.find((route) => request.nextUrl.pathname.startsWith(route.prefix));
   if (!matchedRoute || !hasSupabaseMiddlewareEnv()) return response;
 

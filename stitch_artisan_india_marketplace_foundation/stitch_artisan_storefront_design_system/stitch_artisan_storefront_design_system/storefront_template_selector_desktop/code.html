@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Storefront Template Selector - Artisan Collective</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#360f01",
+                      "on-primary-container": "#ffe4d7",
+                      "on-secondary-container": "#5a6651",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#f4ba9c",
+                      "tertiary": "#78422d",
+                      "inverse-primary": "#f4ba9c",
+                      "secondary": "#56624d",
+                      "surface-container-low": "#f5f3ee",
+                      "on-error": "#ffffff",
+                      "background": "#fbf9f4",
+                      "outline": "#83746d",
+                      "surface-container-high": "#eae8e3",
+                      "on-primary-fixed": "#311302",
+                      "on-primary-fixed-variant": "#653d26",
+                      "secondary-fixed-dim": "#becbb0",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdbce",
+                      "tertiary-container": "#955943",
+                      "inverse-surface": "#30312e",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-tertiary-container": "#ffe3d9",
+                      "primary": "#71472f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "surface-tint": "#80543c",
+                      "outline-variant": "#d5c3ba",
+                      "on-secondary-fixed": "#141e0e",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fbf9f4",
+                      "surface-dim": "#dbdad5",
+                      "primary-container": "#8c5e45",
+                      "primary-fixed": "#ffdbca",
+                      "secondary-container": "#d7e4c9",
+                      "secondary-fixed": "#dae7cc",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3f4a36",
+                      "on-background": "#1b1c19",
+                      "on-surface": "#1b1c19",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#f0eee9",
+                      "on-surface-variant": "#51443e",
+                      "on-tertiary-fixed-variant": "#6c3924",
+                      "surface-variant": "#e4e2dd",
+                      "surface": "#fbf9f4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "section-desktop": "120px",
+                      "section-mobile": "64px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "script-accent": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "script-accent": [
+                              "20px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .material-symbols-outlined.filled {
+             font-variation-settings: 'FILL' 1;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col bg-surface-container-low w-64 h-screen fixed left-0 top-0 p-6 z-40 border-r border-outline-variant/30">
+<div class="mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md">
+                AC
+            </div>
+<div>
+<h2 class="font-headline-md text-headline-md font-medium text-on-surface">Design Studio</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Management Suite</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+                    Design Studio
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 transition-colors font-body-md text-body-md translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard_customize">dashboard_customize</span>
+                    Template Selector
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+                    Store Editor
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                    Inventory
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
+</li>
+</ul>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-3 px-4 rounded-lg mb-4 hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+                 Publish Changes
+             </button>
+<ul class="flex flex-col gap-2 border-t border-outline-variant/30 pt-4">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 bg-surface flex flex-col min-h-screen relative pb-24">
+<!-- Header -->
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-30 px-margin-mobile md:px-margin-desktop py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-medium text-on-surface">Storefront Design Studio</h1>
+</div>
+<!-- Mobile Menu Toggle (Decorative) -->
+<button class="md:hidden text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-6xl mx-auto w-full flex-grow">
+<!-- Page Intro -->
+<div class="mb-12 max-w-2xl">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">Choose your storefront design</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Select a visual style for your mini-site. Your products, collections, content, policies, branding, and storefront URL will remain unchanged when switching templates.</p>
+</div>
+<!-- Templates Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Card 1: Warm Editorial -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col hover:shadow-[0_10px_30px_rgba(113,71,47,0.08)] transition-all duration-300">
+<div class="aspect-video bg-surface-variant relative overflow-hidden group">
+<img alt="Warm Editorial Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A warm, editorial style storefront preview showing handcrafted ceramic vases on a minimalist wooden table. Soft, natural lighting streams from a side window, creating deep, elegant shadows. The overall aesthetic is rustic yet highly refined, emphasizing tactile textures and earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh9pyt26MS-uYJ7_t0-oQxrV0bZ2Y4MHE5-6wgyYJTXz4l227KM7pNyIQbkPkgtBjxueKyTzzo6H9qQuhhF8HTwXkmYomqBUS4ZSwu2dXqvB58eIHW0VmTueOBO0HbLpac-KZTIsYR5pyjTXfYHYb873YHiBXZlGSAY8u52SDNC30IO82Pm8oT3rt7kBQAynttR58IS3PFWHYwptmgLwxBHEj-SNcu_mIUFlvEC4UjgVYdlmM-91Dx9ikL-Z3Pl8sRvnfOLS5bEaPP"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface text-on-surface font-label-caps text-label-caps py-2 px-6 rounded-md hover:bg-surface-container-low transition-colors">Quick View</button>
+</div>
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant/30 text-xs font-label-caps flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Current
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Warm Editorial</h3>
+<div class="flex gap-1">
+<span class="w-4 h-4 rounded-full bg-[#F5F3EE] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#71472F] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#56624D] border border-outline-variant/30"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">A tactile, story-driven layout focusing on large imagery and offset typography. Ideal for artisans with strong brand narratives.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 border border-outline text-on-surface font-body-md text-sm py-2 px-4 rounded-md hover:bg-surface-container-low transition-colors">Preview</button>
+<button class="flex-1 bg-surface-container-highest text-on-surface-variant font-body-md text-sm py-2 px-4 rounded-md cursor-not-allowed" disabled="">Selected</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Clean Product Grid -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col hover:shadow-[0_10px_30px_rgba(113,71,47,0.08)] transition-all duration-300">
+<div class="aspect-video bg-surface-variant relative overflow-hidden group">
+<img alt="Clean Product Grid Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A clean, highly organized product grid storefront preview showing minimalist leather goods neatly arranged on a stark white background. The lighting is even and flat, emphasizing product details and stark geometric lines. The aesthetic is modern, efficient, and corporate-clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtE_MB4_Xfx2FPTJ7TBFpS4RyIu9rjXzKCgBCThqdFNA6KrGaTsG-IkyudnoQUSXy30XIce5eb0kl6lTBjwhWmASJXsfT5eMr_0emfdb1jis8pqpqd_6euL5wvg7K0dYp1v6Ika_5xxwMrNV_hSbTK9sjBWGzrCjYT8Gh1EO1EyeIskFbfbP5ZV3Ryct4rC0VVLktl_tjxKAIBltb59jRrw_MsVvboUXsyX9LQUHvPjIeED_QByL1_gfDQEZXid4uq22QfBb-UNJ3r"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface text-on-surface font-label-caps text-label-caps py-2 px-6 rounded-md hover:bg-surface-container-low transition-colors">Quick View</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Clean Product Grid</h3>
+<div class="flex gap-1">
+<span class="w-4 h-4 rounded-full bg-[#FFFFFF] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#1B1C19] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#E4E2DD] border border-outline-variant/30"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">A utilitarian, high-density layout designed to showcase a large inventory cleanly. Perfect for functional goods and broad collections.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 border border-outline text-on-surface font-body-md text-sm py-2 px-4 rounded-md hover:bg-surface-container-low transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary font-body-md text-sm py-2 px-4 rounded-md hover:opacity-90 transition-opacity">Select Template</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Personalized Gifts -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col hover:shadow-[0_10px_30px_rgba(113,71,47,0.08)] transition-all duration-300">
+<div class="aspect-video bg-surface-variant relative overflow-hidden group">
+<img alt="Personalized Gifts Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A storefront preview showing customized gift items like monogrammed stationery and engraved jewelry boxes. The setting is bright, cheerful, and slightly festive with soft pastel backgrounds and delicate prop styling. The aesthetic is approachable, warm, and highly personalized." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD8BnkgF3r8c5p2WV1COCVRf6Qra1VvQ618Vfa3SnHLsQW1HVO7FxqGvJ388D_ItD2oTpJaBmbufmAznCxwRadVNc37Ewr2w-WPz7zDTvlvYPUAGhky8y-8TU9q7-xu9BOP24ndBWMZIj2x-mS0oqHxAbVkjPZu6rv-BCyRou2XjtgqSTtFsDjZDen9juy-aS3MUHbFP03nobnu6USmfnECzVIYf8CL4NLhQ7gdSR3VSZxon2dEg35LSbTGQH6YDcKcvx1hENQ-J1b"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface text-on-surface font-label-caps text-label-caps py-2 px-6 rounded-md hover:bg-surface-container-low transition-colors">Quick View</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Personalized Gifts</h3>
+<div class="flex gap-1">
+<span class="w-4 h-4 rounded-full bg-[#FFDBCE] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#955943] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#F4BA9C] border border-outline-variant/30"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Features prominent customization options, gift tag stylings, and a cheerful color palette to highlight bespoke creations.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 border border-outline text-on-surface font-body-md text-sm py-2 px-4 rounded-md hover:bg-surface-container-low transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary font-body-md text-sm py-2 px-4 rounded-md hover:opacity-90 transition-opacity">Select Template</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Visual Portfolio -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col hover:shadow-[0_10px_30px_rgba(113,71,47,0.08)] transition-all duration-300">
+<div class="aspect-video bg-surface-variant relative overflow-hidden group">
+<img alt="Visual Portfolio Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly visual, portfolio-style storefront preview focusing on large-scale, dramatic photography of fine art prints and sculptures. The layout features generous whitespace, thin elegant borders, and minimal typography. The lighting is moody and gallery-like." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqHpw2tkhYKi5Q2f7kja-TNutoHBE2SOiaKnqy2YhCC04N1WgJUutJGFn67fG3M1rWXFl6dsHKli4IRUGOs_ROyX2vLyGwzWq6a0fBFDFdD2I1FMmN35fqZ_8J7b9rAA8d3M2QvIgiaMBsPpdjMAcIo2hmXg-6ixqkAzq6WhOTT_704_RWns3UAdMLusMY7FNpde2_ZPsbFQeXDA-TyG2JeylYhoUoEApwjzQgKs-5UYvAKfOUGCSv2mfFnTba3qPGEQahyF0hEZ3S"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface text-on-surface font-label-caps text-label-caps py-2 px-6 rounded-md hover:bg-surface-container-low transition-colors">Quick View</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Visual Portfolio</h3>
+<div class="flex gap-1">
+<span class="w-4 h-4 rounded-full bg-[#141E0E] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#F2F1EC] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#83746D] border border-outline-variant/30"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">A gallery-like experience prioritizing stunning full-bleed photography. Best for artists and creators with highly visual work.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 border border-outline text-on-surface font-body-md text-sm py-2 px-4 rounded-md hover:bg-surface-container-low transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary font-body-md text-sm py-2 px-4 rounded-md hover:opacity-90 transition-opacity">Select Template</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Boutique Brand -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col hover:shadow-[0_10px_30px_rgba(113,71,47,0.08)] transition-all duration-300 md:col-span-2 lg:col-span-1">
+<div class="aspect-video bg-surface-variant relative overflow-hidden group">
+<img alt="Boutique Brand Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A chic, boutique-style storefront preview showing a curated selection of lifestyle clothing and accessories. The layout uses soft pastel tones, elegant serif typography, and balanced symmetry. The overall feel is premium, exclusive, and softly feminine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt9ryPGiLEk4dXEL5CnrRU4x6Q0KRiaWd-XmXJzJvJ5ppClDSEpZYFEHFxa1HLk-NMmqihO6hhBDUVOpQd34DriV2dPyL2R9GB8TdGUDo9_dNJfIWChuUMcPgjsFMjDMfUxSHs-EO7ca2PW194TIJn47LsffI3cxa-TydTXo38WK3MDzoALtxFDmRzi2U7A09zwvhNRVX_r35etAxd9wxY2eKyifgNhaJr8dD4jA09f1GSq-ivtlockqYlnr8YjRldeYGd5WiZhd2W"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface text-on-surface font-label-caps text-label-caps py-2 px-6 rounded-md hover:bg-surface-container-low transition-colors">Quick View</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Boutique Brand</h3>
+<div class="flex gap-1">
+<span class="w-4 h-4 rounded-full bg-[#D7E4C9] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#3F4A36] border border-outline-variant/30"></span>
+<span class="w-4 h-4 rounded-full bg-[#F0EEE9] border border-outline-variant/30"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">A sophisticated, balanced layout that blends product grids with brand storytelling sections. Ideal for cohesive collections.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 border border-outline text-on-surface font-body-md text-sm py-2 px-4 rounded-md hover:bg-surface-container-low transition-colors">Preview</button>
+<button class="flex-1 bg-primary text-on-primary font-body-md text-sm py-2 px-4 rounded-md hover:opacity-90 transition-opacity">Select Template</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Unsaved Changes Alert Bar -->
+<div class="fixed bottom-0 left-0 md:left-64 right-0 bg-surface-container-high border-t border-outline-variant/30 px-margin-mobile md:px-margin-desktop py-4 flex flex-col sm:flex-row items-center justify-between gap-4 z-50 transform translate-y-full transition-transform duration-300" id="unsaved-alert" style="transform: translateY(0);">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="info">info</span>
+<p class="font-body-md text-on-surface">You have unsaved changes to your storefront design.</p>
+</div>
+<div class="flex gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none border border-outline text-on-surface font-label-caps text-label-caps py-3 px-6 rounded-md hover:bg-surface-container-lowest transition-colors" onclick="document.getElementById('unsaved-alert').style.transform = 'translateY(100%)'">Cancel</button>
+<button class="flex-1 sm:flex-none bg-primary text-on-primary font-label-caps text-label-caps py-3 px-6 rounded-md hover:opacity-90 transition-opacity" onclick="document.getElementById('unsaved-alert').style.transform = 'translateY(100%)'">Save Changes</button>
+</div>
+</div>
+</main>
+</body></html>

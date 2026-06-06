@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { PhoneCountryField } from '@/components/phone-country-field';
 import { EmptyState, SectionHeading } from '@/components/ui';
 import { getCheckoutState, requireBuyer } from '@/lib/services/checkout';
 import { deleteAddressAction, saveAddressAction } from '../actions';
@@ -16,7 +17,7 @@ export default async function CheckoutAddressPage({ searchParams }: { searchPara
 }
 
 function AddressForm() {
-  return <form action={saveAddressAction} className="grid gap-4 rounded-xl border border-line bg-white p-5"><h2 className="font-black">Add address</h2><Input name="label" label="Label" defaultValue="Home" /><Input name="full_name" label="Full name" /><Input name="phone" label="Phone" /><Input name="address_line_1" label="Address line 1" /><Input name="address_line_2" label="Address line 2" required={false}/><div className="grid gap-4 sm:grid-cols-2"><Input name="city" label="City" /><Input name="state" label="State" /></div><div className="grid gap-4 sm:grid-cols-2"><Input name="postal_code" label="Postal code" /><Input name="country" label="Country" defaultValue="India" /></div><label className="text-sm font-bold"><input name="is_default" type="checkbox" defaultChecked /> Make default</label><button className="rounded-lg bg-rust px-5 py-3 font-black text-white">Save and review</button></form>;
+  return <form action={saveAddressAction} className="grid gap-4 rounded-xl border border-line bg-white p-5"><h2 className="font-black">Add address</h2><Input name="label" label="Label" defaultValue="Home" /><Input name="full_name" label="Full name" /><PhoneCountryField /><Input name="address_line_1" label="Address line 1" /><Input name="address_line_2" label="Address line 2" required={false}/><div className="grid gap-4 sm:grid-cols-2"><Input name="city" label="City" /><Input name="state" label="State" /></div><div className="grid gap-4 sm:grid-cols-2"><Input name="postal_code" label="Postal code" /><Input name="country" label="Country" defaultValue="India" /></div><label className="text-sm font-bold"><input name="is_default" type="checkbox" defaultChecked /> Make default</label><button className="rounded-lg bg-rust px-5 py-3 font-black text-white">Save and review</button></form>;
 }
 
 function Input({ name, label, defaultValue = '', required = true }: { name: string; label: string; defaultValue?: string; required?: boolean }) {

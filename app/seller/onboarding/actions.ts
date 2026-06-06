@@ -7,6 +7,11 @@ const imageTypes = ['image/jpeg','image/png','image/webp'];
 const documentTypes = ['application/pdf','image/jpeg','image/png'];
 function text(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function slugify(value: string) { return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+function combinedPhone(formData: FormData, codeKey: string, localKey: string) {
+  const local = text(formData, localKey);
+  if (!local) return '';
+  return `${text(formData, codeKey) || '+91'} ${local}`;
+}
 async function userOrRedirect() { const supabase = await createClient(); const { data: { user } } = await supabase.auth.getUser(); if (!user) redirect('/login?next=/seller/onboarding'); return { supabase, user }; }
 function validFile(file: File, types: string[], maxMb: number) { return file && file.size > 0 && types.includes(file.type) && file.size <= maxMb * 1024 * 1024; }
 
@@ -15,6 +20,11 @@ export async function saveSellerApplication(formData: FormData) {
   const storeName = text(formData, 'storeName');
   const storeSlug = slugify(text(formData, 'storeSlug') || storeName);
   if (!storeName || !storeSlug) redirect('/seller/onboarding?error=Store name and slug are required');
+  const profileUpdate: Record<string, string> = { full_name: text(formData, 'fullName') };
+  const phone = combinedPhone(formData, 'phoneCountryCode', 'phoneLocal');
+  if (phone) profileUpdate.phone = phone;
+  await supabase.from('profiles').update(profileUpdate).eq('id', user.id);
+  const whatsappNumber = combinedPhone(formData, 'whatsappCountryCode', 'whatsappLocal');
   const payload: Record<string, unknown> = {
     user_id: user.id,
     store_name: storeName,
@@ -24,7 +34,7 @@ export async function saveSellerApplication(formData: FormData) {
     city: text(formData, 'city'),
     state: text(formData, 'state'),
     instagram_url: text(formData, 'instagramUrl') || null,
-    whatsapp_number: text(formData, 'whatsappNumber'),
+    whatsapp_number: whatsappNumber || undefined,
     years_experience: Number(text(formData, 'yearsExperience') || 0),
     average_production_days: Number(text(formData, 'productionDays') || 7),
     shipping_regions: text(formData, 'shippingRegions').split(',').map((item) => item.trim()).filter(Boolean),

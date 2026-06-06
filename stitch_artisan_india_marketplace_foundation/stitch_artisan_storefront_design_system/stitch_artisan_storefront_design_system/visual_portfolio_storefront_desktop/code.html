@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clay &amp; Craft - Visual Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f01",
+                        "on-primary-container": "#ffe4d7",
+                        "on-secondary-container": "#5a6651",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#f4ba9c",
+                        "tertiary": "#78422d",
+                        "inverse-primary": "#f4ba9c",
+                        "secondary": "#56624d",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "background": "#fbf9f4",
+                        "outline": "#83746d",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary-fixed": "#311302",
+                        "on-primary-fixed-variant": "#653d26",
+                        "secondary-fixed-dim": "#becbb0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-container": "#955943",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary-container": "#ffe3d9",
+                        "primary": "#71472f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-tint": "#80543c",
+                        "outline-variant": "#d5c3ba",
+                        "on-secondary-fixed": "#141e0e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "primary-container": "#8c5e45",
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d7e4c9",
+                        "secondary-fixed": "#dae7cc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f4a36",
+                        "on-background": "#1b1c19",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#51443e",
+                        "on-tertiary-fixed-variant": "#6c3924",
+                        "surface-variant": "#e4e2dd",
+                        "surface": "#fbf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "section-desktop": "120px",
+                        "section-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "script-accent": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "script-accent": ["20px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .brush-stroke {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 5 Q 25 0, 50 5 T 100 5" stroke="%2383746d" stroke-width="2" fill="none" opacity="0.3"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .organic-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/90 dark:bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 dark:border-outline/20">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-6">
+<a class="font-headline-md text-headline-md font-medium text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity" href="#">
+                    Clay &amp; Craft
+                </a>
+<ul class="hidden md:flex gap-6 items-center">
+<li><a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-caps text-label-caps uppercase hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Home</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps uppercase hover:opacity-80 transform hover:scale-95 duration-150" href="#">Products</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps uppercase hover:opacity-80 transform hover:scale-95 duration-150" href="#">Collections</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps uppercase hover:opacity-80 transform hover:scale-95 duration-150" href="#">About</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps uppercase hover:opacity-80 transform hover:scale-95 duration-150" href="#">Custom Orders</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps uppercase hover:opacity-80 transform hover:scale-95 duration-150" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-secondary/10"></div>
+<img alt="Featured artwork" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSNQjmcsjpHUbu7I1t0oJJ_HItTFDTjtHDj7coDEDx77bC2TC0yFKY2nMQV54lQjO9LcbcpFFM3BJaLEIxpqKVdtusJ_EcmC-vLzgkYkxCVVYhxI8AKaqcbJKA1lsCHwhuRwa8k0vrP26cgG93X-s6fF8e2fAYKtUNNp0WxfUFjz-sFxFE3m0XBVZFLSorMmXsPasW8TzwbdueBLWzO3bk_OXQRNgzc9UoF_ficJeXxhFnQGZl6EGBNcGokFgc8NdRm7798_MvSBpF"/>
+<div class="relative z-10 text-center px-margin-desktop">
+<h1 class="font-display-lg text-display-lg md:font-display-lg text-on-surface mb-6">Sculpting<br/>Earthen Narratives</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-8">A visual portfolio of tactile ceramics, exploring the dialogue between raw clay and modern form.</p>
+<a class="inline-block bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 uppercase tracking-widest hover:bg-primary-container transition-colors shadow-sm" href="#portfolio">Explore Collection</a>
+</div>
+</section>
+<!-- Selected Pieces Grid -->
+<section class="py-section-desktop px-margin-desktop max-w-screen-2xl mx-auto" id="portfolio">
+<div class="text-center mb-section-mobile relative">
+<h2 class="font-headline-lg text-headline-lg text-on-surface relative z-10 inline-block">Selected Works</h2>
+<div class="absolute w-32 h-4 bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2 brush-stroke z-0"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 relative group cursor-pointer">
+<div class="overflow-hidden bg-surface-container-low aspect-[4/3] flex items-center justify-center">
+<img alt="Textured ceramic vase in muted olive tone, resting on a raw linen cloth. The lighting is soft and natural, emphasizing the tactile surface of the clay. The setting suggests a calm, studio-led gallery environment." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up studio shot of a hand-thrown ceramic vase with a textured, muted olive glaze. It sits on a piece of raw, loosely woven linen against a warm beige background. The lighting is soft and natural, casting gentle shadows that highlight the artisanal imperfections and tactile quality of the piece. The overall mood is grounded, serene, and deeply rooted in a natural aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoI3eLW9LJRmwTsV1kBa76oZdq3889C7Nza81g01lMcnrEJjQX3rQNtDzOi00YYhMXCrzQIW9pOCKBNAJtRwinwa48_PSB-tuZnWZKSsHUr_eHchtkwAZvgTboF9dacW0dF6jmCz8u7a2ksgYvvTV0m8PsjwJmICRKi_JMIZi9fhCFS3z5LNHdBUY8r8TgS3ovHFXFhMFUZypON-aiNZTqBorYDOlZxUT9CfJiXTvo_GeT5QkMK9AB-4fSH4ok11a4b36n0cB2ZMgz"/>
+</div>
+<div class="mt-4 flex justify-between items-baseline">
+<div>
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-1">Vessel</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">The Alabaster Series</h3>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-gutter mt-12 md:mt-0 relative group cursor-pointer">
+<div class="overflow-hidden bg-surface-container-low aspect-square flex items-center justify-center">
+<img alt="Collection of earth-toned ceramic bowls nested together." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A top-down view of several handmade ceramic bowls nested inside each other. The bowls range in color from terracotta clay to muted olive and warm beige. They are placed on a minimalist, flat surface. The soft, diffused studio lighting creates a sense of harmony and high-end artisanal craftsmanship. The composition emphasizes organic shapes and subtle tonal variations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-tkj_OfpgURGHFPTWHefpyGNKZlhM3tvP7BwNLz3ZO7LpJ_NpS74NuQYdDrPaS-lC-5ffxs6gNojlt_2MlcQ7UiqCogIm0AQYU9UGM4aC9B9wi3YsXfr09H38a0HaKc1y_HoKQ6DyYAGvgdM8h4GbgUCnNPpNYLmOSXPw2D9mtGmWSQcUU1b7wAMWUL_FQrL7-a_nOgfLPTqcd8KIv3xEGjfLVe1Xcu5Gw4PP2n71fgrohc-qzyfTkqZrNUkkXX-0eU1utdN0rZ-1"/>
+</div>
+<div class="mt-4">
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-1">Functional Art</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Nesting Bowls</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Maker Story -->
+<section class="bg-surface-container-low py-section-desktop px-margin-desktop">
+<div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-section-mobile items-center">
+<div class="order-2 md:order-1 relative">
+<div class="w-4/5 aspect-[3/4] overflow-hidden organic-shape bg-surface ml-auto relative z-10">
+<img alt="Artisan working at a pottery wheel in a sunlit studio." class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A candid, warm studio photograph showing an artisan's hands covered in wet clay, shaping a vessel on a spinning pottery wheel. The studio is bathed in warm, natural sunlight filtering through a nearby window, creating a serene and grounded atmosphere. The surrounding space hints at a rustic yet professional gallery environment, emphasizing the tactile connection between the maker and the earth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMlYxB65xHjq0AXcZuBOrKbR6EiUjW-oufTRxcCbUE2VWl5DqbNDP6ctYekW7ugap9N4dyzqc7odWufDVxJAeJ0JGzKoud1k21UGkWhf-yDnU2i35R2eIrB1EVMlP75uRDtvXtKn00tfn_5LjV5GSwKpK_1O0mg5cZmLIpIm1SDKcSPGJSrVnmbzPAH1ORlJ3t4XTwBxjCYjJqaQEnc2LkQFKVgCgfITvBhYgeMzsSnzAdkcFmgvilpECJ5Is-Vyl5hmnPWvfigxuu"/>
+</div>
+<div class="absolute -bottom-8 -left-8 w-32 h-32 border border-outline rounded-full opacity-50 z-0 pointer-events-none"></div>
+</div>
+<div class="order-1 md:order-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">The Studio Process</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Every piece begins as a dialogue with the earth. We source local clays, embracing their natural impurities to create works that carry the signature of their origin.</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Our firing process is slow and intentional, allowing glazes to melt into unique, unpredictable patterns. It's a surrender to the elements—fire, air, and earth—resulting in artifacts meant to be lived with and loved.</p>
+<a class="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary/5 transition-colors" href="#">
+                        Read Our Story <span class="material-symbols-outlined text-sm">east</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-section-desktop flex flex-col items-center gap-gutter bg-surface-container-highest dark:bg-surface-container-highest">
+<h2 class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim">Clay &amp; Craft</h2>
+<nav class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Newsletter</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Socials</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Policies</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Our Mission</a>
+</nav>
+<p class="font-body-md text-body-md text-on-surface dark:text-on-surface mt-8 text-center opacity-70">
+            © 2024 Artisan Collective. All rights reserved. Crafted with intention.
+        </p>
+</footer>
+</body></html>

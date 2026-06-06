@@ -99,7 +99,7 @@ Design the full home page:
 - Mission/story section about empowering artisans and preserving traditions.
 - Stats band: artisans empowered, happy customers, products sold, states covered.
 - Featured storefronts / makers section.
-- Service reassurance strip: returns, cash on delivery, secure payments, worldwide shipping.
+- Service reassurance strip: returns, protected online payments, secure payments, worldwide shipping.
 - Footer.
 
 The hero should show the product/marketplace clearly, not abstract decoration.

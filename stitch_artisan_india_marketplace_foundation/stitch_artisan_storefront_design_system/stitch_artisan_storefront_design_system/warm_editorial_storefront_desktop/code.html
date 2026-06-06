@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Earth &amp; Clay | Rooted in Craft</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;family=Plus+Jakarta+Sans&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f01",
+                        "on-primary-container": "#ffe4d7",
+                        "on-secondary-container": "#5a6651",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#f4ba9c",
+                        "tertiary": "#78422d",
+                        "inverse-primary": "#f4ba9c",
+                        "secondary": "#56624d",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "background": "#fbf9f4",
+                        "outline": "#83746d",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary-fixed": "#311302",
+                        "on-primary-fixed-variant": "#653d26",
+                        "secondary-fixed-dim": "#becbb0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-container": "#955943",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary-container": "#ffe3d9",
+                        "primary": "#71472f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-tint": "#80543c",
+                        "outline-variant": "#d5c3ba",
+                        "on-secondary-fixed": "#141e0e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "primary-container": "#8c5e45",
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d7e4c9",
+                        "secondary-fixed": "#dae7cc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f4a36",
+                        "on-background": "#1b1c19",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#51443e",
+                        "on-tertiary-fixed-variant": "#6c3924",
+                        "surface-variant": "#e4e2dd",
+                        "surface": "#fbf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "section-desktop": "120px",
+                        "section-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": [
+                            "Hanken Grotesk"
+                        ],
+                        "script-accent": [
+                            "Plus Jakarta Sans"
+                        ],
+                        "headline-lg": [
+                            "Playfair Display"
+                        ],
+                        "display-lg-mobile": [
+                            "Playfair Display"
+                        ],
+                        "display-lg": [
+                            "Playfair Display"
+                        ],
+                        "label-caps": [
+                            "Hanken Grotesk"
+                        ],
+                        "headline-md": [
+                            "Playfair Display"
+                        ],
+                        "body-md": [
+                            "Hanken Grotesk"
+                        ]
+                    },
+                    "fontSize": {
+                        "body-lg": [
+                            "18px",
+                            {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "script-accent": [
+                            "20px",
+                            {
+                                "lineHeight": "1",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "display-lg-mobile": [
+                            "36px",
+                            {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "display-lg": [
+                            "48px",
+                            {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "label-caps": [
+                            "12px",
+                            {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-md": [
+                            "24px",
+                            {
+                                "lineHeight": "1.4",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "body-md": [
+                            "16px",
+                            {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Announcement Bar -->
+<div class="bg-tertiary text-on-tertiary text-center py-2 px-margin-mobile md:px-margin-desktop font-label-caps text-label-caps">
+        Free shipping on all domestic orders over $150
+    </div>
+<!-- TopNavBar Shared Component -->
+<header class="bg-surface/90 dark:bg-surface/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-outline-variant/30 dark:border-outline/20">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto hidden md:flex">
+<!-- Navigation Links -->
+<nav class="flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Products</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">About</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Custom Orders</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity transform hover:scale-95 duration-150" href="#">Contact</a>
+</nav>
+<!-- Brand Logo -->
+<div class="absolute left-1/2 -translate-x-1/2">
+<a class="font-headline-md text-headline-md font-medium text-primary dark:text-primary-fixed-dim tracking-tight" href="#">Artisan Collective</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex gap-6 items-center text-primary dark:text-primary-fixed-dim">
+<button aria-label="Search" class="hover:opacity-80 transition-opacity transform hover:scale-95 duration-150">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Favorite" class="hover:opacity-80 transition-opacity transform hover:scale-95 duration-150">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button aria-label="Account" class="hover:opacity-80 transition-opacity transform hover:scale-95 duration-150">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button aria-label="Cart" class="hover:opacity-80 transition-opacity transform hover:scale-95 duration-150">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Mobile Header (simplified) -->
+<div class="flex md:hidden justify-between items-center w-full px-margin-mobile py-4">
+<button aria-label="Menu" class="text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a class="font-headline-md text-headline-md font-medium text-primary dark:text-primary-fixed-dim" href="#">Artisan Collective</a>
+<button aria-label="Cart" class="text-primary">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</header>
+<main>
+<!-- Large split hero -->
+<section class="min-h-[85vh] flex flex-col md:flex-row relative">
+<div class="w-full md:w-1/2 bg-surface-container-low flex flex-col justify-center px-margin-mobile md:px-margin-desktop py-section-mobile md:py-0 relative z-10 order-2 md:order-1">
+<div class="max-w-xl mx-auto md:ml-auto md:mr-0 xl:mr-12">
+<p class="font-label-caps text-label-caps text-tertiary mb-6 tracking-widest">Earth &amp; Clay</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-8">Rooted in Craft.<br/>Inspired by Nature.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-md leading-relaxed">Hand-thrown ceramics designed to bring tactile warmth and enduring beauty to your daily rituals.</p>
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 rounded hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md duration-300" href="#collections">
+                        Explore Collections
+                    </a>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[50vh] md:h-auto order-1 md:order-2">
+<img alt="A close-up shot of a ceramicist's hands working wet clay on a pottery wheel. The scene is lit with warm, natural sunlight filtering through a window, casting soft shadows. Clay splatters detail the hands and wheel. The mood is quiet, focused, and deeply tactile. The color palette emphasizes rich terracotta, soft creams, and deep earthy browns, embodying an organic, artisanal aesthetic." class="w-full h-full object-cover" data-alt="A close-up shot of a ceramicist's hands working wet clay on a pottery wheel. The scene is lit with warm, natural sunlight filtering through a window, casting soft shadows. Clay splatters detail the hands and wheel. The mood is quiet, focused, and deeply tactile. The color palette emphasizes rich terracotta, soft creams, and deep earthy browns, embodying an organic, artisanal aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwiXKupoE5sER0kaQWJmGECykbHf6WYev6PfMs4aEmw79HqAHUW6zmS0CJ5xTRwhVeLwlTRzVHs0_UMMMdtfpSrSwut_QpMgSDL7Ut9o9RXoquGr-sxGsIPLAj2H10w_wA2AEEw4g2yZkvbx87B2SyrG3oysiyVo4b2h04sSufm6ABTS0fqgchqg8cOoSYCOd26adawYMiL3sShTzETrouKfqEf3HVjGT85FksGvzzenSRF12OelYN1hLjFWd9oGqoz1hmlAvgb0jJ"/>
+</div>
+</section>
+<!-- Values panel with botanical line drawings -->
+<section class="py-section-mobile md:py-section-desktop px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
+<!-- Decorative botanical (placeholder CSS) -->
+<div class="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at center, var(--tw-colors-primary) 0%, transparent 70%);"></div>
+<div class="max-w-screen-xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Our Philosophy</h2>
+<div class="w-16 h-px bg-outline-variant mx-auto mt-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">nature</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Sustainably Sourced</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We partner with local quarries to ensure our clay leaves a minimal footprint.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">handyman</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Small Batch</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Every piece is turned by hand, ensuring unique character and lasting quality.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">nest_eco_leaf</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Timeless Design</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Forms inspired by the earth, meant to be passed down through generations.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest w-full px-margin-desktop py-section-desktop flex flex-col items-center gap-gutter">
+<div class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim mb-8">Artisan Collective</div>
+<nav class="flex flex-wrap justify-center gap-8 mb-12">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Newsletter</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Socials</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Policies</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Our Mission</a>
+</nav>
+<div class="font-body-md text-body-md text-on-surface-variant text-center border-t border-outline-variant/30 pt-8 w-full max-w-screen-xl">
+            © 2024 Artisan Collective. All rights reserved. Crafted with intention.
+        </div>
+</footer>
+</body></html>

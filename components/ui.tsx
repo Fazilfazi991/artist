@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Sparkles, Star, Store, Truck, Upload, User, X } from "lucide-react";
+import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, LogOut, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Sparkles, Star, Store, Truck, Upload, User, X } from "lucide-react";
 import { artisans, categories, occasions, products } from "@/lib/seed";
 import type { Artisan, Category, Product } from "@/lib/types";
 import { CartCountBadge } from "@/components/cart-count";
 
-const navItems = [["Shop", "/shop"], ["Categories", "/shop"], ["Storefronts", "/storefronts"], ["Custom Orders", "/custom-orders"], ["Our Story", "/about"]] as const;
+type AccountKind = "guest" | "buyer" | "seller";
+
+const navItems = [["Shop", "/shop"], ["Storefronts", "/storefronts"], ["Custom Orders", "/custom-orders"], ["Our Story", "/about"]] as const;
 
 export function AnnouncementBar() {
   return <div className="border-b border-line bg-sage px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[.16em] text-white">
@@ -46,21 +48,41 @@ export function DesktopNavigation() {
   </nav>;
 }
 
-export function MobileNavigationDrawer({ open, onClose, hideSellerCta = false }: { open: boolean; onClose: () => void; hideSellerCta?: boolean }) {
+const accountLinks = {
+  guest: [["Login", "/login"], ["Create Buyer Account", "/register"], ["Seller Registration", "/seller/register"], ["Sell With Us", "/become-a-seller"]],
+  buyer: [["My Account", "/account"], ["Orders", "/account/orders"], ["Saved Items", "/account/wishlist"], ["Addresses", "/account/addresses"], ["Logout", "/logout"]],
+  seller: [["Seller Dashboard", "/seller/dashboard"], ["Manage Products", "/seller/products"], ["Orders", "/seller/orders"], ["Storefront Settings", "/seller/storefront"], ["Account Settings", "/seller/settings"], ["Logout", "/logout"]]
+} as const;
+
+export function MobileNavigationDrawer({ open, onClose, hideSellerCta = false, accountKind = "guest" }: { open: boolean; onClose: () => void; hideSellerCta?: boolean; accountKind?: AccountKind }) {
   const pathname = usePathname();
   return <div className={open ? "fixed inset-0 z-50 lg:hidden" : "pointer-events-none fixed inset-0 z-50 opacity-0 lg:hidden"}>
     <button className="absolute inset-0 bg-ink/40" onClick={onClose} aria-label="Close menu" />
     <aside className={`${open ? "translate-x-0" : "-translate-x-full"} absolute left-0 top-0 h-full w-[min(340px,88vw)] bg-paper p-5 shadow-lift transition`}>
       <div className="flex items-center justify-between"><Logo /><button className="grid h-10 w-10 place-items-center rounded border border-line bg-surface" onClick={onClose} aria-label="Close menu"><X size={18} /></button></div>
       <nav className="mt-8 grid gap-2">{navItems.map(([label, href]) => <Link key={label} href={href} onClick={onClose} className={`rounded border px-4 py-3 text-sm font-extrabold ${navActive(pathname, href) ? "border-rust bg-rust text-white" : "border-line bg-surface text-ink"}`}>{label}</Link>)}</nav>
-      {hideSellerCta ? null : <Link href="/become-a-seller" onClick={onClose} className="mt-6 flex justify-center rounded bg-rust px-4 py-3 text-sm font-extrabold text-white">Become a Seller</Link>}
+      {hideSellerCta ? null : <Link href="/become-a-seller" onClick={onClose} className="mt-6 flex justify-center rounded bg-rust px-4 py-3 text-sm font-extrabold text-white">Sell With Us</Link>}
+      <div className="mt-6 grid gap-2 border-t border-line pt-5">
+        <p className="text-xs font-extrabold uppercase tracking-[.14em] text-muted">Account</p>
+        {accountLinks[accountKind].map(([label, href]) => <Link key={label} href={href} onClick={onClose} className="rounded border border-line bg-surface px-4 py-3 text-sm font-extrabold">{label}</Link>)}
+      </div>
     </aside>
   </div>;
 }
 
-export function Header({ isSeller = false }: { isSeller?: boolean }) {
+function AccountMenu({ accountKind }: { accountKind: AccountKind }) {
+  const links = accountLinks[accountKind];
+  return <details className="group relative hidden sm:block">
+    <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded border border-line bg-surface text-ink transition hover:border-rust/50 hover:text-rust" aria-label="Account menu"><User size={18} /></summary>
+    <div className="absolute right-0 top-12 z-50 w-64 rounded-lg border border-line bg-paper p-2 shadow-lift">
+      {links.map(([label, href]) => <Link key={label} href={href} className="flex items-center justify-between rounded px-3 py-2.5 text-sm font-extrabold text-ink hover:bg-surface-low hover:text-rust">{label}{label === "Logout" ? <LogOut size={14} /> : null}</Link>)}
+    </div>
+  </details>;
+}
+
+export function Header({ isSeller = false, accountKind = "guest" }: { isSeller?: boolean; accountKind?: AccountKind }) {
   const [open, setOpen] = useState(false);
-  return <><AnnouncementBar /><header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-xl"><div className="heritage-container flex h-20 items-center gap-3"><button className="grid h-10 w-10 shrink-0 place-items-center rounded border border-line bg-surface lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu"><Menu size={19} /></button><div className="shrink-0"><Logo /></div><DesktopNavigation /><div className="hidden min-w-0 flex-1 justify-end xl:flex"><div className="w-full max-w-[390px]"><SearchBar compact /></div></div><div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2"><IconLink href="/shop" label="Search"><Search size={18} /></IconLink><span className="hidden md:inline-grid"><IconLink href="/account/wishlist" label="Wishlist"><Heart size={18} /></IconLink></span><span className="hidden sm:inline-grid"><IconLink href="/account" label="Account"><User size={18} /></IconLink></span><IconLink href="/cart" label="Cart"><ShoppingBag size={18} /><CartCountBadge /></IconLink>{isSeller ? null : <Link href="/become-a-seller" className="hidden min-h-10 shrink-0 items-center rounded bg-rust px-4 py-2 text-sm font-extrabold text-white transition hover:bg-rust-hover xl:inline-flex">Become a Seller</Link>}</div></div><div className="border-t border-line px-4 py-3 lg:hidden"><SearchBar /></div></header><MobileNavigationDrawer open={open} onClose={() => setOpen(false)} hideSellerCta={isSeller} /></>;
+  return <><AnnouncementBar /><header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-xl"><div className="heritage-container flex h-20 items-center gap-3"><button className="grid h-10 w-10 shrink-0 place-items-center rounded border border-line bg-surface lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu"><Menu size={19} /></button><div className="shrink-0"><Logo /></div><DesktopNavigation /><div className="hidden min-w-0 flex-1 justify-end xl:flex"><div className="w-full max-w-[390px]"><SearchBar compact /></div></div><div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2"><IconLink href="/shop" label="Search"><Search size={18} /></IconLink><span className="hidden md:inline-grid"><IconLink href="/account/wishlist" label="Wishlist"><Heart size={18} /></IconLink></span><AccountMenu accountKind={accountKind} /><IconLink href="/cart" label="Cart"><ShoppingBag size={18} /><CartCountBadge /></IconLink>{isSeller ? null : <Link href="/become-a-seller" className="hidden min-h-10 shrink-0 items-center rounded bg-rust px-4 py-2 text-sm font-extrabold text-white transition hover:bg-rust-hover xl:inline-flex">Sell With Us</Link>}</div></div><div className="border-t border-line px-4 py-3 lg:hidden"><SearchBar /></div></header><MobileNavigationDrawer open={open} onClose={() => setOpen(false)} hideSellerCta={isSeller} accountKind={accountKind} /></>;
 }
 
 export function ButtonLink({ href, children, variant = "primary" }: { href: string; children: React.ReactNode; variant?: "primary" | "secondary" | "text" }) {

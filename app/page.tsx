@@ -16,6 +16,16 @@ const fallbackCategories = [
   ['bags-accessories', 'Bags & Accessories']
 ] as const;
 
+const categoryImages: Record<string, { src: string; alt: string; position: string }> = {
+  'home-decor': { src: '/category-images/home-decor.png', alt: 'Handmade home decor with ceramics, woven basket, plants, and cushion', position: 'center' },
+  'kitchen-dining': { src: '/category-images/kitchen-dining.png', alt: 'Handmade kitchen and dining ceramics with wooden serving pieces', position: 'center' },
+  'art-prints': { src: '/category-images/art-prints.png', alt: 'Minimal wall art and handmade textile wall hanging', position: 'center' },
+  'personalized-gifts': { src: '/category-images/personalized-gifts.png', alt: 'Personalized handmade gift set with monogram mug and carved keepsakes', position: 'center' },
+  jewelry: { src: '/category-images/jewelry.png', alt: 'Handmade gold jewelry displayed on soft neutral surfaces', position: 'center' },
+  candles: { src: '/category-images/candles.png', alt: 'Hand-poured candles and wax melts styled with dried flowers', position: 'center' },
+  'bags-accessories': { src: '/category-images/bags-accessories.png', alt: 'Woven handmade bag and natural accessories', position: 'center' }
+};
+
 export default async function HomePage() {
   const [categories, products, storefronts] = await Promise.all([
     getFeaturedCategories(),
@@ -29,10 +39,10 @@ export default async function HomePage() {
 
   return <main className="bg-paper">
     <div className="overflow-hidden">
-      <section className="relative min-h-[680px] overflow-hidden border-b border-line">
+      <section className="relative min-h-[520px] overflow-hidden border-b border-line sm:min-h-[560px]">
         <Image src="/artisan-hero.png" alt="Indian artisan arranging handmade products in a warm studio" fill priority sizes="(min-width:1024px) 1200px, 100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/80 to-paper/10" />
-        <div className="heritage-container relative z-10 flex min-h-[680px] flex-col justify-center py-20">
+        <div className="heritage-container relative z-10 flex min-h-[520px] flex-col justify-center py-14 sm:min-h-[560px] sm:py-16">
           <p className="heritage-label text-rust">Modern Heritage</p>
           <h1 className="mt-5 max-w-3xl font-serif text-5xl font-bold leading-[1.05] text-ink sm:text-7xl">Heritage crafted for modern living.</h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">Discover unique, customizable pieces directly from India's independent makers. Elevate your home with objects that carry soul and story.</p>
@@ -41,11 +51,18 @@ export default async function HomePage() {
             <Link href="/storefronts" className="heritage-button border border-ink/80 bg-transparent text-ink hover:border-rust hover:text-rust">Meet the Makers</Link>
           </div>
         </div>
-        <div className="relative z-10 grid gap-3 border-t border-line bg-surface/88 px-6 py-6 text-xs font-extrabold uppercase tracking-[.12em] text-muted backdrop-blur sm:grid-cols-2 sm:px-12 lg:grid-cols-4 lg:px-16">
-          <TrustItem icon={<Heart size={18} />} label="Handmade with love" />
-          <TrustItem icon={<BadgeCheck size={18} />} label="Authentic & Original" />
-          <TrustItem icon={<UsersRound size={18} />} label="Supporting Artisans" />
-          <TrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
+      </section>
+
+      <section className="border-b border-line bg-surface-low px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            <TrustBenefit icon={<CreditCard size={26} />} title="Protected Online Payments" copy="Pay through a secure, tracked checkout." />
+            <TrustBenefit icon={<ShieldCheck size={26} />} title="Secure Checkout" copy="Your order and payment details stay protected." />
+            <TrustBenefit icon={<PackageCheck size={26} />} title="Easy Returns" copy="A clear return process for eligible orders." />
+            <TrustBenefit icon={<Truck size={26} />} title="Fast Delivery" copy="Reliable shipping across supported locations." />
+            <TrustBenefit icon={<BadgeCheck size={26} />} title="Verified Sellers" copy="Shop from reviewed artisan businesses." />
+            <TrustBenefit icon={<Heart size={26} />} title="Customer Support" copy="Help is available when you need it." />
+          </div>
         </div>
       </section>
 
@@ -54,7 +71,11 @@ export default async function HomePage() {
         <div className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-8">
           {categoryItems.map((category) => <CategoryBubble key={category.slug} category={category} />)}
           <Link href="/shop" className="group grid justify-items-center gap-3 text-center text-sm font-extrabold">
-            <span className="grid h-20 w-20 place-items-center rounded-full bg-surface-high text-rust transition group-hover:bg-rust group-hover:text-white sm:h-24 sm:w-24"><CircleEllipsis size={30} /></span>
+            <span className="relative h-20 w-20 overflow-hidden rounded-full bg-surface-high shadow-soft sm:h-24 sm:w-24">
+              <Image src="/category-images/all-categories.png" alt="Curated handmade gifts, decor, candles, jewelry, and ceramics" fill sizes="96px" loading="eager" className="object-cover transition duration-500 group-hover:scale-110" />
+              <span className="absolute inset-0 bg-ink/18" />
+              <span className="absolute inset-0 grid place-items-center text-white"><CircleEllipsis size={30} /></span>
+            </span>
             <span>All Categories</span>
           </Link>
         </div>
@@ -78,7 +99,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-px bg-rust text-white sm:grid-cols-2 lg:grid-cols-4">
+      <section className="grid grid-cols-2 gap-px bg-rust text-white lg:grid-cols-4">
         <Stat icon={<UsersRound size={24} />} value="2,500+" label="Artisans Empowered" />
         <Stat icon={<Star size={24} />} value="50,000+" label="Happy Customers" />
         <Stat icon={<PackageCheck size={24} />} value="45,000+" label="Products Sold" />
@@ -93,7 +114,7 @@ export default async function HomePage() {
         </div>
         <div className="mt-8 grid gap-3 rounded-lg border border-line bg-surface-low px-4 py-4 text-sm font-bold text-muted sm:grid-cols-2 lg:grid-cols-4">
           <TrustItem icon={<PackageCheck size={18} />} label="Easy 7-day Returns" />
-          <TrustItem icon={<CreditCard size={18} />} label="Cash on Delivery" />
+          <TrustItem icon={<CreditCard size={18} />} label="Protected Online Payments" />
           <TrustItem icon={<ShieldCheck size={18} />} label="Secure Payments" />
           <TrustItem icon={<Truck size={18} />} label="Worldwide Shipping" />
         </div>
@@ -105,7 +126,10 @@ export default async function HomePage() {
 
 function buildCategories(categories: Category[]) {
   const bySlug = new Map(categories.map((category) => [category.slug, category]));
-  return fallbackCategories.map(([slug, name]) => bySlug.get(slug) || { slug, name, description: name, accent: 'bg-rust', image: { src: '/artisan-hero.png', alt: name, position: 'center' } }).slice(0, 7);
+  return fallbackCategories.map(([slug, name]) => {
+    const category = bySlug.get(slug) || { slug, name, description: name, accent: 'bg-rust', image: categoryImages[slug] };
+    return { ...category, image: categoryImages[slug] || category.image };
+  }).slice(0, 7);
 }
 
 function SectionTitle({ title, href, label }: { title: string; href: string; label: string }) {
@@ -116,10 +140,18 @@ function TrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
   return <span className="flex items-center justify-center gap-2 text-center sm:justify-start"><span className="text-rust">{icon}</span>{label}</span>;
 }
 
+function TrustBenefit({ icon, title, copy }: { icon: React.ReactNode; title: string; copy: string }) {
+  return <article className="rounded-xl border border-line bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:border-rust/40">
+    <div className="grid h-12 w-12 place-items-center rounded-lg bg-rust-soft text-rust">{icon}</div>
+    <h2 className="mt-4 text-sm font-black uppercase tracking-[.1em]">{title}</h2>
+    <p className="mt-2 text-sm leading-6 text-muted">{copy}</p>
+  </article>;
+}
+
 function CategoryBubble({ category }: { category: Category }) {
   return <Link href={`/category/${category.slug}`} className="group grid justify-items-center gap-3 text-center text-sm font-extrabold">
     <span className="relative h-20 w-20 overflow-hidden rounded-full bg-surface-high shadow-soft sm:h-24 sm:w-24">
-      <Image src={category.image.src} alt={category.image.alt} fill sizes="96px" className="object-cover transition duration-500 group-hover:scale-110" style={{ objectPosition: category.image.position }} />
+      <Image src={category.image.src} alt={category.image.alt} fill sizes="96px" loading="eager" className="object-cover transition duration-500 group-hover:scale-110" style={{ objectPosition: category.image.position }} />
       <span className="absolute inset-0 bg-white/28" />
     </span>
     <span className="leading-tight">{category.name}</span>

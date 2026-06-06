@@ -10,6 +10,11 @@ function text(formData: FormData, key: string) {
   return String(formData.get(key) || '').trim();
 }
 
+function phoneFromParts(formData: FormData) {
+  const local = text(formData, 'phoneLocal');
+  return local ? `${text(formData, 'phoneCountryCode') || '+91'} ${local}` : text(formData, 'phone');
+}
+
 function fail(path: string, message: string) {
   redirect(`${path}?error=${encodeURIComponent(message)}`);
 }
@@ -23,7 +28,7 @@ export async function saveAddressAction(formData: FormData) {
       id: text(formData, 'id') || undefined,
       label: text(formData, 'label') || 'Home',
       full_name: text(formData, 'full_name'),
-      phone: text(formData, 'phone'),
+      phone: phoneFromParts(formData),
       address_line_1: text(formData, 'address_line_1'),
       address_line_2: text(formData, 'address_line_2') || undefined,
       city: text(formData, 'city'),

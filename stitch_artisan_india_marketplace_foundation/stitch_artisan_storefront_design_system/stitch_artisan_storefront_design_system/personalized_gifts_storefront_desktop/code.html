@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heartfelt Studio - Personalized Gifts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f01",
+                        "on-primary-container": "#ffe4d7",
+                        "on-secondary-container": "#5a6651",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#f4ba9c",
+                        "tertiary": "#78422d",
+                        "inverse-primary": "#f4ba9c",
+                        "secondary": "#56624d",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "background": "#fbf9f4",
+                        "outline": "#83746d",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary-fixed": "#311302",
+                        "on-primary-fixed-variant": "#653d26",
+                        "secondary-fixed-dim": "#becbb0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-container": "#955943",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary-container": "#ffe3d9",
+                        "primary": "#71472f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-tint": "#80543c",
+                        "outline-variant": "#d5c3ba",
+                        "on-secondary-fixed": "#141e0e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "primary-container": "#8c5e45",
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d7e4c9",
+                        "secondary-fixed": "#dae7cc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f4a36",
+                        "on-background": "#1b1c19",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#51443e",
+                        "on-tertiary-fixed-variant": "#6c3924",
+                        "surface-variant": "#e4e2dd",
+                        "surface": "#fbf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "section-desktop": "120px",
+                        "section-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "script-accent": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "script-accent": ["20px", {"lineHeight": "1", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .gift-tag {
+            border-radius: 9999px;
+            position: relative;
+        }
+        .gift-tag::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- Announcement Bar -->
+<div class="w-full bg-primary-container text-on-primary-container py-2 text-center flex items-center justify-center gap-2">
+<span class="font-label-caps text-label-caps">Free shipping on all personalized orders over $75</span>
+</div>
+<!-- TopNavBar Shared Component -->
+<nav class="bg-surface/90 dark:bg-surface/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-outline-variant/30 dark:border-outline/20">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<div class="hidden md:flex gap-8">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Products</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Collections</a>
+</div>
+<a class="font-headline-md text-headline-md font-medium text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity text-center flex-1 md:flex-none" href="#">Artisan Collective</a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Custom Orders</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Contact</a>
+</div>
+<div class="flex gap-4 text-primary dark:text-primary-fixed-dim">
+<button aria-label="search" class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">search</span></button>
+<button aria-label="favorite" class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">favorite</span></button>
+<button aria-label="person" class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">person</span></button>
+<button aria-label="shopping_cart" class="hover:opacity-80 transition-opacity"><span class="material-symbols-outlined">shopping_cart</span></button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-section-mobile md:py-section-desktop max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-gutter relative">
+<div class="flex-1 z-10">
+<span class="font-script-accent text-script-accent text-tertiary mb-4 block">Crafted for moments that matter</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">Gifts Made<br/>with Heart</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md">Every occasion deserves a memory. Explore our curated selection of personalized gifts designed to evoke emotion and celebrate life's unique chapters.</p>
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 hover:opacity-90 transition-opacity rounded-sm shadow-[0_10px_30px_rgba(113,71,47,0.1)]" href="#">
+                Shop the Collection
+            </a>
+</div>
+<div class="flex-1 w-full relative">
+<div class="aspect-[4/5] w-full max-w-lg mx-auto relative group">
+<img alt="" class="w-full h-full object-cover rounded-lg shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNb2QEr6lsl0BcBEBnLXovOMUSt3D1WzNlaTiN17R-as4Mq6PlYtTqKTUdLIgV0HmI2ilku8iTR0mV5g6NqAl7XR_6gGVr-5N2vwLKWiK2MWLwbz4CVitVzbjl02VTVN1qOW3z8R6BttVHI-xlgdFPVGgKZs0_yItvdYoGGyK441msi1VoaGqE3SOlXIhFgpo5Ug-KYE2-Azip5iosxVOAAH-UfuhAGtrNBfMOetDgazCmIEn_8c-1cGNEf2SIzLcxisryEEdZO8Iw"/>
+<!-- Decorative Botanical Accent Placeholder -->
+<div class="absolute -bottom-10 -left-10 w-32 h-32 text-outline-variant opacity-50 z-[-1]">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 100C50 100 20 80 20 50C20 20 50 0 50 0C50 0 80 20 80 50C80 80 50 100 50 100Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M50 0V100" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Shop by Occasion Grid -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-section-mobile md:py-section-desktop bg-surface-container-lowest border-y border-outline-variant/30">
+<div class="max-w-screen-2xl mx-auto text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Celebrate Every Chapter</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Find the perfect personalized touch for any milestone.</p>
+</div>
+<div class="max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Occasion Card 1 -->
+<a class="flex flex-col items-center group" href="#">
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-4 group-hover:scale-105 transition-transform duration-300 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-4xl">favorite</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface">Weddings &amp; Anniversaries</h3>
+</a>
+<!-- Occasion Card 2 -->
+<a class="flex flex-col items-center group" href="#">
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-4 group-hover:scale-105 transition-transform duration-300 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-4xl">child_care</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface">New Arrivals</h3>
+</a>
+<!-- Occasion Card 3 -->
+<a class="flex flex-col items-center group" href="#">
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-4 group-hover:scale-105 transition-transform duration-300 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-4xl">celebration</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface">Birthdays</h3>
+</a>
+<!-- Occasion Card 4 -->
+<a class="flex flex-col items-center group" href="#">
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-4 group-hover:scale-105 transition-transform duration-300 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-4xl">home_work</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface">Housewarming</h3>
+</a>
+</div>
+</section>
+<!-- Footer Shared Component -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest w-full px-margin-desktop py-section-desktop flex flex-col items-center gap-gutter">
+<a class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity" href="#">Artisan Collective</a>
+<div class="flex flex-wrap justify-center gap-8 font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Newsletter</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Socials</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Policies</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Our Mission</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mt-8">© 2024 Artisan Collective. All rights reserved. Crafted with intention.</p>
+</footer>
+</body></html>

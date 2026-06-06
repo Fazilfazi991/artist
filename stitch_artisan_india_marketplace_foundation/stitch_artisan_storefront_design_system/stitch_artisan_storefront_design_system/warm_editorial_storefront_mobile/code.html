@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Earth &amp; Clay - Artisan Collective</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#360f01",
+                      "on-primary-container": "#ffe4d7",
+                      "on-secondary-container": "#5a6651",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#f4ba9c",
+                      "tertiary": "#78422d",
+                      "inverse-primary": "#f4ba9c",
+                      "secondary": "#56624d",
+                      "surface-container-low": "#f5f3ee",
+                      "on-error": "#ffffff",
+                      "background": "#fbf9f4",
+                      "outline": "#83746d",
+                      "surface-container-high": "#eae8e3",
+                      "on-primary-fixed": "#311302",
+                      "on-primary-fixed-variant": "#653d26",
+                      "secondary-fixed-dim": "#becbb0",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdbce",
+                      "tertiary-container": "#955943",
+                      "inverse-surface": "#30312e",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-tertiary-container": "#ffe3d9",
+                      "primary": "#71472f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#ffb59a",
+                      "surface-tint": "#80543c",
+                      "outline-variant": "#d5c3ba",
+                      "on-secondary-fixed": "#141e0e",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fbf9f4",
+                      "surface-dim": "#dbdad5",
+                      "primary-container": "#8c5e45",
+                      "primary-fixed": "#ffdbca",
+                      "secondary-container": "#d7e4c9",
+                      "secondary-fixed": "#dae7cc",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3f4a36",
+                      "on-background": "#1b1c19",
+                      "on-surface": "#1b1c19",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#f0eee9",
+                      "on-surface-variant": "#51443e",
+                      "on-tertiary-fixed-variant": "#6c3924",
+                      "surface-variant": "#e4e2dd",
+                      "surface": "#fbf9f4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "section-desktop": "120px",
+                      "section-mobile": "64px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "script-accent": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "script-accent": [
+                              "20px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden">
+<!-- Top Navigation (Mobile Version) -->
+<header class="bg-surface/90 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant/30 w-full">
+<div class="flex justify-between items-center w-full px-margin-mobile py-4 mx-auto">
+<!-- Mobile Menu Toggle -->
+<button aria-label="Open menu" class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<!-- Brand -->
+<div class="font-headline-md text-headline-md font-medium text-primary flex-1 text-center">
+                Earth &amp; Clay
+            </div>
+<!-- Actions -->
+<div class="flex gap-4 items-center">
+<button aria-label="Search" class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button aria-label="Cart" class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none relative">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] rounded-full w-4 h-4 flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Stacked Hero Section -->
+<section class="w-full flex flex-col mb-section-mobile">
+<!-- Hero Image -->
+<div class="w-full aspect-[4/5] bg-surface-container relative">
+<img alt="Ceramic vases" class="w-full h-full object-cover" data-alt="A collection of handmade ceramic vases in earthy tones like terracotta, ochre, and warm grey, arranged on a textured wooden table. The lighting is soft and natural, casting gentle shadows that emphasize the tactile surface of the pottery. The background is slightly out of focus, suggesting a warm, rustic studio or home environment. The mood is calm, artisanal, and authentic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhxkaxsfB7eV63DlEcp3Asq2550phXxxsgdazsNlHrDtnC-b4joWIkaDa23s-EADGDaLKNmWolxEIVFjw0Tr6e21YzSbOSmr_hBdHRv9BPdI_RdOGqJBB7P7OwS2f1fuKw-Eskb15cp_51mAwXbwp1MT6DV6k0ehnUob3blbnm1Btbl9ZSdzMw0gRd4vR6-W3Pv4I9Y9_5gg8FEg2cXhlxdT-bEbshMLFa-268FuKe7gJMwSjwX4vSIxfocB0izheNROxwHJnnTBG7"/>
+</div>
+<!-- Hero Content -->
+<div class="px-margin-mobile py-8 bg-surface-container-low text-center">
+<p class="font-label-caps text-label-caps text-primary mb-2 uppercase tracking-widest">New Arrival</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-4">The Terracotta Collection</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 px-4">
+                    Hand-thrown pieces crafted from locally sourced clay, designed to bring warmth and texture to your daily rituals.
+                </p>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 w-full uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    Explore Collection
+                </button>
+</div>
+</section>
+<!-- Horizontal Collection Scroll -->
+<section class="mb-section-mobile pl-margin-mobile overflow-hidden">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 border-b border-outline-variant/30 pb-2 inline-block">Curated Edits</h2>
+<div class="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory pr-margin-mobile hide-scrollbar" style="scrollbar-width: none;">
+<!-- Collection Item 1 -->
+<div class="snap-start flex-none w-[70vw] min-w-[250px]">
+<div class="aspect-[3/4] bg-surface-container mb-3 relative overflow-hidden group">
+<img alt="Tableware" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist place setting featuring a handmade ceramic dinner plate and bowl in a matte off-white glaze. The setting rests on a natural linen tablecloth with soft, warm sunlight streaming across it. Wooden utensils and a simple clear glass complete the scene. The aesthetic is clean, organic, and inviting, emphasizing high-quality craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1XcJ4m7wi_kOej43fRxdrKjGgilhK9ilbkDznzake4uZDGUyHfRVUrSfTvP4dVGh8hTrQtf_0AFVmw0ItqdxubRYWO26qX8I12IgGKUY768dnqkKee0X-2nerldLnsXNbXPgFp41cIXz08W62c-kMXsjlW5BAsctmtueXBEPrcGothDNDLAr58tOY52NR47xW6b4bSual0e3mcc5lnLSwTQVdg9vTu0GKvlckinCFK8N6l-296U6AW1EINyDmMzCaNjVv-oyYMh3k"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Everyday Dining</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Durable, beautiful essentials.</p>
+</div>
+<!-- Collection Item 2 -->
+<div class="snap-start flex-none w-[70vw] min-w-[250px]">
+<div class="aspect-[3/4] bg-surface-container mb-3 relative overflow-hidden group">
+<img alt="Decorative vases" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sculptural, asymmetrical ceramic vase standing alone on a concrete pedestal. The vase has a rough, heavily textured surface reminiscent of natural rock formations, finished in a dark, charcoal-brown glaze. The background is a soft, warm neutral tone, providing high contrast and focusing attention on the object's form. The mood is modern, artistic, and slightly dramatic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC_BcnpYO392LDGbQh6WExtl3tBrJS9A8O8DBA7EmMhZhGMvMKuZtRPmd0U1HUZbtK8E8wJoOMwAMIRL5pgeYnNaVgN__Mz2cJOjLHmBK5Te5Dvwu4RnU7YbVQYkjZdHHlUE4cvMyA21qZGjF6UR3p_H9KAWzTtrHy_SC03EPTvyEfsUMwm9ucC2ciGIyfN-ElztuPbb3d82ReEfVyndeMgwsJ1Kft4h_0c76EHxAVVeYueWdcU91BpCX9LdxEM1PGCQ7vsdR7nBPX"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sculptural Forms</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Statement pieces for the home.</p>
+</div>
+<!-- Collection Item 3 -->
+<div class="snap-start flex-none w-[70vw] min-w-[250px]">
+<div class="aspect-[3/4] bg-surface-container mb-3 relative overflow-hidden group">
+<img alt="Planters" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Several large, simple terracotta planters filled with lush green indoor plants like monstera and ferns. The pots are arranged on a sunlit wooden floor against a plain white wall. The lighting is bright and cheerful, highlighting the rich orange tones of the terracotta and the vibrant greens of the foliage. The scene suggests a fresh, natural interior space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9YGOZCDEBOViQP1yNPr3KUN4hqxjBD_iv_aFhCAF1p0ou8kql2UKNTlnBQZtbwkdisFcnHGI5uNAn4YPPjK1WGChSKLIRkrp9XrtKUv5YPOqMtXa9uuXb7YNVB_-0-2db8T21LGqitwsyYV-cAHuCje_30FtYrXqCxWTzPBZ22LFJjQcB7uMweHBhzub41CH5Jy4tnR4bspBjVG5OuxJB1CcEi-LBlpSLN63_74hDSotXYB1PY2L7j5girlpQwIQM5_VCtj8loya3"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Botanical Vessels</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Homes for your greenery.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile py-8 flex flex-col items-center gap-6 bg-surface-container-highest">
+<div class="font-headline-lg text-headline-lg text-primary text-center w-full">
+            Artisan Collective
+        </div>
+<div class="flex flex-col gap-4 text-center w-full">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Newsletter</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Socials</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Policies</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Mission</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm text-center border-t border-outline-variant/30 pt-6 w-full mt-2">
+            © 2024 Artisan Collective. All rights reserved. Crafted with intention.
+        </div>
+</footer>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</body></html>

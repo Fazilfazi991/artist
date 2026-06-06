@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atelier Lumière | Artisan Goods. Thoughtfully Made.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Playfair+Display:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f01",
+                        "on-primary-container": "#ffe4d7",
+                        "on-secondary-container": "#5a6651",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#f4ba9c",
+                        "tertiary": "#78422d",
+                        "inverse-primary": "#f4ba9c",
+                        "secondary": "#56624d",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "background": "#fbf9f4",
+                        "outline": "#83746d",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary-fixed": "#311302",
+                        "on-primary-fixed-variant": "#653d26",
+                        "secondary-fixed-dim": "#becbb0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-container": "#955943",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary-container": "#ffe3d9",
+                        "primary": "#71472f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "surface-tint": "#80543c",
+                        "outline-variant": "#d5c3ba",
+                        "on-secondary-fixed": "#141e0e",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "primary-container": "#8c5e45",
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d7e4c9",
+                        "secondary-fixed": "#dae7cc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f4a36",
+                        "on-background": "#1b1c19",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#51443e",
+                        "on-tertiary-fixed-variant": "#6c3924",
+                        "surface-variant": "#e4e2dd",
+                        "surface": "#fbf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "section-desktop": "120px",
+                        "section-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "script-accent": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "script-accent": ["20px", { "lineHeight": "1", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Announcement Bar -->
+<div class="bg-primary text-on-primary w-full py-2 text-center font-label-caps text-label-caps tracking-widest uppercase">
+        Complimentary shipping on orders over $150
+    </div>
+<!-- TopNavBar -->
+<nav class="bg-surface/90 backdrop-blur-md text-primary font-label-caps text-label-caps docked full-width top-0 sticky z-50 border-b border-outline-variant/30 transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-screen-2xl mx-auto">
+<!-- Left: Mobile Menu Trigger / Desktop Links -->
+<div class="flex items-center gap-6 w-1/3">
+<button aria-label="Menu" class="md:hidden p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 hover:opacity-80 transition-opacity uppercase" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 uppercase" href="#">Products</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 uppercase" href="#">Collections</a>
+</div>
+</div>
+<!-- Center: Brand Logo -->
+<div class="w-1/3 flex justify-center">
+<a class="font-headline-md text-headline-md font-medium text-primary hover:opacity-80 transition-opacity text-center whitespace-nowrap" href="#">
+                    Artisan Collective
+                </a>
+</div>
+<!-- Right: Search / Actions / Desktop Links -->
+<div class="flex items-center justify-end gap-6 w-1/3">
+<div class="hidden md:flex gap-8 mr-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 uppercase" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 uppercase whitespace-nowrap" href="#">Custom Orders</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 uppercase" href="#">Contact</a>
+</div>
+<button aria-label="Search" class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Favorite" class="hidden sm:block text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button aria-label="Profile" class="hidden sm:block text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+<button aria-label="Cart" class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main>
+<!-- Hero Section -->
+<section class="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-surface-container-high relative overflow-hidden group">
+<img alt="Atelier Lumière Artisan Goods" class="w-full h-full object-cover object-center opacity-90 transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwiXKupoE5sER0kaQWJmGECykbHf6WYev6PfMs4aEmw79HqAHUW6zmS0CJ5xTRwhVeLwlTRzVHs0_UMMMdtfpSrSwut_QpMgSDL7Ut9o9RXoquGr-sxGsIPLAj2H10w_wA2AEEw4g2yZkvbx87B2SyrG3oysiyVo4b2h04sSufm6ABTS0fqgchqg8cOoSYCOd26adawYMiL3sShTzETrouKfqEf3HVjGT85FksGvzzenSRF12OelYN1hLjFWd9oGqoz1hmlAvgb0jJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-surface/30 to-transparent"></div>
+</div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-6 block">Atelier Lumière</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8 leading-tight">
+                    Artisan Goods.<br/>Thoughtfully Made.
+                </h1>
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-label-caps text-label-caps uppercase py-4 px-8 hover:bg-primary-container transition-colors duration-300" href="#collections">
+                    Explore Collections
+                </a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full px-margin-mobile md:px-margin-desktop py-section-mobile md:py-section-desktop flex flex-col items-center gap-gutter border-t border-outline-variant/20 mt-section-mobile md:mt-section-desktop">
+<a class="font-headline-lg text-headline-lg text-primary hover:opacity-80 transition-opacity" href="#">
+                Artisan Collective
+            </a>
+<nav class="flex flex-wrap justify-center gap-6 md:gap-12 mt-8 mb-12">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Newsletter</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Socials</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Policies</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Mission</a>
+</nav>
+<div class="font-body-md text-body-md text-on-surface-variant text-center opacity-80">
+                © 2024 Artisan Collective. All rights reserved. Crafted with intention.
+            </div>
+</footer>
+</main>
+<script>
+        // Simple scroll effect for top nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-sm');
+                nav.classList.replace('py-6', 'py-4');
+            } else {
+                nav.classList.remove('shadow-sm');
+                nav.classList.replace('py-4', 'py-6');
+            }
+        });
+    </script>
+</body></html>
