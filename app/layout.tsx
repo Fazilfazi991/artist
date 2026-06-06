@@ -4,8 +4,18 @@ import { AppChrome } from "@/components/app-chrome";
 import { createClient, hasSupabaseServerEnv } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Heritage Guild",
-  description: "Modern Indian craftsmanship marketplace"
+  metadataBase: new URL("https://plumlet.in"),
+  title: "Plumlet",
+  description: "Modern Indian craftsmanship marketplace",
+  alternates: {
+    canonical: "https://plumlet.in"
+  },
+  openGraph: {
+    title: "Plumlet",
+    description: "Modern Indian craftsmanship marketplace",
+    url: "https://plumlet.in",
+    siteName: "Plumlet"
+  }
 };
 
 async function getSessionChrome() {

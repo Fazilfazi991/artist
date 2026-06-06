@@ -9,7 +9,8 @@ Create `.env.local`:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3001
+NEXT_PUBLIC_SITE_URL=https://plumlet.in
+NEXT_PUBLIC_ROOT_DOMAIN=plumlet.in
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
 
@@ -115,18 +116,18 @@ Approved artisans have a multi-tenant storefront powered by one shared renderer.
 Future custom-domain storefronts are prepared through hostname parsing and middleware rewriting. Set:
 
 ```env
-NEXT_PUBLIC_ROOT_DOMAIN=yourmarketplace.com
+NEXT_PUBLIC_ROOT_DOMAIN=plumlet.in
 ```
 
 Production wildcard setup later:
 
 ```txt
-Main domain: yourmarketplace.com
-Wildcard DNS: *.yourmarketplace.com
-Vercel domains: yourmarketplace.com and *.yourmarketplace.com
+Main domain: plumlet.in
+Wildcard DNS: *.plumlet.in
+Vercel domains: plumlet.in and *.plumlet.in
 ```
 
-Do not rely on wildcard subdomains on the current `artist-five-bice.vercel.app` preview-style domain. Use the internal `/artisan/[storeSlug]` fallback until a root domain is connected.
+The production root domain is `plumlet.in`. Use the internal `/artisan/[storeSlug]` fallback until wildcard DNS and the Vercel wildcard domain are connected.
 
 Storefront routes:
 

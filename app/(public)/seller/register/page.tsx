@@ -13,7 +13,7 @@ export default async function SellerRegisterPage({ searchParams }: { searchParam
     <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
       <aside className="rounded-2xl border border-line bg-ink p-7 text-white shadow-soft">
         <p className="text-xs font-black uppercase tracking-[.16em] text-gold">Sell with us</p>
-        <h1 className="mt-4 font-serif text-5xl leading-tight">Start selling your craft with Heritage Guild.</h1>
+        <h1 className="mt-4 font-serif text-5xl leading-tight">Start selling your craft with Plumlet.</h1>
         <p className="mt-5 leading-8 text-white/75">Create a seller account, save a draft storefront, then complete onboarding for admin review.</p>
         <div className="mt-8 grid gap-3">
           {[
