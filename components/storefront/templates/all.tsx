@@ -103,8 +103,8 @@ function ProductCard({ product, storeSlug, theme = earth, centered = false, bord
 
 function ProductGrid({ context, title, theme = earth, centered = false, border = false, limit = 8, offset = 0 }: { context: StorefrontContext; title: string; theme?: Theme; centered?: boolean; border?: boolean; limit?: number; offset?: number }) {
   const products = context.products.slice(offset, offset + limit);
-  return <section className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-12 lg:py-24">
-    <div className="mb-10 flex items-end justify-between gap-5">
+  return <section className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-12 lg:py-16">
+    <div className="mb-7 flex items-end justify-between gap-5">
       <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>{title}</h2>
       <Link href={`/artisan/${context.seller.store_slug}/products`} className={`hidden text-xs font-bold uppercase tracking-[.14em] ${theme.muted} sm:inline-flex`}>View All</Link>
     </div>
@@ -115,8 +115,8 @@ function ProductGrid({ context, title, theme = earth, centered = false, border =
 function CollectionCards({ context, theme = earth, shape = 'rect' }: { context: StorefrontContext; theme?: Theme; shape?: 'rect' | 'circle' | 'banner' }) {
   if (!context.collections.length) return null;
   const store = context.seller.store_slug;
-  return <section id="collections" className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-12 lg:py-24">
-    <div className="mb-10 flex items-end justify-between gap-5">
+  return <section id="collections" className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-12 lg:py-16">
+    <div className="mb-7 flex items-end justify-between gap-5">
       <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>Collections</h2>
       <Link href={`/artisan/${store}/collections`} className={`text-xs font-bold uppercase tracking-[.14em] ${theme.muted}`}>View all</Link>
     </div>
@@ -153,10 +153,10 @@ function ProcessBand({ context, theme = earth, dark = false }: { context: Storef
 
 function CustomCta({ context, theme = earth, dark = false, title = 'Have something custom in mind?', button = 'Request Custom Order' }: { context: StorefrontContext; theme?: Theme; dark?: boolean; title?: string; button?: string }) {
   if (!context.settings.custom_orders_enabled) return null;
-  return <section className={`${dark ? 'bg-[#30312e] text-white' : `${theme.soft} ${theme.text}`} px-4 py-12 sm:px-6 lg:px-12`}>
+  return <section className={`${dark ? 'bg-[#30312e] text-white' : `${theme.soft} ${theme.text}`} px-4 py-8 sm:px-6 lg:px-12`}>
     <div className="mx-auto flex max-w-screen-xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
       <div><h2 className="font-serif text-3xl font-medium">{title}</h2><p className={`mt-2 max-w-2xl text-sm leading-7 ${dark ? 'text-white/70' : theme.muted}`}>{context.settings.custom_order_policy_note || 'Share references, measurements, files, videos, and links. We will review and quote your piece.'}</p></div>
-      <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex justify-center rounded px-6 py-4 text-xs font-bold uppercase tracking-[.14em] ${dark ? 'bg-white text-[#30312e]' : `${theme.accent} text-white`}`}>{context.settings.custom_order_cta_text || button}</Link>
+      <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex min-h-11 shrink-0 items-center justify-center rounded px-6 py-3 text-xs font-bold uppercase tracking-[.14em] ${dark ? 'bg-white text-[#30312e]' : `${theme.accent} text-white`}`}>{context.settings.custom_order_cta_text || button}</Link>
     </div>
   </section>;
 }
@@ -181,7 +181,7 @@ export function WarmEditorialTemplate({ context }: { context: StorefrontContext 
       <div className={`${earth.soft} order-2 flex items-center px-4 py-16 sm:px-8 lg:px-12 md:order-1`}>
         <div className="mx-auto max-w-xl md:mr-0">
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#78422d]">{context.seller.store_name}</p>
-          <h1 className="mt-6 font-serif text-5xl font-semibold leading-[1.08] sm:text-6xl">{context.settings.hero_title || 'Rooted in craft. Inspired by nature.'}</h1>
+          <h1 className="plumlet-banner-title mt-6 text-5xl leading-[1.08] sm:text-6xl">{context.settings.hero_title || 'Rooted in craft. Inspired by nature.'}</h1>
           <p className={`${earth.muted} mt-7 max-w-md text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
           <Link href={`/artisan/${context.seller.store_slug}/collections`} className={`${earth.accent} mt-9 inline-flex rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Explore Collections</Link>
         </div>
@@ -202,7 +202,7 @@ export function CleanGridTemplate({ context }: { context: StorefrontContext }) {
     <div className={`${olive.soft} px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em]`}>Free shipping on all orders above Rs. 999</div>
     <StoreNav context={context} theme={olive} />
     <header className="mx-auto flex max-w-screen-xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-12 lg:py-28">
-      <h1 className={`${olive.accentText} max-w-3xl font-serif text-5xl font-semibold leading-tight sm:text-6xl`}>{context.settings.hero_title || 'Handmade pieces, made to be loved.'}</h1>
+      <h1 className={`${olive.accentText} plumlet-banner-title max-w-3xl text-5xl leading-tight sm:text-6xl`}>{context.settings.hero_title || 'Handmade pieces, made to be loved.'}</h1>
       <p className={`${olive.muted} mt-6 max-w-xl text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
       <Link href={`/artisan/${context.seller.store_slug}/products`} className={`${olive.accent} mt-8 rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Shop the Collection</Link>
     </header>
@@ -220,7 +220,7 @@ export function PersonalizedGiftsTemplate({ context }: { context: StorefrontCont
     <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
       <div className="flex flex-col justify-center">
         <p className={`${blush.accentText} text-xs font-bold uppercase tracking-[.18em]`}>Heartfelt Studio</p>
-        <h1 className="mt-6 max-w-xl font-serif text-5xl font-semibold leading-tight sm:text-6xl">{context.settings.hero_title || 'Make every moment truly theirs.'}</h1>
+        <h1 className="plumlet-banner-title mt-6 max-w-xl text-5xl leading-tight sm:text-6xl">{context.settings.hero_title || 'Make every moment truly theirs.'}</h1>
         <p className={`${blush.muted} mt-6 max-w-lg text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
         <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`${blush.accent} mt-8 w-fit rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Start a Gift Brief</Link>
       </div>
@@ -248,7 +248,7 @@ export function VisualPortfolioTemplate({ context }: { context: StorefrontContex
       <div className="absolute inset-0 bg-gradient-to-r from-[#30312e]/90 via-[#30312e]/55 to-transparent" />
       <div className="relative z-10 mx-auto flex min-h-[76vh] max-w-screen-2xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-12">
         <p className="text-xs font-bold uppercase tracking-[.18em] text-white/70">Visual Portfolio</p>
-        <h1 className="mt-6 max-w-2xl font-serif text-5xl font-semibold leading-tight sm:text-7xl">{context.settings.hero_title || 'Art that brings texture to life.'}</h1>
+        <h1 className="plumlet-banner-title mt-6 max-w-2xl text-5xl leading-tight sm:text-7xl">{context.settings.hero_title || 'Art that brings texture to life.'}</h1>
         <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">{context.settings.hero_subtitle || context.seller.short_bio}</p>
       </div>
     </section>
@@ -271,7 +271,7 @@ export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext 
       <div className="absolute inset-0 bg-[#25150c]/45" />
       <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-screen-2xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-12">
         <p className="text-xs font-bold uppercase tracking-[.18em] text-[#d9b98f]">Atelier Collection</p>
-        <h1 className="mt-6 max-w-xl font-serif text-5xl font-semibold leading-tight sm:text-7xl">{context.settings.hero_title || 'Curated with intention. Made to be cherished.'}</h1>
+        <h1 className="plumlet-banner-title mt-6 max-w-xl text-5xl leading-tight sm:text-7xl">{context.settings.hero_title || 'Curated with intention. Made to be cherished.'}</h1>
         <p className="mt-6 max-w-lg text-lg leading-8 text-white/72">{context.settings.hero_subtitle || context.seller.short_bio}</p>
         <Link href={`/artisan/${context.seller.store_slug}/products`} className="mt-9 w-fit rounded bg-[#c59042] px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white">Shop Collection</Link>
       </div>

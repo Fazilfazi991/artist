@@ -152,17 +152,17 @@ function CategoryBubble({ category }: { category: Category }) {
 }
 
 function FeaturedMakerCard({ storefront }: { storefront: StorefrontCard }) {
-  return <article className="group overflow-hidden rounded-lg border border-rust-soft/70 bg-white shadow-[0_18px_40px_rgba(105,41,106,.10)] transition hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(105,41,106,.16)]">
+  return <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-rust-soft/70 bg-white shadow-[0_18px_40px_rgba(105,41,106,.10)] transition hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(105,41,106,.16)]">
     <div className="relative aspect-[1.55] bg-surface-low">
       <Image src={storefront.coverImage} alt={`${storefront.storeName} storefront cover`} fill sizes="(min-width:1280px) 25vw, (min-width:768px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
       <span className="absolute -bottom-8 left-6 h-20 w-20 overflow-hidden rounded-full border-4 border-white bg-paper shadow-soft">
         <Image src={storefront.logoImage} alt={`${storefront.storeName} logo`} fill sizes="80px" className="object-cover" />
       </span>
-      <button className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-white text-rust shadow-soft transition hover:bg-rust hover:text-white" aria-label={`Save ${storefront.storeName}`}>
+      <button type="button" className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-white text-rust shadow-soft transition hover:bg-rust hover:text-white" aria-label={`Save ${storefront.storeName}`}>
         <Heart size={18} />
       </button>
     </div>
-    <div className="px-6 pb-6 pt-12">
+    <div className="flex flex-1 flex-col px-6 pb-6 pt-12">
       <Link href={`/artisan/${storefront.storeSlug}`} className="font-serif text-2xl font-semibold leading-tight text-ink hover:text-rust">{storefront.storeName}</Link>
       <p className="mt-2 flex items-center gap-1.5 text-xs font-bold text-muted"><MapPin size={14} className="text-rust" />{storefront.city}, {storefront.state}</p>
       <div className="mt-4 flex flex-wrap gap-2">
@@ -185,9 +185,9 @@ function FeaturedMakerCard({ storefront }: { storefront: StorefrontCard }) {
         <span className="flex items-center gap-2"><Boxes size={15} />{storefront.productCount} products</span>
         <span className="flex items-center gap-2"><Layers3 size={15} />{storefront.collectionCount} collections</span>
       </div>
-      <div className="mt-6 grid gap-2 sm:grid-cols-[1fr_1.15fr]">
-        <Link href={`/artisan/${storefront.storeSlug}`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded bg-rust px-3 text-[11px] font-extrabold text-white transition hover:bg-rust-hover">Visit Storefront <ArrowRight size={14} /></Link>
-        {storefront.customOrdersEnabled ? <Link href={`/artisan/${storefront.storeSlug}/custom-order`} className="inline-flex min-h-11 items-center justify-center rounded border border-rust bg-white px-3 text-center text-[11px] font-extrabold leading-tight text-rust transition hover:bg-rust-soft">Request Custom Order</Link> : null}
+      <div className="mt-auto grid gap-2 pt-6 sm:grid-cols-2">
+        <Link href={`/artisan/${storefront.storeSlug}`} className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded bg-rust px-3 text-center text-[11px] font-extrabold leading-tight text-white transition hover:bg-rust-hover">Visit Storefront <ArrowRight size={14} /></Link>
+        {storefront.customOrdersEnabled ? <Link href={`/artisan/${storefront.storeSlug}/custom-order`} className="inline-flex min-h-11 items-center justify-center rounded border border-rust bg-white px-3 text-center text-[11px] font-extrabold leading-tight text-rust transition hover:bg-rust-soft">Custom Order</Link> : null}
       </div>
     </div>
   </article>;
