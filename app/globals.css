@@ -63,4 +63,26 @@ button { cursor: pointer; }
   .plumlet-banner-title {
     @apply font-display font-bold;
   }
+
+  .storefront-button-style-pill a[class*="rounded"],
+  .storefront-button-style-pill button[class*="rounded"] {
+    border-radius: 9999px;
+  }
+
+  .storefront-button-style-soft-square a[class*="rounded"],
+  .storefront-button-style-soft-square button[class*="rounded"] {
+    border-radius: .35rem;
+  }
+
+  .storefront-font-editorial .plumlet-banner-title,
+  .storefront-font-editorial .font-serif {
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    font-weight: 600;
+  }
+
+  .storefront-font-minimal .plumlet-banner-title,
+  .storefront-font-minimal .font-serif,
+  .storefront-font-minimal {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
 }

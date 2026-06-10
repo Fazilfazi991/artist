@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Heart, Search, ShoppingBag, User } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import type { StorefrontContext } from '@/lib/storefront/storefront-types';
 import { CartCountBadge } from '@/components/cart-count';
 import { WishlistButton } from '@/components/ui';
@@ -26,6 +27,47 @@ const olive: Theme = { bg: 'bg-[#fbf9f4]', surface: 'bg-white', text: 'text-[#1b
 const blush: Theme = { bg: 'bg-white', surface: 'bg-white', text: 'text-[#241124]', muted: 'text-[#602060]', line: 'border-[#F7A1B5]', accent: 'bg-[#69296A]', accentText: 'text-[#69296A]', soft: 'bg-[#F7A1B5]' };
 const gallery: Theme = { bg: 'bg-[#f7f1e7]', surface: 'bg-[#fffdf8]', text: 'text-[#1b1c19]', muted: 'text-[#51443e]', line: 'border-[#d5c3ba]', accent: 'bg-[#30312e]', accentText: 'text-[#71472f]', soft: 'bg-[#e7e1d5]' };
 const boutique: Theme = { bg: 'bg-[#f4eadc]', surface: 'bg-[#fffaf2]', text: 'text-[#25150c]', muted: 'text-[#6e5647]', line: 'border-[#d9b98f]', accent: 'bg-[#25150c]', accentText: 'text-[#8c5e45]', soft: 'bg-[#eadac5]' };
+
+type StorefrontStyle = CSSProperties & {
+  '--storefront-accent'?: string;
+  '--storefront-secondary'?: string;
+  '--storefront-bg'?: string;
+  '--storefront-text'?: string;
+  '--storefront-soft'?: string;
+};
+
+function storefrontStyle(context: StorefrontContext): StorefrontStyle {
+  const settings = context.settings || {};
+  return {
+    '--storefront-accent': settings.accent_color || '#69296A',
+    '--storefront-secondary': settings.secondary_color || '#F38FA4',
+    '--storefront-bg': settings.background_color || '#FFFFFF',
+    '--storefront-text': settings.text_color || '#241124',
+    '--storefront-soft': settings.secondary_color ? `${settings.secondary_color}33` : '#F7A1B533',
+    backgroundColor: settings.background_color || undefined,
+    color: settings.text_color || undefined
+  };
+}
+
+function themed(base: Theme, context: StorefrontContext): Theme {
+  if (!context.settings?.accent_color && !context.settings?.secondary_color && !context.settings?.background_color && !context.settings?.text_color) return base;
+  return {
+    ...base,
+    bg: 'bg-[var(--storefront-bg)]',
+    soft: 'bg-[var(--storefront-soft)]',
+    text: 'text-[var(--storefront-text)]',
+    muted: 'text-[var(--storefront-text)]',
+    line: 'border-[var(--storefront-secondary)]',
+    accent: 'bg-[var(--storefront-accent)]',
+    accentText: 'text-[var(--storefront-accent)]'
+  };
+}
+
+function storefrontShellClass(context: StorefrontContext, theme: Theme) {
+  const buttonStyle = ['rounded', 'pill', 'soft-square'].includes(context.settings?.button_style) ? context.settings.button_style : 'rounded';
+  const fontPairing = ['friendly', 'editorial', 'minimal'].includes(context.settings?.font_pairing) ? context.settings.font_pairing : 'friendly';
+  return `storefront-button-style-${buttonStyle} storefront-font-${fontPairing} ${theme.bg} ${theme.text} font-sans`;
+}
 
 function HeroImage({ context, className = '' }: { context: StorefrontContext; className?: string }) {
   return <img src={img(context.settings.hero_image_url || context.seller.cover_image_url)} alt={context.seller.store_name} className={`h-full w-full object-cover ${className}`} />;
@@ -177,75 +219,79 @@ function StoryQuote({ context, theme = earth, imageLeft = false, dark = false }:
 }
 
 export function WarmEditorialTemplate({ context }: { context: StorefrontContext }) {
-  return <main className={`${earth.bg} ${earth.text} font-sans`}>
+  const theme = themed(earth, context);
+  return <main style={storefrontStyle(context)} className={storefrontShellClass(context, theme)}>
     <div className="bg-[#78422d] px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em] text-white">Free shipping on domestic orders above Rs. 999</div>
-    <StoreNav context={context} theme={earth} centered />
+    <StoreNav context={context} theme={theme} centered />
     <section className="grid min-h-[82vh] md:grid-cols-2">
-      <div className={`${earth.soft} order-2 flex items-center px-4 py-16 sm:px-8 lg:px-12 md:order-1`}>
+      <div className={`${theme.soft} order-2 flex items-center px-4 py-16 sm:px-8 lg:px-12 md:order-1`}>
         <div className="mx-auto max-w-xl md:mr-0">
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#78422d]">{context.seller.store_name}</p>
           <h1 className="plumlet-banner-title mt-6 text-5xl leading-[1.08] sm:text-6xl">{context.settings.hero_title || 'Rooted in craft. Inspired by nature.'}</h1>
-          <p className={`${earth.muted} mt-7 max-w-md text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
-          <Link href={`/artisan/${context.seller.store_slug}/collections`} className={`${earth.accent} mt-9 inline-flex rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Explore Collections</Link>
+          <p className={`${theme.muted} mt-7 max-w-md text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+          <Link href={`/artisan/${context.seller.store_slug}/collections`} className={`${theme.accent} mt-9 inline-flex rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Explore Collections</Link>
         </div>
       </div>
       <div className="order-1 min-h-[48vh] md:order-2"><HeroImage context={context} /></div>
     </section>
-    <ProcessBand context={context} theme={earth} />
-    <CollectionCards context={context} theme={earth} />
-    <ProductGrid context={context} title="Featured Pieces" theme={earth} border />
-    <CustomCta context={context} theme={earth} />
-    <StoryQuote context={context} theme={earth} />
-    <StoreFooter context={context} theme={earth} />
+    <ProcessBand context={context} theme={theme} />
+    <CollectionCards context={context} theme={theme} />
+    <ProductGrid context={context} title="Featured Pieces" theme={theme} border />
+    <CustomCta context={context} theme={theme} />
+    <StoryQuote context={context} theme={theme} />
+    <StoreFooter context={context} theme={theme} />
   </main>;
 }
 
 export function CleanGridTemplate({ context }: { context: StorefrontContext }) {
-  return <main className={`${olive.bg} ${olive.text} font-sans`}>
-    <div className={`${olive.soft} px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em]`}>Free shipping on all orders above Rs. 999</div>
-    <StoreNav context={context} theme={olive} />
+  const theme = themed(olive, context);
+  return <main style={storefrontStyle(context)} className={storefrontShellClass(context, theme)}>
+    <div className={`${theme.soft} px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[.16em]`}>Free shipping on all orders above Rs. 999</div>
+    <StoreNav context={context} theme={theme} />
     <header className="mx-auto flex max-w-screen-xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-12 lg:py-28">
-      <h1 className={`${olive.accentText} plumlet-banner-title max-w-3xl text-5xl leading-tight sm:text-6xl`}>{context.settings.hero_title || 'Handmade pieces, made to be loved.'}</h1>
-      <p className={`${olive.muted} mt-6 max-w-xl text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
-      <Link href={`/artisan/${context.seller.store_slug}/products`} className={`${olive.accent} mt-8 rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Shop the Collection</Link>
+      <h1 className={`${theme.accentText} plumlet-banner-title max-w-3xl text-5xl leading-tight sm:text-6xl`}>{context.settings.hero_title || 'Handmade pieces, made to be loved.'}</h1>
+      <p className={`${theme.muted} mt-6 max-w-xl text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+      <Link href={`/artisan/${context.seller.store_slug}/products`} className={`${theme.accent} mt-8 rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Shop the Collection</Link>
     </header>
-    <ProductGrid context={context} title="Best Sellers" theme={olive} centered limit={8} />
-    <CollectionCards context={context} theme={olive} shape="circle" />
-    <ProductGrid context={context} title="New Arrivals" theme={olive} centered offset={4} limit={4} />
-    <CustomCta context={context} theme={olive} title="Need a different size or finish?" />
-    <StoreFooter context={context} theme={olive} />
+    <ProductGrid context={context} title="Best Sellers" theme={theme} centered limit={8} />
+    <CollectionCards context={context} theme={theme} shape="circle" />
+    <ProductGrid context={context} title="New Arrivals" theme={theme} centered offset={4} limit={4} />
+    <CustomCta context={context} theme={theme} title="Need a different size or finish?" />
+    <StoreFooter context={context} theme={theme} />
   </main>;
 }
 
 export function PersonalizedGiftsTemplate({ context }: { context: StorefrontContext }) {
-  return <main className={`${blush.bg} ${blush.text} font-sans`}>
-    <StoreNav context={context} theme={blush} centered />
+  const theme = themed(blush, context);
+  return <main style={storefrontStyle(context)} className={storefrontShellClass(context, theme)}>
+    <StoreNav context={context} theme={theme} centered />
     <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
       <div className="flex flex-col justify-center">
-        <p className={`${blush.accentText} text-xs font-bold uppercase tracking-[.18em]`}>Heartfelt Studio</p>
+        <p className={`${theme.accentText} text-xs font-bold uppercase tracking-[.18em]`}>Heartfelt Studio</p>
         <h1 className="plumlet-banner-title mt-6 max-w-xl text-5xl leading-tight sm:text-6xl">{context.settings.hero_title || 'Make every moment truly theirs.'}</h1>
-        <p className={`${blush.muted} mt-6 max-w-lg text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
-        <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`${blush.accent} mt-8 w-fit rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Start a Gift Brief</Link>
+        <p className={`${theme.muted} mt-6 max-w-lg text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
+        <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`${theme.accent} mt-8 w-fit rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Start a Gift Brief</Link>
       </div>
       <div className="min-h-[440px] overflow-hidden rounded-lg"><HeroImage context={context} /></div>
     </section>
-    <section className={`${blush.soft} px-4 py-14 sm:px-6 lg:px-12`}>
+    <section className={`${theme.soft} px-4 py-14 sm:px-6 lg:px-12`}>
       <div className="mx-auto max-w-screen-xl">
         <h2 className="text-center font-serif text-4xl font-medium">How personalization works</h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-4">{['Choose a piece', 'Add names or references', 'Approve the details', 'Receive your gift'].map((step, index) => <div key={step} className="rounded-lg bg-white p-6 text-center"><span className={`${blush.accent} mx-auto grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white`}>{index + 1}</span><strong className="mt-4 block">{step}</strong></div>)}</div>
+        <div className="mt-10 grid gap-5 md:grid-cols-4">{['Choose a piece', 'Add names or references', 'Approve the details', 'Receive your gift'].map((step, index) => <div key={step} className="rounded-lg bg-white p-6 text-center"><span className={`${theme.accent} mx-auto grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white`}>{index + 1}</span><strong className="mt-4 block">{step}</strong></div>)}</div>
       </div>
     </section>
-    <CollectionCards context={context} theme={blush} shape="circle" />
-    <ProductGrid context={context} title="Popular Personalized Gifts" theme={blush} centered border />
-    <CustomCta context={context} theme={blush} title="Have a custom gift in mind?" button="Request Custom Gift" />
-    <StoreFooter context={context} theme={blush} />
+    <CollectionCards context={context} theme={theme} shape="circle" />
+    <ProductGrid context={context} title="Popular Personalized Gifts" theme={theme} centered border />
+    <CustomCta context={context} theme={theme} title="Have a custom gift in mind?" button="Request Custom Gift" />
+    <StoreFooter context={context} theme={theme} />
   </main>;
 }
 
 export function VisualPortfolioTemplate({ context }: { context: StorefrontContext }) {
+  const theme = themed(gallery, context);
   const products = context.products.slice(0, 6);
-  return <main className={`${gallery.bg} ${gallery.text} font-sans`}>
-    <StoreNav context={context} theme={gallery} dark />
+  return <main style={storefrontStyle(context)} className={storefrontShellClass(context, theme)}>
+    <StoreNav context={context} theme={theme} dark />
     <section className="relative min-h-[76vh] overflow-hidden bg-[#30312e] text-white">
       <HeroImage context={context} className="absolute inset-0 opacity-58" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#30312e]/90 via-[#30312e]/55 to-transparent" />
@@ -259,16 +305,17 @@ export function VisualPortfolioTemplate({ context }: { context: StorefrontContex
       <div className="mb-10 flex items-end justify-between"><h2 className="font-serif text-4xl font-medium">Portfolio Highlights</h2><Link href={`/artisan/${context.seller.store_slug}/products`} className="text-xs font-bold uppercase tracking-[.14em] text-[#71472f]">View all</Link></div>
       <div className="grid gap-5 md:grid-cols-4">{products.map((product: any, index: number) => <Link key={product.id} href={`/artisan/${context.seller.store_slug}/product/${product.slug}`} className={`${index === 1 ? 'md:col-span-2 md:row-span-2' : ''} group overflow-hidden bg-[#e7e1d5]`}><img src={firstImage(product)} alt={product.name} className="h-full min-h-64 w-full object-cover transition duration-700 group-hover:scale-105" /></Link>)}</div>
     </section>
-    <StoryQuote context={context} theme={gallery} imageLeft />
-    <ProductGrid context={context} title="Selected Pieces" theme={gallery} border limit={6} />
-    <CustomCta context={context} theme={gallery} dark title="Have a custom project in mind?" button="Enquire Now" />
-    <StoreFooter context={context} theme={gallery} />
+    <StoryQuote context={context} theme={theme} imageLeft />
+    <ProductGrid context={context} title="Selected Pieces" theme={theme} border limit={6} />
+    <CustomCta context={context} theme={theme} dark title="Have a custom project in mind?" button="Enquire Now" />
+    <StoreFooter context={context} theme={theme} />
   </main>;
 }
 
 export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext }) {
-  return <main className={`${boutique.bg} ${boutique.text} font-sans`}>
-    <StoreNav context={context} theme={boutique} centered dark />
+  const theme = themed(boutique, context);
+  return <main style={storefrontStyle(context)} className={storefrontShellClass(context, theme)}>
+    <StoreNav context={context} theme={theme} centered dark />
     <section className="relative min-h-[78vh] overflow-hidden bg-[#25150c] text-white">
       <HeroImage context={context} className="absolute inset-0 opacity-55" />
       <div className="absolute inset-0 bg-[#25150c]/45" />
@@ -279,8 +326,8 @@ export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext 
         <Link href={`/artisan/${context.seller.store_slug}/products`} className="mt-9 w-fit rounded bg-[#c59042] px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white">Shop Collection</Link>
       </div>
     </section>
-    <CollectionCards context={context} theme={boutique} shape="banner" />
-    <ProductGrid context={context} title="Featured Picks" theme={boutique} centered limit={4} />
+    <CollectionCards context={context} theme={theme} shape="banner" />
+    <ProductGrid context={context} title="Featured Picks" theme={theme} centered limit={4} />
     <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
       <div className="bg-[#25150c] p-8 text-white lg:p-12">
         <h2 className="font-serif text-4xl font-medium">Our Philosophy</h2>
@@ -289,7 +336,7 @@ export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext 
       </div>
       <img src={img(context.products[1]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/10] h-full w-full object-cover" />
     </section>
-    <CustomCta context={context} theme={boutique} title="Commission a signature piece" />
-    <StoreFooter context={context} theme={boutique} dark />
+    <CustomCta context={context} theme={theme} title="Commission a signature piece" />
+    <StoreFooter context={context} theme={theme} dark />
   </main>;
 }
