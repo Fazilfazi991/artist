@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, LogOut, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Star, Store, Truck, Upload, User, X } from "lucide-react";
 import { artisans, categories, occasions, products } from "@/lib/seed";
 import type { Artisan, Category, Product } from "@/lib/types";
 import { CartCountBadge } from "@/components/cart-count";
+import { toggleWishlistAction } from "@/app/wishlist/actions";
 
 type AccountKind = "guest" | "buyer" | "seller";
 
@@ -20,9 +21,8 @@ export function AnnouncementBar() {
 }
 
 export function Logo() {
-  return <Link href="/" className="grid min-w-max justify-items-start gap-0.5" aria-label="Plumlet home">
-    <Image src="/plumlet-logo.png" alt="Plumlet" width={220} height={79} priority className="h-9 w-auto sm:h-10" />
-    <span className="plumlet-banner-title pl-1 text-[8px] font-bold uppercase leading-none tracking-[.18em] text-rust sm:text-[9px]">The Sweetest Little Finds</span>
+  return <Link href="/" className="flex min-w-max items-center" aria-label="Plumlet home">
+    <Image src="/plumlet-logo.png" alt="Plumlet" width={220} height={79} priority className="h-12 w-auto sm:h-14" />
   </Link>;
 }
 
@@ -120,7 +120,7 @@ export function CategoryCards({ compact = false, items = categories }: { compact
 
 export function ProductCard({ product }: { product: Product }) {
   const artisan = artisans.find((item) => item.storeSlug === product.artisanSlug);
-  return <article className="group h-fit overflow-hidden rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(105,41,106,.08)] transition hover:-translate-y-0.5 hover:shadow-soft"><div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-surface-mid"><Link href={`/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.title} /><Image src={product.images[0].src} alt={product.images[0].alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: product.images[0].position }} />{product.customizable ? <span className="absolute left-3 top-3 z-20"><Badge>Customizable</Badge></span> : null}<WishlistButton productSlug={product.slug} /></div><div className="p-2 pt-4"><p className="text-[11px] font-black uppercase tracking-[.14em] text-muted">{typeLabel(product.type)}</p><Link href={`/product/${product.slug}`} className="mt-2 block line-clamp-2 text-xl font-black leading-snug text-ink hover:text-rust">{product.title}</Link><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-1 block truncate text-sm font-bold text-muted">{artisan?.storeName}</Link><div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4"><span className="font-black">{product.priceLabel}</span><span className="flex items-center gap-1 text-xs font-bold text-muted"><Star size={13} className="fill-marigold text-marigold" /> {product.rating}</span></div></div></article>;
+  return <article className="group h-fit overflow-hidden rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(105,41,106,.08)] transition hover:-translate-y-0.5 hover:shadow-soft"><div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-surface-mid"><Link href={`/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.title} /><Image src={product.images[0].src} alt={product.images[0].alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: product.images[0].position }} />{product.customizable ? <span className="absolute left-3 top-3 z-20"><Badge>Customizable</Badge></span> : null}<WishlistButton productId={product.id} productSlug={product.slug} /></div><div className="p-2 pt-4"><p className="text-[11px] font-black uppercase tracking-[.14em] text-muted">{typeLabel(product.type)}</p><Link href={`/product/${product.slug}`} className="mt-2 block line-clamp-2 text-xl font-black leading-snug text-ink hover:text-rust">{product.title}</Link><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-1 block truncate text-sm font-bold text-muted">{artisan?.storeName}</Link><div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4"><span className="font-black">{product.priceLabel}</span><span className="flex items-center gap-1 text-xs font-bold text-muted"><Star size={13} className="fill-marigold text-marigold" /> {product.rating}</span></div></div></article>;
 }
 
 export function ProductGrid({ items = products }: { items?: Product[] }) {
@@ -169,7 +169,7 @@ export function QuantitySelector() { return <div className="inline-flex items-ce
 export function ProductInfoPanel({ product }: { product: Product }) {
   const artisan = artisans.find((item) => item.storeSlug === product.artisanSlug);
   const isBespoke = product.type === "bespoke";
-  return <section><Breadcrumbs items={[["Home", "/"], ["Shop", "/shop"], [product.title]]} /><Badge tone={product.type === "ready" ? "sand" : product.type === "customized" ? "rust" : "sage"}>{typeLabel(product.type)}</Badge><h1 className="mt-5 font-serif text-4xl font-semibold leading-tight sm:text-6xl">{product.title}</h1><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-sage"><Store size={16} /> {artisan?.storeName}</Link><div className="mt-5 flex flex-wrap items-center gap-4 text-sm font-bold text-muted"><span className="flex items-center gap-1"><Star size={15} className="fill-marigold text-marigold" /> {product.rating} ({product.reviewCount} reviews)</span><span>{product.timeline}</span></div><p className="mt-6 text-3xl font-extrabold">{product.priceLabel}</p><p className="mt-5 leading-8 text-muted">{product.description}</p><div className="mt-7 grid gap-4 rounded-xl border border-line bg-surface p-5">{product.type === "customized" ? <FormInput label="Customization note" placeholder="Names, colors, message, or reference details" /> : null}{product.type === "bespoke" ? <Textarea label="Project requirement" placeholder="Tell the artisan what you want made, quantity, budget, and deadline" /> : null}{!isBespoke ? <div><p className="mb-2 text-sm font-extrabold">Quantity</p><QuantitySelector /></div> : null}<div className="flex flex-col gap-3 sm:flex-row"><button onClick={() => alert(isBespoke ? "Custom quote request sent!" : "Added to cart!")} className="min-h-12 flex-1 rounded bg-rust px-5 py-3 font-extrabold text-white transition hover:bg-rust-hover">{isBespoke ? "Request a Custom Quote" : "Add to Cart"}</button>{!isBespoke ? <button onClick={() => alert("Proceeding to checkout...")} className="min-h-12 flex-1 rounded border border-line bg-paper px-5 py-3 font-extrabold">Buy Now</button> : null}<button onClick={() => alert("Added to wishlist!")} className="grid min-h-12 w-full place-items-center rounded border border-line bg-surface transition hover:text-rust sm:w-12" aria-label="Wishlist"><Heart size={18} /></button></div></div><div className="mt-5 grid gap-3 text-sm text-muted sm:grid-cols-3"><span className="flex items-center gap-2"><Truck size={16} /> Expected dispatch tracked</span><span className="flex items-center gap-2"><ShieldCheck size={16} /> Secure checkout</span><span className="flex items-center gap-2"><Check size={16} /> Verified artisan</span></div></section>;
+  return <section><Breadcrumbs items={[["Home", "/"], ["Shop", "/shop"], [product.title]]} /><Badge tone={product.type === "ready" ? "sand" : product.type === "customized" ? "rust" : "sage"}>{typeLabel(product.type)}</Badge><h1 className="mt-5 font-serif text-4xl font-semibold leading-tight sm:text-6xl">{product.title}</h1><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-sage"><Store size={16} /> {artisan?.storeName}</Link><div className="mt-5 flex flex-wrap items-center gap-4 text-sm font-bold text-muted"><span className="flex items-center gap-1"><Star size={15} className="fill-marigold text-marigold" /> {product.rating} ({product.reviewCount} reviews)</span><span>{product.timeline}</span></div><p className="mt-6 text-3xl font-extrabold">{product.priceLabel}</p><p className="mt-5 leading-8 text-muted">{product.description}</p><div className="mt-7 grid gap-4 rounded-xl border border-line bg-surface p-5">{product.type === "customized" ? <FormInput label="Customization note" placeholder="Names, colors, message, or reference details" /> : null}{product.type === "bespoke" ? <Textarea label="Project requirement" placeholder="Tell the artisan what you want made, quantity, budget, and deadline" /> : null}{!isBespoke ? <div><p className="mb-2 text-sm font-extrabold">Quantity</p><QuantitySelector /></div> : null}<div className="flex flex-col gap-3 sm:flex-row"><button onClick={() => alert(isBespoke ? "Custom quote request sent!" : "Added to cart!")} className="min-h-12 flex-1 rounded bg-rust px-5 py-3 font-extrabold text-white transition hover:bg-rust-hover">{isBespoke ? "Request a Custom Quote" : "Add to Cart"}</button>{!isBespoke ? <button onClick={() => alert("Proceeding to checkout...")} className="min-h-12 flex-1 rounded border border-line bg-paper px-5 py-3 font-extrabold">Buy Now</button> : null}<WishlistButton productId={product.id} productSlug={product.slug} className="min-h-12 w-full rounded border border-line bg-surface sm:w-12" /></div></div><div className="mt-5 grid gap-3 text-sm text-muted sm:grid-cols-3"><span className="flex items-center gap-2"><Truck size={16} /> Expected dispatch tracked</span><span className="flex items-center gap-2"><ShieldCheck size={16} /> Secure checkout</span><span className="flex items-center gap-2"><Check size={16} /> Verified artisan</span></div></section>;
 }
 
 export function ArtisanProfileHeader({ artisan }: { artisan: Artisan }) {
@@ -190,23 +190,39 @@ export function FilterSidebar({ selectedType, onType, selectedCategory, onCatego
 function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) { return <div className="border-b border-line pb-5 last:border-0 last:pb-0"><button className="mb-3 flex w-full items-center justify-between text-sm font-black" type="button">{title}<ChevronDown size={15} /></button><div className="grid gap-2">{children}</div></div>; }
 function FilterButton({ children, active = false, onClick }: { children: React.ReactNode; active?: boolean; onClick?: () => void }) { return <button onClick={onClick} className={`rounded-lg px-3 py-2 text-left text-sm font-bold transition ${active ? "bg-rust text-white shadow-soft" : "text-muted hover:bg-surface-low hover:text-rust"}`} type="button">{children}</button>; }
 
-function WishlistButton({ productSlug }: { productSlug: string }) {
+export function WishlistButton({ productId, productSlug, className = "absolute right-3 top-3 z-30 h-10 w-10 rounded-full bg-white shadow-soft", iconSize = 18 }: { productId?: string; productSlug: string; className?: string; iconSize?: number }) {
   const [saved, setSaved] = useState(false);
+  const [pending, startTransition] = useTransition();
+  const storageKey = `plumlet:wishlist:${productSlug}`;
 
   useEffect(() => {
-    const items = JSON.parse(window.localStorage.getItem("plumlet:wishlist") || "[]") as string[];
-    setSaved(items.includes(productSlug));
-  }, [productSlug]);
+    setSaved(window.localStorage.getItem(storageKey) === "1");
+  }, [storageKey]);
 
-  function toggle() {
-    const items = JSON.parse(window.localStorage.getItem("plumlet:wishlist") || "[]") as string[];
-    const next = items.includes(productSlug) ? items.filter((item) => item !== productSlug) : [...items, productSlug];
-    window.localStorage.setItem("plumlet:wishlist", JSON.stringify(next));
-    setSaved(next.includes(productSlug));
+  function persist(nextSaved: boolean) {
+    if (nextSaved) window.localStorage.setItem(storageKey, "1");
+    else window.localStorage.removeItem(storageKey);
+    setSaved(nextSaved);
   }
 
-  return <button type="button" onClick={toggle} className={`absolute right-3 top-3 z-20 grid h-10 w-10 place-items-center rounded-full bg-white shadow-soft transition ${saved ? "text-rust" : "text-muted hover:text-rust"}`} aria-label={saved ? "Remove from wishlist" : "Save product"} aria-pressed={saved}>
-    <Heart size={18} className={saved ? "fill-rust" : ""} />
+  function toggle(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+    const optimistic = !saved;
+    persist(optimistic);
+    startTransition(async () => {
+      const result = await toggleWishlistAction({ productId, productSlug, next: window.location.pathname + window.location.search });
+      if (result.ok) persist(result.saved);
+      else {
+        persist(!optimistic);
+        if (result.loginUrl) window.location.href = result.loginUrl;
+        else window.alert(result.message);
+      }
+    });
+  }
+
+  return <button type="button" onClick={toggle} disabled={pending} className={`grid place-items-center transition disabled:opacity-60 ${className} ${saved ? "text-rust" : "text-muted hover:text-rust"}`} aria-label={saved ? "Remove from wishlist" : "Save product"} aria-pressed={saved}>
+    <Heart size={iconSize} className={saved ? "fill-rust" : ""} />
   </button>;
 }
 

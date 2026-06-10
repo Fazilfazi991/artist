@@ -42,6 +42,7 @@ export function mapProduct(row: any): Product {
   const seller = row.seller_profiles;
   const primary = row.product_images?.[0];
   return {
+    id: row.id,
     slug: row.slug,
     title: row.name,
     artisanSlug: seller?.store_slug || '',

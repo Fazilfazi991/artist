@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Heart, Search, ShoppingBag, User } from 'lucide-react';
 import type { StorefrontContext } from '@/lib/storefront/storefront-types';
 import { CartCountBadge } from '@/components/cart-count';
+import { WishlistButton } from '@/components/ui';
 
 const fallback = '/artisan-hero.png';
 const img = (value?: string | null) => value || fallback;
@@ -89,16 +90,18 @@ function FooterLinks({ title, links, muted }: { title: string; links: [string, s
 }
 
 function ProductCard({ product, storeSlug, theme = earth, centered = false, border = false }: { product: any; storeSlug: string; theme?: Theme; centered?: boolean; border?: boolean }) {
-  return <Link href={`/artisan/${storeSlug}/product/${product.slug}`} className={`group block ${border ? `border ${theme.line} ${theme.surface} p-3` : ''}`}>
-    <div className="aspect-[3/4] overflow-hidden bg-[#f0eee9]">
+  return <article className={`group relative block ${border ? `border ${theme.line} ${theme.surface} p-3` : ''}`}>
+    <div className="relative aspect-[3/4] overflow-hidden bg-[#f0eee9]">
+      <Link href={`/artisan/${storeSlug}/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.name} />
       <img src={firstImage(product)} alt={product.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+      <WishlistButton productId={product.id} productSlug={product.slug} className="absolute right-3 top-3 z-30 h-9 w-9 rounded-full bg-white shadow-soft" iconSize={16} />
     </div>
     <div className={`pt-4 ${centered ? 'text-center' : ''}`}>
       <p className={`text-[11px] font-bold uppercase tracking-[.14em] ${theme.accentText}`}>{product.categories?.name || productType(product.product_type)}</p>
-      <h3 className="mt-2 line-clamp-2 font-serif text-xl font-medium">{product.name}</h3>
+      <Link href={`/artisan/${storeSlug}/product/${product.slug}`} className="mt-2 block line-clamp-2 font-serif text-xl font-medium hover:opacity-75">{product.name}</Link>
       <p className={`mt-2 text-sm font-bold ${theme.muted}`}>{money(product.base_price)}</p>
     </div>
-  </Link>;
+  </article>;
 }
 
 function ProductGrid({ context, title, theme = earth, centered = false, border = false, limit = 8, offset = 0 }: { context: StorefrontContext; title: string; theme?: Theme; centered?: boolean; border?: boolean; limit?: number; offset?: number }) {

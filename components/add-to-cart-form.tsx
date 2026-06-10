@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { Heart } from 'lucide-react';
 import { addToCartAction } from '@/app/cart/actions';
+import { WishlistButton } from '@/components/ui';
 
 export function AddToCartForm({ product, next }: { product: any; next: string }) {
   const [quantity, setQuantity] = useState(1);
@@ -17,7 +17,7 @@ export function AddToCartForm({ product, next }: { product: any; next: string })
   const variantOptions = useMemo(() => variants.map((variant: any) => `${variant.name}: ${variant.value}${Number(variant.price_adjustment || 0) ? ` (+Rs. ${Number(variant.price_adjustment).toLocaleString('en-IN')})` : ''}`), [variants]);
 
   if (isBespoke) {
-    return <div className="mt-6 rounded-xl border border-line bg-white p-5"><p className="text-sm font-bold text-muted">Bespoke pieces are quoted by the artisan before production.</p><Link href={quoteHref} className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-rust px-5 py-3 font-black text-white">Request Custom Quote</Link></div>;
+    return <div className="mt-6 rounded-xl border border-line bg-white p-5"><p className="text-sm font-bold text-muted">Bespoke pieces are quoted by the artisan before production.</p><div className="mt-4 flex flex-col gap-3 sm:flex-row"><Link href={quoteHref} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-lg bg-rust px-5 py-3 font-black text-white">Request Custom Quote</Link><WishlistButton productId={product.id} productSlug={product.slug} className="min-h-12 w-full rounded-lg border border-line bg-white sm:w-12" /></div></div>;
   }
 
   return (
@@ -35,7 +35,7 @@ export function AddToCartForm({ product, next }: { product: any; next: string })
       <div className="flex flex-col gap-3 sm:flex-row">
         <button className="min-h-12 flex-1 rounded-lg bg-rust px-5 py-3 font-black text-white transition hover:bg-rust-hover">Add to Cart</button>
         <button type="submit" name="intent" value="buy_now" className="min-h-12 flex-1 rounded-lg border border-line bg-paper px-5 py-3 font-black">Buy Now</button>
-        <button type="button" className="grid min-h-12 w-full place-items-center rounded-lg border border-line bg-white sm:w-12" aria-label="Wishlist"><Heart size={18}/></button>
+        <WishlistButton productId={product.id} productSlug={product.slug} className="min-h-12 w-full rounded-lg border border-line bg-white sm:w-12" />
       </div>
     </form>
   );
