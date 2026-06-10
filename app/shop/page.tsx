@@ -1,14 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, PackageCheck, Sparkles } from "lucide-react";
-import { SectionHeading } from "@/components/ui";
 import { getFeaturedCategories, getProducts } from "@/lib/services/public-marketplace";
 import { ShopClient } from "./shop-client";
 
 export default async function ShopPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
   const [products, categories] = await Promise.all([getProducts({ search: params.search || params.q, category: params.category, type: params.type, sort: params.sort }), getFeaturedCategories()]);
-  return <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><p className="mb-3 text-xs font-bold text-muted">Home / Shop</p><SectionHeading eyebrow="Shop" title="Shop handmade products" copy="Explore unique handmade products crafted by independent artisans." /><ShopPromos categories={categories} /><ShopClient initialProducts={products} categories={categories} /></main>;
+  return <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mb-6 rounded-xl border border-line bg-white p-6 shadow-[0_12px_30px_rgba(105,41,106,.06)]">
+      <h1 className="plumlet-banner-title text-4xl leading-tight text-ink sm:text-5xl">Shop handmade products</h1>
+      <p className="mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base">Explore unique handmade products crafted by independent artisans.</p>
+    </section>
+    <ShopPromos categories={categories} />
+    <ShopClient initialProducts={products} categories={categories} initialFilters={{ q: params.search || params.q || "", category: params.category || "all", type: params.type || "all", sort: params.sort || "featured" }} />
+  </main>;
 }
 
 function ShopPromos({ categories }: { categories: Awaited<ReturnType<typeof getFeaturedCategories>> }) {

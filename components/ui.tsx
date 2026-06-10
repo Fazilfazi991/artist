@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Award, Check, ChevronDown, Heart, Lock, LogOut, Menu, Minus, PackageCheck, Search, Share2, ShieldCheck, ShoppingBag, Star, Store, Truck, Upload, User, X } from "lucide-react";
 import { artisans, categories, occasions, products } from "@/lib/seed";
 import type { Artisan, Category, Product } from "@/lib/types";
@@ -20,8 +20,9 @@ export function AnnouncementBar() {
 }
 
 export function Logo() {
-  return <Link href="/" className="flex min-w-max items-center" aria-label="Plumlet home">
-    <Image src="/plumlet-logo.png" alt="Plumlet" width={220} height={79} priority className="h-12 w-auto sm:h-14" />
+  return <Link href="/" className="grid min-w-max justify-items-start gap-0.5" aria-label="Plumlet home">
+    <Image src="/plumlet-logo.png" alt="Plumlet" width={220} height={79} priority className="h-9 w-auto sm:h-10" />
+    <span className="plumlet-banner-title pl-1 text-[8px] font-bold uppercase leading-none tracking-[.18em] text-rust sm:text-[9px]">The Sweetest Little Finds</span>
   </Link>;
 }
 
@@ -119,11 +120,11 @@ export function CategoryCards({ compact = false, items = categories }: { compact
 
 export function ProductCard({ product }: { product: Product }) {
   const artisan = artisans.find((item) => item.storeSlug === product.artisanSlug);
-  return <article className="group overflow-hidden rounded-lg border border-line bg-surface p-3 transition hover:-translate-y-0.5 hover:shadow-soft"><div className="relative aspect-[4/5] overflow-hidden rounded bg-surface-mid"><Link href={`/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.title} /><Image src={product.images[0].src} alt={product.images[0].alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: product.images[0].position }} />{product.customizable ? <span className="absolute left-3 top-3 z-20"><Badge>Customizable</Badge></span> : null}<button className="absolute right-3 top-3 z-20 grid h-9 w-9 place-items-center rounded-full bg-surface/90 text-muted transition hover:text-rust" aria-label="Save product"><Heart size={17} /></button></div><div className="p-2 pt-4"><p className="text-xs font-bold uppercase tracking-[.12em] text-muted">{typeLabel(product.type)}</p><Link href={`/product/${product.slug}`} className="mt-2 block font-serif text-xl font-semibold leading-snug text-ink hover:text-rust">{product.title}</Link><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-1 block text-sm text-muted">{artisan?.storeName}</Link><div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4"><span className="font-extrabold">{product.priceLabel}</span><span className="flex items-center gap-1 text-xs font-bold text-muted"><Star size={13} className="fill-marigold text-marigold" /> {product.rating}</span></div></div></article>;
+  return <article className="group h-fit overflow-hidden rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(105,41,106,.08)] transition hover:-translate-y-0.5 hover:shadow-soft"><div className="relative aspect-[1.08] overflow-hidden rounded-lg bg-surface-mid"><Link href={`/product/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.title} /><Image src={product.images[0].src} alt={product.images[0].alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: product.images[0].position }} />{product.customizable ? <span className="absolute left-3 top-3 z-20"><Badge>Customizable</Badge></span> : null}<WishlistButton productSlug={product.slug} /></div><div className="p-2 pt-4"><p className="text-[11px] font-black uppercase tracking-[.14em] text-muted">{typeLabel(product.type)}</p><Link href={`/product/${product.slug}`} className="mt-2 block line-clamp-2 text-xl font-black leading-snug text-ink hover:text-rust">{product.title}</Link><Link href={`/artisan/${artisan?.storeSlug}`} className="mt-1 block truncate text-sm font-bold text-muted">{artisan?.storeName}</Link><div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-4"><span className="font-black">{product.priceLabel}</span><span className="flex items-center gap-1 text-xs font-bold text-muted"><Star size={13} className="fill-marigold text-marigold" /> {product.rating}</span></div></div></article>;
 }
 
 export function ProductGrid({ items = products }: { items?: Product[] }) {
-  return <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">{items.map((product) => <ProductCard key={product.slug} product={product} />)}</div>;
+  return <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{items.map((product) => <ProductCard key={product.slug} product={product} />)}</div>;
 }
 
 export function ArtisanCard({ artisan }: { artisan: Artisan }) {
@@ -183,11 +184,31 @@ export function Textarea({ label, placeholder }: { label: string; placeholder: s
 export function FileUploadPlaceholder() { return <div className="grid min-h-32 place-items-center rounded border border-dashed border-line bg-paper p-5 text-center text-sm text-muted"><Upload size={22} /><span className="mt-2 block font-bold">Upload reference image, video, or PDF</span></div>; }
 
 export function FilterSidebar({ selectedType, onType, selectedCategory, onCategory, categories: filterCategories = categories }: { selectedType: string; onType: (value: string) => void; selectedCategory: string; onCategory: (value: string) => void; categories?: Category[] }) {
-  return <aside className="grid gap-5 rounded-xl border border-line bg-surface p-5"><FilterGroup title="Categories">{filterCategories.map((category) => <FilterButton key={category.slug} active={selectedCategory === category.slug} onClick={() => onCategory(category.slug)}>{category.name}</FilterButton>)}</FilterGroup><FilterGroup title="Price Range"><div className="h-2 rounded-full bg-surface-high"><div className="h-2 w-2/3 rounded-full bg-rust" /></div><div className="flex justify-between text-xs text-muted"><span>Rs. 0</span><span>Rs. 5000+</span></div></FilterGroup><FilterGroup title="Product Type">{[["ready", "Ready to Ship"], ["customized", "Customizable"], ["bespoke", "Made to Order"]].map(([value, label]) => <FilterButton key={value} active={selectedType === value} onClick={() => onType(value)}>{label}</FilterButton>)}</FilterGroup><FilterGroup title="Occasion">{occasions.slice(0, 5).map((occasion) => <FilterButton key={occasion}>{occasion}</FilterButton>)}</FilterGroup><FilterGroup title="Artisan">{artisans.map((artisan) => <FilterButton key={artisan.storeSlug}>{artisan.storeName}</FilterButton>)}</FilterGroup></aside>;
+  return <aside className="grid gap-5 rounded-xl border border-line bg-white p-5 shadow-[0_12px_30px_rgba(105,41,106,.06)]"><FilterGroup title="Categories">{filterCategories.map((category) => <FilterButton key={category.slug} active={selectedCategory === category.slug} onClick={() => onCategory(category.slug)}>{category.name}</FilterButton>)}</FilterGroup><FilterGroup title="Price Range"><div className="h-2 rounded-full bg-rust-soft/60"><div className="h-2 w-2/3 rounded-full bg-rust" /></div><div className="flex justify-between text-xs font-bold text-muted"><span>Rs. 0</span><span>Rs. 5000+</span></div></FilterGroup><FilterGroup title="Product Type">{[["ready", "Ready to Ship"], ["customized", "Customizable"], ["bespoke", "Made to Order"]].map(([value, label]) => <FilterButton key={value} active={selectedType === value} onClick={() => onType(value)}>{label}</FilterButton>)}</FilterGroup><FilterGroup title="Occasion">{occasions.slice(0, 5).map((occasion) => <FilterButton key={occasion}>{occasion}</FilterButton>)}</FilterGroup><FilterGroup title="Artisan">{artisans.map((artisan) => <FilterButton key={artisan.storeSlug}>{artisan.storeName}</FilterButton>)}</FilterGroup></aside>;
 }
 
-function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) { return <div className="border-b border-line pb-5 last:border-0 last:pb-0"><button className="mb-3 flex w-full items-center justify-between text-sm font-extrabold" type="button">{title}<ChevronDown size={15} /></button><div className="grid gap-2">{children}</div></div>; }
-function FilterButton({ children, active = false, onClick }: { children: React.ReactNode; active?: boolean; onClick?: () => void }) { return <button onClick={onClick} className={`text-left text-sm ${active ? "font-extrabold text-rust" : "text-muted hover:text-ink"}`} type="button">{children}</button>; }
+function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) { return <div className="border-b border-line pb-5 last:border-0 last:pb-0"><button className="mb-3 flex w-full items-center justify-between text-sm font-black" type="button">{title}<ChevronDown size={15} /></button><div className="grid gap-2">{children}</div></div>; }
+function FilterButton({ children, active = false, onClick }: { children: React.ReactNode; active?: boolean; onClick?: () => void }) { return <button onClick={onClick} className={`rounded-lg px-3 py-2 text-left text-sm font-bold transition ${active ? "bg-rust text-white shadow-soft" : "text-muted hover:bg-surface-low hover:text-rust"}`} type="button">{children}</button>; }
+
+function WishlistButton({ productSlug }: { productSlug: string }) {
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const items = JSON.parse(window.localStorage.getItem("plumlet:wishlist") || "[]") as string[];
+    setSaved(items.includes(productSlug));
+  }, [productSlug]);
+
+  function toggle() {
+    const items = JSON.parse(window.localStorage.getItem("plumlet:wishlist") || "[]") as string[];
+    const next = items.includes(productSlug) ? items.filter((item) => item !== productSlug) : [...items, productSlug];
+    window.localStorage.setItem("plumlet:wishlist", JSON.stringify(next));
+    setSaved(next.includes(productSlug));
+  }
+
+  return <button type="button" onClick={toggle} className={`absolute right-3 top-3 z-20 grid h-10 w-10 place-items-center rounded-full bg-white shadow-soft transition ${saved ? "text-rust" : "text-muted hover:text-rust"}`} aria-label={saved ? "Remove from wishlist" : "Save product"} aria-pressed={saved}>
+    <Heart size={18} className={saved ? "fill-rust" : ""} />
+  </button>;
+}
 
 export function MobileFilterDrawer({ open, onClose, children }: { open: boolean; onClose: () => void; children: React.ReactNode }) {
   return <div className={open ? "fixed inset-0 z-50 lg:hidden" : "pointer-events-none fixed inset-0 z-50 opacity-0 lg:hidden"}><button className="absolute inset-0 bg-ink/40" onClick={onClose} aria-label="Close filters" /><aside className={`${open ? "translate-y-0" : "translate-y-full"} absolute bottom-0 left-0 max-h-[88vh] w-full overflow-y-auto rounded-t-2xl bg-paper p-5 shadow-lift transition`}><div className="mb-4 flex items-center justify-between"><h2 className="font-extrabold">Filters</h2><button onClick={onClose} className="grid h-10 w-10 place-items-center rounded border border-line bg-surface"><X size={18} /></button></div>{children}</aside></div>;
