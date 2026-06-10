@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { requireApprovedSeller } from '@/lib/services/auth';
 import { isValidSubdomain } from '@/lib/storefront/get-hostname';
+import { STOREFRONT_SECTION_TYPES, getSectionMeta } from '@/lib/storefront/section-registry';
 import { STOREFRONT_TEMPLATES } from '@/lib/storefront/template-registry';
 
 function text(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
@@ -21,6 +22,7 @@ function revalidateStorefront(seller: any) {
   revalidatePath('/seller/storefront');
   revalidatePath('/seller/storefront/branding');
   revalidatePath('/seller/storefront/content');
+  revalidatePath('/seller/storefront/sections');
   revalidatePath('/seller/storefront/template');
   revalidatePath('/seller/storefront/preview');
   revalidatePath(`/artisan/${seller.store_slug}`);
@@ -134,6 +136,47 @@ export async function savePoliciesAction(formData: FormData) {
   if (error) fail('/seller/storefront/policies', error.message);
   revalidateStorefront(seller);
   redirect('/seller/storefront/policies?saved=1');
+}
+
+export async function saveStorefrontSectionsAction(formData: FormData) {
+  const seller = await requireApprovedSeller();
+  const supabase = await createClient();
+  await ensureSettings(supabase, seller);
+  const now = new Date().toISOString();
+  for (const meta of STOREFRONT_SECTION_TYPES) {
+    const key = meta.key;
+    const order = Number(text(formData, `${key}_order`) || '0');
+    const limit = Number(text(formData, `${key}_limit`) || '0');
+    const layout = choice(formData, `${key}_layout`, [...meta.layouts], meta.layouts[0]);
+    const title = text(formData, `${key}_title`) || meta.defaultTitle;
+    const subtitle = text(formData, `${key}_subtitle`) || meta.defaultSubtitle;
+    const sectionMeta = getSectionMeta(key);
+    const content: Record<string, any> = {
+      subtitle,
+      layout,
+      limit: Number.isFinite(limit) && limit > 0 ? Math.min(limit, 16) : undefined
+    };
+    const payload = {
+      seller_id: seller.id,
+      section_type: key,
+      title,
+      content,
+      display_order: Number.isFinite(order) ? order : 0,
+      is_visible: formData.get(`${key}_visible`) === 'on',
+      updated_at: now
+    };
+    if (sectionMeta.key === 'custom_cta') {
+      payload.content = {
+        ...payload.content,
+        buttonLabel: text(formData, `${key}_button`) || 'Request Custom Order'
+      };
+    }
+    const { error } = await supabase.from('storefront_sections').upsert(payload, { onConflict: 'seller_id,section_type' });
+    if (error) fail('/seller/storefront/sections', error.message);
+  }
+  await supabase.from('storefront_settings').update({ draft_updated_at: now }).eq('seller_id', seller.id);
+  revalidateStorefront(seller);
+  redirect('/seller/storefront/sections?saved=1');
 }
 
 export async function publishStorefrontAction(formData: FormData) {

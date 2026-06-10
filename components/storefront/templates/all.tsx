@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Heart, Search, ShoppingBag, User } from 'lucide-react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { StorefrontContext } from '@/lib/storefront/storefront-types';
 import { CartCountBadge } from '@/components/cart-count';
 import { WishlistButton } from '@/components/ui';
@@ -67,6 +67,41 @@ function storefrontShellClass(context: StorefrontContext, theme: Theme) {
   const buttonStyle = ['rounded', 'pill', 'soft-square'].includes(context.settings?.button_style) ? context.settings.button_style : 'rounded';
   const fontPairing = ['friendly', 'editorial', 'minimal'].includes(context.settings?.font_pairing) ? context.settings.font_pairing : 'friendly';
   return `storefront-button-style-${buttonStyle} storefront-font-${fontPairing} ${theme.bg} ${theme.text} font-sans`;
+}
+
+function hasSectionRows(context: StorefrontContext) {
+  return Array.isArray(context.sections) && context.sections.length > 0;
+}
+
+function sectionRow(context: StorefrontContext, type: string) {
+  return context.sections?.find((section: any) => section.section_type === type);
+}
+
+function sectionVisible(context: StorefrontContext, type: string) {
+  if (!hasSectionRows(context)) return true;
+  return sectionRow(context, type)?.is_visible !== false;
+}
+
+function sectionTitle(context: StorefrontContext, type: string, fallbackTitle: string) {
+  return sectionRow(context, type)?.title || fallbackTitle;
+}
+
+function sectionContent(context: StorefrontContext, type: string) {
+  return sectionRow(context, type)?.content || {};
+}
+
+function sectionLimit(context: StorefrontContext, type: string, fallbackLimit: number) {
+  const limit = Number(sectionContent(context, type).limit);
+  return Number.isFinite(limit) && limit > 0 ? Math.min(limit, 16) : fallbackLimit;
+}
+
+function OrderedSections({ context, entries }: { context: StorefrontContext; entries: Array<{ key: string; order: number; render: () => ReactNode }> }) {
+  const sorted = [...entries].sort((a, b) => {
+    const aOrder = sectionRow(context, a.key)?.display_order ?? a.order;
+    const bOrder = sectionRow(context, b.key)?.display_order ?? b.order;
+    return aOrder - bOrder;
+  });
+  return <>{sorted.map((entry) => sectionVisible(context, entry.key) ? <div key={entry.key}>{entry.render()}</div> : null)}</>;
 }
 
 function HeroImage({ context, className = '' }: { context: StorefrontContext; className?: string }) {
@@ -147,10 +182,11 @@ function ProductCard({ product, storeSlug, theme = earth, centered = false, bord
 }
 
 function ProductGrid({ context, title, theme = earth, centered = false, border = false, limit = 8, offset = 0 }: { context: StorefrontContext; title: string; theme?: Theme; centered?: boolean; border?: boolean; limit?: number; offset?: number }) {
-  const products = context.products.slice(offset, offset + limit);
+  const products = context.products.slice(offset, offset + sectionLimit(context, 'featured_products', limit));
+  const heading = sectionTitle(context, 'featured_products', title);
   return <section className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-12 lg:py-16">
     <div className="mb-7 flex items-end justify-between gap-5">
-      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>{title}</h2>
+      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>{heading}</h2>
       <Link href={`/artisan/${context.seller.store_slug}/products`} className={`hidden text-xs font-bold uppercase tracking-[.14em] ${theme.muted} sm:inline-flex`}>View All</Link>
     </div>
     {products.length ? <div className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:gap-7">{products.map((product: any) => <ProductCard key={product.id} product={product} storeSlug={context.seller.store_slug} theme={theme} centered={centered} border={border} />)}</div> : <div className={`border ${theme.line} ${theme.surface} p-8 ${theme.muted}`}>No live products yet.</div>}
@@ -160,16 +196,19 @@ function ProductGrid({ context, title, theme = earth, centered = false, border =
 function CollectionCards({ context, theme = earth, shape = 'rect' }: { context: StorefrontContext; theme?: Theme; shape?: 'rect' | 'circle' | 'banner' }) {
   if (!context.collections.length) return null;
   const store = context.seller.store_slug;
+  const layout = sectionContent(context, 'collections').layout;
+  const resolvedShape = layout === 'circles' ? 'circle' : layout === 'banners' ? 'banner' : shape;
+  const limit = sectionLimit(context, 'collections', 5);
   return <section id="collections" className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-12 lg:py-16">
     <div className="mb-7 flex items-end justify-between gap-5">
-      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>Collections</h2>
+      <h2 className={`font-serif text-4xl font-medium ${theme.accentText}`}>{sectionTitle(context, 'collections', 'Collections')}</h2>
       <Link href={`/artisan/${store}/collections`} className={`text-xs font-bold uppercase tracking-[.14em] ${theme.muted}`}>View all</Link>
     </div>
-    <div className={shape === 'circle' ? 'grid grid-cols-2 gap-8 text-center sm:grid-cols-5' : shape === 'banner' ? 'grid gap-5 md:grid-cols-3' : 'grid grid-cols-2 gap-5 md:grid-cols-4'}>
-      {context.collections.slice(0, 5).map((collection: any, index: number) => {
+    <div className={resolvedShape === 'circle' ? 'grid grid-cols-2 gap-8 text-center sm:grid-cols-5' : resolvedShape === 'banner' ? 'grid gap-5 md:grid-cols-3' : 'grid grid-cols-2 gap-5 md:grid-cols-4'}>
+      {context.collections.slice(0, limit).map((collection: any, index: number) => {
         const src = img(collection.image_url || context.products[index]?.product_images?.[0]?.image_url || context.settings.hero_image_url || context.seller.cover_image_url);
         return <Link key={collection.id} href={`/artisan/${store}/collections/${collection.slug}`} className="group block">
-          <div className={`${shape === 'circle' ? 'mx-auto h-28 w-28 rounded-full' : shape === 'banner' ? 'aspect-[16/9]' : 'aspect-[4/3]'} overflow-hidden bg-[#f0eee9]`}>
+          <div className={`${resolvedShape === 'circle' ? 'mx-auto h-28 w-28 rounded-full' : resolvedShape === 'banner' ? 'aspect-[16/9]' : 'aspect-[4/3]'} overflow-hidden bg-[#f0eee9]`}>
             <img src={src} alt={collection.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
           </div>
           <span className={`mt-4 block text-sm font-bold ${theme.text}`}>{collection.name}</span>
@@ -183,7 +222,7 @@ function ProcessBand({ context, theme = earth, dark = false }: { context: Storef
   const steps = ['Sourced carefully', 'Made by hand', 'Finished slowly'];
   return <section className={`${dark ? 'bg-white/8 text-white' : `${theme.soft} ${theme.text}`} px-4 py-16 sm:px-6 lg:px-12`}>
     <div className="mx-auto max-w-screen-xl text-center">
-      <h2 className="font-serif text-4xl font-medium">Our Philosophy</h2>
+      <h2 className="font-serif text-4xl font-medium">{sectionTitle(context, 'process', 'Our Philosophy')}</h2>
       <div className={`mx-auto mt-6 h-px w-16 ${dark ? 'bg-white/25' : 'bg-[#d5c3ba]'}`} />
       <div className="mt-12 grid gap-10 md:grid-cols-3">
         {steps.map((step) => <div key={step}>
@@ -198,10 +237,11 @@ function ProcessBand({ context, theme = earth, dark = false }: { context: Storef
 
 function CustomCta({ context, theme = earth, dark = false, title = 'Have something custom in mind?', button = 'Request Custom Order' }: { context: StorefrontContext; theme?: Theme; dark?: boolean; title?: string; button?: string }) {
   if (!context.settings.custom_orders_enabled) return null;
+  const content = sectionContent(context, 'custom_cta');
   return <section className={`${dark ? 'bg-[#30312e] text-white' : `${theme.soft} ${theme.text}`} px-4 py-8 sm:px-6 lg:px-12`}>
     <div className="mx-auto flex max-w-screen-xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-      <div><h2 className="font-serif text-3xl font-medium">{title}</h2><p className={`mt-2 max-w-2xl text-sm leading-7 ${dark ? 'text-white/70' : theme.muted}`}>{context.settings.custom_order_policy_note || 'Share references, measurements, files, videos, and links. We will review and quote your piece.'}</p></div>
-      <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex min-h-11 shrink-0 items-center justify-center rounded px-6 py-3 text-xs font-bold uppercase tracking-[.14em] ${dark ? 'bg-white text-[#30312e]' : `${theme.accent} text-white`}`}>{context.settings.custom_order_cta_text || button}</Link>
+      <div><h2 className="font-serif text-3xl font-medium">{sectionTitle(context, 'custom_cta', title)}</h2><p className={`mt-2 max-w-2xl text-sm leading-7 ${dark ? 'text-white/70' : theme.muted}`}>{content.subtitle || context.settings.custom_order_policy_note || 'Share references, measurements, files, videos, and links. We will review and quote your piece.'}</p></div>
+      <Link href={`/artisan/${context.seller.store_slug}/custom-order`} className={`inline-flex min-h-11 shrink-0 items-center justify-center rounded px-6 py-3 text-xs font-bold uppercase tracking-[.14em] ${dark ? 'bg-white text-[#30312e]' : `${theme.accent} text-white`}`}>{context.settings.custom_order_cta_text || content.buttonLabel || button}</Link>
     </div>
   </section>;
 }
@@ -234,11 +274,13 @@ export function WarmEditorialTemplate({ context }: { context: StorefrontContext 
       </div>
       <div className="order-1 min-h-[48vh] md:order-2"><HeroImage context={context} /></div>
     </section>
-    <ProcessBand context={context} theme={theme} />
-    <CollectionCards context={context} theme={theme} />
-    <ProductGrid context={context} title="Featured Pieces" theme={theme} border />
-    <CustomCta context={context} theme={theme} />
-    <StoryQuote context={context} theme={theme} />
+    <OrderedSections context={context} entries={[
+      { key: 'process', order: 10, render: () => <ProcessBand context={context} theme={theme} /> },
+      { key: 'collections', order: 20, render: () => <CollectionCards context={context} theme={theme} /> },
+      { key: 'featured_products', order: 30, render: () => <ProductGrid context={context} title="Featured Pieces" theme={theme} border /> },
+      { key: 'custom_cta', order: 40, render: () => <CustomCta context={context} theme={theme} /> },
+      { key: 'story', order: 50, render: () => <StoryQuote context={context} theme={theme} /> }
+    ]} />
     <StoreFooter context={context} theme={theme} />
   </main>;
 }
@@ -253,10 +295,11 @@ export function CleanGridTemplate({ context }: { context: StorefrontContext }) {
       <p className={`${theme.muted} mt-6 max-w-xl text-lg leading-8`}>{context.settings.hero_subtitle || context.seller.short_bio}</p>
       <Link href={`/artisan/${context.seller.store_slug}/products`} className={`${theme.accent} mt-8 rounded px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white`}>Shop the Collection</Link>
     </header>
-    <ProductGrid context={context} title="Best Sellers" theme={theme} centered limit={8} />
-    <CollectionCards context={context} theme={theme} shape="circle" />
-    <ProductGrid context={context} title="New Arrivals" theme={theme} centered offset={4} limit={4} />
-    <CustomCta context={context} theme={theme} title="Need a different size or finish?" />
+    <OrderedSections context={context} entries={[
+      { key: 'featured_products', order: 20, render: () => <ProductGrid context={context} title="Best Sellers" theme={theme} centered limit={8} /> },
+      { key: 'collections', order: 30, render: () => <CollectionCards context={context} theme={theme} shape="circle" /> },
+      { key: 'custom_cta', order: 40, render: () => <CustomCta context={context} theme={theme} title="Need a different size or finish?" /> }
+    ]} />
     <StoreFooter context={context} theme={theme} />
   </main>;
 }
@@ -280,9 +323,11 @@ export function PersonalizedGiftsTemplate({ context }: { context: StorefrontCont
         <div className="mt-10 grid gap-5 md:grid-cols-4">{['Choose a piece', 'Add names or references', 'Approve the details', 'Receive your gift'].map((step, index) => <div key={step} className="rounded-lg bg-white p-6 text-center"><span className={`${theme.accent} mx-auto grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white`}>{index + 1}</span><strong className="mt-4 block">{step}</strong></div>)}</div>
       </div>
     </section>
-    <CollectionCards context={context} theme={theme} shape="circle" />
-    <ProductGrid context={context} title="Popular Personalized Gifts" theme={theme} centered border />
-    <CustomCta context={context} theme={theme} title="Have a custom gift in mind?" button="Request Custom Gift" />
+    <OrderedSections context={context} entries={[
+      { key: 'collections', order: 20, render: () => <CollectionCards context={context} theme={theme} shape="circle" /> },
+      { key: 'featured_products', order: 30, render: () => <ProductGrid context={context} title="Popular Personalized Gifts" theme={theme} centered border /> },
+      { key: 'custom_cta', order: 40, render: () => <CustomCta context={context} theme={theme} title="Have a custom gift in mind?" button="Request Custom Gift" /> }
+    ]} />
     <StoreFooter context={context} theme={theme} />
   </main>;
 }
@@ -305,9 +350,11 @@ export function VisualPortfolioTemplate({ context }: { context: StorefrontContex
       <div className="mb-10 flex items-end justify-between"><h2 className="font-serif text-4xl font-medium">Portfolio Highlights</h2><Link href={`/artisan/${context.seller.store_slug}/products`} className="text-xs font-bold uppercase tracking-[.14em] text-[#71472f]">View all</Link></div>
       <div className="grid gap-5 md:grid-cols-4">{products.map((product: any, index: number) => <Link key={product.id} href={`/artisan/${context.seller.store_slug}/product/${product.slug}`} className={`${index === 1 ? 'md:col-span-2 md:row-span-2' : ''} group overflow-hidden bg-[#e7e1d5]`}><img src={firstImage(product)} alt={product.name} className="h-full min-h-64 w-full object-cover transition duration-700 group-hover:scale-105" /></Link>)}</div>
     </section>
-    <StoryQuote context={context} theme={theme} imageLeft />
-    <ProductGrid context={context} title="Selected Pieces" theme={theme} border limit={6} />
-    <CustomCta context={context} theme={theme} dark title="Have a custom project in mind?" button="Enquire Now" />
+    <OrderedSections context={context} entries={[
+      { key: 'story', order: 20, render: () => <StoryQuote context={context} theme={theme} imageLeft /> },
+      { key: 'featured_products', order: 30, render: () => <ProductGrid context={context} title="Selected Pieces" theme={theme} border limit={6} /> },
+      { key: 'custom_cta', order: 40, render: () => <CustomCta context={context} theme={theme} dark title="Have a custom project in mind?" button="Enquire Now" /> }
+    ]} />
     <StoreFooter context={context} theme={theme} />
   </main>;
 }
@@ -326,17 +373,19 @@ export function BoutiqueBrandTemplate({ context }: { context: StorefrontContext 
         <Link href={`/artisan/${context.seller.store_slug}/products`} className="mt-9 w-fit rounded bg-[#c59042] px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-white">Shop Collection</Link>
       </div>
     </section>
-    <CollectionCards context={context} theme={theme} shape="banner" />
-    <ProductGrid context={context} title="Featured Picks" theme={theme} centered limit={4} />
-    <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
-      <div className="bg-[#25150c] p-8 text-white lg:p-12">
-        <h2 className="font-serif text-4xl font-medium">Our Philosophy</h2>
-        <p className="mt-6 leading-8 text-white/75">{context.settings.artisan_story || context.seller.full_story || context.seller.short_bio}</p>
-        <Link href={`/artisan/${context.seller.store_slug}/about`} className="mt-7 inline-flex text-xs font-bold uppercase tracking-[.14em] text-[#d9b98f]">More About Us <ArrowRight size={14} className="ml-2" /></Link>
-      </div>
-      <img src={img(context.products[1]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/10] h-full w-full object-cover" />
-    </section>
-    <CustomCta context={context} theme={theme} title="Commission a signature piece" />
+    <OrderedSections context={context} entries={[
+      { key: 'collections', order: 20, render: () => <CollectionCards context={context} theme={theme} shape="banner" /> },
+      { key: 'featured_products', order: 30, render: () => <ProductGrid context={context} title="Featured Picks" theme={theme} centered limit={4} /> },
+      { key: 'process', order: 35, render: () => <section className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-12 lg:py-24">
+        <div className="bg-[#25150c] p-8 text-white lg:p-12">
+          <h2 className="font-serif text-4xl font-medium">{sectionTitle(context, 'process', 'Our Philosophy')}</h2>
+          <p className="mt-6 leading-8 text-white/75">{context.settings.artisan_story || context.seller.full_story || context.seller.short_bio}</p>
+          <Link href={`/artisan/${context.seller.store_slug}/about`} className="mt-7 inline-flex text-xs font-bold uppercase tracking-[.14em] text-[#d9b98f]">More About Us <ArrowRight size={14} className="ml-2" /></Link>
+        </div>
+        <img src={img(context.products[1]?.product_images?.[0]?.image_url || context.settings.hero_image_url)} alt="" className="aspect-[16/10] h-full w-full object-cover" />
+      </section> },
+      { key: 'custom_cta', order: 40, render: () => <CustomCta context={context} theme={theme} title="Commission a signature piece" /> }
+    ]} />
     <StoreFooter context={context} theme={theme} dark />
   </main>;
 }

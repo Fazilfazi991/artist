@@ -9,7 +9,7 @@ import { publishStorefrontAction, saveStorefrontBuilderAction } from './actions'
 
 export const dynamic = 'force-dynamic';
 
-const nav = [['Builder','/seller/storefront'],['Templates','/seller/storefront/template'],['Branding','/seller/storefront/branding'],['Content','/seller/storefront/content'],['Policies','/seller/storefront/policies'],['Collections','/seller/collections'],['Preview','/seller/storefront/preview']];
+const nav = [['Builder','/seller/storefront'],['Sections','/seller/storefront/sections'],['Templates','/seller/storefront/template'],['Branding','/seller/storefront/branding'],['Content','/seller/storefront/content'],['Policies','/seller/storefront/policies'],['Collections','/seller/collections'],['Preview','/seller/storefront/preview']];
 
 const templateLooks: Record<string, { label: string; swatches: string[] }> = {
   'warm-editorial': { label: 'Story-led craft homepage', swatches: ['#FFFFFF', '#69296A', '#F38FA4'] },

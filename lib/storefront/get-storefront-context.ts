@@ -11,7 +11,7 @@ export async function getStorefrontContext(storeSlug: string, options: { preview
     supabase.from('products').select('*, categories(*), product_images(*), product_variants(*), product_customization_fields(*)').eq('seller_id', seller.id).eq('status', 'active').order('is_featured', { ascending: false }).order('created_at', { ascending: false }),
     supabase.from('seller_collections').select('*, seller_collection_products(product_id, display_order)').eq('seller_id', seller.id).eq('is_active', true).order('display_order', { ascending: true }),
     supabase.from('storefront_social_links').select('*').eq('seller_id', seller.id).order('display_order', { ascending: true }),
-    supabase.from('storefront_sections').select('*').eq('seller_id', seller.id).eq('is_visible', true).order('display_order', { ascending: true })
+    supabase.from('storefront_sections').select('*').eq('seller_id', seller.id).order('display_order', { ascending: true })
   ]);
   const defaultSettings = {
     template_key: 'warm-editorial',
