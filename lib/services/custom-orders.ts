@@ -28,6 +28,16 @@ export async function createCustomOrderRequest(formData: FormData) {
     product_id: text(formData, 'product_id') || undefined,
     title: text(formData, 'title'),
     description: text(formData, 'description'),
+    project_category: text(formData, 'project_category') || undefined,
+    occasion: text(formData, 'occasion') || undefined,
+    dimensions: text(formData, 'dimensions') || undefined,
+    preferred_materials: text(formData, 'preferred_materials') || undefined,
+    preferred_colors: text(formData, 'preferred_colors') || undefined,
+    flexibility: {
+      budget: formData.get('flex_budget') === 'on',
+      deadline: formData.get('flex_deadline') === 'on',
+      design: formData.get('flex_design') === 'on'
+    },
     budget_min: optionalNumber(formData, 'budget_min'),
     budget_max: optionalNumber(formData, 'budget_max'),
     quantity: optionalNumber(formData, 'quantity'),
@@ -200,7 +210,8 @@ export async function addMilestoneAsSeller(formData: FormData) {
     description: text(formData, 'description') || undefined,
     display_order: optionalNumber(formData, 'display_order') ?? 0,
     status: text(formData, 'status') || 'pending',
-    is_visible_to_buyer: formData.get('is_visible_to_buyer') === 'on'
+    is_visible_to_buyer: formData.get('is_visible_to_buyer') === 'on',
+    requires_buyer_approval: formData.get('requires_buyer_approval') === 'on'
   });
   const service = createServiceRoleClient();
   const { data: request } = await service.from('custom_order_requests').select('*, seller_profiles(user_id)').eq('id', parsed.request_id).eq('seller_id', seller.id).single();
@@ -212,6 +223,45 @@ export async function addMilestoneAsSeller(formData: FormData) {
   if (imagePaths.length) await service.from('custom_order_milestones').update({ image_paths: imagePaths }).eq('id', milestone.id);
   if (parsed.is_visible_to_buyer) await notify(service, request.buyer_id, 'New project update', `There is a new milestone update for ${request.request_number}.`, `/account/custom-orders/${request.id}`);
   return milestone;
+}
+
+export async function addCustomOrderMessageAsBuyer(formData: FormData) {
+  const user = await requireAuth();
+  const id = text(formData, 'request_id');
+  const message = text(formData, 'message');
+  if (message.length < 2) throw new Error('Message is required.');
+  const service = createServiceRoleClient();
+  const request = await getRequestForBuyer(service, id, user.id);
+  await addTimelineNote(service, request, `Buyer: ${message}`, user.id);
+  await notify(service, request.seller_profiles?.user_id, 'New custom-order message', `Buyer added a note on ${request.request_number}.`, `/seller/custom-requests/${request.id}`);
+}
+
+export async function addCustomOrderMessageAsSeller(formData: FormData) {
+  const seller = await requireApprovedSeller();
+  const id = text(formData, 'request_id');
+  const message = text(formData, 'message');
+  if (message.length < 2) throw new Error('Message is required.');
+  const service = createServiceRoleClient();
+  const { data: request, error } = await service.from('custom_order_requests').select('*, seller_profiles(store_name, store_slug, user_id)').eq('id', id).eq('seller_id', seller.id).single();
+  if (error || !request) throw new Error('Request not found.');
+  await addTimelineNote(service, request, `Artisan: ${message}`, seller.user_id);
+  await notify(service, request.buyer_id, 'New custom-order message', `The artisan added a note on ${request.request_number}.`, `/account/custom-orders/${request.id}`);
+}
+
+export async function approveMilestoneAsBuyer(formData: FormData) {
+  const user = await requireAuth();
+  const requestId = text(formData, 'request_id');
+  const milestoneId = text(formData, 'milestone_id');
+  const note = text(formData, 'approval_note');
+  const service = createServiceRoleClient();
+  const request = await getRequestForBuyer(service, requestId, user.id);
+  const { data: milestone, error } = await service.from('custom_order_milestones').select('*').eq('id', milestoneId).eq('request_id', request.id).single();
+  if (error || !milestone) throw new Error('Milestone not found.');
+  if (!milestone.requires_buyer_approval) throw new Error('This milestone does not need buyer approval.');
+  const { error: updateError } = await service.from('custom_order_milestones').update({ buyer_approved_at: new Date().toISOString(), buyer_approval_note: note || null }).eq('id', milestone.id);
+  if (updateError) throw new Error(updateError.message);
+  await addTimelineNote(service, request, `Buyer approved milestone: ${milestone.title}${note ? ` / ${note}` : ''}`, user.id);
+  await notify(service, request.seller_profiles?.user_id, 'Milestone approved', `Buyer approved "${milestone.title}" for ${request.request_number}.`, `/seller/custom-requests/${request.id}`);
 }
 
 export async function updateMilestoneAsSeller(formData: FormData) {
@@ -318,6 +368,11 @@ async function transition(service: any, request: any, status: BespokeOrderStatus
   const { error } = await service.from('custom_order_requests').update({ status }).eq('id', request.id);
   if (error) throw new Error(error.message);
   await service.from('custom_order_status_history').insert({ request_id: request.id, status, note, changed_by: changedBy });
+}
+
+async function addTimelineNote(service: any, request: any, note: string, changedBy: string | null) {
+  const { error } = await service.from('custom_order_status_history').insert({ request_id: request.id, status: request.status, note, changed_by: changedBy });
+  if (error) throw new Error(error.message);
 }
 
 async function uploadFiles(service: any, formData: FormData, fieldName: string, bucket: string, folder: string) {

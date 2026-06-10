@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { addMilestoneAsSeller, completeCustomOrderAsAdminOrSeller, createQuoteAsSeller, markFinalPaymentPendingAsSeller, markReadyForDeliveryAsSeller, markRequestReviewingAsSeller, startCustomOrderProductionAsSeller } from '@/lib/services/custom-orders';
+import { addCustomOrderMessageAsSeller, addMilestoneAsSeller, completeCustomOrderAsAdminOrSeller, createQuoteAsSeller, markFinalPaymentPendingAsSeller, markReadyForDeliveryAsSeller, markRequestReviewingAsSeller, startCustomOrderProductionAsSeller } from '@/lib/services/custom-orders';
 
 function text(formData: FormData, key: string) { return String(formData.get(key) || '').trim(); }
 function fail(id: string, message: string) { redirect(`/seller/custom-requests/${id}?error=${encodeURIComponent(message)}`); }
@@ -54,4 +54,11 @@ export async function completeCustomRequestAction(formData: FormData) {
   try { await completeCustomOrderAsAdminOrSeller(id); } catch (error: any) { fail(id, error.message || 'Could not complete request.'); }
   revalidatePath('/seller/custom-requests');
   redirect(`/seller/custom-requests/${id}?completed=1`);
+}
+
+export async function addSellerCustomMessageAction(formData: FormData) {
+  const id = text(formData, 'request_id');
+  try { await addCustomOrderMessageAsSeller(formData); } catch (error: any) { fail(id, error.message || 'Could not add message.'); }
+  revalidatePath('/seller/custom-requests');
+  redirect(`/seller/custom-requests/${id}?message=1`);
 }

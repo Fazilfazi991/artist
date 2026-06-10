@@ -5,7 +5,7 @@ import { AccountShell } from '@/components/account-shell';
 import { requireAuth } from '@/lib/services/auth';
 import { bespokeStatusLabels, customOrderNextAction } from '@/lib/types/custom-orders';
 import { getBuyerCustomOrderRequestById } from '@/lib/services/custom-orders';
-import { acceptCustomQuoteAction, declineCustomQuoteAction, requestQuoteRevisionAction } from '../actions';
+import { acceptCustomQuoteAction, addBuyerCustomMessageAction, approveCustomMilestoneAction, declineCustomQuoteAction, requestQuoteRevisionAction } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,14 +22,74 @@ export default async function BuyerCustomOrderDetailPage({ params, searchParams 
   const quotes = request.custom_order_quotes || [];
   const latest = quotes[0];
   const payments = request.custom_order_payment_records || [];
-  return <AccountShell title={request.request_number} copy={`${request.title} / ${bespokeStatusLabels[request.status] || request.status}`}>{query.created ? <p className="mb-4 rounded-lg border border-success/30 bg-sage/10 p-3 font-bold text-success">Custom request submitted. The artisan has been notified.</p> : null}{query.error ? <p className="mb-4 rounded-lg border border-rust/30 bg-rust/10 p-3 font-bold text-rust">{query.error}</p> : null}<div className="mb-4"><Link href="/account/custom-orders" className="inline-flex rounded-lg border border-line bg-white px-4 py-3 font-black">All custom orders</Link></div><div className="grid gap-5 xl:grid-cols-[1fr_340px]"><section className="grid gap-4"><article className="rounded-xl border border-line bg-white p-5"><div className="flex flex-wrap gap-2"><Badge>{request.status}</Badge><Badge tone="sage">{customOrderNextAction(request.status)}</Badge></div><p className="mt-4 leading-7 text-muted">{request.description}</p>{request.buyer_notes ? <p className="mt-3 rounded-lg bg-paper p-3 text-sm leading-6 text-muted"><strong className="text-ink">Buyer notes:</strong> {request.buyer_notes}</p> : null}<div className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><Info label="Budget" value={`${money(request.budget_min)} - ${money(request.budget_max)}`}/><Info label="Quantity" value={String(request.quantity || 'Not set')}/><Info label="Deadline" value={date(request.deadline)}/><Info label="Delivery location" value={request.delivery_location || 'Not set'}/></div></article><QuotePanel request={request} quote={latest}/><Milestones milestones={request.custom_order_milestones || []}/><Timeline history={request.custom_order_status_history || []}/></section><aside className="grid h-fit gap-4"><article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Artisan</h2><Link href={`/artisan/${request.seller_profiles?.store_slug}`} className="mt-2 block font-black text-rust">{request.seller_profiles?.store_name}</Link><p className="mt-2 text-sm text-muted">Product: {request.products?.name || 'General custom enquiry'}</p></article><article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Payment status</h2>{payments.length ? payments.map((payment: any) => <p key={payment.id} className="mt-3 flex justify-between gap-3 text-sm"><span>{payment.payment_type}</span><strong>{money(payment.amount)} / {payment.status}</strong></p>) : <p className="mt-2 text-sm text-muted">Payment records appear after quote acceptance.</p>}</article><References files={request.reference_files || []} links={request.reference_links || []}/></aside></div></AccountShell>;
+
+  return <AccountShell title={request.request_number} copy={`${request.title} / ${bespokeStatusLabels[request.status] || request.status}`}>
+    {query.created ? <Notice tone="success">Custom request submitted. The artisan has been notified.</Notice> : null}
+    {query.error ? <Notice tone="error">{query.error}</Notice> : null}
+    <div className="mb-4"><Link href="/account/custom-orders" className="inline-flex rounded-lg border border-line bg-white px-4 py-3 font-black">All custom orders</Link></div>
+    <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
+      <section className="grid gap-4">
+        <BriefCard request={request} />
+        <QuotePanel request={request} quote={latest}/>
+        <Milestones request={request} milestones={request.custom_order_milestones || []}/>
+        <MessageForm request={request}/>
+        <Timeline history={request.custom_order_status_history || []}/>
+      </section>
+      <aside className="grid h-fit gap-4">
+        <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Artisan</h2><Link href={`/artisan/${request.seller_profiles?.store_slug}`} className="mt-2 block font-black text-rust">{request.seller_profiles?.store_name}</Link><p className="mt-2 text-sm text-muted">Product: {request.products?.name || 'General custom enquiry'}</p></article>
+        <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Payment status</h2>{payments.length ? payments.map((payment: any) => <p key={payment.id} className="mt-3 flex justify-between gap-3 text-sm"><span>{payment.payment_type}</span><strong>{money(payment.amount)} / {payment.status}</strong></p>) : <p className="mt-2 text-sm text-muted">Payment records appear after quote acceptance.</p>}</article>
+        <References files={request.reference_files || []} links={request.reference_links || []}/>
+      </aside>
+    </div>
+  </AccountShell>;
+}
+
+function BriefCard({ request }: { request: any }) {
+  const flexibility = request.flexibility || {};
+  return <article className="rounded-xl border border-line bg-white p-5">
+    <div className="flex flex-wrap gap-2"><Badge>{request.status}</Badge><Badge tone="sage">{customOrderNextAction(request.status)}</Badge></div>
+    <p className="mt-4 leading-7 text-muted">{request.description}</p>
+    {request.buyer_notes ? <p className="mt-3 rounded-lg bg-paper p-3 text-sm leading-6 text-muted"><strong className="text-ink">Buyer notes:</strong> {request.buyer_notes}</p> : null}
+    <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+      <Info label="Category" value={request.project_category || 'Not set'}/><Info label="Occasion" value={request.occasion || 'Not set'}/>
+      <Info label="Budget" value={`${money(request.budget_min)} - ${money(request.budget_max)}`}/><Info label="Quantity" value={String(request.quantity || 'Not set')}/>
+      <Info label="Deadline" value={date(request.deadline)}/><Info label="Delivery location" value={request.delivery_location || 'Not set'}/>
+      <Info label="Dimensions" value={request.dimensions || 'Not set'}/><Info label="Colors" value={request.preferred_colors || 'Not set'}/>
+      <Info label="Materials" value={request.preferred_materials || 'Not set'}/><Info label="Flexible On" value={['budget','deadline','design'].filter((key) => flexibility[key]).join(', ') || 'Not marked'}/>
+    </div>
+  </article>;
 }
 
 function QuotePanel({ request, quote }: { request: any; quote: any }) {
   if (!quote) return <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Latest quote</h2><p className="mt-2 text-sm text-muted">The artisan has not sent a quote yet.</p></article>;
-  return <article className="rounded-xl border border-line bg-white p-5"><div className="flex flex-wrap items-center justify-between gap-3"><h2 className="font-black">Latest quote v{quote.quote_version}</h2><Badge>{quote.status}</Badge></div><div className="mt-4 grid gap-3 sm:grid-cols-3"><Info label="Quote total" value={money(quote.quote_amount)}/><Info label="Deposit" value={money(quote.deposit_amount)}/><Info label="Final amount" value={money(quote.final_amount)}/></div><p className="mt-3 text-sm leading-6 text-muted">{quote.quote_notes || 'No additional notes.'}</p>{request.status === 'quote_sent' ? <div className="mt-4 grid gap-3 sm:grid-cols-3"><form action={acceptCustomQuoteAction}><input type="hidden" name="request_id" value={request.id}/><button className="w-full rounded-lg bg-rust px-4 py-3 font-black text-white">Accept Quote</button></form><form action={requestQuoteRevisionAction} className="grid gap-2"><input type="hidden" name="request_id" value={request.id}/><input name="revision_note" placeholder="Revision note" className="rounded-lg border border-line bg-paper px-3 py-2 text-sm"/><button className="rounded-lg border border-line px-4 py-3 font-black">Request Revision</button></form><form action={declineCustomQuoteAction}><input type="hidden" name="request_id" value={request.id}/><button className="w-full rounded-lg border border-rust/30 px-4 py-3 font-black text-rust">Decline</button></form></div> : null}</article>;
+  return <article className="rounded-xl border border-line bg-white p-5"><div className="flex flex-wrap items-center justify-between gap-3"><h2 className="font-black">Latest quote v{quote.quote_version}</h2><Badge>{quote.status}</Badge></div><div className="mt-4 grid gap-3 sm:grid-cols-3"><Info label="Quote total" value={money(quote.quote_amount)}/><Info label="Deposit" value={money(quote.deposit_amount)}/><Info label="Final amount" value={money(quote.final_amount)}/></div><p className="mt-3 text-sm leading-6 text-muted">{quote.quote_notes || 'No additional notes.'}</p><List title="Included" items={quote.inclusions || []}/><List title="Not included" items={quote.exclusions || []}/>{request.status === 'quote_sent' ? <div className="mt-4 grid gap-3 sm:grid-cols-3"><form action={acceptCustomQuoteAction}><input type="hidden" name="request_id" value={request.id}/><button className="w-full rounded-lg bg-rust px-4 py-3 font-black text-white">Accept Quote</button></form><form action={requestQuoteRevisionAction} className="grid gap-2"><input type="hidden" name="request_id" value={request.id}/><input name="revision_note" placeholder="Revision note" className="rounded-lg border border-line bg-paper px-3 py-2 text-sm"/><button className="rounded-lg border border-line px-4 py-3 font-black">Request Revision</button></form><form action={declineCustomQuoteAction}><input type="hidden" name="request_id" value={request.id}/><button className="w-full rounded-lg border border-rust/30 px-4 py-3 font-black text-rust">Decline</button></form></div> : null}</article>;
 }
-function Milestones({ milestones }: { milestones: any[] }) { return <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Milestones</h2>{milestones.length ? <div className="mt-4 grid gap-3">{milestones.map((item) => <div key={item.id} className="rounded-lg bg-paper p-3"><div className="flex flex-wrap justify-between gap-2"><strong>{item.title}</strong><Badge>{item.status}</Badge></div><p className="mt-1 text-sm text-muted">{item.description}</p>{(item.image_paths || []).length ? <p className="mt-2 break-all text-xs text-muted">{item.image_paths.map((file: any) => file.name || file.storagePath).join(', ')}</p> : null}</div>)}</div> : <p className="mt-2 text-sm text-muted">Milestones appear after production starts.</p>}</article>; }
-function Timeline({ history }: { history: any[] }) { return <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Timeline</h2><div className="mt-4 grid gap-3">{history.map((entry) => <div key={entry.id} className="rounded-lg bg-paper p-3 text-sm"><strong>{bespokeStatusLabels[entry.status] || entry.status}</strong><p className="text-muted">{entry.note || 'Status updated.'}</p></div>)}</div></article>; }
+
+function Milestones({ request, milestones }: { request: any; milestones: any[] }) {
+  return <article className="rounded-xl border border-line bg-white p-5">
+    <h2 className="font-black">Milestones and approvals</h2>
+    {milestones.length ? <div className="mt-4 grid gap-3">{milestones.map((item) => <MilestoneItem key={item.id} request={request} item={item} />)}</div> : <p className="mt-2 text-sm text-muted">Milestones appear after production starts.</p>}
+  </article>;
+}
+
+function MilestoneItem({ request, item }: { request: any; item: any }) {
+  const files = item.image_paths || [];
+  return <div className="rounded-lg bg-paper p-3">
+    <div className="flex flex-wrap justify-between gap-2"><strong>{item.title}</strong><Badge>{item.status}</Badge></div>
+    <p className="mt-1 text-sm text-muted">{item.description}</p>
+    {item.requires_buyer_approval ? <p className="mt-2 text-xs font-bold text-rust">{item.buyer_approved_at ? `Approved ${date(item.buyer_approved_at)}` : 'Buyer approval requested'}</p> : null}
+    {files.length ? <p className="mt-2 break-all text-xs text-muted">{files.map((file: any) => file.name || file.storagePath).join(', ')}</p> : null}
+    {item.requires_buyer_approval && !item.buyer_approved_at ? <form action={approveCustomMilestoneAction} className="mt-3 grid gap-2">
+      <input type="hidden" name="request_id" value={request.id}/>
+      <input type="hidden" name="milestone_id" value={item.id}/>
+      <input name="approval_note" placeholder="Approval note, optional" className="rounded-lg border border-line bg-white px-3 py-2 text-sm"/>
+      <button className="rounded-lg bg-rust px-4 py-2 text-sm font-black text-white">Approve Milestone</button>
+    </form> : null}
+  </div>;
+}
+function MessageForm({ request }: { request: any }) { return <form action={addBuyerCustomMessageAction} className="grid gap-3 rounded-xl border border-line bg-white p-5"><h2 className="font-black">Add a message</h2><input type="hidden" name="request_id" value={request.id}/><textarea name="message" required placeholder="Ask a question, clarify a detail, or share an update." className="min-h-24 rounded-lg border border-line bg-paper px-4 py-3 outline-none"/><button className="w-fit rounded-lg border border-line bg-paper px-5 py-3 font-black">Send Message</button></form>; }
+function Timeline({ history }: { history: any[] }) { return <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">Conversation and timeline</h2><div className="mt-4 grid gap-3">{history.map((entry) => <div key={entry.id} className="rounded-lg bg-paper p-3 text-sm"><strong>{bespokeStatusLabels[entry.status] || entry.status}</strong><p className="text-muted">{entry.note || 'Status updated.'}</p></div>)}</div></article>; }
 function Info({ label, value }: { label: string; value: string }) { return <div className="rounded-lg bg-paper p-3"><p className="text-xs font-bold uppercase tracking-[.08em] text-muted">{label}</p><p className="mt-1 break-words font-black">{value}</p></div>; }
+function List({ title, items }: { title: string; items: string[] }) { return items.length ? <div className="mt-4 rounded-lg bg-paper p-3"><p className="text-xs font-bold uppercase tracking-[.08em] text-muted">{title}</p><ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted">{items.map((item) => <li key={item}>{item}</li>)}</ul></div> : null; }
 function References({ files, links }: { files: any[]; links: string[] }) { return <article className="rounded-xl border border-line bg-white p-5"><h2 className="font-black">References</h2>{files.length ? <div className="mt-3 grid gap-2 text-sm text-muted">{files.map((file: any) => <p className="break-all" key={file.storagePath}>{file.name} <span className="text-xs">({file.type})</span></p>)}</div> : null}{links.length ? <div className="mt-3 grid gap-2 text-sm">{links.map((link) => <a key={link} href={link} target="_blank" rel="noreferrer" className="break-all font-bold text-rust">{link}</a>)}</div> : null}{!files.length && !links.length ? <p className="mt-2 text-sm text-muted">No reference files or links added.</p> : null}<Link href="/account/support" className="mt-4 inline-flex rounded-lg border border-line px-4 py-3 text-sm font-black">Need support?</Link></article>; }
+function Notice({ tone, children }: { tone: 'success' | 'error'; children: React.ReactNode }) { return <p className={`mb-4 rounded-lg border p-3 font-bold ${tone === 'success' ? 'border-success/30 bg-sage/10 text-success' : 'border-rust/30 bg-rust/10 text-rust'}`}>{children}</p>; }
